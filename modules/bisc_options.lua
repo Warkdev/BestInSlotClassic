@@ -25,7 +25,9 @@ function CreateSettingsInterface()
     end
     
     settings.refresh = function()
-        print("Refresh");
+        if BestInSlotClassicDB.debug.enabled then
+            print("Refresh called.");
+        end
     end
 
     debugCheckbox = CreateCheckBox("BISCDebugCB", "Enable debug mode for the add-on", settings, 20, -40, "Enable/Disable debug mode", function (self)           
