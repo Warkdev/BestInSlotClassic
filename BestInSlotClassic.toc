@@ -7,3 +7,4 @@
 
 core.lua
 handlers/cli.lua
+handlers/minimap.lua
