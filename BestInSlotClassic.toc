@@ -1,11 +1,8 @@
 ## Author: Wark @ Auberdine-EU
 ## Interface: 11303
 ## Title: Best In Slot Classic - v0.1beta
-## Name: Best In Slot Classic
-## Notes: Keep track of your, your raid members and your guilds Best in Slot list! - Based on Best In Slot Redux
+## Notes: Keep track of your, your raid members and your guilds Best in Slot list!
 ## Version: 0.1beta
 ## SavedVariables: BestInSlotClassicDB
 
 core.lua
-
-app:RegisterEvent("ADDON_LOADED");
