@@ -1,14 +1,24 @@
 -- Basic Command Handlers File. New commands would be ideally added here.
 
-local function ShowManager(args)
+function ShowManager(args)
     print("Main function called");
 end
 
-local function ShowHelp(args)
-    print("You requested for help !");
+function OpenConfigPane(args)
+    InterfaceOptionsFrame_OpenToCategory("BestInSlotClassic");
+    InterfaceOptionsFrame_OpenToCategory("BestInSlotClassic");
 end
 
-local function HandleDebug(args)
+local function ShowHelp(args)
+    print("BestInSlotClassic usage: ");
+    print("/bis : Configure the add-on");
+    print("/bis debug : Enable/disable debug mode");    
+    print("/bis help : Show this help");
+    print("/bis reset : Reset all add-on settings");
+    print("/bis settings: Define add-on general settings");        
+end
+
+function HandleDebug(args)
     if not (BestInSlotClassicDB.debug.enabled) then
         BestInSlotClassicDB.debug.enabled = true;        
         print("Debug mode enabled !");
@@ -18,16 +28,26 @@ local function HandleDebug(args)
     end
 end
 
+function PrintVars(args)
+    print("Debug enabled: ", BestInSlotClassicDB.debug.enabled);
+    print("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide);
+    print("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos);
+end
+
 local function Reset(args)
     ResetDefaults();
+    UpdateMinimapIcon();
+    print("BestInSlotClassic has been reset to default values.");
 end
 
 -- "Elegant" way to handle switch case in LUA.
 handlers = {
     [""] = ShowManager,
-    ["help"] = ShowHelp,
+    ["settings"] = OpenConfigPane,
     ["debug"] = HandleDebug,
-    ["reset"] = Reset
+    ["help"] = ShowHelp,    
+    ["reset"] = Reset,
+    ["vars"] = PrintVars
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.

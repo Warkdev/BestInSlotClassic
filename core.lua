@@ -36,16 +36,13 @@ end
 -- Creating Event Frame.
 local frame = CreateFrame("FRAME", "BestInSlotClassicEventHandler");
 frame:RegisterEvent("ADDON_LOADED");
-frame:RegisterEvent("PLAYER_LOGOUT");
 
 local function eventHandler(self, event, args1, ...)
     if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then
         SetDefaults();
         CreateMinimapIcon();
-    end    
-    if event == "PLAYER_LOGOUT" then
-        print("Logging out..");
-    end
+        CreateSettingsInterface();
+    end        
 end
 
 frame:SetScript("OnEvent", eventHandler);
