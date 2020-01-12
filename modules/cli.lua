@@ -1,7 +1,7 @@
 -- Basic Command Handlers File. New commands would be ideally added here.
 
 function ShowManager(args)
-    print("Main function called");
+    ShowManager();
 end
 
 function OpenConfigPane(args)
