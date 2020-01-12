@@ -9,18 +9,25 @@ local function ShowHelp(args)
 end
 
 local function HandleDebug(args)
-    if(debug) then
+    if not (BestInSlotClassicDB.debug.enabled) then
+        BestInSlotClassicDB.debug.enabled = true;        
         print("Debug mode enabled !");
     else
-        print("Debug mode disable !");
+        BestInSlotClassicDB.debug.enabled = false;
+        print("Debug mode disabled !");
     end
+end
+
+local function Reset(args)
+    ResetDefaults();
 end
 
 -- "Elegant" way to handle switch case in LUA.
 handlers = {
     [""] = ShowManager,
     ["help"] = ShowHelp,
-    ["debug"] = HandleDebug
+    ["debug"] = HandleDebug,
+    ["reset"] = Reset
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.
@@ -33,8 +40,6 @@ local function HandleCommands(msg, editBox)
         handlers["help"](msg);
     end    
 end
-
-debug = false;
 
 -- Slash Commands
 SLASH_BIS1, SLASH_BIS2 = "/bis", "/bestinslot";

@@ -4,7 +4,12 @@
 ## Notes: Keep track of your, your raid members and your guilds Best in Slot list!
 ## Version: 0.1beta
 ## SavedVariables: BestInSlotClassicDB
+## SavedVariablesPerCharacter: BestInSlotClassicCharDB
 
+lib\LibStub\LibStub.lua
+lib\CallbackHandler-1.0\CallbackHandler-1.0.lua
+lib\LibDataBroker-1.1\LibDataBroker-1.1.lua
+lib\LibDBIcon-1.0\LibDBIcon-1.0.lua
 core.lua
 handlers/cli.lua
 handlers/minimap.lua
