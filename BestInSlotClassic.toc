@@ -6,3 +6,4 @@
 ## SavedVariables: BestInSlotClassicDB
 
 core.lua
+handlers/cli.lua

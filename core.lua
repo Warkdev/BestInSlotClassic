@@ -1,5 +1,4 @@
 print("BestInSlotClassic v0.1beta");
-
 app:RegisterEvent("ADDON_LOADED");
 app:RegisterEvent("PLAYER_LOGIN");
 
