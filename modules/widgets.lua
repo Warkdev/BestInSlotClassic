@@ -90,3 +90,19 @@ function CreateSlider(name, label, parent, min, max, x, y, callback)
 
     return slider;
 end
+
+function CreateDropDownList(name, label, parent, width, x, y, items, callback)
+    local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");
+    dropdown:SetPoint("TOPLEFT", x, y);
+    UIDropDownMenu_SetWidth(dropdown, width)
+    UIDropDownMenu_SetText(dropdown, "Exciting goes here text")
+    --[[
+        local dropdown = UIDropDownMenu_CreateInfo();
+    info.text, info.checked = "Blue Pill", true;
+    UIDropDownMenu_AddButton(info)
+    info.text, info.checked = "Red Pill", false
+    UIDropDownMenu_AddButton(info)]]--
+
+
+    return dropdown;
+end
