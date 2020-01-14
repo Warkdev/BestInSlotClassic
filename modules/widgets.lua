@@ -91,18 +91,68 @@ function CreateSlider(name, label, parent, min, max, x, y, callback)
     return slider;
 end
 
-function CreateDropDownList(name, label, parent, width, x, y, items, callback)
-    local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");
-    dropdown:SetPoint("TOPLEFT", x, y);
-    UIDropDownMenu_SetWidth(dropdown, width)
-    UIDropDownMenu_SetText(dropdown, "Exciting goes here text")
-    --[[
-        local dropdown = UIDropDownMenu_CreateInfo();
-    info.text, info.checked = "Blue Pill", true;
-    UIDropDownMenu_AddButton(info)
-    info.text, info.checked = "Red Pill", false
-    UIDropDownMenu_AddButton(info)]]--
+local races = { "Human", "Gnome", "Dwarf", "Night Elf", "Orc", "Undead", "Tauren", "Troll" };
+local class = { "Warrior", "Shaman", "Druid", "Hunter", "Mage", "Warlock", "Priest", "Rogue", "Paladin" };
+local specs = { "Todo" };
+local phases = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" };
 
+function Initialize_RacesDropDown(frame, level, menuList)
+    local info = UIDropDownMenu_CreateInfo();
+
+    for idx, value in ipairs(races) do
+        info.text, info.checked = value, false;
+        UIDropDownMenu_AddButton(info);
+    end
+end
+
+function Initialize_ClassDropDown(frame, level, menuList)
+    local info = UIDropDownMenu_CreateInfo();
+
+    for idx, value in ipairs(class) do
+        info.text, info.checked = value, false;
+        UIDropDownMenu_AddButton(info);
+    end
+end
+
+function Initialize_SpecsDropDown(frame, level, menuList)
+    local info = UIDropDownMenu_CreateInfo();
+
+    for idx, value in ipairs(specs) do
+        info.text, info.checked = value, false;
+        UIDropDownMenu_AddButton(info);
+    end
+end
+
+function Initialize_PhaseDropDown(frame, level, menuList)
+    local info = UIDropDownMenu_CreateInfo();
+
+    for idx, value in ipairs(phases) do
+        info.text, info.checked = value, false;
+        UIDropDownMenu_AddButton(info);
+    end
+end
+
+local dropdownInitializer = {
+    ["races"] = Initialize_RacesDropDown,
+    ["class"] = Initialize_ClassDropDown,
+    ["specs"] = Initialize_SpecsDropDown,
+    ["phases"] = Initialize_PhaseDropDown,
+}
+
+local dropdownText = {
+    ["races"] = "Select your race",
+    ["class"] = "Select your class",
+    ["specs"] = "Select your spec",
+    ["phases"] = "Select your phase",
+}
+
+function CreateDropDownList(name, label, parent, width, x, y, items, callback)
+    local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");    
+    dropdown:SetPoint("TOPLEFT", x, y);
+    UIDropDownMenu_SetWidth(dropdown, width);
+    UIDropDownMenu_SetText(dropdown, dropdownText[items]);
+    UIDropDownMenu_Initialize(dropdown, dropdownInitializer[items]);
 
     return dropdown;
 end
+
