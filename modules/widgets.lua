@@ -34,8 +34,8 @@ function StartMovingOrSizing(self, fromChild)
     end
 end
     
-local function HideParent(self)
-    self:GetParent():Hide();
+local function HideParent(self)    
+    ShowManager();
 end
     
 function CreateWindow(name, height, width)
@@ -98,9 +98,9 @@ local phases = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid",
 
 function Initialize_RacesDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();
-
+    
     for idx, value in ipairs(races) do
-        info.text, info.checked = value, false;
+        info.text, info.notcheckable = value, true;
         UIDropDownMenu_AddButton(info);
     end
 end
@@ -132,6 +132,18 @@ function Initialize_PhaseDropDown(frame, level, menuList)
     end
 end
 
+local menu = {    
+    { text = "Select your race", isTitle = true },
+    { text = "Human" },
+    { text = "Gnome" },
+    { text = "Dwarf" },
+    { text = "Night Elf" },
+    { text = "Orc" },
+    { text = "Undead" },
+    { text = "Tauren" },
+    { text = "Troll" }
+};
+
 local dropdownInitializer = {
     ["races"] = Initialize_RacesDropDown,
     ["class"] = Initialize_ClassDropDown,
@@ -146,7 +158,7 @@ local dropdownText = {
     ["phases"] = "Select your phase",
 }
 
-function CreateDropDownList(name, label, parent, width, x, y, items, callback)
+function CreateDropDownList(name, parent, width, x, y, items, callback)
     local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");    
     dropdown:SetPoint("TOPLEFT", x, y);
     UIDropDownMenu_SetWidth(dropdown, width);
@@ -155,4 +167,3 @@ function CreateDropDownList(name, label, parent, width, x, y, items, callback)
 
     return dropdown;
 end
-

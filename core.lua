@@ -1,5 +1,7 @@
 print("BestInSlotClassic v0.1beta loaded");
 
+local localizedClass, class, classIndex = UnitClass("player");
+
 local function SetMinimapDefaults()
     if BestInSlotClassicDB.minimap.hide == nil then
         BestInSlotClassicDB.minimap.hide = false;
