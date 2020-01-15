@@ -4,9 +4,14 @@ local window;
 local visible;
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
 
-function ShowManager() 
+function ShowManager()
+    -- We load player info now because it can evolve regarding talents.
+    -- There's also a bug that makes the num talent tab being at 0 after addon_loaded on start.
+    LoadPlayerInfo();
+    PrintPlayerInfo();
+
     if window == nil then
-        visible = false;
+        visible = false;        
         window = CreateWindow("BISManager", 1200, 600);
         dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", 0);        
         dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", 0);        

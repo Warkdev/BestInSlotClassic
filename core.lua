@@ -43,6 +43,9 @@ function LoadPlayerInfo()
     -- Player name.
     name = UnitName("player");
 
+    -- Player level.
+    level = UnitLevel("player");
+
     -- Player faction.
     faction, localizedFaction = UnitFactionGroup("player");
 
@@ -55,19 +58,27 @@ function LoadPlayerInfo()
     local maxPoints = 0;
     spec = "Unknown";
 
-    log("Num Talent Tabs: "..GetNumTalentTabs());
-    for idx=1, GetNumTalentTabs(), 1 do
+    -- No need to check the spec when below level 10.
+    if level < 10 then
+        return;
+    end
+
+    local numTalentTabs = GetNumTalentTabs();    
+
+    log("Num Talent Tabs: "..numTalentTabs);
+    
+    for idx=1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
         if(tonumber(pointsSpent) > maxPoints) then
-            spec = name;
+            spec = fileName;
             maxPoints = tonumber(pointsSpent);
         end        
-        log(name, pointsSpent, fileName);        
+        log(name..": "..pointsSpent..", "..fileName);        
     end    
     log("Your spec is: "..spec);
 end
 
-local function PrintPlayerInfo()    
+function PrintPlayerInfo()    
     log("Player name: "..name);
     log("Player faction: "..faction);
     log("Player class: "..class);
@@ -80,13 +91,11 @@ local frame = CreateFrame("FRAME", "BestInSlotClassicEventHandler");
 frame:RegisterEvent("ADDON_LOADED");
 
 local function eventHandler(self, event, args1, ...)
-    if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then
-        LoadPlayerInfo();
-        PrintPlayerInfo();
+    if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then        
         SetDefaults();
         CreateMinimapIcon();
         CreateSettingsInterface();
-    end        
+    end
 end
 
 frame:SetScript("OnEvent", eventHandler);
