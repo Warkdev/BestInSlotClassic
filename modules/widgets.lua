@@ -91,14 +91,23 @@ function CreateSlider(name, label, parent, min, max, x, y, callback)
     return slider;
 end
 
-local races = { "Human", "Gnome", "Dwarf", "Night Elf", "Orc", "Undead", "Tauren", "Troll" };
-local class = { "Warrior", "Shaman", "Druid", "Hunter", "Mage", "Warlock", "Priest", "Rogue", "Paladin" };
+local horde_races = { "Orc", "Undead", "Tauren", "Troll" };
+local alliance_races = { "Human", "Gnome", "Dwarf", "Night Elf" };
+local horde_class = { "Warrior", "Shaman", "Druid", "Hunter", "Mage", "Warlock", "Priest", "Rogue" };
+local alliance_class = { "Warrior", "Druid", "Hunter", "Mage", "Warlock", "Priest", "Rogue", "Paladin" };
 local specs = { "Todo" };
 local phases = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" };
 
 function Initialize_RacesDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();
-    
+    local races;
+
+    if faction == "Horde" then
+        races = horde_races;
+    else
+        races = alliance_races;
+    end
+
     for idx, value in ipairs(races) do
         info.text, info.notcheckable = value, true;
         UIDropDownMenu_AddButton(info);
@@ -107,6 +116,13 @@ end
 
 function Initialize_ClassDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();
+    local class;
+
+    if faction == "Horde" then
+        class = horde_class;
+    else
+        class = alliance_class;
+    end
 
     for idx, value in ipairs(class) do
         info.text, info.checked = value, false;
@@ -131,18 +147,6 @@ function Initialize_PhaseDropDown(frame, level, menuList)
         UIDropDownMenu_AddButton(info);
     end
 end
-
-local menu = {    
-    { text = "Select your race", isTitle = true },
-    { text = "Human" },
-    { text = "Gnome" },
-    { text = "Dwarf" },
-    { text = "Night Elf" },
-    { text = "Orc" },
-    { text = "Undead" },
-    { text = "Tauren" },
-    { text = "Troll" }
-};
 
 local dropdownInitializer = {
     ["races"] = Initialize_RacesDropDown,
