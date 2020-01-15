@@ -1,11 +1,5 @@
 print("BestInSlotClassic v0.1beta loaded");
 
-local function log(message)
-    if(BestInSlotClassicDB.debug.enabled) then
-        print(message);
-    end
-end
-
 local function SetMinimapDefaults()
     if BestInSlotClassicDB.minimap.hide == nil then
         BestInSlotClassicDB.minimap.hide = false;
@@ -51,6 +45,7 @@ function LoadPlayerInfo()
 
     -- Player class info.
     localizedClass, class, classIndex = UnitClass("player");
+    class = "DRUID";
     -- Player pvp info.
     pvpRank =  UnitPVPRank("player");
 
@@ -65,7 +60,7 @@ function LoadPlayerInfo()
 
     local numTalentTabs = GetNumTalentTabs();    
 
-    log("Num Talent Tabs: "..numTalentTabs);
+    log("Num Talent Tabs: "..numTalentTabs, DEBUG);
     
     for idx=1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
@@ -73,17 +68,17 @@ function LoadPlayerInfo()
             spec = fileName;
             maxPoints = tonumber(pointsSpent);
         end        
-        log(name..": "..pointsSpent..", "..fileName);        
+        log(name..": "..pointsSpent..", "..fileName, DEBUG);        
     end    
-    log("Your spec is: "..spec);
+    log("Your spec is: "..spec, DEBUG);
 end
 
 function PrintPlayerInfo()    
-    log("Player name: "..name);
-    log("Player faction: "..faction);
-    log("Player class: "..class);
-    log("Player PvP Rank: "..pvpRank);
-    log("Player Spec: "..spec);
+    log("Player name: "..name, DEBUG);
+    log("Player faction: "..faction, DEBUG);
+    log("Player class: "..class, DEBUG);
+    log("Player PvP Rank: "..pvpRank, DEBUG);
+    log("Player Spec: "..spec, DEBUG);
 end
 
 -- Creating Event Frame.

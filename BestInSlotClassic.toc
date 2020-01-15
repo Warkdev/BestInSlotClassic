@@ -11,8 +11,11 @@ lib\CallbackHandler-1.0\CallbackHandler-1.0.lua
 lib\LibDataBroker-1.1\LibDataBroker-1.1.lua
 lib\LibDBIcon-1.0\LibDBIcon-1.0.lua
 core.lua
-modules/cli.lua
-modules/minimap.lua
-modules/bisc_options.lua
-modules/widgets.lua
-modules/manager.lua
+data\bis.lua
+data\items.lua
+modules\logger.lua
+modules\cli.lua
+modules\minimap.lua
+modules\bisc_options.lua
+modules\widgets.lua
+modules\manager.lua
