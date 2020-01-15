@@ -45,7 +45,7 @@ function LoadPlayerInfo()
 
     -- Player class info.
     localizedClass, class, classIndex = UnitClass("player");
-    class = "DRUID";
+    
     -- Player pvp info.
     pvpRank =  UnitPVPRank("player");
 
@@ -53,15 +53,19 @@ function LoadPlayerInfo()
     local maxPoints = 0;
     spec = "Unknown";
 
-    -- No need to check the spec when below level 10.
-    if level < 10 then
+    -- No need to check the spec when below level 60.
+    if level < 60 then
         return;
     end
 
+    -- Trying to find out which spec has this player to load the correct one by default.
+    -- There are some specificities like druids (4 specs), rogue (2 specs-type although they are not spec).
     local numTalentTabs = GetNumTalentTabs();    
 
     log("Num Talent Tabs: "..numTalentTabs, DEBUG);
     
+    print(GetTalentInfo(2, 5));
+
     for idx=1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
         if(tonumber(pointsSpent) > maxPoints) then
@@ -69,7 +73,34 @@ function LoadPlayerInfo()
             maxPoints = tonumber(pointsSpent);
         end        
         log(name..": "..pointsSpent..", "..fileName, DEBUG);        
-    end    
+    end
+    if class == "DRUID" and spec == "DruidFeral" then
+        -- Need to find out whether it's a Feral Tank or DPS.
+        -- This is done by checking the talent thick skin.
+        local talentName, iconTexture, tier, column, rank, maxRank, isExceptional, available = GetTalentInfo(2, 5);
+        if rank == maxRank then
+            spec = "DruidFeralTank";
+        else
+            spec = "DruidFeralDPS";
+        end
+    end
+
+    -- BiS are apparently for PriestHybrid but nothing dedicated to Holy or Disc.
+    if class == "PRIEST" and (spec == "PriestHoly" or spec == "PriestDiscipline") then
+        spec = "PriestHybrid";
+    end
+
+    if class = "ROGUE" then
+        -- Need to check if his spec is daggers or swords.
+        -- This is done by checking the imp. swords talent. If that's maximized, we consider that this rogue is using swords.
+        local talentName, iconTexture, tier, column, rank, maxRank, isExceptional, available = GetTalentInfo(2, 15);
+        if rank == maxRank then
+            spec = "RogueSwords";
+        else
+            spec = "RogueDaggers";
+        end
+    end
+
     log("Your spec is: "..spec, DEBUG);
 end
 
