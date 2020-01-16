@@ -1,5 +1,7 @@
 -- Basic Command Handlers File. New commands would be ideally added here.
 
+local testItems = { 12940, 17075, 19352, 19888, 21650, 23577 };
+
 function ShowManager(args)
     ShowManager();
 end
@@ -44,6 +46,27 @@ function PrintVars(args)
     print("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos);
 end
 
+function TestPhases(args)
+    -- Testing each phases items to see whether the phase is already available in-game.
+
+    local item;
+    
+    for idx, value in ipairs(testItems) do        
+        item = GetItemInfo(value);
+        log("Item "..item, DEBUG);
+        if item ~= nil then
+            log("Phase "..idx..": |cFF00FF00 Available|r", INFO);            
+        else
+            log("Phase "..idx..": |cFFFF0000 Not available|r", INFO);            
+        end
+    end    
+    
+    --[[ itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+    itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
+    isCraftingReagent = GetItemInfo(23054); ]]--    
+
+end
+
 local function Reset(args)
     ResetDefaults();
     UpdateMinimapIcon();
@@ -57,7 +80,8 @@ handlers = {
     ["loglevel"] = HandleLogLevel,
     ["help"] = ShowHelp,    
     ["reset"] = Reset,
-    ["vars"] = PrintVars
+    ["vars"] = PrintVars,
+    ["test"] = TestPhases
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.

@@ -29,3 +29,5 @@ end
 for k, row in search(t, {displayname="Blue", x=2}) do
     print(k, row.name, row.x, row.y)
   end
+
+
