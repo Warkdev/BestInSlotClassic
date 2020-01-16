@@ -89,7 +89,10 @@ local dropdownText = {
     ["phases"] = "Select your phase",
 }
 
-local phases = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" };
+local phases = { 
+    ["NAME"] = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
+    ["ICON"] = { 133066   , 132485             , 132486   , 134481             , 134154   , 134085   , 136152   , 134514    }
+    };
 
 local function HandleRacesDropDown(self, arg1, arg2, checked)
     if selectedRace ~= arg1 then
@@ -183,8 +186,11 @@ end
 function Initialize_PhaseDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();
 
-    for idx, value in ipairs(phases) do
-        info.text, info.arg1, info.checked, info.func = value, value, false, HandlePhaseDropDown;
+    for idx, value in ipairs(phases.NAME) do
+        info.text, info.arg1 = value, value;
+        info.checked = false;
+        info.func = HandlePhaseDropDown;
+        info.icon = phases.ICON[idx];
         UIDropDownMenu_AddButton(info);
     end
 end
