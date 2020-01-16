@@ -5,7 +5,8 @@ ERROR = 3;
 DEBUG = 4;
 
 local prefix = "BISClassic";
-local severity = { "INFO", "WARN", "ERROR", "DEBUG" };
+logseverity = { "INFO", "WARN", "ERROR", "DEBUG" };
+local logsettings;
 
 local function report(message)
     print(message);
@@ -18,14 +19,20 @@ function log(msg, level)
     end
     if loglevel > DEBUG then
         loglevel = DEBUG;
-    end
+    end    
 
-    if loglevel == DEBUG then
-        if(BestInSlotClassicDB.debug.enabled) then
-            report(prefix.." - "..severity[loglevel].." - "..msg);
-        end
+    if BestInSlotClassicDB.loglevel == "INFO" then
+        logsettings = 1;
+    elseif BestInSlotClassicDB.loglevel == "WARN" then
+        logsettings = 2;
+    elseif BestInSlotClassicDB.loglevel == "ERROR" then
+        logsettings = 3;
     else
-        print(prefix.." - "..severity[loglevel].." - "..msg);
+        logsettings = 4;
+    end
+    
+    if logsettings >= loglevel then        
+        report(prefix.." - "..logseverity[loglevel].." - "..msg);            
     end
     
 end

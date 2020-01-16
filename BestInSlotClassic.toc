@@ -26,3 +26,4 @@ modules\minimap.lua
 modules\bisc_options.lua
 modules\widgets.lua
 modules\manager.lua
+modules\sql.lua

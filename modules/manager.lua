@@ -93,7 +93,7 @@ local dropdownText = {
     ["phases"] = "Select your phase",
 }
 
-function CreateDropDownList(name, parent, width, x, y, items, callback)
+local function CreateDropDownList(name, parent, width, x, y, items, callback)
     local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");    
     dropdown:SetPoint("TOPLEFT", x, y);
     UIDropDownMenu_SetWidth(dropdown, width);

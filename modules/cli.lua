@@ -12,20 +12,30 @@ end
 local function ShowHelp(args)
     print("BestInSlotClassic usage: ");
     print("/bis : Configure the add-on");
-    print("/bis debug : Enable/disable debug mode");    
+    print("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG");    
     print("/bis help : Show this help");
     print("/bis reset : Reset all add-on settings");
     print("/bis settings: Define add-on general settings");        
 end
 
-function HandleDebug(args)
-    if not (BestInSlotClassicDB.debug.enabled) then
-        BestInSlotClassicDB.debug.enabled = true;        
-        print("Debug mode enabled !");
+function HandleLogLevel(args)
+    args = args:lower();    
+
+    local level = {
+        ["info"] = function() BestInSlotClassicDB.loglevel = "INFO"; end,
+        ["warn"] = function() BestInSlotClassicDB.loglevel = "WARN"; end,
+        ["error"] = function() BestInSlotClassicDB.loglevel = "ERROR"; end,
+        ["debug"] = function() BestInSlotClassicDB.loglevel = "DEBUG"; end
+    }
+
+    if type(level[args]) == "function" then
+        level[args]();
+        log("Log level set to: "..BestInSlotClassicDB.loglevel, INFO);    
     else
-        BestInSlotClassicDB.debug.enabled = false;
-        print("Debug mode disabled !");
+        log("Unknown log level "..args, INFO);
     end
+
+    
 end
 
 function PrintVars(args)
@@ -44,7 +54,7 @@ end
 handlers = {
     [""] = ShowManager,
     ["settings"] = OpenConfigPane,
-    ["debug"] = HandleDebug,
+    ["loglevel"] = HandleLogLevel,
     ["help"] = ShowHelp,    
     ["reset"] = Reset,
     ["vars"] = PrintVars
@@ -53,10 +63,22 @@ handlers = {
 -- Parser of all commands provided which should start by /bis or /bestinslot.
 -- Displays help if the command is unknown.
 local function HandleCommands(msg, editBox)
-    if type(handlers[msg]) == "function" then
-        handlers[msg](msg);
+    local split = {};
+
+    for substring in msg:gmatch("%S+") do        
+        table.insert(split, substring);
+    end    
+    
+    if split[1] == nil then
+        msg = "";
     else
-        print("Unknown command: "..msg);
+        msg = split[1];
+    end
+
+    if type(handlers[msg]) == "function" then
+        handlers[msg](split[2]);
+    else
+        log("Unknown command: "..msg, INFO);
         handlers["help"](msg);
     end    
 end

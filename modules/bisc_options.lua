@@ -4,20 +4,35 @@ local debugCheckbox;
 local minimapCheckbox;
 local minimapPosSlider;
 
+function Initialize_LogLevelDropDown(frame, level, menuList)
+    local info = UIDropDownMenu_CreateInfo();
+
+    for idx, value in ipairs(logseverity) do
+        info.text, info.checked = value, false;
+        UIDropDownMenu_AddButton(info);
+    end
+end
+
+local function CreateDropDownList(name, parent, width, x, y, items, callback)
+    local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");    
+    dropdown:SetPoint("TOPLEFT", x, y);
+    UIDropDownMenu_SetWidth(dropdown, width);
+    UIDropDownMenu_SetText(dropdown, BestInSlotClassicDB.loglevel);
+    UIDropDownMenu_Initialize(dropdown, dropdownInitializer[items]);
+
+    return dropdown;
+end
+
 function CreateSettingsInterface()
     settings = CreateFrame("FRAME", "BestInSlotClassicsettings", UIParent);
     settings.name = "BestInSlotClassic";
 
     settings.okay = function()
-        if BestInSlotClassicDB.debug.enabled then
-            print("Settings saved! ");
-        end
+        logger("Settings saved!", DEBUG);        
     end
     
     settings.cancel = function()
-        if BestInSlotClassicDB.debug.enabled then
-            print("Settings denied! ");
-        end
+        logger("Settings denied!", DEBUG);
     end
     
     settings.default = function()
@@ -25,9 +40,7 @@ function CreateSettingsInterface()
     end
     
     settings.refresh = function()
-        if BestInSlotClassicDB.debug.enabled then
-            print("Refresh called.");
-        end
+        logger("Refresh called.", DEBUG);        
     end
 
     debugCheckbox = CreateCheckBox("BISCDebugCB", "Enable debug mode for the add-on", settings, 20, -40, "Enable/Disable debug mode", function (self)           
@@ -53,7 +66,7 @@ function CreateSettingsInterface()
 end
 
 function SetValues()    
-    debugCheckbox:SetChecked(BestInSlotClassicDB.debug.enabled);
+    --debugCheckbox:SetChecked(BestInSlotClassicDB.debug.enabled);
     minimapCheckbox:SetChecked(not BestInSlotClassicDB.minimap.hide);
     minimapPosSlider:SetValue(BestInSlotClassicDB.minimap.minimapPos);
 end

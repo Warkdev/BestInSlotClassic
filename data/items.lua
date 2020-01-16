@@ -1,10 +1,10 @@
 items = {
-    0000 = {
+    test = {
         Source = {
             Zone = "Blackrock Spire",
             Type = "By Killing",
             Method = "Urok Doomhowl",
-            Drop = "16%",
+            Drop = "16%"
         }
     }
 }

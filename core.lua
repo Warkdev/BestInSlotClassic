@@ -10,9 +10,9 @@ local function SetMinimapDefaults()
     end   
 end
 
-local function SetDebugDefaults()
-    if BestInSlotClassicDB.debug.enabled == nil then
-        BestInSlotClassicDB.debug.enabled = false;
+local function SetLogLevelDefaults()
+    if BestInSlotClassicDB.loglevel == nil then
+        BestInSlotClassicDB.loglevel = "INFO";
     end
 end
 
@@ -21,10 +21,10 @@ local function SetDefaults()
         -- First time loading add-on.
         BestInSlotClassicDB = {};
         BestInSlotClassicDB.minimap = {};
-        BestInSlotClassicDB.debug = {};
+        BestInSlotClassicDB.loglevel = nil;
     end
     SetMinimapDefaults();
-    SetDebugDefaults();
+    SetLogLevelDefaults();
 end
 
 function ResetDefaults() 
@@ -90,7 +90,7 @@ function LoadPlayerInfo()
         spec = "PriestHybrid";
     end
 
-    if class = "ROGUE" then
+    if class == "ROGUE" then
         -- Need to check if his spec is daggers or swords.
         -- This is done by checking the imp. swords talent. If that's maximized, we consider that this rogue is using swords.
         local talentName, iconTexture, tier, column, rank, maxRank, isExceptional, available = GetTalentInfo(2, 15);
