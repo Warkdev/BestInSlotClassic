@@ -46,6 +46,9 @@ function LoadPlayerInfo()
     -- Player class info.
     localizedClass, class, classIndex = UnitClass("player");
     
+    -- Player race info.
+    localizedRace, race, raceID = UnitRace("player");
+
     -- Player pvp info.
     pvpRank =  UnitPVPRank("player");
 
@@ -107,6 +110,7 @@ end
 function PrintPlayerInfo()    
     log("Player name: "..name, DEBUG);
     log("Player faction: "..faction, DEBUG);
+    log("Player race: "..race, DEBUG);
     log("Player class: "..class, DEBUG);
     log("Player PvP Rank: "..pvpRank, DEBUG);
     log("Player Spec: "..spec, DEBUG);

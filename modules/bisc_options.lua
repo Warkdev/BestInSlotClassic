@@ -85,7 +85,6 @@ function CreateSettingsInterface()
 end
 
 function SetValues()    
-    --debugCheckbox:SetChecked(BestInSlotClassicDB.debug.enabled);
     minimapCheckbox:SetChecked(not BestInSlotClassicDB.minimap.hide);
     minimapPosSlider:SetValue(BestInSlotClassicDB.minimap.minimapPos);
 end
