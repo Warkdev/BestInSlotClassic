@@ -1,4 +1,4 @@
-print("BestInSlotClassic v0.1beta loaded");
+VERSION = "0.1beta";
 
 local function SetMinimapDefaults()
     if BestInSlotClassicDB.minimap.hide == nil then
@@ -65,9 +65,7 @@ function LoadPlayerInfo()
     -- There are some specificities like druids (4 specs), rogue (2 specs-type although they are not spec).
     local numTalentTabs = GetNumTalentTabs();    
 
-    log("Num Talent Tabs: "..numTalentTabs, DEBUG);
-    
-    print(GetTalentInfo(2, 5));
+    log("Num Talent Tabs: "..numTalentTabs, DEBUG);    
 
     for idx=1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
@@ -122,9 +120,11 @@ frame:RegisterEvent("ADDON_LOADED");
 
 local function eventHandler(self, event, args1, ...)
     if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then        
+        CheckDataIntegrity();
         SetDefaults();
         CreateMinimapIcon();
         CreateSettingsInterface();
+        log("BestInSlotClassic v"..VERSION.." loaded", INFO);
     end
 end
 

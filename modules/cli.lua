@@ -12,12 +12,12 @@ function OpenConfigPane(args)
 end
 
 local function ShowHelp(args)
-    print("BestInSlotClassic usage: ");
-    print("/bis : Configure the add-on");
-    print("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG");    
-    print("/bis help : Show this help");
-    print("/bis reset : Reset all add-on settings");
-    print("/bis settings: Define add-on general settings");        
+    log("BestInSlotClassic usage: ", INFO);
+    log("/bis : Configure the add-on", INFO);
+    log("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", INFO);    
+    log("/bis help : Show this help", INFO);
+    log("/bis reset : Reset all add-on settings", INFO);
+    log("/bis settings: Define add-on general settings", INFO);        
 end
 
 function HandleLogLevel(args)
@@ -41,9 +41,9 @@ function HandleLogLevel(args)
 end
 
 function PrintVars(args)
-    print("Debug enabled: ", BestInSlotClassicDB.debug.enabled);
-    print("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide);
-    print("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos);
+    log("Log level: ", BestInSlotClassicDB.loglevel, INFO);
+    log("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide, INFO);
+    log("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos, INFO);
 end
 
 function TestPhases(args)
@@ -52,7 +52,7 @@ function TestPhases(args)
     local item;
     
     for idx, value in ipairs(testItems) do        
-        item = GetItemInfo(value);
+        item = GetItemInfoInstant(value);
         log("Item "..item, DEBUG);
         if item ~= nil then
             log("Phase "..idx..": |cFF00FF00 Available|r", INFO);            
@@ -67,10 +67,105 @@ function TestPhases(args)
 
 end
 
+function CheckDataIntegrity(args)    
+    local item;
+    local info;
+    local records = 0;
+    local removed = 0;
+    local hasError = false;
+    for idx, value in pairs(BIS_ITEMS) do        
+        records = records + 1;
+        hasError = false;        
+        item = BIS_ITEMS[idx];        
+        info = item.Info;
+        -- Validating data structure.
+        if item.Source == "Loot" then
+            if item.Zone == nil or item.Zone == "" then
+                hasError = true;
+                log("Item with ID "..idx.. " has missing zone.", DEBUG);
+            end
+            if info == nil then
+                hasError = true;
+                log("Item with ID "..idx.." has missing info.", DEBUG);
+            else
+                if info.NPC == nil or info.NPC == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing NPC info.", DEBUG);
+                end
+                if info.Drop == nil or info.Drop == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing Drop info.", DEBUG);
+                end
+            end            
+        elseif item.Source == "Craft" then
+            if item.Zone == nil or item.Zone == "" then
+                hasError = true;
+                log("Item with ID "..idx.. " has missing zone.", DEBUG);
+            end
+            if info == nil then
+                hasError = true;
+                log("Item with ID "..idx.." has missing info.", DEBUG);
+            else
+                if info.NPC == nil or info.NPC == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing NPC info.", DEBUG);
+                end
+                if info.Profession == nil or info.Profession == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing profession info.", DEBUG);
+                else                    
+                    if PROFESSIONS[info.Profession] == nil then                        
+                        hasError = true;
+                        log("Item with ID "..idx.." has wrong profession ID.", DEBUG);
+                    end
+                end
+                if info.Level == nil or info.Level == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing Level info.", DEBUG);
+                end
+            end
+        elseif item.Source == "Quest" then
+            if item.Zone == nil or item.Zone == "" then
+                hasError = true;
+                log("Item with ID "..idx.. " has missing zone.", DEBUG);
+            end
+            if info == nil then
+                hasError = true;
+                log("Item with ID "..idx.." has missing info.", DEBUG);
+            else
+                if info.Name == nil or info.Name == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing name info.", DEBUG);
+                end
+            end
+        elseif item.Source == "PvP" then
+            if info == nil then
+                hasError = true;
+                log("Item with ID "..idx.." has missing info.", DEBUG);
+            else
+                if info.Rank == nil or info.Rank == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing rank info.", DEBUG);
+                end
+            end
+        else
+            hasError = true;
+            log("Unknown source for item: "..idx, ERROR);
+        end
+        -- Remove the entry so that the next part can be done safely.
+        if hasError then            
+            removed = removed + 1;
+            table.remove(ITEMS, idx);
+            log("Item with ID "..idx.." has been removed from the items table.", WARN);
+        end
+    end
+    log("Items database integrity has been checked. Total items: "..records..", Removed: "..removed.."", INFO);
+end
+
 local function Reset(args)
     ResetDefaults();
     UpdateMinimapIcon();
-    print("BestInSlotClassic has been reset to default values.");
+    log("BestInSlotClassic has been reset to default values.", DEBUG);
 end
 
 -- "Elegant" way to handle switch case in LUA.
@@ -81,7 +176,8 @@ handlers = {
     ["help"] = ShowHelp,    
     ["reset"] = Reset,
     ["vars"] = PrintVars,
-    ["test"] = TestPhases
+    ["test"] = TestPhases,
+    ["data"] = CheckDataIntegrity
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.
