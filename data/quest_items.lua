@@ -1,4 +1,18 @@
 ------------------------------------------------------------------- Quest BIS_ITEMS.
+-- Thunderbrews Boot Flask.
+BIS_ITEMS["744"] = {
+    Source = "Quest",
+    Zone = "Westfall",
+    Info = {Name = "Sweet Amber"}
+};
+
+-- Magni's Will.
+BIS_ITEMS["12548"] = {
+    Source = "Quest",
+    Zone = "Blackrock Depths",
+    Info = {Name = "The Princess's Surprise"}
+};
+
 -- Breasplate of Bloodthirst.
 BIS_ITEMS["12757"] = {
     Source = "Quest",
@@ -62,9 +76,37 @@ BIS_ITEMS["18420"] = {
     Info = {Name = "The Treasure of the Shen'dralar"}
 };
 
+-- Onyxia Tooth Pendant.
+BIS_ITEMS["18420"] = {
+    Source = "Quest",
+    Zone = "Onyxia",
+    Info = {Name = "Celebrating Good Times"}
+};
+
+-- Bloodseeker.
+BIS_ITEMS["19104"] = {
+    Source = "Quest",
+    Zone = "The Hinterlands",
+    Info = {Name = "(H) Job Opening: Guard Captain of Revantusk Village"}
+};
+
 -- Bloodseeker.
 BIS_ITEMS["19107"] = {
     Source = "Quest",
     Zone = "Alterac Valley",
     Info = {Name = "(H) Hero of the Frostwolf, (A) Hero of the Stormpike"}
+};
+
+-- Bloodseeker.
+BIS_ITEMS["19289"] = {
+    Source = "Quest",
+    Zone = "Darkmoon Faire",
+    Info = {Name = "Darkmoon Elementals Deck"}
+};
+
+-- Diamond Flask.
+BIS_ITEMS["20130"] = {
+    Source = "Quest",
+    Zone = "Capital (Warrior)",
+    Info = {Name = "Voodoo Feathers"}
 };

@@ -50,3 +50,17 @@ BIS_ITEMS["15063"] = {
     Zone = "Un'Goro Crater",
     Info = {Profession = 5, Level = 290, NPC = "Nergal"}
 };
+
+-- Black Dragonscale Boots.
+BIS_ITEMS["16984"] = {
+    Source = "Craft",
+    Zone = "Blackrock Depths",
+    Info = {Profession = 5, Level = 300, NPC = "NergaLokhtos Darkbargainerl"}
+};
+
+-- Ebon Hand.
+BIS_ITEMS["19170"] = {
+    Source = "Craft",
+    Zone = "Blackrock Depths",
+    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainerl"}
+};

@@ -17,6 +17,7 @@ data\loot_items.lua
 data\craft_items.lua
 data\quest_items.lua
 data\pvp_items.lua
+data\vendor_items.lua
 data\professions.lua
 modules\logger.lua
 modules\cli.lua

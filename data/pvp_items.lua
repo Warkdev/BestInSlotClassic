@@ -35,4 +35,16 @@ BIS_ITEMS["19323"] = {
     }
 };
 
+-- Don Julio's Band.
+BIS_ITEMS["19325"] = {
+    Source = "PvP",
+    Info = {
+        Rank = -1,
+        Battleground = "Alterac Valley",
+        Reputation = "Exalted",
+        Price = "60g 44s 44c",
+        Faction = "Both"
+    }
+};
+
 BIS_ITEMS["21650"] = {Source = "PvP", Info = {Rank = 8}};
