@@ -138,14 +138,22 @@ function CheckDataIntegrity(args)
                     log("Item with ID "..idx.." has missing name info.", DEBUG);
                 end
             end
-        elseif item.Source == "PvP" then
+        elseif item.Source == "Vendor" then
             if info == nil then
                 hasError = true;
                 log("Item with ID "..idx.." has missing info.", DEBUG);
             else
-                if info.Rank == nil or info.Rank == "" then
+                if info.Faction == nil or info.Faction == "" then
                     hasError = true;
-                    log("Item with ID "..idx.." has missing rank info.", DEBUG);
+                    log("Item with ID "..idx.." has missing faction info.", DEBUG);
+                end
+                if info.Requirement == nil or info.Requirement == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing requirements info.", DEBUG);
+                end
+                if info.Price == nil or info.Price == "" then
+                    hasError = true;
+                    log("Item with ID "..idx.." has missing requirements info.", DEBUG);
                 end
             end
         else

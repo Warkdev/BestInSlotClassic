@@ -104,6 +104,13 @@ BIS_ITEMS["19289"] = {
     Info = {Name = "Darkmoon Elementals Deck"}
 };
 
+-- Amulet of the Darkmoon.
+BIS_ITEMS["19491"] = {
+    Source = "Quest",
+    Zone = "Darkmoon Faire",
+    Info = {Name = "1200 Tickets - Amulet of the Darkmoon"}
+};
+
 -- Diamond Flask.
 BIS_ITEMS["20130"] = {
     Source = "Quest",
