@@ -104,6 +104,13 @@ BIS_ITEMS["19289"] = {
     Info = {Name = "Darkmoon Elementals Deck"}
 };
 
+-- Master Dragonslayer's Ring.
+BIS_ITEMS["19384"] = {
+    Source = "Quest",
+    Zone = "Capital",
+    Info = {Name = "The Lord of Blackrock"}
+};
+
 -- Amulet of the Darkmoon.
 BIS_ITEMS["19491"] = {
     Source = "Quest",

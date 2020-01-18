@@ -272,6 +272,13 @@ BIS_ITEMS["14637"] = {
     Info = {NPC = "Several bosses", Drop = "10%"}
 };
 
+-- Gauntlets of Might.
+BIS_ITEMS["16863"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Lucifron", Drop = "38%"}
+};
+
 -- Band of Accuria.
 BIS_ITEMS["17063"] = {
     Source = "Loot",
@@ -466,4 +473,123 @@ BIS_ITEMS["19146"] = {
     Source = "Loot",
     Zone = "Molten Core",
     Info = {NPC = "Gehennas, Lucifron, Sulfuron Harbringer, Shazzrah", Drop = "~3%"}
+};
+
+-- The Untamed Blade.
+BIS_ITEMS["19334"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Razorgore the Untamed", Drop = "7%"}
+};
+
+-- Spineshatter.
+BIS_ITEMS["19335"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Razorgore the Untamed", Drop = "8%"}
+};
+
+-- Maladath, Runed Blade of the Black Flight.
+BIS_ITEMS["19351"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Broodlord Lashlayer", Drop = "6%"}
+};
+
+-- Chromatically Tempered Sword.
+BIS_ITEMS["19352"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Chromaggus", Drop = "8%"}
+};
+
+-- Drake Talon Cleaver.
+BIS_ITEMS["19353"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Ebonroc, Flamegor, Firemaw", Drop = "~3%"}
+};
+
+-- Doom's Edge.
+BIS_ITEMS["19362"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Death Talon mobs", Drop = "1%"}
+};
+
+-- Crul'shorukh, Edge of Chaos.
+BIS_ITEMS["19363"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Nefarian", Drop = "5%"}
+};
+
+-- Ashkandi, Greatsword of the Brotherhood.
+BIS_ITEMS["19364"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Nefarian", Drop = "5%"}
+};
+
+-- Helm of Endless Rage.
+BIS_ITEMS["19372"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Vaelastrasz the Corrupt", Drop = "15%"}
+};
+
+-- Boots of the Shadow Flame.
+BIS_ITEMS["19381"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Nefarian", Drop = "14%"}
+};
+
+-- Chromatic Boots.
+BIS_ITEMS["19387"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Chromaggus", Drop = "16%"}
+};
+
+-- Drake Talon Pauldrons.
+BIS_ITEMS["19394"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Firemaw, Flamegor, Ebonroc", Drop = "~4%"}
+};
+
+-- Legguards of the Fallen Crusader.
+BIS_ITEMS["19402"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Firemaw", Drop = "8%"}
+};
+
+-- Malfurion's Blessed Bulwark.
+BIS_ITEMS["19405"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Ebonroc", Drop = "12%"}
+};
+
+-- Drake Fang Talisman.
+BIS_ITEMS["19406"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Ebonroc", Drop = "15%"}
+};
+
+-- Circle of Applied Force.
+BIS_ITEMS["19432"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Flamegor", Drop = "18%"}
+};
+
+-- Cloak of Draconic Might.
+BIS_ITEMS["19436"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "On Death Talon mobs", Drop = "~4%"}
 };
