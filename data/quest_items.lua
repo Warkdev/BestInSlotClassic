@@ -153,6 +153,13 @@ BIS_ITEMS["18466"] = {
     Info = {Name = "Codex of Defense"}
 };
 
+-- Thunderfury, Blessed Blade of the Windseeker.
+BIS_ITEMS["19019"] = {
+    Source = "Quest",
+    Zone = "Legendary",
+    Info = {Name = "Rise, Thunderfury!"}
+};
+
 -- Bloodseeker.
 BIS_ITEMS["19107"] = {
     Source = "Quest",
@@ -172,6 +179,13 @@ BIS_ITEMS["19289"] = {
     Source = "Quest",
     Zone = "Darkmoon Faire",
     Info = {Name = "Darkmoon Elementals Deck"}
+};
+
+-- Master Dragonslayer's Medallion.
+BIS_ITEMS["19383"] = {
+    Source = "Quest",
+    Zone = "Capital",
+    Info = {Name = "The Lord of Blackrock"}
 };
 
 -- Master Dragonslayer's Ring.

@@ -62,7 +62,7 @@ BIS_ITEMS["15063"] = {
 BIS_ITEMS["16984"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 5, Level = 300, NPC = "NergaLokhtos Darkbargainerl"}
+    Info = {Profession = 5, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
 };
 
 -- Force Reactive Disk.
@@ -79,9 +79,16 @@ BIS_ITEMS["18511"] = {
     Info = {Profession = 5, Level = 300, NPC = "Knot Thimblejack's Cache"}
 };
 
+-- Blackguard.
+BIS_ITEMS["19168"] = {
+    Source = "Craft",
+    Zone = "Blackrock Depths",
+    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+};
+
 -- Ebon Hand.
 BIS_ITEMS["19170"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainerl"}
+    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
 };

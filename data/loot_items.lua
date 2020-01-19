@@ -573,6 +573,27 @@ BIS_ITEMS["16868"] = {
     Info = {NPC = "Sulfuron Harbringer", Drop = "44%"}
 };
 
+-- Bracelets of Wrath.
+BIS_ITEMS["16959"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Razorgore the Untamed", Drop = "18%"}
+};
+
+-- Waistband of Wrath.
+BIS_ITEMS["16960"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Vaelastrasz the Corrupt", Drop = "20%"}
+};
+
+-- Pauldrons of Wrath.
+BIS_ITEMS["16961"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Chromaggus", Drop = "17%"}
+};
+
 -- Legplates of Wrath.
 BIS_ITEMS["16962"] = {
     Source = "Loot",
@@ -585,6 +606,27 @@ BIS_ITEMS["16963"] = {
     Source = "Loot",
     Zone = "Onyxia's Lair",
     Info = {NPC = "Onyxia", Drop = "28%"}
+};
+
+-- Gauntlets of Wrath.
+BIS_ITEMS["16964"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Ebonroc, Firemaw, Flamegor", Drop = "7%"}
+};
+
+-- Sabatons of Wrath.
+BIS_ITEMS["16964"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Broodlord Lashlayer", Drop = "14%"}
+};
+
+-- Breastplate of Wrath.
+BIS_ITEMS["16966"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Nefarian", Drop = "12%"}
 };
 
 -- Band of Accuria.
@@ -1000,6 +1042,27 @@ BIS_ITEMS["19335"] = {
     Info = {NPC = "Razorgore the Untamed", Drop = "8%"}
 };
 
+-- Elementium Reinforced Bulwark.
+BIS_ITEMS["19349"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Chromaggus", Drop = "6%"}
+};
+
+-- Dragonfang Blade.
+BIS_ITEMS["19346"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Vaelastrasz the Corrupt", Drop = "10%"}
+};
+
+-- Heartstriker.
+BIS_ITEMS["19350"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Broodlord Lashlayer", Drop = "8%"}
+};
+
 -- Maladath, Runed Blade of the Black Flight.
 BIS_ITEMS["19351"] = {
     Source = "Loot",
@@ -1042,11 +1105,25 @@ BIS_ITEMS["19364"] = {
     Info = {NPC = "Nefarian", Drop = "5%"}
 };
 
+-- Dragonbreath Hand Cannon.
+BIS_ITEMS["19368"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Ebonroc", Drop = "8%"}
+};
+
 -- Helm of Endless Rage.
 BIS_ITEMS["19372"] = {
     Source = "Loot",
     Zone = "Blackwing Lair",
     Info = {NPC = "Vaelastrasz the Corrupt", Drop = "15%"}
+};
+
+-- Archimtiros' Ring of Reckoning.
+BIS_ITEMS["19372"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Nefarian", Drop = "13%"}
 };
 
 -- Boots of the Shadow Flame.
@@ -1056,6 +1133,13 @@ BIS_ITEMS["19381"] = {
     Info = {NPC = "Nefarian", Drop = "14%"}
 };
 
+-- Elementium Threaded Cloak.
+BIS_ITEMS["19386"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Chromaggus", Drop = "14%"}
+};
+
 -- Chromatic Boots.
 BIS_ITEMS["19387"] = {
     Source = "Loot",
@@ -1063,11 +1147,25 @@ BIS_ITEMS["19387"] = {
     Info = {NPC = "Chromaggus", Drop = "16%"}
 };
 
+-- Girdle of the Fallen Crusader.
+BIS_ITEMS["19392"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Chromaggus", Drop = "14%"}
+};
+
 -- Drake Talon Pauldrons.
 BIS_ITEMS["19394"] = {
     Source = "Loot",
     Zone = "Blackwing Lair",
     Info = {NPC = "Firemaw, Flamegor, Ebonroc", Drop = "~4%"}
+};
+
+-- Cloak of Firemaw.
+BIS_ITEMS["19398"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Firemaw", Drop = "13%"}
 };
 
 -- Legguards of the Fallen Crusader.
@@ -1089,6 +1187,13 @@ BIS_ITEMS["19406"] = {
     Source = "Loot",
     Zone = "Blackwing Lair",
     Info = {NPC = "Ebonroc", Drop = "15%"}
+};
+
+-- Styleen's Impeding Scarab.
+BIS_ITEMS["19431"] = {
+    Source = "Loot",
+    Zone = "Blackwing Lair",
+    Info = {NPC = "Flamegor", Drop = "13%"}
 };
 
 -- Circle of Applied Force.
