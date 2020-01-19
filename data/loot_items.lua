@@ -34,6 +34,13 @@ BIS_ITEMS["2246"] = {
     Info = {NPC = "Area 50+", Drop = "<1%"}
 };
 
+-- Blazing Emblem.
+BIS_ITEMS["2802"] = {
+    Source = "Loot",
+    Zone = "World Drop",
+    Info = {NPC = "Area 45+", Drop = "<1%"}
+};
+
 -- Expert Goldminer's Helmet.
 BIS_ITEMS["9375"] = {
     Source = "Loot",
@@ -97,11 +104,25 @@ BIS_ITEMS["11755"] = {
     Info = {NPC = "Verek", Drop = "11%"}
 };
 
+-- Emberplate Armguards (of Fire resistance)
+BIS_ITEMS["11767"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Lord Incendius", Drop = "12%"}
+};
+
 -- Force of Will.
 BIS_ITEMS["11810"] = {
     Source = "Loot",
     Zone = "Blackrock Depths",
     Info = {NPC = "Emperor Dagran Thaurissan", Drop = "18%"}
+};
+
+-- Molten Fists.
+BIS_ITEMS["11814"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Ambassador Flamelash", Drop = "39%"}
 };
 
 -- Hand of Justice.
@@ -130,6 +151,13 @@ BIS_ITEMS["11933"] = {
     Source = "Loot",
     Zone = "Blackrock Depths",
     Info = {NPC = "Emperor Dagran Thaurissan", Drop = "19%"}
+};
+
+-- Jasper Link (of fire resistance).
+BIS_ITEMS["11978"] = {
+    Source = "Loot",
+    Zone = "Dungeon drop",
+    Info = {NPC = "Dungeon 55+", Drop = "<1%"}
 };
 
 -- Ribsplitter
@@ -195,6 +223,13 @@ BIS_ITEMS["12653"] = {
     Info = {NPC = "Shadow Hunter Vosh'gajin", Drop = "7%"}
 };
 
+-- Wildfire Cape.
+BIS_ITEMS["12905"] = {
+    Source = "Loot",
+    Zone = "Upper Blackrock Spire",
+    Info = {NPC = "Pyroguard Emberseer", Drop = "27%"}
+};
+
 -- Truestrike Shoulders.
 BIS_ITEMS["12927"] = {
     Source = "Loot",
@@ -228,6 +263,13 @@ BIS_ITEMS["12940"] = {
     Source = "Loot",
     Zone = "Upper Blackrock Spire",
     Info = {NPC = "Warchief Rend Blackhand", Drop = "9%"}
+};
+
+-- Gyth's Skull.
+BIS_ITEMS["12952"] = {
+    Source = "Loot",
+    Zone = "Upper Blackrock Spire",
+    Info = {NPC = "Gyth", Drop = "25%"}
 };
 
 -- Blackmist Armguards.
@@ -291,6 +333,13 @@ BIS_ITEMS["13162"] = {
     Source = "Loot",
     Zone = "Lower Blackrock Spire",
     Info = {NPC = "Overlord Wyrmthalak", Drop = "13%"}
+};
+
+-- Heart of the Scale.
+BIS_ITEMS["13164"] = {
+    Source = "Loot",
+    Zone = "Lower Blackrock Spire",
+    Info = {NPC = "Overlord Wyrmthalak", Drop = "15%"}
 };
 
 -- Ribsteel Footguards.
@@ -382,6 +431,13 @@ BIS_ITEMS["13515"] = {
     Source = "Loot",
     Zone = "Stratholme",
     Info = {NPC = "Ramstein the Gorger", Drop = "13%"}
+};
+
+-- Flamescarred Girdle.
+BIS_ITEMS["13526"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Maleki the Pallid", Drop = "11%"}
 };
 
 -- Vigorsteel Vambraces.
@@ -727,6 +783,13 @@ BIS_ITEMS["17713"] = {
     Info = {NPC = "Princess Theradras", Drop = "24%"}
 };
 
+-- Flame Walkers.
+BIS_ITEMS["18047"] = {
+    Source = "Loot",
+    Zone = "Upper Blackroc Spire",
+    Info = {NPC = "Goraluk Anvilcrack", Drop = "18%"}
+};
+
 -- Eskhandar's Pelt.
 BIS_ITEMS["18204"] = {
     Source = "Loot",
@@ -944,6 +1007,13 @@ BIS_ITEMS["18806"] = {
     Info = {NPC = "Cache of the Firelord", Drop = "22%"}
 };
 
+-- Fireproof Cloak.
+BIS_ITEMS["18811"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Majordomo Executus", Drop = "5%"}
+};
+
 -- Wristguards of True Flight.
 BIS_ITEMS["18812"] = {
     Source = "Loot",
@@ -1012,6 +1082,13 @@ BIS_ITEMS["19137"] = {
     Source = "Loot",
     Zone = "Molten Core",
     Info = {NPC = "Ragnaros", Drop = "22%"}
+};
+
+-- Fireguard Shoulders.
+BIS_ITEMS["19139"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Cache of the Firelord", Drop = "16%"}
 };
 
 -- Flameguard Gauntlets.

@@ -90,6 +90,13 @@ BIS_ITEMS["15806"] = {
     Info = {Name = "Kirtonos the Herald"}
 };
 
+-- Drakefire Amulet.
+BIS_ITEMS["16309"] = {
+    Source = "Quest",
+    Zone = "Capital",
+    Info = {Name = "(H) Blood of the Black Dragon Champion, (A) Drakefire Amulet"}
+};
+
 -- Gorewood Bow.
 BIS_ITEMS["16996"] = {
     Source = "Quest",
@@ -130,6 +137,13 @@ BIS_ITEMS["18348"] = {
     Source = "Quest",
     Zone = "Onyxia's Lair",
     Info = {Name = "The Forging of Quel'Serrar"}
+};
+
+-- Ocean's Breeze.
+BIS_ITEMS["18399"] = {
+    Source = "Quest",
+    Zone = "Azshara",
+    Info = {Name = "A Hero's Reward"}
 };
 
 -- Onyxia Tooth Pendant.
