@@ -12,73 +12,82 @@ local races = {
 };
 
 local classes = {
-    ["HUMAN"] = { ["CLASS"] = { "Warrior", "Paladin", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130914 } },
-    ["DWARF"] = { ["CLASS"] = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest" }, ["ICON"] = { 130902 } },
-    ["NIGHT ELF"] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Druid" }, ["ICON"] = { 130915 } },
-    ["GNOME"] = { ["CLASS"] = { "Warrior", "Rogue", "Mage", "Warlock" }, ["ICON"] = { 130903 } },
-    ["ORC"] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Shaman", "Warlock" }, ["ICON"] = { 130916 } },
-    ["UNDEAD"] = { ["CLASS"] = { "Warrior", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130907 } },
-    ["TAUREN"] = { ["CLASS"] = { "Warrior", "Hunter", "Shaman", "Druid" }, ["ICON"] = { 130918 } },
-    ["TROLL"] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Shaman", "Mage" }, ["ICON"] = { 130909 } }
+    [1] = { ["CLASS"] = { "Warrior", "Paladin", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130914 } },
+    [3] = { ["CLASS"] = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest" }, ["ICON"] = { 130902 } },
+    [4] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Druid" }, ["ICON"] = { 130915 } },
+    [7] = { ["CLASS"] = { "Warrior", "Rogue", "Mage", "Warlock" }, ["ICON"] = { 130903 } },
+    [2] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Shaman", "Warlock" }, ["ICON"] = { 130916 } },
+    [5] = { ["CLASS"] = { "Warrior", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130907 } },
+    [6] = { ["CLASS"] = { "Warrior", "Hunter", "Shaman", "Druid" }, ["ICON"] = { 130918 } },
+    [8] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Shaman", "Mage" }, ["ICON"] = { 130909 } }
 };
 
 local dataSpecs = {
-    ["WARRIOR"] = { ["SPEC"] = { "Fury", "Protection"},
-                    ["SPEC_ICONS"] = { 132347, 134952 }, 
+    [1] = { ["SPEC"] = { "Fury", "Protection", "Fire Resistance"},
+                    ["SPEC_ICONS"] = { 132347, 134952,  135805}, 
+                    ["VALUE"] = { "1", "2", "3" },
                     ["ICON"] = { 135328 } },
-    ["DRUID"] = {   ["SPEC"] = { "Feral Tank", "Feral DPS", "Restoration", "Balance" }, 
+    [11] = {   ["SPEC"] = { "Feral Tank", "Feral DPS", "Restoration", "Balance" },                     
                     ["SPEC_ICONS"] = { 132276, 132115, 136041, 136036 },
+                    ["VALUE"] = { "1", "2", "3", "4" },
                     ["ICON"] = { 134297 } },
-    ["HUNTER"] = {  ["SPEC"] = { "Any" }, 
+    [3] = {  ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 135489 },
+                    ["VALUE"] = { "1" },
                     ["ICON"] = { 135495 } },
-    ["SHAMAN"] = {  ["SPEC"] = { "Elemental", "Enhancement", "Restoration" }, 
+    [7] = {  ["SPEC"] = { "Elemental", "Enhancement", "Restoration" },                     
                     ["SPEC_ICONS"] = { 136015, 136018, 136052 },
+                    ["VALUE"] = { "1", "2", "3" },
                     ["ICON"] = { 133437 } },
-    ["MAGE"] = {    ["SPEC"] = { "Any" }, 
+    [8] = {    ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 132805 },
+                    ["VALUE"] = { "1" },
                     ["ICON"] = { 135150 } },
-    ["WARLOCK"] = { ["SPEC"] = { "Any" }, 
+    [9] = { ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 136163 },
+                    ["VALUE"] = { "1" },
                     ["ICON"] = { 136020 } },
-    ["PRIEST"] = {  ["SPEC"] = { "Hybrid", "Shadow" }, 
+    [5] = {  ["SPEC"] = { "Hybrid", "Shadow" },                     
                     ["SPEC_ICONS"] = { 135941, 136224 },
+                    ["VALUE"] = { "1", "2" },
                     ["ICON"] = { 135167 } },
-    ["ROGUE"] = {   ["SPEC"] = { "Swords", "Daggers" }, 
+    [4] = {   ["SPEC"] = { "Swords", "Daggers" },                     
                     ["SPEC_ICONS"] = { 135328, 135641 },
+                    ["VALUE"] = { "1", "2" },
                     ["ICON"] = { 135428 } },
-    ["PALADIN"] = { ["SPEC"] = { "Holy", "Protection", "Retribution" }, 
+    [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution" },                     
                     ["SPEC_ICONS"] = { 135920, 135893, 135873 },
+                    ["VALUE"] = { "1", "2" },
                     ["ICON"] = { 132325 } }
 };
 
 local specsFileToSpecs = {
-    ["WarriorArms"] = { dataSpecs.WARRIOR.SPEC[1] },
-    ["WarriorFury"] = { dataSpecs.WARRIOR.SPEC[1] },
-    ["WarriorProtection"] = { dataSpecs.WARRIOR.SPEC[2] },
-    ["DruidFeralTank"] = { dataSpecs.DRUID.SPEC[1] },
-    ["DruidFeralDPS"] = { dataSpecs.DRUID.SPEC[2] },
-    ["DruidRestoration"] = { dataSpecs.DRUID.SPEC[3] },
-    ["DruidBalance"] = { dataSpecs.DRUID.SPEC[4] },
-    ["HunterBeastMastery"] = { dataSpecs.HUNTER.SPEC[1] },
-    ["HunterMarksmanship"] = { dataSpecs.HUNTER.SPEC[1] },
-    ["HunterSurvival"] = { dataSpecs.HUNTER.SPEC[1] },
-    ["ShamanElemental"] = { dataSpecs.SHAMAN.SPEC[1] },
-    ["ShamanEnhancement"] = { dataSpecs.SHAMAN.SPEC[2] },
-    ["ShamanRestoration"] = { dataSpecs.SHAMAN.SPEC[3] },
-    ["MageArcane"] = { dataSpecs.MAGE.SPEC[1] },
-    ["MageFire"] = { dataSpecs.MAGE.SPEC[1] },
-    ["MageFrost"] = { dataSpecs.MAGE.SPEC[1] },
-    ["WarlockAffliction"] = { dataSpecs.WARLOCK.SPEC[1] },
-    ["WarlockDemonology"] = { dataSpecs.WARLOCK.SPEC[1] },
-    ["WarlockDestruction"] = { dataSpecs.WARLOCK.SPEC[1] },
-    ["PriestHybrid"] = { dataSpecs.PRIEST.SPEC[1] },
-    ["PriestShadow"] = { dataSpecs.PRIEST.SPEC[2] },
-    ["RogueSwords"] = { dataSpecs.ROGUE.SPEC[1] },
-    ["RogueDaggers"] = { dataSpecs.ROGUE.SPEC[2] },
-    ["PaladinHoly"] = { dataSpecs.PALADIN.SPEC[1] },
-    ["PaladinProtection"] = { dataSpecs.PALADIN.SPEC[2] },
-    ["PaladinRetribution"] = { dataSpecs.PALADIN.SPEC[3] },
+    ["WarriorArms"] = { dataSpecs[1].SPEC[1] },
+    ["WarriorFury"] = { dataSpecs[1].SPEC[1] },
+    ["WarriorProtection"] = { dataSpecs[1].SPEC[2] },
+    ["DruidFeralTank"] = { dataSpecs[11].SPEC[1] },
+    ["DruidFeralDPS"] = { dataSpecs[11].SPEC[2] },
+    ["DruidRestoration"] = { dataSpecs[11].SPEC[3] },
+    ["DruidBalance"] = { dataSpecs[11].SPEC[4] },
+    ["HunterBeastMastery"] = { dataSpecs[3].SPEC[1] },
+    ["HunterMarksmanship"] = { dataSpecs[3].SPEC[1] },
+    ["HunterSurvival"] = { dataSpecs[3].SPEC[1] },
+    ["ShamanElemental"] = { dataSpecs[7].SPEC[1] },
+    ["ShamanEnhancement"] = { dataSpecs[7].SPEC[2] },
+    ["ShamanRestoration"] = { dataSpecs[7].SPEC[3] },
+    ["MageArcane"] = { dataSpecs[8].SPEC[1] },
+    ["MageFire"] = { dataSpecs[8].SPEC[1] },
+    ["MageFrost"] = { dataSpecs[8].SPEC[1] },
+    ["WarlockAffliction"] = { dataSpecs[9].SPEC[1] },
+    ["WarlockDemonology"] = { dataSpecs[9].SPEC[1] },
+    ["WarlockDestruction"] = { dataSpecs[9].SPEC[1] },
+    ["PriestHybrid"] = { dataSpecs[5].SPEC[1] },
+    ["PriestShadow"] = { dataSpecs[5].SPEC[2] },
+    ["RogueSwords"] = { dataSpecs[4].SPEC[1] },
+    ["RogueDaggers"] = { dataSpecs[4].SPEC[2] },
+    ["PaladinHoly"] = { dataSpecs[2].SPEC[1] },
+    ["PaladinProtection"] = { dataSpecs[2].SPEC[2] },
+    ["PaladinRetribution"] = { dataSpecs[2].SPEC[3] },
     ["Unknown"] = { "Unknown" }
 }
 
@@ -91,44 +100,59 @@ local dropdownText = {
 
 local phases = { 
     ["NAME"] = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
-    ["ICON"] = { 133066   , 132485             , 132486   , 134481             , 134154   , 134085   , 136152   , 134514    }    
+    ["ICON"] = { 133066   , 132485             , 132486   , 134481             , 134154   , 134085   , 136152   , 134514    },
+    ["VALUE"] = { "1", "2PR", "2", "3PR", "4", "5", "6"}
     };
 
+local function Update()
+    if selectedRace == nil or selectedClass == nil or selectedSpec == nil or selectedPhase == nil then
+        -- Nothing to be updated.
+        return;
+    end
+
+    log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
+    for k, row in search(BIS_LINKS, { Faction = nil,  RaceId = selectedRace, ClassId = selectedClass, PhaseId = selectedPhase, SpecId = selectedSpec }) do
+        print(k, row.name, row.x, row.y)
+      end
+end
+
 local function HandleRacesDropDown(self, arg1, arg2, checked)
-    if selectedRace ~= arg1 then
-        selectedRace = arg1;
-        log("Selected Race: "..selectedRace, DEBUG);
-        UIDropDownMenu_SetText(dropdownRace, selectedRace);
+    if selectedRace ~= arg2 then
+        selectedRace = arg2;
+        log("Selected Race: "..selectedRace.." (value: "..arg1..")", DEBUG);
+        UIDropDownMenu_SetText(dropdownRace, arg1);
         UIDropDownMenu_SetText(dropdownClass, dropdownText["class"]);
         selectedClass = nil;        
         UIDropDownMenu_SetText(dropdownSpec, dropdownText["specs"]);
-        selectedSpec = nil;
+        selectedSpec = nil;        
     end
 end
 
 local function HandleClassDropDown(self, arg1, arg2, checked)
-    if selectedClass ~= arg1 then
-        selectedClass = arg1;
-        log("Selected Class: "..selectedClass, DEBUG);
-        UIDropDownMenu_SetText(dropdownClass, selectedClass);
+    if selectedClass ~= arg2 then
+        selectedClass = arg2;
+        log("Selected Class: "..selectedClass.." (value: "..arg1..")", DEBUG);
+        UIDropDownMenu_SetText(dropdownClass, arg1);
         UIDropDownMenu_SetText(dropdownSpec, dropdownText["specs"]);
         selectedSpec = nil;
     end
 end
 
 local function HandleSpecDropDown(self, arg1, arg2, checked)
-    if selectedSpec ~= arg1 then
-        selectedSpec = arg1;
-        log("Selected Spec: "..selectedSpec, DEBUG);
-        UIDropDownMenu_SetText(dropdownSpec, selectedSpec);        
+    if selectedSpec ~= arg2 then
+        selectedSpec = arg2;
+        log("Selected Spec: "..selectedSpec.." (value: "..arg1..")", DEBUG);
+        UIDropDownMenu_SetText(dropdownSpec, arg1);
+        Update();
     end
 end
 
 local function HandlePhaseDropDown(self, arg1, arg2, checked)
-    if selectedPhase ~= arg1 then
-        selectedPhase = arg1;
-        log("Selected Phase: "..selectedPhase, DEBUG);
-        UIDropDownMenu_SetText(dropdownPhase, selectedPhase);        
+    if selectedPhase ~= arg2 then
+        selectedPhase = arg2;
+        log("Selected Phase: "..selectedPhase.." (value: "..arg1..")", DEBUG);
+        UIDropDownMenu_SetText(dropdownPhase, arg1);
+        Update();
     end
 end
 
@@ -141,41 +165,41 @@ function Initialize_RacesDropDown(frame, level, menuList)
     end    
 
     for idx, value in ipairs(races[faction]) do
-        info.text, info.arg1 = value, value;        
-        info.func = HandleRacesDropDown;
-        info.icon = classes[value:upper()].ICON[1];
+        info.text, info.arg1, info.arg2 = value, value, RACES_IDX[value];        
+        info.func = HandleRacesDropDown;        
+        info.icon = classes[RACES_IDX[value]].ICON[1];
         UIDropDownMenu_AddButton(info);
     end
 end
 
 function Initialize_ClassDropDown(frame, level, menuList)
-    local info = UIDropDownMenu_CreateInfo();    
+    local info = UIDropDownMenu_CreateInfo();        
 
-    if classes[selectedRace:upper()].CLASS == nil then
+    if classes[selectedRace].CLASS == nil then
         log("Error while creating the class drop down", ERROR);
         return;
     end    
 
-    for idx, value in ipairs(classes[selectedRace:upper()].CLASS) do
-        info.text, info.arg1 = value, value;        
-        info.func = HandleClassDropDown;
-        info.icon = dataSpecs[value:upper()].ICON[1];        
+    for idx, value in ipairs(classes[selectedRace].CLASS) do
+        info.text, info.arg1, info.arg2 = value, value, CLASS_IDX[value];        
+        info.func = HandleClassDropDown;        
+        info.icon = dataSpecs[idx].ICON[1];        
         UIDropDownMenu_AddButton(info);
     end
 end
 
 function Initialize_SpecsDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();    
-    
-    if selectedClass == nil or dataSpecs[selectedClass:upper()].SPEC == nil then
+        
+    if selectedClass == nil or dataSpecs[selectedClass].SPEC == nil then
         log("Error while creating the specs drop down", ERROR);
         return;
     end    
 
-    for idx, value in ipairs(dataSpecs[selectedClass:upper()].SPEC) do
-        info.text, info.arg1 = value, value;        
+    for idx, value in ipairs(dataSpecs[selectedClass].SPEC) do
+        info.text, info.arg1, info.arg2 = value, value, dataSpecs[selectedClass].VALUE[idx];        
         info.func = HandleSpecDropDown;        
-        info.icon = dataSpecs[selectedClass:upper()].SPEC_ICONS[idx];
+        info.icon = dataSpecs[selectedClass].SPEC_ICONS[idx];
         UIDropDownMenu_AddButton(info);
     end
 end
@@ -185,7 +209,7 @@ function Initialize_PhaseDropDown(frame, level, menuList)
     local disabled = false;
 
     for idx, value in ipairs(phases.NAME) do
-        info.text, info.arg1 = value, value;
+        info.text, info.arg1, info.arg2 = value, value, phases.VALUE[idx];
         info.disabled = disabled;
         info.func = HandlePhaseDropDown;
         info.icon = phases.ICON[idx];
@@ -229,8 +253,9 @@ function ShowManager()
 
     if window == nil then
         visible = false;        
-        selectedRace = race;
-        selectedClass = class;        
+        selectedRace = RACES_IDX[race];                
+        selectedClass = CLASS_IDX[class:lower():gsub("^%l", string.upper)];
+        print(selectedClass);
         if spec == "Unknown" then
             selectedSpec = nil;
         else
@@ -238,8 +263,8 @@ function ShowManager()
         end        
         selectedPhase = currentPhase;
         window = CreateWindow("BISManager", 1200, 600);
-        dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", selectedRace);        
-        dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", selectedClass);
+        dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", race);        
+        dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", class);
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
         dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", selectedPhase);
     end
