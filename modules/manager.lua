@@ -3,6 +3,7 @@
 local window;
 local visible;
 local currentPhase = "Phase 2";
+local currentPhaseId = "2";
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
 local selectedRace, selectedClass, selectedSpec, selectedPhase;
 
@@ -25,39 +26,39 @@ local classes = {
 local dataSpecs = {
     [1] = { ["SPEC"] = { "Fury", "Protection", "Fire Resistance"},
                     ["SPEC_ICONS"] = { 132347, 134952,  135805}, 
-                    ["VALUE"] = { "1", "2", "3" },
+                    ["VALUE"] = { 1, 2, 3 },
                     ["ICON"] = { 135328 } },
     [11] = {   ["SPEC"] = { "Feral Tank", "Feral DPS", "Restoration", "Balance" },                     
                     ["SPEC_ICONS"] = { 132276, 132115, 136041, 136036 },
-                    ["VALUE"] = { "1", "2", "3", "4" },
+                    ["VALUE"] = { 1, 2, 3, 4 },
                     ["ICON"] = { 134297 } },
     [3] = {  ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 135489 },
-                    ["VALUE"] = { "1" },
+                    ["VALUE"] = { 1 },
                     ["ICON"] = { 135495 } },
     [7] = {  ["SPEC"] = { "Elemental", "Enhancement", "Restoration" },                     
                     ["SPEC_ICONS"] = { 136015, 136018, 136052 },
-                    ["VALUE"] = { "1", "2", "3" },
+                    ["VALUE"] = { 1, 2, 3 },
                     ["ICON"] = { 133437 } },
     [8] = {    ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 132805 },
-                    ["VALUE"] = { "1" },
+                    ["VALUE"] = { 1 },
                     ["ICON"] = { 135150 } },
     [9] = { ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 136163 },
-                    ["VALUE"] = { "1" },
+                    ["VALUE"] = { 1 },
                     ["ICON"] = { 136020 } },
     [5] = {  ["SPEC"] = { "Hybrid", "Shadow" },                     
                     ["SPEC_ICONS"] = { 135941, 136224 },
-                    ["VALUE"] = { "1", "2" },
+                    ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 135167 } },
     [4] = {   ["SPEC"] = { "Swords", "Daggers" },                     
                     ["SPEC_ICONS"] = { 135328, 135641 },
-                    ["VALUE"] = { "1", "2" },
+                    ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 135428 } },
     [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution" },                     
                     ["SPEC_ICONS"] = { 135920, 135893, 135873 },
-                    ["VALUE"] = { "1", "2" },
+                    ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 132325 } }
 };
 
@@ -109,11 +110,13 @@ local function Update()
         -- Nothing to be updated.
         return;
     end
+    local temp;
 
     log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
-    for k, row in search(BIS_LINKS, { Faction = nil,  RaceId = selectedRace, ClassId = selectedClass, PhaseId = selectedPhase, SpecId = selectedSpec }) do
-        print(k, row.name, row.x, row.y)
-      end
+    local count = 0;
+    
+    temp = SearchBis(nil, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, nil);
+    
 end
 
 local function HandleRacesDropDown(self, arg1, arg2, checked)
@@ -183,7 +186,7 @@ function Initialize_ClassDropDown(frame, level, menuList)
     for idx, value in ipairs(classes[selectedRace].CLASS) do
         info.text, info.arg1, info.arg2 = value, value, CLASS_IDX[value];        
         info.func = HandleClassDropDown;        
-        info.icon = dataSpecs[idx].ICON[1];        
+        info.icon = dataSpecs[CLASS_IDX[value]].ICON[1];        
         UIDropDownMenu_AddButton(info);
     end
 end
@@ -254,19 +257,18 @@ function ShowManager()
     if window == nil then
         visible = false;        
         selectedRace = RACES_IDX[race];                
-        selectedClass = CLASS_IDX[class:lower():gsub("^%l", string.upper)];
-        print(selectedClass);
+        selectedClass = CLASS_IDX[class:lower():gsub("^%l", string.upper)];        
         if spec == "Unknown" then
             selectedSpec = nil;
         else
             selectedSpec = spec;
         end        
-        selectedPhase = currentPhase;
+        selectedPhase = currentPhaseId;
         window = CreateWindow("BISManager", 1200, 600);
         dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", race);        
         dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", class);
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
-        dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", selectedPhase);
+        dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", currentPhase);
     end
 
     if visible then
