@@ -83,42 +83,42 @@ BIS_ITEMS["15138"] = {
 BIS_ITEMS["16983"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 5, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 5, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Black Dragonscale Boots.
 BIS_ITEMS["16984"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 5, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 5, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Fiery Chain Shoulders.
 BIS_ITEMS["16988"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Fiery Chain Girdle.
 BIS_ITEMS["16989"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 295, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 295, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Dark Iron Leggings
 BIS_ITEMS["17013"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Dark Iron Bracers.
 BIS_ITEMS["17014"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 295, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 295, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Force Reactive Disk.
@@ -146,26 +146,26 @@ BIS_ITEMS["18638"] = {
 BIS_ITEMS["19164"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Blackguard.
 BIS_ITEMS["19168"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Ebon Hand.
 BIS_ITEMS["19170"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };
 
 -- Dark Iron Boots.
 BIS_ITEMS["20039"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
-    Info = {Profession = 2, Level = 300, NPC = "NergaLokhtos Darkbargainer"}
+    Info = {Profession = 2, Level = 300, NPC = "Lokhtos Darkbargainer"}
 };

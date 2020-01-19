@@ -42,7 +42,7 @@ function CreateWindow(name, height, width)
     local window = CreateFrame("FRAME", "BISManager", UIParent);        
     window:EnableMouse(true);
     window:SetMovable(true);
-    window:SetResizable(true);
+    window:SetResizable(false);
     window:SetPoint("CENTER");
 	window:SetMinResize(32, 32);
 	window:SetSize(height, width);

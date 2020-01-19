@@ -7,6 +7,17 @@ local currentPhaseId = "2";
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
 local selectedRace, selectedClass, selectedSpec, selectedPhase;
 
+local rootPaperDoll = "Interface\\PaperDoll\\";                
+
+local characterFrames = { 
+    ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds" },    
+    ["ICON"] = { 
+        "UI-PaperDoll-Slot-Head.PNG", "UI-PaperDoll-Slot-Neck.PNG", "UI-PaperDoll-Slot-Shoulder.PNG", "UI-PaperDoll-Slot-REar.PNG", "UI-PaperDoll-Slot-Chest.PNG",
+        "UI-PaperDoll-Slot-Wrists.PNG", "UI-PaperDoll-Slot-Hands.PNG", "UI-PaperDoll-Slot-Waist.PNG", "UI-PaperDoll-Slot-Legs.PNG", "UI-PaperDoll-Slot-Feet.PNG", "UI-PaperDoll-Slot-Finger",
+        "UI-PaperDoll-Slot-Finger", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-MainHand.PNG", "UI-PaperDoll-Slot-SecondaryHand.PNG", "UI-PaperDoll-Slot-Ranged.PNG"
+    }
+};
+
 local races = {
     ["Horde"] = { "Orc", "Undead", "Tauren", "Troll" },
     ["Alliance"] = { "Human", "Gnome", "Dwarf", "Night Elf" }
@@ -105,6 +116,15 @@ local phases = {
     ["VALUE"] = { "1", "2PR", "2", "3PR", "4", "5", "6"}
     };
 
+local function ResetUI()   
+    for key, value in pairs(characterFrames.NAME) do        
+        for i=1, 3, 1 do            
+            _G["frame"..value.."_"..i.."_ICON"]:SetTexture(rootPaperDoll..characterFrames.ICON[key]);        
+            _G["frame"..value.."_"..i.."_TEXT"]:SetText("");
+        end        
+    end
+end
+
 local function Update()
     if selectedRace == nil or selectedClass == nil or selectedSpec == nil or selectedPhase == nil then
         -- Nothing to be updated.
@@ -112,11 +132,68 @@ local function Update()
     end
     local temp;
 
+    -- Reset Icons.
+    ResetUI();
+
     log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
     local count = 0;
     
     temp = SearchBis(nil, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, nil);
     
+    for key, value in pairs(temp) do
+        
+        --[[local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+        itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
+        isCraftingReagent = GetItemInfo(value.ItemId);]]--
+
+        local item = Item:CreateFromItemID(value.ItemId);
+        local posX = 0;
+        local posY = 0;
+        
+        item:ContinueOnItemLoad(function()
+            -- Item has been answered from the server.
+            local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+                itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
+                isCraftingReagent = GetItemInfo(value.ItemId);                                
+
+            if value.Priority > 0 and value.Priority < 4 then                
+                _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_ICON"]:SetTexture(itemIcon);
+                _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TEXT"]:SetText(itemLink);                
+                _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnEnter", function(self)
+                    local tooltip = _G["tooltip"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority];                    
+                    if tooltip == nil then
+                        tooltip = CreateFrame( "GameTooltip", "tooltip"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority, nil, "GameTooltipTemplate" );
+                    end
+                    tooltip:SetOwner(_G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]);
+                    tooltip:SetHyperlink(itemLink);
+                    tooltip:SetPoint("TOPLEFT", _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority], "TOPRIGHT", 220, -13);
+                    
+                    local item = BIS_ITEMS[tostring(value.ItemId)];
+                    local source = item.Source;
+                    tooltip:AddLine("\nThis item can be obtained: ");
+                    if source == nil then
+                        log("Error while generating the tooltip for the ItemId "..value.ItemId, ERROR);
+                    elseif source == "Craft" then
+                        tooltip:AddLine("Source: Craft");
+                        tooltip:AddLine("Profession: "..PROFESSIONS[item.Info.Profession]);
+                        tooltip:AddLine("Level: "..item.Info.Level);
+                        tooltip:AddLine("Recipe Zone: "..item.Zone);
+                        tooltip:AddLine("NPC: "..item.Info.NPC);
+                    elseif source == "Loot" then
+                    elseif source == "Vendor" then
+                    elseif source == "Quest" then
+                    end
+                    
+                    tooltip:Show();
+                end);                
+                _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnLeave", function(self)
+                    _G["tooltip"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:Hide();
+                end);                
+            end
+        end);
+
+        --print(itemName);
+    end
 end
 
 local function HandleRacesDropDown(self, arg1, arg2, checked)
@@ -231,6 +308,58 @@ local dropdownInitializer = {
     ["phases"] = Initialize_PhaseDropDown,
 }
 
+function CreateIconFrame(name, parent, width, height, x, y, icon)    
+    local frame = CreateFrame("Frame", name, parent);
+
+    frame:SetWidth(width); -- Set these to whatever height/width is needed 
+    frame:SetHeight(height); -- for your Texture
+
+    local texture = frame:CreateTexture(name.."_ICON","BACKGROUND");    
+    texture:SetTexture(icon);
+    texture:SetAllPoints(frame);
+    frame.texture = texture;
+
+    frame:SetPoint("TOPLEFT", x,y);
+    frame:Show();
+
+    return frame;
+end
+
+function CreateChildIcons(suffix, parent, amount, defaultSize, startX, startY, icon, position)
+    local temp = {};
+    local iconSize = defaultSize / amount;
+    for i=1,amount,1 do
+        -- By default, the new image is going at the right.
+        if position == nil then
+            temp[i] = CreateIconFrame("frame"..suffix.."_"..i, parent, iconSize, iconSize, startX + defaultSize, startY - (defaultSize * (i - 1) / amount), icon);
+        elseif position == "TOP" then                                    
+            temp[i] = CreateIconFrame("frame"..suffix.."_"..i, parent, iconSize, iconSize, startX - defaultSize / 2, startY + defaultSize - (defaultSize * (i - 1) / amount), icon);
+        else
+            temp[i] = CreateIconFrame("frame"..suffix.."_"..i, parent, iconSize, iconSize, startX - iconSize, startY - (defaultSize * (i - 1) / amount), icon);
+        end
+    end
+    return temp;
+end
+
+function CreateTextFrames(suffix, parent, amount, defaultSize, width, startX, startY, position)
+    local textFrames = {};
+    local iconSize = defaultSize / amount;
+    
+    for i=1, amount, 1 do        
+        textFrames[i] = parent:CreateFontString("frame"..suffix.."_"..i.."_TEXT", "OVERLAY");
+        if position == "RIGHT" then
+            textFrames[i]:SetPoint("TOPLEFT", parent, "TOPLEFT", startX + iconSize + defaultSize, startY - (defaultSize * (i - 1) / amount));
+        elseif position == "TOP" then            
+            textFrames[i]:SetPoint("TOPLEFT", parent, "TOPLEFT", startX + iconSize - (defaultSize / 2), startY + defaultSize - (defaultSize * (i - 1) / amount));
+        else
+            textFrames[i]:SetPoint("TOPLEFT", parent, "TOPLEFT", startX - iconSize - 150, startY - (defaultSize * (i - 1) / amount));
+        end
+        textFrames[i]:SetFontObject("GameFontHighlight");        
+        textFrames[i]:SetHeight(iconSize);                
+    end    
+    return textFrames;
+end
+
 function CreateDropDownList(name, parent, width, x, y, items, defaultText)
     local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");    
     local text = defaultText:lower();
@@ -255,6 +384,19 @@ function ShowManager()
     PrintPlayerInfo();
 
     if window == nil then
+        -- Main icons.
+        local frameHead, frameNeck, frameShoulder, frameBack, frameChest, frameWrist;
+        local frameGlove, frameBelt, frameLeg, frameBoot, frameMainRing, frameOffRing, frameMainTrinket, frameOffTrinket;
+        local frameMainHand, frameOffHand, frameRanged;
+        -- Child icons.
+        local frameHeads, frameNecks, frameShoulders, frameBacks, frameChests, frameWrists;
+        local frameGloves, frameBelts, frameLegs, frameBoots, frameMainRings, frameOffRings, frameMainTrinkets, frameOffTrinkets;
+        local frameMainHands, frameOffHands, frameRangeds;
+        -- Child Text.
+        local textHeads, textNecks, textShoulders, textBacks, textChests, textWrists;
+        local textGloves, textBelts, textLegs, textBoots, textMainRings, textOffRings, textMainTrinkets, textOffTrinkets;
+        local textMainHands, textOffHands, textRangeds;
+        local iconSize = 60;
         visible = false;        
         selectedRace = RACES_IDX[race];                
         selectedClass = CLASS_IDX[class:lower():gsub("^%l", string.upper)];        
@@ -264,11 +406,80 @@ function ShowManager()
             selectedSpec = spec;
         end        
         selectedPhase = currentPhaseId;
-        window = CreateWindow("BISManager", 1200, 600);
+        window = CreateWindow("BISManager", 1100, 600);        
         dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", race);        
         dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", class);
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
         dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", currentPhase);
+        
+        frameHead = CreateIconFrame("frameHead", window, iconSize, iconSize, 20, -45, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Head.PNG");
+        frameHeads = CreateChildIcons("Heads", window, 3, iconSize, 20, -45, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Head.PNG");
+        textHeads = CreateTextFrames("Heads", window, 3, iconSize, 300, 20, -45, "RIGHT");
+
+        frameNeck = CreateIconFrame("frameNeck", window, iconSize, iconSize, 20, -45 - iconSize, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Neck.PNG");
+        frameNecks = CreateChildIcons("Necks", window, 3, iconSize, 20, -45 - iconSize, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Neck.PNG");
+        textNecks = CreateTextFrames("Necks", window, 3, iconSize, 300, 20, -45 - iconSize, "RIGHT");
+
+        frameShoulder = CreateIconFrame("frameShoulder", window, iconSize, iconSize, 20, -45 - (iconSize * 2), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Shoulder.PNG");
+        frameShoulders = CreateChildIcons("Shoulders", window, 3, iconSize, 20, -45 - (iconSize * 2), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Shoulder.PNG");
+        textShoulders = CreateTextFrames("Shoulders", window, 3, iconSize, 300, 20, -45 - (iconSize * 2), "RIGHT");
+
+        frameBack = CreateIconFrame("frameBack", window, iconSize, iconSize, 20, -45 - (iconSize * 3), "Interface\\PaperDoll\\UI-PaperDoll-Slot-REar.PNG");
+        frameBacks = CreateChildIcons("Backs", window, 3, iconSize, 20, -45 - (iconSize * 3), "Interface\\PaperDoll\\UI-PaperDoll-Slot-REar.PNG");
+        textBacks = CreateTextFrames("Backs", window, 3, iconSize, 300, 20, -45 - (iconSize * 3), "RIGHT");
+
+        frameChest = CreateIconFrame("frameChest", window, iconSize, iconSize, 20, -45 - (iconSize * 4), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Chest.PNG");
+        frameChests = CreateChildIcons("Chests", window, 3, iconSize, 20, -45 - (iconSize * 4), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Chest.PNG");
+        textChests = CreateTextFrames("Chests", window, 3, iconSize, 300, 20, -45 - (iconSize * 4), "RIGHT");
+
+        frameWrist = CreateIconFrame("frameWrist", window, iconSize, iconSize, 20, -45  - (iconSize * 7), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Wrists.PNG");
+        frameWrists = CreateChildIcons("Wrists", window, 3, iconSize, 20, -45 - (iconSize * 7), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Wrists.PNG");
+        textWrists = CreateTextFrames("Wrists", window, 3, iconSize, 300, 20, -45 - (iconSize * 7), "RIGHT");
+
+        frameGlove = CreateIconFrame("frameGlove", window, iconSize, iconSize, 1000, -45, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Hands.PNG");
+        frameGloves = CreateChildIcons("Gloves", window, 3, iconSize, 1000, -45, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Hands.PNG", "LEFT");
+        textGloves = CreateTextFrames("Gloves", window, 3, iconSize, 300, 1000, -45, "LEFT");
+
+        frameBelt = CreateIconFrame("frameBelt", window, iconSize, iconSize, 1000, -45 - (iconSize * 1), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Waist.PNG");
+        frameBelts = CreateChildIcons("Belts", window, 3, iconSize, 1000, -45 - (iconSize * 1), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Waist.PNG", "LEFT");
+        textBelts = CreateTextFrames("Belts", window, 3, iconSize, 300, 1000, -45 - (iconSize * 1), "LEFT");
+
+        frameLeg = CreateIconFrame("frameLeg", window, iconSize, iconSize, 1000, -45 - (iconSize * 2), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Legs.PNG");
+        frameLegs = CreateChildIcons("Legs", window, 3, iconSize, 1000, -45 - (iconSize * 2), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Legs.PNG", "LEFT");
+        textLegs = CreateTextFrames("Legs", window, 3, iconSize, 300, 1000, -45 - (iconSize * 2), "LEFT");
+
+        frameBoot = CreateIconFrame("frameBoot", window, iconSize, iconSize, 1000, -45 - (iconSize * 3), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Feet.PNG");
+        frameBoots = CreateChildIcons("Boots", window, 3, iconSize, 1000, -45 - (iconSize * 3), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Feet.PNG", "LEFT");
+        textBoots = CreateTextFrames("Boots", window, 3, iconSize, 300, 1000, -45 - (iconSize * 3), "LEFT");
+
+        frameMainRing = CreateIconFrame("frameMainRing", window, iconSize, iconSize, 1000, -45 - (iconSize * 4), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Finger.PNG");
+        frameMainRings = CreateChildIcons("MainRings", window, 3, iconSize, 1000, -45 - (iconSize * 4), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Finger.PNG", "LEFT");
+        textMainRings = CreateTextFrames("MainRings", window, 3, iconSize, 300, 1000, -45 - (iconSize * 4), "LEFT");
+
+        frameOffRing = CreateIconFrame("frameOffRing", window, iconSize, iconSize, 1000, -45 - (iconSize * 5), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Finger.PNG");
+        frameOffRings = CreateChildIcons("OffRings", window, 3, iconSize, 1000, -45 - (iconSize * 5), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Finger.PNG", "LEFT");
+        textOffRings = CreateTextFrames("OffRings", window, 3, iconSize, 300, 1000, -45 - (iconSize * 5), "LEFT");
+
+        frameMainTrinket = CreateIconFrame("frameMainTrinket", window, iconSize, iconSize, 1000, -45 - (iconSize * 6), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Trinket.PNG");
+        frameMainTrinkets = CreateChildIcons("MainTrinkets", window, 3, iconSize, 1000, -45 - (iconSize * 6), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Trinket.PNG", "LEFT");
+        textMainTrinkets = CreateTextFrames("MainTrinkets", window, 3, iconSize, 300, 1000, -45 - (iconSize * 6), "LEFT");
+
+        frameOffTrinket = CreateIconFrame("frameOffTrinket", window, iconSize, iconSize, 1000, -45 - (iconSize * 7), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Trinket.PNG");
+        frameOffTrinkets = CreateChildIcons("OffTrinkets", window, 3, iconSize, 1000, -45 - (iconSize * 7), "Interface\\PaperDoll\\UI-PaperDoll-Slot-Trinket.PNG", "LEFT");
+        textOffTrinkets = CreateTextFrames("OffTrinkets", window, 3, iconSize, 300, 1000, -45 - (iconSize * 7) , "LEFT");
+
+        frameMainHand = CreateIconFrame("frameMainHand", window, iconSize, iconSize, 550 - (iconSize * 3 / 2), -530, "Interface\\PaperDoll\\UI-PaperDoll-Slot-MainHand.PNG");
+        frameMainHands = CreateChildIcons("MainHands", window, 3, iconSize, 550 - (iconSize * 3 / 2), -530, "Interface\\PaperDoll\\UI-PaperDoll-Slot-MainHand.PNG","LEFT");
+        textMainHands = CreateTextFrames("MainHands", window, 3, iconSize, 300, 550 - (iconSize * 3 / 2), -530, "LEFT");
+
+        frameOffHand = CreateIconFrame("frameOffHand", window, iconSize, iconSize, 550 - (iconSize / 2), -530, "Interface\\PaperDoll\\UI-PaperDoll-Slot-SecondaryHand.PNG");
+        frameOffHands = CreateChildIcons("OffHands", window, 3, iconSize, 550 - (iconSize / 2), -530, "Interface\\PaperDoll\\UI-PaperDoll-Slot-SecondaryHand.PNG","TOP");
+        textOffHands = CreateTextFrames("OffHands", window, 3, iconSize, 300, 550 - (iconSize / 2), -530, "TOP");        
+
+        frameRanged = CreateIconFrame("frameRanged", window, iconSize, iconSize, 550 + (iconSize / 2), -530, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Ranged.PNG");
+        frameRangeds = CreateChildIcons("Rangeds", window, 3, iconSize, 550 + (iconSize / 2), -530, "Interface\\PaperDoll\\UI-PaperDoll-Slot-Ranged.PNG");
+        textRangeds = CreateTextFrames("Rangeds", window, 3, iconSize, 300, 550 + (iconSize / 2), -530, "RIGHT");
+        
     end
 
     if visible then
