@@ -65,6 +65,13 @@ BIS_ITEMS["16984"] = {
     Info = {Profession = 5, Level = 300, NPC = "NergaLokhtos Darkbargainerl"}
 };
 
+-- Force Reactive Disk.
+BIS_ITEMS["18168"] = {
+    Source = "Craft",
+    Zone = "Molten Core",
+    Info = {Profession = 5, Level = 300, NPC = "Boss Drop"}
+};
+
 -- Shifting Cloack.
 BIS_ITEMS["18511"] = {
     Source = "Craft",

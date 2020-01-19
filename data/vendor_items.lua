@@ -54,6 +54,28 @@ BIS_ITEMS["19087"] = {
     }
 };
 
+-- Glacial Blade.
+BIS_ITEMS["19099"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Revered",
+        Price = "28g 48s 53c",
+        Team = "Horde"
+    }
+};
+
+-- Electrified Dagger.
+BIS_ITEMS["19100"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Revered",
+        Price = "28g 48s 53c",
+        Team = "Alliance"
+    }
+};
+
 -- Frostbite.
 BIS_ITEMS["19103"] = {
     Source = "Vendor",
@@ -93,6 +115,16 @@ BIS_ITEMS["19323"] = {
         Faction = "Alterac Valley",
         Requirement = "Exalted",
         Price = "125g 19s 20c"        
+    }
+};
+
+-- The Lobotomizer.
+BIS_ITEMS["19324"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Exalted",
+        Price = "113g 9s 56c"
     }
 };
 

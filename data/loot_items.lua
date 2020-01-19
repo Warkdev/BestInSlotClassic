@@ -314,18 +314,25 @@ BIS_ITEMS["13286"] = {
     Info = {NPC = "Spirestone Butcher", Drop = "37%"}
 };
 
--- Band of Flesh.
-BIS_ITEMS["13373"] = {
-    Source = "Loot",
-    Zone = "Stratholme",
-    Info = {NPC = "Ramstein the Gorger", Drop = "12%"}
-};
-
 -- Cape of the Black Baron.
 BIS_ITEMS["13340"] = {
     Source = "Loot",
     Zone = "Stratholme",
     Info = {NPC = "Baron Rivendare", Drop = "13%"}
+};
+
+-- Bonescraper.
+BIS_ITEMS["13368"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Baron Rivendare", Drop = "8%"}
+};
+
+-- Band of Flesh.
+BIS_ITEMS["13373"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Ramstein the Gorger", Drop = "12%"}
 };
 
 -- Rainbow Girdle.
@@ -510,6 +517,20 @@ BIS_ITEMS["16737"] = {
     Info = {NPC = "Ramstein the Gorger", Drop = "18%"}
 };
 
+-- Bracers of Might.
+BIS_ITEMS["16861"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "On mobs", Drop = "2%"}
+};
+
+-- Sabatons of Might.
+BIS_ITEMS["16862"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Gehennas", Drop = "31%"}
+};
+
 -- Gauntlets of Might.
 BIS_ITEMS["16863"] = {
     Source = "Loot",
@@ -517,11 +538,74 @@ BIS_ITEMS["16863"] = {
     Info = {NPC = "Lucifron", Drop = "38%"}
 };
 
+-- Belt of Might.
+BIS_ITEMS["16864"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "On mobs", Drop = "2%"}
+};
+
+-- Breastplate of Might.
+BIS_ITEMS["16865"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Golemagg the Incinerator", Drop = "33%"}
+};
+
+-- Helm of Might.
+BIS_ITEMS["16866"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Garr", Drop = "25%"}
+};
+
+-- Legplates of Might.
+BIS_ITEMS["16867"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Magmadar", Drop = "31%"}
+};
+
+-- Pauldrons of Might.
+BIS_ITEMS["16868"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Sulfuron Harbringer", Drop = "44%"}
+};
+
+-- Legplates of Wrath.
+BIS_ITEMS["16962"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Ragnaros", Drop = "28%"}
+};
+
+-- Helm of Wrath.
+BIS_ITEMS["16963"] = {
+    Source = "Loot",
+    Zone = "Onyxia's Lair",
+    Info = {NPC = "Onyxia", Drop = "28%"}
+};
+
 -- Band of Accuria.
 BIS_ITEMS["17063"] = {
     Source = "Loot",
     Zone = "Molten Core",
     Info = {NPC = "Ragnaros", Drop = "19%"}
+};
+
+-- Medallion of Steadfast Might.
+BIS_ITEMS["17065"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Magmadar", Drop = "33%"}
+};
+
+-- Drillborer Disk.
+BIS_ITEMS["17066"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Garr", Drop = "26%"}
 };
 
 -- Deathbringer.
@@ -536,6 +620,13 @@ BIS_ITEMS["17069"] = {
     Source = "Loot",
     Zone = "Molten Core",
     Info = {NPC = "Magmadar", Drop = "34%"}
+};
+
+-- Gutgore Ripper.
+BIS_ITEMS["17071"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Garr", Drop = "26%"}
 };
 
 -- Blastershot Launcher.
@@ -559,11 +650,25 @@ BIS_ITEMS["17076"] = {
     Info = {NPC = "Ragnaros", Drop = "4%"}
 };
 
+-- Cloak of the Shrouded Mists.
+BIS_ITEMS["17102"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Ragnaros", Drop = "26%"}
+};
+
 -- Spinal Reaper.
 BIS_ITEMS["17104"] = {
     Source = "Loot",
     Zone = "Molten Core",
     Info = {NPC = "Ragnaros", Drop = "4%"}
+};
+
+-- Dragon's Blood Cape.
+BIS_ITEMS["17107"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Ragnaros", Drop = "22%"}
 };
 
 -- Empyrean Demolisher.
@@ -578,6 +683,20 @@ BIS_ITEMS["17713"] = {
     Source = "Loot",
     Zone = "Maraudon",
     Info = {NPC = "Princess Theradras", Drop = "24%"}
+};
+
+-- Eskhandar's Pelt.
+BIS_ITEMS["18204"] = {
+    Source = "Loot",
+    Zone = "Blasted Lands",
+    Info = {NPC = "Lord Kazzak", Drop = "14%"}
+};
+
+-- Eskhandar's Collar.
+BIS_ITEMS["18205"] = {
+    Source = "Loot",
+    Zone = "Onyxia's Lair",
+    Info = {NPC = "Onyxia", Drop = "28%"}
 };
 
 -- Helm of Awareness.
@@ -706,6 +825,13 @@ BIS_ITEMS["18522"] = {
     Info = {NPC = "King Gordok", Drop = "24%"}
 };
 
+-- Ogre Forged Hauberk.
+BIS_ITEMS["18530"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Mizzle the Crafty", Drop = "1.3%"}
+};
+
 -- Counterattack Lodestone.
 BIS_ITEMS["18537"] = {
     Source = "Loot",
@@ -762,6 +888,34 @@ BIS_ITEMS["18756"] = {
     Info = {NPC = "Lord Hel'nurath", Drop = "27%"}
 };
 
+-- Core Hounrd Tooth.
+BIS_ITEMS["18805"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Majordomo Executus", Drop = "10%"}
+};
+
+-- Core Forged Greaves.
+BIS_ITEMS["18806"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Cache of the Firelord", Drop = "22%"}
+};
+
+-- Wristguards of True Flight.
+BIS_ITEMS["18812"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Majordomo Executus", Drop = "5%"}
+};
+
+-- Perdition's Blade.
+BIS_ITEMS["18816"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Ragnaros", Drop = "30%"}
+};
+
 -- Crown of Destruction.
 BIS_ITEMS["18817"] = {
     Source = "Loot",
@@ -783,11 +937,32 @@ BIS_ITEMS["18822"] = {
     Info = {NPC = "Magmadar, Garr, Baron Geddon, Golemagg", Drop = "~8%"}
 };
 
+-- Aged Core Leather Gloves.
+BIS_ITEMS["18823"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Magmadar, Garr, Baron Geddon, Golemagg", Drop = "~8%"}
+};
+
 -- Brutality Blade.
 BIS_ITEMS["18832"] = {
     Source = "Loot",
     Zone = "Molten Core",
     Info = {NPC = "Garr", Drop = "26%"}
+};
+
+-- Flamewark Legplates.
+BIS_ITEMS["18861"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Gehennas, Magmadar, Sulfuron, Lucifron, Garr, Geddon, Golemagg", Drop = "4%"}
+};
+
+-- Heavy Dark Iron Ring.
+BIS_ITEMS["18879"] = {
+    Source = "Loot",
+    Zone = "Molten Core",
+    Info = {NPC = "Gehennas, Sulfuron Harbringer, Lucifron", Drop = "5%"}
 };
 
 -- Onslaught Girdle.

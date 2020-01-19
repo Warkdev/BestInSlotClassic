@@ -125,6 +125,13 @@ BIS_ITEMS["17904"] = {
     Info = {Name = "(A) The Eye of Command"}
 };
 
+-- Quel'Serrar.
+BIS_ITEMS["18348"] = {
+    Source = "Quest",
+    Zone = "Onyxia's Lair",
+    Info = {Name = "The Forging of Quel'Serrar"}
+};
+
 -- Onyxia Tooth Pendant.
 BIS_ITEMS["18404"] = {
     Source = "Quest",
