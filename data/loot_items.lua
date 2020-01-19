@@ -13,6 +13,13 @@ BIS_ITEMS["871"] = {
     Info = {NPC = "Area 45+", Drop = "<1%"}
 };
 
+-- Skullflame Shield.
+BIS_ITEMS["1168"] = {
+    Source = "Loot",
+    Zone = "World Drop",
+    Info = {NPC = "Area 55+", Drop = "<1%"}
+};
+
 -- Krol Blade.
 BIS_ITEMS["2244"] = {
     Source = "Loot",
@@ -34,11 +41,25 @@ BIS_ITEMS["9375"] = {
     Info = {NPC = "Digmaster Shovelphlange", Drop = "11%"}
 };
 
+-- Tooth of Eranikus.
+BIS_ITEMS["10837"] = {
+    Source = "Loot",
+    Zone = "The Temple of Atal'Hakkar",
+    Info = {NPC = "Shade of Eranikus", Drop = "14%"}
+};
+
 -- Blackveil cape.
 BIS_ITEMS["11626"] = {
     Source = "Loot",
     Zone = "Blackrock Depths",
     Info = {NPC = "Houndmaster Grebmar", Drop = "44%"}
+};
+
+-- Naglering.
+BIS_ITEMS["11669"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Golem Lord Argelmach", Drop = "9%"}
 };
 
 -- Ironfoe.
@@ -52,7 +73,35 @@ BIS_ITEMS["11684"] = {
 BIS_ITEMS["11726"] = {
     Source = "Loot",
     Zone = "Blackrock Depths",
-    Info = {NPC = "Gorosh the Dervish", Drop = "7%"}
+    Info = {NPC = "Phalanx", Drop = "37%"}
+};
+
+-- Savage Gladiator Greaves.
+BIS_ITEMS["11731"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Gorosh the Dervish", Drop = "22%"}
+};
+
+-- Golem Skull Helm.
+BIS_ITEMS["11746"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Phalanx", Drop = "37%"}
+};
+
+-- Verek's Collar.
+BIS_ITEMS["11755"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Verek", Drop = "11%"}
+};
+
+-- Force of Will.
+BIS_ITEMS["11810"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Emperor Dagran Thaurissan", Drop = "18%"}
 };
 
 -- Hand of Justice.
@@ -60,6 +109,13 @@ BIS_ITEMS["11815"] = {
     Source = "Loot",
     Zone = "Blackrock Depths",
     Info = {NPC = "General Angerforge", Drop = "5%"}
+};
+
+-- Legplates of the Eternal Guardian.
+BIS_ITEMS["11927"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Doom'rel", Drop = "47%"}
 };
 
 -- Dreadforge Retaliator.
@@ -90,6 +146,13 @@ BIS_ITEMS["12555"] = {
     Info = {NPC = "On mobs", Drop = "<1%"}
 };
 
+-- Ebonsteel Spaulders
+BIS_ITEMS["12557"] = {
+    Source = "Loot",
+    Zone = "Blackrock Depths",
+    Info = {NPC = "Princess Moira Bronzebeart", Drop = "23%"}
+};
+
 -- Eye of Rend.
 BIS_ITEMS["12587"] = {
     Source = "Loot",
@@ -111,6 +174,20 @@ BIS_ITEMS["12592"] = {
     Info = {NPC = "General Drakkisath", Drop = "<1%"}
 };
 
+-- Draconian Deflector.
+BIS_ITEMS["12602"] = {
+    Source = "Loot",
+    Zone = "Upper Blackrock Spire",
+    Info = {NPC = "General Drakkisath", Drop = "22%"}
+};
+
+-- Blackrow.
+BIS_ITEMS["12651"] = {
+    Source = "Loot",
+    Zone = "Lower Blackrock Spire",
+    Info = {NPC = "Shadow Hunter Vosh'gajin", Drop = "7%"}
+};
+
 -- Riphook.
 BIS_ITEMS["12653"] = {
     Source = "Loot",
@@ -123,6 +200,13 @@ BIS_ITEMS["12927"] = {
     Source = "Loot",
     Zone = "Upper Blackrock Spire",
     Info = {NPC = "Pyroguard Emberseer", Drop = "11%"}
+};
+
+-- Warmaster Legguards.
+BIS_ITEMS["12935"] = {
+    Source = "Loot",
+    Zone = "Upper Blackrock Spire",
+    Info = {NPC = "Warchief Rend Blackhand", Drop = "30%"}
 };
 
 -- Battleborn Ambraces.
@@ -153,11 +237,39 @@ BIS_ITEMS["12966"] = {
     Info = {NPC = "The Beast", Drop = "25%"}
 };
 
+-- Mass of McGowan.
+BIS_ITEMS["13006"] = {
+    Source = "Loot",
+    Zone = "Dungeons/Raid",
+    Info = {NPC = "On mobs", Drop = "2%"}
+};
+
 -- Serathil.
 BIS_ITEMS["13015"] = {
     Source = "Loot",
     Zone = "Dungeons/Raid",
     Info = {NPC = "On mobs", Drop = "2%"}
+};
+
+-- Wyrmslayer Spaulders.
+BIS_ITEMS["13066"] = {
+    Source = "Loot",
+    Zone = "World drops",
+    Info = {NPC = "On mobs", Drop = "<1%"}
+};
+
+-- Stonegrip Gauntlets.
+BIS_ITEMS["13072"] = {
+    Source = "Loot",
+    Zone = "World drops",
+    Info = {NPC = "On mobs", Drop = "<1%"}
+};
+
+-- Medallion of Grand Marshal Morris.
+BIS_ITEMS["13091"] = {
+    Source = "Loot",
+    Zone = "World drop",
+    Info = {NPC = "Zone 50+", Drop = "<1%"}
 };
 
 -- Painweaver Band.
@@ -181,6 +293,13 @@ BIS_ITEMS["13162"] = {
     Info = {NPC = "Overlord Wyrmthalak", Drop = "13%"}
 };
 
+-- Ribsteel Footguards.
+BIS_ITEMS["13259"] = {
+    Source = "Loot",
+    Zone = "Lower Blackrock Spire",
+    Info = {NPC = "Urok Doomhowl", Drop = "32%"}
+};
+
 -- The Blackrock Slicer.
 BIS_ITEMS["13285"] = {
     Source = "Loot",
@@ -195,11 +314,32 @@ BIS_ITEMS["13286"] = {
     Info = {NPC = "Spirestone Butcher", Drop = "37%"}
 };
 
+-- Band of Flesh.
+BIS_ITEMS["13373"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Ramstein the Gorger", Drop = "12%"}
+};
+
 -- Cape of the Black Baron.
 BIS_ITEMS["13340"] = {
     Source = "Loot",
     Zone = "Stratholme",
     Info = {NPC = "Baron Rivendare", Drop = "13%"}
+};
+
+-- Rainbow Girdle.
+BIS_ITEMS["13384"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Hearthsinger Forresten", Drop = "24%"}
+};
+
+-- Skul's Cold Embrace.
+BIS_ITEMS["13394"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Skul", Drop = "29%"}
 };
 
 -- Stoneskin Gargoyle Cape.
@@ -223,11 +363,25 @@ BIS_ITEMS["13404"] = {
     Info = {NPC = "The Unforgiven", Drop = "34%"}
 };
 
+-- Handcrafted Mastersmith Girdle.
+BIS_ITEMS["13502"] = {
+    Source = "Loot",
+    Zone = "Blackrock Spire",
+    Info = {NPC = "Goraluk Anvilcrack", Drop = "5%"}
+};
+
 -- Ramstein's Lightning Bolts.
 BIS_ITEMS["13515"] = {
     Source = "Loot",
     Zone = "Stratholme",
     Info = {NPC = "Ramstein the Gorger", Drop = "13%"}
+};
+
+-- Vigorsteel Vambraces.
+BIS_ITEMS["13951"] = {
+    Source = "Loot",
+    Zone = "Scholomance",
+    Info = {NPC = "Darkmaster Gandling", Drop = "13%"}
 };
 
 -- Gargoyle Slashers.
@@ -244,6 +398,20 @@ BIS_ITEMS["13967"] = {
     Info = {NPC = "Kirtonos the Herald", Drop = "19%"}
 };
 
+-- Boneclenched Gauntlets.
+BIS_ITEMS["14525"] = {
+    Source = "Loot",
+    Zone = "Scholomance",
+    Info = {NPC = "Ras Frostwhisper", Drop = "15%"}
+};
+
+-- Boots of Avoidance.
+BIS_ITEMS["14549"] = {
+    Source = "Loot",
+    Zone = "World Drop",
+    Info = {NPC = "Area 45-50", Drop = "<0.1%"}
+};
+
 -- Edgemaster's Handguards.
 BIS_ITEMS["14551"] = {
     Source = "Loot",
@@ -251,8 +419,22 @@ BIS_ITEMS["14551"] = {
     Info = {NPC = "On mobs", Drop = "<0.1%"}
 };
 
+-- Stockade Pauldrons.
+BIS_ITEMS["14552"] = {
+    Source = "Loot",
+    Zone = "World drop",
+    Info = {NPC = "Zone 50+", Drop = "<0.1%"}
+};
+
 -- Cloudkeeper Legplates.
 BIS_ITEMS["14554"] = {
+    Source = "Loot",
+    Zone = "Dungeon drop",
+    Info = {NPC = "On mobs", Drop = "<1%"}
+};
+
+-- Alcor's Sunrazor.
+BIS_ITEMS["14555"] = {
     Source = "Loot",
     Zone = "Dungeon drop",
     Info = {NPC = "On mobs", Drop = "<1%"}
@@ -265,11 +447,67 @@ BIS_ITEMS["14616"] = {
     Info = {NPC = "Several bosses", Drop = "5%"}
 };
 
+-- Deathbone Girdle.
+BIS_ITEMS["14620"] = {
+    Source = "Loot",
+    Zone = "Scholomance",
+    Info = {NPC = "Several bosses", Drop = "5%"}
+};
+
+-- Deathbone Legguards.
+BIS_ITEMS["14623"] = {
+    Source = "Loot",
+    Zone = "Scholomance",
+    Info = {NPC = "Several bosses", Drop = "5%"}
+};
+
 -- Cadaverous Armor.
 BIS_ITEMS["14637"] = {
     Source = "Loot",
     Zone = "Scholomance",
     Info = {NPC = "Several bosses", Drop = "10%"}
+};
+
+-- Breastplate of Valor.
+BIS_ITEMS["16730"] = {
+    Source = "Loot",
+    Zone = "Upper Blackrock Spire",
+    Info = {NPC = "General Drakkisath", Drop = "12%"}
+};
+
+-- Helm of Valor.
+BIS_ITEMS["16731"] = {
+    Source = "Loot",
+    Zone = "Scholomance",
+    Info = {NPC = "Darkmaster Gandling", Drop = "11%"}
+};
+
+-- Legplates of Valor.
+BIS_ITEMS["16732"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Baron Rivendare", Drop = "12%"}
+};
+
+-- Spaulders of Valor.
+BIS_ITEMS["16733"] = {
+    Source = "Loot",
+    Zone = "Blackrock Spire",
+    Info = {NPC = "On mobs", Drop = "5%"}
+};
+
+-- Bracers of Valor.
+BIS_ITEMS["16735"] = {
+    Source = "Loot",
+    Zone = "Upper Blackrock Spire",
+    Info = {NPC = "Warchief Rend Blackhand", Drop = "19%"}
+};
+
+-- Gauntlets of Valor.
+BIS_ITEMS["16737"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Ramstein the Gorger", Drop = "18%"}
 };
 
 -- Gauntlets of Might.
@@ -342,11 +580,25 @@ BIS_ITEMS["17713"] = {
     Info = {NPC = "Princess Theradras", Drop = "24%"}
 };
 
+-- Helm of Awareness.
+BIS_ITEMS["18313"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Zevrim Thornhoof", Drop = "19%"}
+};
+
 -- Satyr's Bow.
 BIS_ITEMS["18323"] = {
     Source = "Loot",
     Zone = "Dire Maul",
     Info = {NPC = "Zevrim Thornhoof", Drop = "19%"}
+};
+
+-- Vigilance Charm.
+BIS_ITEMS["18370"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Immol'thar", Drop = "9%"}
 };
 
 -- Flamescarred Shoulders.
@@ -356,11 +608,25 @@ BIS_ITEMS["18374"] = {
     Info = {NPC = "Magister Kalendris", Drop = "19%"}
 };
 
+-- Timeworn Mace.
+BIS_ITEMS["18376"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Prince Tortheldrin", Drop = "18%"}
+};
+
 -- Eldritch Reinforced Legplates.
 BIS_ITEMS["18380"] = {
     Source = "Loot",
     Zone = "Dire Maul",
     Info = {NPC = "Prince Tortheldrin", Drop = "23%"}
+};
+
+-- Force Imbued Gauntlets.
+BIS_ITEMS["18383"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Illyanna Ravenoak", Drop = "24%"}
 };
 
 -- Distracting Dagger.
@@ -377,11 +643,39 @@ BIS_ITEMS["18393"] = {
     Info = {NPC = "Tendris Warpwood", Drop = "24%"}
 };
 
+-- Cho'Rush's Blade.
+BIS_ITEMS["18484"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Cho'Rush the Observer", Drop = "46%"}
+};
+
+-- Bulky Iron Spaulders.
+BIS_ITEMS["18493"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Guard Mol'dar, Guard Slip'kik", Drop = "6%"}
+};
+
+-- Redoubt Cloack.
+BIS_ITEMS["18495"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Mizzle the Crafty", Drop = "1%"}
+};
+
 -- Tarnished Elven Ring.
 BIS_ITEMS["18500"] = {
     Source = "Loot",
     Zone = "Dire Maul",
     Info = {NPC = "Mizzle the Crafty", Drop = "3%"}
+};
+
+-- Kromcrush's Chestplate
+BIS_ITEMS["18505"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Captain Kromcrush", Drop = "22%"}
 };
 
 -- Mugger's Belt.
@@ -393,6 +687,20 @@ BIS_ITEMS["18505"] = {
 
 -- Barbarous Blade.
 BIS_ITEMS["18520"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "King Gordok", Drop = "24%"}
+};
+
+-- Grimy Metal Boots.
+BIS_ITEMS["18521"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "King Gordok", Drop = "24%"}
+};
+
+-- Band of the Ogre King.
+BIS_ITEMS["18522"] = {
     Source = "Loot",
     Zone = "Dire Maul",
     Info = {NPC = "King Gordok", Drop = "24%"}
@@ -419,11 +727,39 @@ BIS_ITEMS["18541"] = {
     Info = {NPC = "Azuregos", Drop = "17%"}
 };
 
+-- Intricately Runed Shield.
+BIS_ITEMS["18696"] = {
+    Source = "Loot",
+    Zone = "Scholomance",
+    Info = {NPC = "Ras Frostwhisper", Drop = "15%"}
+};
+
 -- Bone Slicing Hatchet.
 BIS_ITEMS["18737"] = {
     Source = "Loot",
     Zone = "Stratholme",
     Info = {NPC = "Maleki the Pallid", Drop = "19%"}
+};
+
+-- Carapace Spine Crossbow.
+BIS_ITEMS["18738"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Nerub'enkan", Drop = "18%"}
+};
+
+-- Fel Hardened Bracers.
+BIS_ITEMS["18754"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Lord Hel'nurath", Drop = "23%"}
+};
+
+-- Dreadguard's Protector.
+BIS_ITEMS["18756"] = {
+    Source = "Loot",
+    Zone = "Dire Maul",
+    Info = {NPC = "Lord Hel'nurath", Drop = "27%"}
 };
 
 -- Crown of Destruction.

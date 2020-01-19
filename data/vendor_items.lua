@@ -21,6 +21,39 @@ BIS_ITEMS["16543"] = {
     }
 };
 
+-- Stormpike Soldier's Cloack.
+BIS_ITEMS["19083"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Honored",
+        Price = "7g 55s",
+        Team = "Horde"
+    }
+};
+
+-- Stormpike Soldier's Cloack.
+BIS_ITEMS["19084"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Honored",
+        Price = "7g 55s",
+        Team = "Alliance"
+    }
+};
+
+-- Frostwolf Plate Belt.
+BIS_ITEMS["19087"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Honored",
+        Price = "4g 57s 93c", 
+        Team = "Horde"       
+    }
+};
+
 -- Frostbite.
 BIS_ITEMS["19103"] = {
     Source = "Vendor",
@@ -43,6 +76,16 @@ BIS_ITEMS["19104"] = {
     }
 };
 
+-- The Immovable Object.
+BIS_ITEMS["19321"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Exalted",
+        Price = "63g 62s 38c"        
+    }
+};
+
 -- The Unstoppable Force.
 BIS_ITEMS["19323"] = {
     Source = "Vendor",
@@ -59,7 +102,84 @@ BIS_ITEMS["19325"] = {
     Info = {        
         Faction = "Alterac Valley",
         Requirement = "Exalted",
-        Price = "60g 44s 44c",        
+        Price = "60g 44s 44c"
+    }
+};
+
+-- Legionnaire's Band.
+BIS_ITEMS["19510"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Warsong Gulch",
+        Requirement = "Honored",
+        Price = "6g 75s", 
+        Team = "Horde"       
+    }
+};
+
+-- Protector's Band.
+BIS_ITEMS["19514"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Warsong Gulch",
+        Requirement = "Honored",
+        Price = "6g 75s", 
+        Team = "Alliance"       
+    }
+};
+
+-- Scout's Medallion.
+BIS_ITEMS["19534"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Warsong Gulch",
+        Requirement = "Honored",
+        Price = "8g 84s 97c", 
+        Team = "Horde"       
+    }
+};
+
+-- Sentinel's Medallion.
+BIS_ITEMS["19539"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Warsong Gulch",
+        Requirement = "Honored",
+        Price = "8g 84s 97c", 
+        Team = "Alliance"       
+    }
+};
+
+-- Outrider's Bow.
+BIS_ITEMS["19558"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Warsong Gulch",
+        Requirement = "Revered",
+        Price = "18g 53s 62c", 
+        Team = "Horde"       
+    }
+};
+
+-- Outrunner's Bow.
+BIS_ITEMS["19562"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Warsong Gulch",
+        Requirement = "Revered",
+        Price = "18g 53s 62c", 
+        Team = "Alliance"       
+    }
+};
+
+-- Stormpike Plate Girdle.
+BIS_ITEMS["19091"] = {
+    Source = "Vendor",
+    Info = {        
+        Faction = "Alterac Valley",
+        Requirement = "Honored",
+        Price = "4g 26s 99c", 
+        Team = "Alliance"       
     }
 };
 
@@ -69,7 +189,7 @@ BIS_ITEMS["19578"] = {
     Info = {        
         Faction = "Warsong Gulch",
         Requirement = "Exalted",
-        Price = "8g 84s 97c",        
+        Price = "8g 84s 97c"        
     }
 };
 

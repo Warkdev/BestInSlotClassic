@@ -30,6 +30,13 @@ BIS_ITEMS["12784"] = {
     Info = {Profession = 2, Level = 300, NPC = "Bannok Grimaxe"}
 };
 
+-- Annihilator.
+BIS_ITEMS["12784"] = {
+    Source = "Craft",
+    Zone = "Blackrock Spire",
+    Info = {Profession = 2, Level = 300, NPC = "Quartermaster Zigris"}
+};
+
 -- Black Dragonscale Shoulders.
 BIS_ITEMS["15051"] = {
     Source = "Craft",
@@ -56,6 +63,13 @@ BIS_ITEMS["16984"] = {
     Source = "Craft",
     Zone = "Blackrock Depths",
     Info = {Profession = 5, Level = 300, NPC = "NergaLokhtos Darkbargainerl"}
+};
+
+-- Shifting Cloack.
+BIS_ITEMS["18511"] = {
+    Source = "Craft",
+    Zone = "Dire Maul",
+    Info = {Profession = 5, Level = 300, NPC = "Knot Thimblejack's Cache"}
 };
 
 -- Ebon Hand.
