@@ -50,8 +50,8 @@ function CreateWindow(name, height, width)
     window:SetBackdrop(backdrop);
     window:SetBackdropBorderColor(1, 1, 1, 1);
     window:SetBackdropColor(0, 0, 0, 1);
-    window:SetClampedToScreen(true);
-	window:SetToplevel(true);        
+    --window:SetClampedToScreen(true);
+	--window:SetToplevel(true);        
 	window:SetScript("OnMouseDown", StartMovingOrSizing);
 	window:SetScript("OnMouseUp", StopMovingOrSizing);
 	window:SetScript("OnHide", StopMovingOrSizing);
@@ -60,6 +60,11 @@ function CreateWindow(name, height, width)
     window.CloseButton = CreateFrame("Button", nil, window, "UIPanelCloseButton");
     window.CloseButton:SetPoint("TOPRIGHT", window, "TOPRIGHT", 4, 3);
     window.CloseButton:SetScript("OnClick", HideParent);
+
+    window.childFrame = {};
+    for i = 1, 17, 1 do
+        window.childFrame[i] = {};        
+    end    
 
     return window;
 end
