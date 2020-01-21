@@ -8,7 +8,14 @@ end
 function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
   -- Temporary table with matching records.
   local temp = {};
+  local empty = true;
+
+  for i = 1, table.getn(INVSLOT_IDX), 1 do
+    temp[i] = {};
+  end
+
   local match = true;
+
   for k, value in pairs(BIS_LINKS) do    
     match = true;
     
@@ -19,7 +26,7 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
 
     -- Checking if race must be checked either from the search of from the table.
     if match and race ~= nil and value.RaceId ~= nil and value.RaceId ~= race then      
-      -- log("Race does not match", DEBUG);
+      --log("Race does not match", DEBUG);
       match = false;
     end
 
@@ -45,8 +52,21 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
 
     if match then
       -- log("Found matching record ! "..value.ItemId, DEBUG);
-      table.insert(temp, value);        
+      -- Let's compare if another record already exist for that position. If so, we check the race, a matching race has always priority !
+      if temp[value.InvSlotId][value.Priority] ~= nil then
+        if value.RaceId == race then
+          table.remove(temp[value.InvSlotId], value.priority);
+          table.insert(temp[value.InvSlotId], value.Priority, value);  
+        end
+      else
+        empty = false;
+        table.insert(temp[value.InvSlotId], value.Priority, value);
+      end
     end
+  end
+  
+  if empty then
+    return {};
   end
   return temp;
 end

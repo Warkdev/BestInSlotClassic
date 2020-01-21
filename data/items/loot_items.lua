@@ -370,6 +370,13 @@ BIS_ITEMS["13340"] = {
     Info = {NPC = "Baron Rivendare", Drop = "13%"}
 };
 
+-- Crown of Tyranny.
+BIS_ITEMS["13359"] = {
+    Source = "Loot",
+    Zone = "Stratholme",
+    Info = {NPC = "Balnazzar", Drop = "14%"}
+};
+
 -- Bonescraper.
 BIS_ITEMS["13368"] = {
     Source = "Loot",

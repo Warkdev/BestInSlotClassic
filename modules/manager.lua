@@ -129,7 +129,24 @@ local function ResetUI()
         for i=1, 3, 1 do            
             _G["frame_"..value.."_"..i.."_ICON"]:SetTexture(rootPaperDoll..characterFrames.ICON[key]);            
             _G["frame"..value.."_"..i.."_TEXT"]:SetText("");
+            _G["ItemFrame_"..value.."_"..i]:SetScript("OnEnter", nil);
+            _G["ItemFrame_"..value.."_"..i]:SetScript("OnLeave", nil);            
         end        
+    end
+end
+
+function dump(o)
+    if type(o) == 'table' then
+        local s = '{ ';
+        for k,v in pairs(o) do
+            if type(k) ~= 'number' then 
+                k = '"'..k..'"';
+            end
+            s = s .. '['..k..'] = ' .. dump(v) .. ',';
+        end
+        return s .. '} ';
+    else
+       return tostring(o);
     end
 end
 
@@ -147,73 +164,80 @@ local function Update()
     local count = 0;
     
     temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, pvpRank);
-    
-    for key, value in pairs(temp) do
-        local item = Item:CreateFromItemID(value.ItemId);        
         
-        item:ContinueOnItemLoad(function()
-            -- Item has been answered from the server.
-            local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-                itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
-                isCraftingReagent = GetItemInfo(value.ItemId);                                
+    if table.getn(temp) == 0 then
+        -- Empty table.
+        return;
+    end
 
-            if value.Priority > 0 and value.Priority < 4 then                
-                _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_ICON"]:SetTexture(itemIcon);
-                _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TEXT"]:SetText(itemLink);
-                _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnMouseDown", function(self)
-					if itemName ~= nil then
-						SetItemRef(itemLink, itemLink, "LeftButton");
-					end
-				end)                
-                _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnEnter", function(self)                    
-                    local tooltip = _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TOOLTIP"];
-                    
-                    tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]);
-                    tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority], "TOPRIGHT", 220, -13);
+    for i = 1, table.getn(INVSLOT_IDX), 1 do
+        --print(dump(temp[i]));
+        for k, value in pairs(temp[i]) do            
+            local item = Item:CreateFromItemID(value.ItemId);        
+            
+            item:ContinueOnItemLoad(function()
+                -- Item has been answered from the server.
+                local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+                    itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
+                    isCraftingReagent = GetItemInfo(value.ItemId);                                
 
-                    tooltip:SetHyperlink(itemLink);                    
-                    
-                    local item = BIS_ITEMS[tostring(value.ItemId)];                    
-                    
-                    if item == nil or item.Source == nil then
-                        log("Error while generating the tooltip for the ItemId "..value.ItemId, ERROR);
-                    else
-                        local source = item.Source;
-                        tooltip:AddLine("\nThis item can be obtained: ");
-                        if source == "Craft" then
-                            tooltip:AddLine("Source: Craft");
-                            tooltip:AddLine("Profession: "..PROFESSIONS[item.Info.Profession]);
-                            tooltip:AddLine("Level: "..item.Info.Level);
-                            tooltip:AddLine("Recipe Zone: "..item.Zone);
-                            tooltip:AddLine("NPC: "..item.Info.NPC);
-                        elseif source == "Loot" then
-                            tooltip:AddLine("Source: Loot");
-                            tooltip:AddLine("Zone: "..item.Zone);
-                            tooltip:AddLine("NPC: "..item.Info.NPC);
-                            tooltip:AddLine("Drop Chance: "..item.Info.Drop);
-                        elseif source == "Vendor" then
-                            tooltip:AddLine("Source: Vendor");
-                            tooltip:AddLine("Faction: "..item.Info.Faction);
-                            tooltip:AddLine("Requirement: "..item.Info.Requirement);
-                            tooltip:AddLine("Price: "..item.Info.Price);
-                            if item.Info.Team ~= nil then
-                                tooltip:AddLine("Team: "..item.Info.Team);
-                            end
-                        elseif source == "Quest" then
-                            tooltip:AddLine("Source: Quest");
-                            tooltip:AddLine("Zone: "..item.Zone);
-                            tooltip:AddLine("Quest Name: "..item.Info.Name);                        
-                        end                                  
-                    end      
-                                                            
-                    tooltip:Show();
-                end);                
-                _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnLeave", function(self)
-                    _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TOOLTIP"]:Hide();                    
-                end);                
-            end
-        end);
-        
+                if value.Priority > 0 and value.Priority < 4 then                
+                    _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_ICON"]:SetTexture(itemIcon);
+                    _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TEXT"]:SetText(itemLink);
+                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnMouseDown", function(self)
+                        if itemName ~= nil then
+                            SetItemRef(itemLink, itemLink, "LeftButton");
+                        end
+                    end)                
+                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnEnter", function(self)                    
+                        local tooltip = _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TOOLTIP"];
+                        
+                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]);
+                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority], "TOPRIGHT", 220, -13);
+
+                        tooltip:SetHyperlink(itemLink);                    
+                        
+                        local item = BIS_ITEMS[tostring(value.ItemId)];                    
+                        
+                        if item == nil or item.Source == nil then
+                            log("Error while generating the tooltip for the ItemId "..value.ItemId, ERROR);
+                        else
+                            local source = item.Source;
+                            tooltip:AddLine("\nThis item can be obtained: ");
+                            if source == "Craft" then
+                                tooltip:AddLine("Source: Craft");
+                                tooltip:AddLine("Profession: "..PROFESSIONS[item.Info.Profession]);
+                                tooltip:AddLine("Level: "..item.Info.Level);
+                                tooltip:AddLine("Recipe Zone: "..item.Zone);
+                                tooltip:AddLine("NPC: "..item.Info.NPC);
+                            elseif source == "Loot" then
+                                tooltip:AddLine("Source: Loot");
+                                tooltip:AddLine("Zone: "..item.Zone);
+                                tooltip:AddLine("NPC: "..item.Info.NPC);
+                                tooltip:AddLine("Drop Chance: "..item.Info.Drop);
+                            elseif source == "Vendor" then
+                                tooltip:AddLine("Source: Vendor");
+                                tooltip:AddLine("Faction: "..item.Info.Faction);
+                                tooltip:AddLine("Requirement: "..item.Info.Requirement);
+                                tooltip:AddLine("Price: "..item.Info.Price);
+                                if item.Info.Team ~= nil then
+                                    tooltip:AddLine("Team: "..item.Info.Team);
+                                end
+                            elseif source == "Quest" then
+                                tooltip:AddLine("Source: Quest");
+                                tooltip:AddLine("Zone: "..item.Zone);
+                                tooltip:AddLine("Quest Name: "..item.Info.Name);                        
+                            end                                  
+                        end      
+                                                                
+                        tooltip:Show();
+                    end);                
+                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnLeave", function(self)
+                        _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TOOLTIP"]:Hide();                    
+                    end);                
+                end
+            end);
+        end
     end
 end
 
@@ -225,7 +249,8 @@ local function HandleRacesDropDown(self, arg1, arg2, checked)
         UIDropDownMenu_SetText(dropdownClass, dropdownText["class"]);
         selectedClass = nil;        
         UIDropDownMenu_SetText(dropdownSpec, dropdownText["specs"]);
-        selectedSpec = nil;        
+        selectedSpec = nil; 
+        ResetUI();       
     end
 end
 
@@ -236,6 +261,7 @@ local function HandleClassDropDown(self, arg1, arg2, checked)
         UIDropDownMenu_SetText(dropdownClass, arg1);
         UIDropDownMenu_SetText(dropdownSpec, dropdownText["specs"]);
         selectedSpec = nil;
+        ResetUI();
     end
 end
 
