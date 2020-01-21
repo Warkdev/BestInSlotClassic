@@ -58,9 +58,17 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
           table.remove(temp[value.InvSlotId], value.priority);
           table.insert(temp[value.InvSlotId], value.Priority, value);  
         end
-      else
+        -- A more recent phase matching takes precedence over an existing one.
+        print(value.PhaseId);
+        print(temp[value.InvSlotId][value.Priority].PhaseId);
+        if value.PhaseId > temp[value.InvSlotId][value.Priority].PhaseId then
+          table.insert(temp[value.InvSlotId], value.Priority, value);
+        else
+          table.insert(temp[value.InvSlotId], value.Priority + 1, value);
+        end
+      else        
         empty = false;
-        table.insert(temp[value.InvSlotId], value.Priority, value);
+        table.insert(temp[value.InvSlotId], value.Priority, value);        
       end
     end
   end

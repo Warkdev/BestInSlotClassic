@@ -3,7 +3,7 @@
 local window;
 local visible;
 local currentPhase = "Phase 3";
-local currentPhaseId = 5;
+local currentPhaseId = 12;
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
 local selectedRace, selectedClass, selectedSpec, selectedPhase;
 
@@ -120,7 +120,7 @@ local dropdownText = {
 local phases = { 
     ["NAME"] = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
     ["ICON"] = { 133066   , 132485             , 132486   , 134481             , 134154   , 134085   , 136152   , 134514    },
-    ["VALUE"] = { 1       , 2                  , 3        , 4                  , 5        , 6        , 7        , 8         },
+    ["VALUE"] = { 10       , 2                  , 11        , 3                  , 12        , 13        , 14        , 15         },
     ["ENABLED"] = { false , true              , true    , true               , true     , false     , false     , false   }
     };
 
@@ -172,7 +172,7 @@ local function Update()
 
     for i = 1, table.getn(INVSLOT_IDX), 1 do
         --print(dump(temp[i]));
-        for k, value in pairs(temp[i]) do            
+        for idx, value in pairs(temp[i]) do            
             local item = Item:CreateFromItemID(value.ItemId);        
             
             item:ContinueOnItemLoad(function()
@@ -181,19 +181,19 @@ local function Update()
                     itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
                     isCraftingReagent = GetItemInfo(value.ItemId);                                
 
-                if value.Priority > 0 and value.Priority < 4 then                
-                    _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_ICON"]:SetTexture(itemIcon);
-                    _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TEXT"]:SetText(itemLink);
-                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnMouseDown", function(self)
+                if idx > 0 and idx < 4 then                
+                    _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_ICON"]:SetTexture(itemIcon);
+                    _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_TEXT"]:SetText(itemLink);
+                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]:SetScript("OnMouseDown", function(self)
                         if itemName ~= nil then
                             SetItemRef(itemLink, itemLink, "LeftButton");
                         end
                     end)                
-                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnEnter", function(self)                    
-                        local tooltip = _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TOOLTIP"];
+                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]:SetScript("OnEnter", function(self)                    
+                        local tooltip = _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_TOOLTIP"];
                         
-                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]);
-                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority], "TOPRIGHT", 220, -13);
+                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]);
+                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx], "TOPRIGHT", 220, -13);
 
                         tooltip:SetHyperlink(itemLink);                    
                         
@@ -232,8 +232,8 @@ local function Update()
                                                                 
                         tooltip:Show();
                     end);                
-                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnLeave", function(self)
-                        _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TOOLTIP"]:Hide();                    
+                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]:SetScript("OnLeave", function(self)
+                        _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_TOOLTIP"]:Hide();                    
                     end);                
                 end
             end);
