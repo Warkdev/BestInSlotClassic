@@ -896,7 +896,7 @@ BIS_ITEMS["18500"] = {
 };
 
 -- Kromcrush's Chestplate
-BIS_ITEMS["18505"] = {
+BIS_ITEMS["18503"] = {
     Source = "Loot",
     Zone = "Dire Maul",
     Info = {NPC = "Captain Kromcrush", Drop = "22%"}

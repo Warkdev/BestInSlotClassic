@@ -118,18 +118,18 @@ BIS_ITEMS["17774"] = {
     Info = {Name = "The Pariah's Instructions"}
 };
 
--- Frostwolf Insignia Rank 6.
-BIS_ITEMS["17774"] = {
-    Source = "Quest",
-    Zone = "Alterac Valley",
-    Info = {Name = "(H) The Eye of Command"}
-};
-
 -- Stormspike Insignia Rank 6.
 BIS_ITEMS["17904"] = {
     Source = "Quest",
     Zone = "Alterac Valley",
     Info = {Name = "(A) The Eye of Command"}
+};
+
+-- Frostwolf Insignia Rank 6.
+BIS_ITEMS["17909"] = {
+    Source = "Quest",
+    Zone = "Alterac Valley",
+    Info = {Name = "(H) The Eye of Command"}
 };
 
 -- Quel'Serrar.

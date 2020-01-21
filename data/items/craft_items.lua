@@ -31,7 +31,7 @@ BIS_ITEMS["12784"] = {
 };
 
 -- Annihilator.
-BIS_ITEMS["12784"] = {
+BIS_ITEMS["12798"] = {
     Source = "Craft",
     Zone = "Blackrock Spire",
     Info = {Profession = 2, Level = 300, NPC = "Quartermaster Zigris"}

@@ -10,9 +10,10 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
   local temp = {};
   local match = true;
   for k, value in pairs(BIS_LINKS) do    
+    match = true;
     
-    -- Checking if faction must be checked either from the search or from the table.
-    if faction ~= nil and value.Faction ~= nil and value.Faction ~= faction then
+    -- Checking if faction must be checked either from the search or from the table.    
+    if faction ~= nil and value.Faction ~= nil and value.Faction ~= faction then      
       match = false;
     end
 
@@ -27,11 +28,16 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
       match = false;
     end
        
-    if match and (value.ClassId ~= class or value.PhaseId ~= phase or value.SpecId ~= spec) then      
+    if match and (value.ClassId ~= class or value.SpecId ~= spec) then      
       -- log("One of the mandatory argument does not match", DEBUG);      
       match = false;
     end
     
+    if match and (value.PhaseId > phase or value.MaxPhaseId < phase) then
+      -- log("One of the mandatory argument does not match", DEBUG);      
+      match = false;
+    end
+
     if match and pvpRank ~= nil and value.PVPRank > pvpRank then
       -- log("PvP Rank is lower than the record required PvP Rank", DEBUG);      
       match = false;

@@ -172,7 +172,7 @@ BIS_ITEMS["19534"] = {
 };
 
 -- Sentinel's Medallion.
-BIS_ITEMS["19539"] = {
+BIS_ITEMS["19538"] = {
     Source = "Vendor",
     Info = {        
         Faction = "Warsong Gulch",

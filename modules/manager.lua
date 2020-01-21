@@ -2,8 +2,8 @@
 
 local window;
 local visible;
-local currentPhase = "Phase 2";
-local currentPhaseId = "2";
+local currentPhase = "Phase 3";
+local currentPhaseId = 5;
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
 local selectedRace, selectedClass, selectedSpec, selectedPhase;
 
@@ -42,9 +42,9 @@ local classes = {
 };
 
 local dataSpecs = {
-    [1] = { ["SPEC"] = { "Fury", "Protection", "Fire Resistance"},
-                    ["SPEC_ICONS"] = { 132347, 134952,  135805}, 
-                    ["VALUE"] = { 1, 2, 3 },
+    [1] = { ["SPEC"] = { "Fury", "Protection (Threat)", "Protection (Mitigation)", "Fire Resistance"},
+                    ["SPEC_ICONS"] = { 132347, 136101, 134952, 135805}, 
+                    ["VALUE"] = { 1, 2, 3, 4 },
                     ["ICON"] = { 135328 } },
     [11] = {   ["SPEC"] = { "Feral Tank", "Feral DPS", "Restoration", "Balance" },                     
                     ["SPEC_ICONS"] = { 132276, 132115, 136041, 136036 },
@@ -83,7 +83,7 @@ local dataSpecs = {
 local specsFileToSpecs = {
     ["WarriorArms"] = { dataSpecs[1].SPEC[1] },
     ["WarriorFury"] = { dataSpecs[1].SPEC[1] },
-    ["WarriorProtection"] = { dataSpecs[1].SPEC[2] },
+    ["WarriorProtection"] = { dataSpecs[1].SPEC[2] },    
     ["DruidFeralTank"] = { dataSpecs[11].SPEC[1] },
     ["DruidFeralDPS"] = { dataSpecs[11].SPEC[2] },
     ["DruidRestoration"] = { dataSpecs[11].SPEC[3] },
@@ -120,7 +120,8 @@ local dropdownText = {
 local phases = { 
     ["NAME"] = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
     ["ICON"] = { 133066   , 132485             , 132486   , 134481             , 134154   , 134085   , 136152   , 134514    },
-    ["VALUE"] = { "1", "2PR", "2", "3PR", "4", "5", "6"}
+    ["VALUE"] = { 1       , 2                  , 3        , 4                  , 5        , 6        , 7        , 8         },
+    ["ENABLED"] = { false , true              , true    , true               , true     , false     , false     , false   }
     };
 
 local function ResetUI()   
@@ -145,17 +146,10 @@ local function Update()
     log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
     local count = 0;
     
-    temp = SearchBis(nil, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, nil);
+    temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, pvpRank);
     
     for key, value in pairs(temp) do
-        
-        --[[local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-        itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
-        isCraftingReagent = GetItemInfo(value.ItemId);]]--
-
-        local item = Item:CreateFromItemID(value.ItemId);
-        local posX = 0;
-        local posY = 0;
+        local item = Item:CreateFromItemID(value.ItemId);        
         
         item:ContinueOnItemLoad(function()
             -- Item has been answered from the server.
@@ -165,7 +159,12 @@ local function Update()
 
             if value.Priority > 0 and value.Priority < 4 then                
                 _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_ICON"]:SetTexture(itemIcon);
-                _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TEXT"]:SetText(itemLink);                
+                _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TEXT"]:SetText(itemLink);
+                _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnMouseDown", function(self)
+					if itemName ~= nil then
+						SetItemRef(itemLink, itemLink, "LeftButton");
+					end
+				end)                
                 _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority]:SetScript("OnEnter", function(self)                    
                     local tooltip = _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..value.Priority.."_TOOLTIP"];
                     
@@ -174,12 +173,12 @@ local function Update()
 
                     tooltip:SetHyperlink(itemLink);                    
                     
-                    local item = BIS_ITEMS[tostring(value.ItemId)];
-                    local source = item.Source;
+                    local item = BIS_ITEMS[tostring(value.ItemId)];                    
                     
-                    if source == nil then
+                    if item == nil or item.Source == nil then
                         log("Error while generating the tooltip for the ItemId "..value.ItemId, ERROR);
                     else
+                        local source = item.Source;
                         tooltip:AddLine("\nThis item can be obtained: ");
                         if source == "Craft" then
                             tooltip:AddLine("Source: Craft");
@@ -214,8 +213,7 @@ local function Update()
                 end);                
             end
         end);
-
-        --print(itemName);
+        
     end
 end
 
@@ -308,19 +306,14 @@ function Initialize_SpecsDropDown(frame, level, menuList)
 end
 
 function Initialize_PhaseDropDown(frame, level, menuList)
-    local info = UIDropDownMenu_CreateInfo();
-    local disabled = false;
+    local info = UIDropDownMenu_CreateInfo();    
 
     for idx, value in ipairs(phases.NAME) do
         info.text, info.arg1, info.arg2 = value, value, phases.VALUE[idx];
-        info.disabled = disabled;
+        info.disabled = not(phases.ENABLED[idx]);
         info.func = HandlePhaseDropDown;
         info.icon = phases.ICON[idx];
         UIDropDownMenu_AddButton(info);
-
-        if value == currentPhase then
-            disabled = true;
-        end
     end
 end
 
