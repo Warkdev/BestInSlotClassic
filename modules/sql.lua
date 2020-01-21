@@ -51,19 +51,20 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
     end
 
     if match then
-      -- log("Found matching record ! "..value.ItemId, DEBUG);
+      -- log("Found matching record ! "..value.ItemId, DEBUG);      
       -- Let's compare if another record already exist for that position. If so, we check the race, a matching race has always priority !
       if temp[value.InvSlotId][value.Priority] ~= nil then
-        if value.RaceId == race then
-          table.remove(temp[value.InvSlotId], value.priority);
-          table.insert(temp[value.InvSlotId], value.Priority, value);  
-        end
-        -- A more recent phase matching takes precedence over an existing one.        
+        -- A more recent phase matching takes precedence over an existing one.          
         if value.PhaseId > temp[value.InvSlotId][value.Priority].PhaseId then
           table.insert(temp[value.InvSlotId], value.Priority, value);
         else
-          table.insert(temp[value.InvSlotId], value.Priority + 1, value);
-        end
+          if value.RaceId == race then
+            print("Race found matching !! Removing old record");
+            table.remove(temp[value.InvSlotId], value.Priority);
+            table.insert(temp[value.InvSlotId], value.Priority, value);  
+          end
+          --table.insert(temp[value.InvSlotId], value.Priority + 1, value);
+        end                
       else        
         empty = false;
         table.insert(temp[value.InvSlotId], value.Priority, value);        
