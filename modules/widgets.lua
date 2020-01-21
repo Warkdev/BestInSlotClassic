@@ -59,12 +59,7 @@ function CreateWindow(name, height, width)
     -- The Close Button. It's assigned as a local variable so you can change how it behaves.
     window.CloseButton = CreateFrame("Button", nil, window, "UIPanelCloseButton");
     window.CloseButton:SetPoint("TOPRIGHT", window, "TOPRIGHT", 4, 3);
-    window.CloseButton:SetScript("OnClick", HideParent);
-
-    window.childFrame = {};
-    for i = 1, 17, 1 do
-        window.childFrame[i] = {};        
-    end    
+    window.CloseButton:SetScript("OnClick", HideParent);        
 
     return window;
 end

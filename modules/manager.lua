@@ -10,7 +10,7 @@ local selectedRace, selectedClass, selectedSpec, selectedPhase;
 local rootPaperDoll = "Interface\\PaperDoll\\";                
 
 local characterFrames = { 
-    ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards" "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds" },    
+    ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds" },    
     ["INDEX"] = { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3 },
     ["ICON"] = { 
         "UI-PaperDoll-Slot-Head.PNG", "UI-PaperDoll-Slot-Neck.PNG", "UI-PaperDoll-Slot-Shoulder.PNG", "UI-PaperDoll-Slot-REar.PNG", "UI-PaperDoll-Slot-Chest.PNG", "UI-PaperDoll-Slot-Shirt.PNG", "UI-PaperDoll-Slot-Tabard.PNG",
@@ -18,10 +18,10 @@ local characterFrames = {
         "UI-PaperDoll-Slot-Finger.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-MainHand.PNG", "UI-PaperDoll-Slot-SecondaryHand.PNG", "UI-PaperDoll-Slot-Ranged.PNG"
     },    
     ["FRAME_ALIGNMENT"] = {
-        "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "BOTTOM", "BOTTOM", "BOTTOM"
+        "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "BOTTOM", "BOTTOM", "BOTTOM"
     },
     ["ICON_ALIGNMENT"] = {
-        "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "TOP", "RIGHT"
+        "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "TOP", "RIGHT"
     }
 };
 
@@ -423,6 +423,7 @@ function ShowManager()
         end        
         selectedPhase = currentPhaseId;
         window = CreateWindow("BISManager", 1100, 750);        
+        window.childFrame = {};        
         dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", race);        
         dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", class);
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
@@ -432,7 +433,8 @@ function ShowManager()
         local offsetX, offsetY;
         local iconOffsetX, iconOffsetY;
         local textOffsetX, textOffsetY, textJustify;
-        for i = 1, 17, 1 do        
+        for i = 1, table.getn(characterFrames.NAME), 1 do        
+            window.childFrame[i] = {};
             if characterFrames.FRAME_ALIGNMENT[i] == "LEFT" then
                 startX = 20;
                 startY = -45 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));                
@@ -446,7 +448,7 @@ function ShowManager()
             
             CreateIconFrame("IconFrame_"..characterFrames.NAME[i], window, iconSize, iconSize, startX, startY, rootPaperDoll..characterFrames.ICON[i]);                                
 
-            for j = 1, 3, 1 do
+            for j = 1, 3, 1 do                
                 window.childFrame[i][j] = CreateFrame("Frame", "ItemFrame_"..characterFrames.NAME[i].."_"..j, window);                
                 window.childFrame[i][j]:SetSize(200, 17);
 
