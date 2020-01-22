@@ -5,6 +5,15 @@ function table_invert(t)
     return s
 end
 
+function containsValue(t, value)  
+  for k, v in pairs(t) do
+    if t[k] == value then
+      return true;
+    end
+  end
+  return false;
+end
+
 function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
   -- Temporary table with matching records.
   local temp = {};
@@ -25,7 +34,7 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
     end
 
     -- Checking if race must be checked either from the search of from the table.
-    if match and race ~= nil and value.RaceId ~= nil and value.RaceId ~= race then      
+    if match and race ~= nil and value.RaceId ~= nil and not(containsValue(value.RaceId, race)) then      
       --log("Race does not match", DEBUG);
       match = false;
     end
@@ -58,13 +67,8 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
         if value.PhaseId > temp[value.InvSlotId][value.Priority].PhaseId then
           table.insert(temp[value.InvSlotId], value.Priority, value);
         else
-          if value.RaceId == race then
-            print("Race found matching !! Removing old record");
-            table.remove(temp[value.InvSlotId], value.Priority);
-            table.insert(temp[value.InvSlotId], value.Priority, value);  
-          end
-          --table.insert(temp[value.InvSlotId], value.Priority + 1, value);
-        end                
+          table.insert(temp[value.InvSlotId], value.Priority + 1, value);
+        end             
       else        
         empty = false;
         table.insert(temp[value.InvSlotId], value.Priority, value);        

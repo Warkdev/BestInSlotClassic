@@ -252,7 +252,7 @@ BIS_ITEMS["12936"] = {
 };
 
 -- Dal'Rend's Tribal Guardian.
-BIS_ITEMS["12940"] = {
+BIS_ITEMS["12939"] = {
     Source = "Loot",
     Zone = "Upper Blackrock Spire",
     Info = {NPC = "Warchief Rend Blackhand", Drop = "16%"}

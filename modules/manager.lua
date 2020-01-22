@@ -42,9 +42,9 @@ local classes = {
 };
 
 local dataSpecs = {
-    [1] = { ["SPEC"] = { "Fury", "Protection (Threat)", "Protection (Mitigation)", "Fire Resistance"},
-                    ["SPEC_ICONS"] = { 132347, 136101, 134952, 135805}, 
-                    ["VALUE"] = { 1, 2, 3, 4 },
+    [1] = { ["SPEC"] = { "Fury Dual-Wield", "Fury 2-Hands", "Protection (Threat)", "Protection (Mitigation)", "Fire Resistance"},
+                    ["SPEC_ICONS"] = { 132347, 132347, 136101, 134952, 135805}, 
+                    ["VALUE"] = { 1, 5, 2, 3, 4 },
                     ["ICON"] = { 135328 } },
     [11] = {   ["SPEC"] = { "Feral Tank", "Feral DPS", "Restoration", "Balance" },                     
                     ["SPEC_ICONS"] = { 132276, 132115, 136041, 136036 },
@@ -81,32 +81,32 @@ local dataSpecs = {
 };
 
 local specsFileToSpecs = {
-    ["WarriorArms"] = { dataSpecs[1].SPEC[1] },
-    ["WarriorFury"] = { dataSpecs[1].SPEC[1] },
-    ["WarriorProtection"] = { dataSpecs[1].SPEC[2] },    
-    ["DruidFeralTank"] = { dataSpecs[11].SPEC[1] },
-    ["DruidFeralDPS"] = { dataSpecs[11].SPEC[2] },
-    ["DruidRestoration"] = { dataSpecs[11].SPEC[3] },
-    ["DruidBalance"] = { dataSpecs[11].SPEC[4] },
-    ["HunterBeastMastery"] = { dataSpecs[3].SPEC[1] },
-    ["HunterMarksmanship"] = { dataSpecs[3].SPEC[1] },
-    ["HunterSurvival"] = { dataSpecs[3].SPEC[1] },
-    ["ShamanElemental"] = { dataSpecs[7].SPEC[1] },
-    ["ShamanEnhancement"] = { dataSpecs[7].SPEC[2] },
-    ["ShamanRestoration"] = { dataSpecs[7].SPEC[3] },
-    ["MageArcane"] = { dataSpecs[8].SPEC[1] },
-    ["MageFire"] = { dataSpecs[8].SPEC[1] },
-    ["MageFrost"] = { dataSpecs[8].SPEC[1] },
-    ["WarlockAffliction"] = { dataSpecs[9].SPEC[1] },
-    ["WarlockDemonology"] = { dataSpecs[9].SPEC[1] },
-    ["WarlockDestruction"] = { dataSpecs[9].SPEC[1] },
-    ["PriestHybrid"] = { dataSpecs[5].SPEC[1] },
-    ["PriestShadow"] = { dataSpecs[5].SPEC[2] },
-    ["RogueSwords"] = { dataSpecs[4].SPEC[1] },
-    ["RogueDaggers"] = { dataSpecs[4].SPEC[2] },
-    ["PaladinHoly"] = { dataSpecs[2].SPEC[1] },
-    ["PaladinProtection"] = { dataSpecs[2].SPEC[2] },
-    ["PaladinRetribution"] = { dataSpecs[2].SPEC[3] },
+    ["WarriorArms"] = { dataSpecs[1].SPEC[1], dataSpecs[1].VALUE[1] },
+    ["WarriorFury"] = { dataSpecs[1].SPEC[1], dataSpecs[1].VALUE[1] },
+    ["WarriorProtection"] = { dataSpecs[1].SPEC[2], dataSpecs[1].VALUE[2] },
+    ["DruidFeralTank"] = { dataSpecs[11].SPEC[1], dataSpecs[11].VALUE[1] },
+    ["DruidFeralDPS"] = { dataSpecs[11].SPEC[2], dataSpecs[11].VALUE[2] },
+    ["DruidRestoration"] = { dataSpecs[11].SPEC[3], dataSpecs[11].VALUE[3] },
+    ["DruidBalance"] = { dataSpecs[11].SPEC[4], dataSpecs[11].VALUE[4] },
+    ["HunterBeastMastery"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
+    ["HunterMarksmanship"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
+    ["HunterSurvival"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
+    ["ShamanElemental"] = { dataSpecs[7].SPEC[1], dataSpecs[7].VALUE[1] },
+    ["ShamanEnhancement"] = { dataSpecs[7].SPEC[2], dataSpecs[7].VALUE[2] },
+    ["ShamanRestoration"] = { dataSpecs[7].SPEC[3], dataSpecs[7].VALUE[3] },
+    ["MageArcane"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
+    ["MageFire"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
+    ["MageFrost"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
+    ["WarlockAffliction"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
+    ["WarlockDemonology"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
+    ["WarlockDestruction"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
+    ["PriestHybrid"] = { dataSpecs[5].SPEC[1], dataSpecs[5].VALUE[1] },
+    ["PriestShadow"] = { dataSpecs[5].SPEC[2], dataSpecs[5].VALUE[2] },
+    ["RogueSwords"] = { dataSpecs[4].SPEC[1], dataSpecs[4].VALUE[1] },
+    ["RogueDaggers"] = { dataSpecs[4].SPEC[2], dataSpecs[4].VALUE[2] },
+    ["PaladinHoly"] = { dataSpecs[2].SPEC[1], dataSpecs[2].VALUE[1] },
+    ["PaladinProtection"] = { dataSpecs[2].SPEC[2], dataSpecs[2].VALUE[2] },
+    ["PaladinRetribution"] = { dataSpecs[2].SPEC[3], dataSpecs[2].VALUE[3] },
     ["Unknown"] = { "Unknown" }
 }
 
@@ -170,8 +170,7 @@ local function Update()
         return;
     end
 
-    for i = 1, table.getn(INVSLOT_IDX), 1 do
-        --print(dump(temp[i]));
+    for i = 1, table.getn(INVSLOT_IDX), 1 do        
         for idx, value in pairs(temp[i]) do            
             local item = Item:CreateFromItemID(value.ItemId);        
             
@@ -419,7 +418,7 @@ function ShowManager()
         if spec == "Unknown" then
             selectedSpec = nil;
         else
-            selectedSpec = spec;
+            selectedSpec = specsFileToSpecs[spec][2];
         end        
         selectedPhase = currentPhaseId;
         window = CreateWindow("BISManager", 1100, 750);        
@@ -490,6 +489,7 @@ function ShowManager()
         window:Hide();
         visible = false;
     else
+        Update();
         window:Show();
         visible = true;
     end
