@@ -44,6 +44,13 @@ BIS_ITEMS["15051"] = {
     Info = {Profession = 5, Level = 300, NPC = "Anvilrage Marshal"}
 };
 
+-- Black Dragonscale Leggings.
+BIS_ITEMS["15052"] = {
+    Source = "Craft",
+    Zone = "Blackrock Depths",
+    Info = {Profession = 5, Level = 300, NPC = "Anvilrage Captain"}
+};
+
 -- Volcanic Leggings.
 BIS_ITEMS["15054"] = {
     Source = "Craft",

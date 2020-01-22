@@ -126,7 +126,8 @@ local phases = {
 
 local function ResetUI()   
     for key, value in pairs(characterFrames.NAME) do        
-        for i=1, 3, 1 do            
+        for i=1, 3, 1 do
+            _G["frame_"..value.."_"..i.."_CHECK_ICON"]:SetTexture(nil);
             _G["frame_"..value.."_"..i.."_ICON"]:SetTexture(rootPaperDoll..characterFrames.ICON[key]);            
             _G["frame"..value.."_"..i.."_TEXT"]:SetText("");
             _G["ItemFrame_"..value.."_"..i]:SetScript("OnEnter", nil);
@@ -506,7 +507,7 @@ function ShowManager()
                     textJustify = "LEFT";
                 end                                
                 window.childFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY + offsetY);
-                CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_CHECK", window.childFrame[i][j], smallIcon, smallIcon, checkOffsetX, checkOffsetY, "Interface\\RaidFrame\\ReadyCheck-NotReady");
+                CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_CHECK", window.childFrame[i][j], smallIcon, smallIcon, checkOffsetX, checkOffsetY, nil);
                 CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j, window.childFrame[i][j], smallIcon, smallIcon, iconOffsetX, iconOffsetY, rootPaperDoll..characterFrames.ICON[i]);
                 CreateTextFrame(characterFrames.NAME[i].."_"..j, window.childFrame[i][j], 180, smallIcon, textOffsetX, textOffsetY, textJustify);                
                 CreateGameTooltip(characterFrames.NAME[i].."_"..j.."_TOOLTIP", window.childFrame[i][j]);                
