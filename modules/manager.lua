@@ -180,7 +180,12 @@ local function Update()
                     itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
                     isCraftingReagent = GetItemInfo(value.ItemId);                                
 
-                if idx > 0 and idx < 4 then                
+                if idx > 0 and idx < 4 then
+                    if characterHasItem(value.ItemId) then
+                        _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
+                    else
+                        _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
+                    end
                     _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_ICON"]:SetTexture(itemIcon);
                     _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_TEXT"]:SetText(itemLink);
                     _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]:SetScript("OnMouseDown", function(self)
@@ -238,6 +243,23 @@ local function Update()
             end);
         end
     end
+end
+
+local function characterHasItem(itemId)
+	local hasItem = false;
+	if IsEquippedItem(itemId) then
+		hasItem = true;
+	else
+		for i = 0, NUM_BAG_SLOTS do
+		    for z = 1, GetContainerNumSlots(i) do
+		        if GetContainerItemID(i, z) == itemId then
+		        	hasItem = true;
+		            break
+		        end
+		    end
+		end
+	end
+	return hasItem;
 end
 
 local function HandleRacesDropDown(self, arg1, arg2, checked)
@@ -430,6 +452,7 @@ function ShowManager()
                 
         local startX, startY;
         local offsetX, offsetY;
+        local checkOffsetX, checkOffsetY;
         local iconOffsetX, iconOffsetY;
         local textOffsetX, textOffsetY, textJustify;
         for i = 1, table.getn(characterFrames.NAME), 1 do        
@@ -454,29 +477,36 @@ function ShowManager()
                 if characterFrames.ICON_ALIGNMENT[i] == "RIGHT" then                    
                     offsetX = iconSize;
                     offsetY = - (smallIcon * (j - 1));
-                    iconOffsetX = 0;
+                    checkOffsetX = 0;
+                    checkOffsetY = 0;
+                    iconOffsetX = smallIcon;
                     iconOffsetY = 0;
-                    textOffsetX = smallIcon;
+                    textOffsetX = smallIcon + smallIcon;
                     textOffsetY = 0;
                     textJustify = "LEFT";
-                elseif characterFrames.ICON_ALIGNMENT[i] == "LEFT" then                    
+                elseif characterFrames.ICON_ALIGNMENT[i] == "LEFT" then                                        
                     offsetX = -200;
                     offsetY = - (smallIcon * (j - 1));
-                    iconOffsetX = 200 - smallIcon;
+                    checkOffsetX = 200 - smallIcon;
+                    checkOffsetY = 0;
+                    iconOffsetX = 200 - smallIcon - smallIcon;
                     iconOffsetY = 0;
-                    textOffsetX = 0;
+                    textOffsetX = -smallIcon;
                     textOffsetY = 0;
                     textJustify = "RIGHT";
                 else                                                    
                     offsetX = smallIcon - (iconSize);
                     offsetY = iconSize - (iconSize * (j - 1) / 3);
-                    iconOffsetX = 0;
+                    checkOffsetX = 0;
+                    checkOffsetY = 0
+                    iconOffsetX = smallIcon;
                     iconOffsetY = 0;
-                    textOffsetX = smallIcon;
+                    textOffsetX = smallIcon + smallIcon;
                     textOffsetY = 0;
                     textJustify = "LEFT";
                 end                                
-                window.childFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY + offsetY);                                
+                window.childFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY + offsetY);
+                CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_CHECK", window.childFrame[i][j], smallIcon, smallIcon, checkOffsetX, checkOffsetY, "Interface\\RaidFrame\\ReadyCheck-NotReady");
                 CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j, window.childFrame[i][j], smallIcon, smallIcon, iconOffsetX, iconOffsetY, rootPaperDoll..characterFrames.ICON[i]);
                 CreateTextFrame(characterFrames.NAME[i].."_"..j, window.childFrame[i][j], 180, smallIcon, textOffsetX, textOffsetY, textJustify);                
                 CreateGameTooltip(characterFrames.NAME[i].."_"..j.."_TOOLTIP", window.childFrame[i][j]);                
