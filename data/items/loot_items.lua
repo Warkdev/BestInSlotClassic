@@ -1204,7 +1204,7 @@ BIS_ITEMS["19372"] = {
 };
 
 -- Archimtiros' Ring of Reckoning.
-BIS_ITEMS["19372"] = {
+BIS_ITEMS["19376"] = {
     Source = "Loot",
     Zone = "Blackwing Lair",
     Info = {NPC = "Nefarian", Drop = "13%"}
