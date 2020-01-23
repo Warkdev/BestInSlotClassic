@@ -3811,7 +3811,7 @@ table.insert(BIS_LINKS,
 );
 
 table.insert(BIS_LINKS, 
-    { Faction = nil,  RaceId = { 2 } , ClassId = CLASS_ID, PhaseId = PHASE_ID, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 3, ItemId = 19362, PVPRank = 0 }    
+    { Faction = nil,  RaceId = { 2 } , ClassId = CLASS_ID, PhaseId = PHASE_ID + 1, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 3, ItemId = 19362, PVPRank = 0 }    
 );
 
 table.insert(BIS_LINKS, 
@@ -4292,7 +4292,7 @@ table.insert(BIS_LINKS,
 );
 
 table.insert(BIS_LINKS, 
-    { Faction = nil,  RaceId = { 2 } , ClassId = CLASS_ID, PhaseId = PHASE_ID, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 3, ItemId = 19362, PVPRank = 0 }    
+    { Faction = nil,  RaceId = { 2 } , ClassId = CLASS_ID, PhaseId = PHASE_ID + 1, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 3, ItemId = 19362, PVPRank = 0 }    
 );
 
 table.insert(BIS_LINKS, 
