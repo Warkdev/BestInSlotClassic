@@ -120,8 +120,8 @@ frame:RegisterEvent("ADDON_LOADED");
 
 local function eventHandler(self, event, args1, ...)
     if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then        
-        CheckDataIntegrity();
         SetDefaults();
+        CheckDataIntegrity();        
         CreateMinimapIcon();
         CreateSettingsInterface();
         log("BestInSlotClassic v"..VERSION.." loaded", INFO);
