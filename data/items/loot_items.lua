@@ -679,7 +679,7 @@ BIS_ITEMS["16964"] = {
 };
 
 -- Sabatons of Wrath.
-BIS_ITEMS["16964"] = {
+BIS_ITEMS["16965"] = {
     Source = "Loot",
     Zone = "Blackwing Lair",
     Info = {NPC = "Broodlord Lashlayer", Drop = "14%"}
