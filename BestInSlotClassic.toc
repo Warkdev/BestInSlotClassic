@@ -20,7 +20,15 @@ data\links\priest.lua
 data\links\rogue.lua
 data\links\shaman.lua
 data\links\warlock.lua
-data\links\warrior.lua
+data\links\warrior\common\fire_resistance.lua
+data\links\warrior\pre-raid\fury_dual_wields.lua
+data\links\warrior\pre-raid\fury_two_hands.lua
+data\links\warrior\pre-raid\protection_mitigation.lua
+data\links\warrior\pre-raid\protection_threat.lua
+data\links\warrior\raid\fury_dual_wields.lua
+data\links\warrior\raid\fury_two_hands.lua
+data\links\warrior\raid\protection_mitigation.lua
+data\links\warrior\raid\protection_threat.lua
 data\items\items.lua
 data\items\loot_items.lua
 data\items\craft_items.lua
