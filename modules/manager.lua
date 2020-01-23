@@ -151,6 +151,23 @@ function dump(o)
     end
 end
 
+local function characterHasItem(itemId)
+	local hasItem = false;
+	if IsEquippedItem(itemId) then
+		hasItem = true;
+	else
+		for i = 0, NUM_BAG_SLOTS do
+		    for z = 1, GetContainerNumSlots(i) do
+		        if GetContainerItemID(i, z) == itemId then
+		        	hasItem = true;
+		            break
+		        end
+		    end
+		end
+	end
+	return hasItem;
+end
+
 local function Update()
     if selectedRace == nil or selectedClass == nil or selectedSpec == nil or selectedPhase == nil then
         -- Nothing to be updated.
@@ -244,23 +261,6 @@ local function Update()
             end);
         end
     end
-end
-
-local function characterHasItem(itemId)
-	local hasItem = false;
-	if IsEquippedItem(itemId) then
-		hasItem = true;
-	else
-		for i = 0, NUM_BAG_SLOTS do
-		    for z = 1, GetContainerNumSlots(i) do
-		        if GetContainerItemID(i, z) == itemId then
-		        	hasItem = true;
-		            break
-		        end
-		    end
-		end
-	end
-	return hasItem;
 end
 
 local function HandleRacesDropDown(self, arg1, arg2, checked)
