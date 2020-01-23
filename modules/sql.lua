@@ -67,7 +67,13 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
         if value.PhaseId > temp[value.InvSlotId][value.Priority].PhaseId then
           table.insert(temp[value.InvSlotId], value.Priority, value);
         else
-          table.insert(temp[value.InvSlotId], value.Priority + 1, value);
+          if temp[value.InvSlotId][value.Priority + 1] == nil then
+            table.insert(temp[value.InvSlotId], value.Priority + 1, value);
+          elseif value.PhaseId > temp[value.InvSlotId][value.Priority + 1].PhaseId then
+            table.insert(temp[value.InvSlotId], value.Priority + 1, value);
+          elseif value.Priority < temp[value.InvSlotId][value.Priority + 1].Priority then
+            table.insert(temp[value.InvSlotId], value.Priority + 2, value);
+          end
         end             
       else        
         empty = false;
