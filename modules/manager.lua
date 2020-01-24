@@ -76,7 +76,7 @@ local dataSpecs = {
                     ["ICON"] = { 135428 } },
     [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution" },                     
                     ["SPEC_ICONS"] = { 135920, 135893, 135873 },
-                    ["VALUE"] = { 1, 2 },
+                    ["VALUE"] = { 1, 2, 3 },
                     ["ICON"] = { 132325 } }
 };
 
@@ -182,7 +182,7 @@ local function Update()
     local count = 0;
     
     temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, pvpRank);
-        
+
     if table.getn(temp) == 0 then
         -- Empty table.
         return;
