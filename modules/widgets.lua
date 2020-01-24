@@ -27,7 +27,7 @@ function StartMovingOrSizing(self, fromChild)
     else
         self.isMoving = true;
         if not self:IsMovable() or ((select(2, GetCursorPosition()) / self:GetEffectiveScale()) < math.max(self:GetTop() - 40, self:GetBottom() + 10)) then
-            self:StartSizing();
+            --self:StartSizing();
         else
             self:StartMoving();
         end
@@ -50,8 +50,8 @@ function CreateWindow(name, height, width)
     window:SetBackdrop(backdrop);
     window:SetBackdropBorderColor(1, 1, 1, 1);
     window:SetBackdropColor(0, 0, 0, 1);
-    --window:SetClampedToScreen(true);
-	--window:SetToplevel(true);        
+    window:SetClampedToScreen(true);
+	window:SetToplevel(true);        
 	window:SetScript("OnMouseDown", StartMovingOrSizing);
 	window:SetScript("OnMouseUp", StopMovingOrSizing);
 	window:SetScript("OnHide", StopMovingOrSizing);
