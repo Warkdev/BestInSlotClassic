@@ -17,10 +17,12 @@ end
 function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
   -- Temporary table with matching records.
   local temp = {};
+  local result = {};
   local empty = true;
 
   for i = 1, table.getn(INVSLOT_IDX), 1 do
     temp[i] = {};
+    result[i] = {};
   end
 
   local match = true;
@@ -59,31 +61,24 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
       match = false;
     end
 
-    if match then
-      -- log("Found matching record ! "..value.ItemId, DEBUG);      
-      -- Let's compare if another record already exist for that position. If so, we check the race, a matching race has always priority !
-      if temp[value.InvSlotId][value.Priority] ~= nil then
-        -- A more recent phase matching takes precedence over an existing one.          
-        if value.PhaseId > temp[value.InvSlotId][value.Priority].PhaseId then
-          table.insert(temp[value.InvSlotId], value.Priority, value);
-        else
-          if temp[value.InvSlotId][value.Priority + 1] == nil then
-            table.insert(temp[value.InvSlotId], value.Priority + 1, value);
-          elseif value.PhaseId > temp[value.InvSlotId][value.Priority + 1].PhaseId then
-            table.insert(temp[value.InvSlotId], value.Priority + 1, value);
-          elseif value.Priority < temp[value.InvSlotId][value.Priority + 1].Priority then
-            table.insert(temp[value.InvSlotId], value.Priority + 2, value);
-          end
-        end             
-      else        
-        empty = false;
-        table.insert(temp[value.InvSlotId], value.Priority, value);        
-      end
+    if match then             
+      empty = false;      
+      table.insert(temp[value.InvSlotId], value.Priority, value);      
     end
   end
   
+  -- Now, trimming table to remove gaps.  
+  for slot, value in pairs(temp) do    
+    for priority = 1, 20, 1 do 
+      if temp[slot][priority] ~= nil then        
+        table.insert(result[slot], temp[slot][priority]);
+      end
+    end
+  end
+
   if empty then
     return {};
   end
-  return temp;
+
+  return result;
 end
