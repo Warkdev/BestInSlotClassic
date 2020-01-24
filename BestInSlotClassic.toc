@@ -12,10 +12,8 @@ lib\LibDataBroker-1.1\LibDataBroker-1.1.lua
 lib\LibDBIcon-1.0\LibDBIcon-1.0.lua
 core.lua
 data\links\links.lua
-data\links\druid.lua
 data\links\hunter.lua
 data\links\mage.lua
-data\links\paladin.lua
 data\links\priest.lua
 data\links\rogue.lua
 data\links\shaman.lua
@@ -31,6 +29,12 @@ data\links\warrior\raid\protection_mitigation.lua
 data\links\warrior\raid\protection_threat.lua
 data\links\paladin\pre-raid\holy.lua
 data\links\paladin\raid\holy.lua
+data\links\druid\pre-raid\restoration.lua
+data\links\druid\pre-raid\feral_dps.lua
+data\links\druid\pre-raid\feral_tank.lua
+data\links\druid\raid\restoration.lua
+data\links\druid\raid\feral_dps.lua
+data\links\druid\raid\feral_tank.lua
 data\items\items.lua
 data\items\loot_items.lua
 data\items\craft_items.lua
