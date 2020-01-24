@@ -222,7 +222,7 @@ local function Update()
                         local item = BIS_ITEMS[tostring(value.ItemId)];                    
                         
                         if item == nil or item.Source == nil then
-                            log("Error while generating the tooltip for the ItemId "..value.ItemId, ERROR);
+                            log("Error while generating the tooltip for the ItemId "..value.ItemId, DEBUG);
                         else
                             local source = item.Source;
                             tooltip:AddLine("\nThis item can be obtained: ");
