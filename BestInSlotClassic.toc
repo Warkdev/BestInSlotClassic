@@ -29,6 +29,7 @@ data\links\warrior\raid\protection_mitigation.lua
 data\links\warrior\raid\protection_threat.lua
 data\links\paladin\pre-raid\holy.lua
 data\links\paladin\raid\holy.lua
+data\links\druid\pre-raid\restoration_2h.lua
 data\links\druid\pre-raid\restoration.lua
 data\links\druid\pre-raid\feral_dps.lua
 data\links\druid\pre-raid\feral_tank.lua
