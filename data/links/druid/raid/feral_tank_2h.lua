@@ -2,8 +2,8 @@ local INV_SLOT_ID;
 local SPEC_ID;
 local CLASS_ID = 11;
 
-----------------------------------------------------------------------------  Tank One_Hand -----------------------------------------------------------------------
-SPEC_ID = 1;
+----------------------------------------------------------------------------  Tank Two_Hands -----------------------------------------------------------------------
+SPEC_ID = 2;
 
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 1, InvSlotId = 1, Priority = 1, ItemId = 21693, PVPRank = 0 });
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 13, MaxPhaseId = 9, SpecId = 1, InvSlotId = 1, Priority = 2, ItemId = 20623, PVPRank = 0 });
@@ -305,29 +305,29 @@ table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, Phase
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 15, MaxPhaseId = 9, SpecId = 1, InvSlotId = 18, Priority = 1, ItemId = 23198, PVPRank = 0 });
 
 
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 1, ItemId = 21268, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 2, ItemId = 18376, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 13, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 3, ItemId = 20580, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 15, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 4, ItemId = 22803, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 12, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 5, ItemId = 19335, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 12, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 6, ItemId = 19346, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 7, ItemId = 21522, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 8, ItemId = 868, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 9, ItemId = 11805, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 10, ItemId = 21498, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 11, ItemId = 23451, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 12, ItemId = 23454, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 13, ItemId = 23464, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 14, ItemId = 23466, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 1, InvSlotId = 16, Priority = 15, ItemId = 18044, PVPRank = 0 });
-
-
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 1, ItemId = 23452, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 2, ItemId = 23468, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 15, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 3, ItemId = 22937, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 4, ItemId = 23453, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 5, ItemId = 23469, PVPRank = 14 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 6, ItemId = 19142, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 15, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 7, ItemId = 23156, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 8, ItemId = 13385, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 13, MaxPhaseId = 9, SpecId = 1, InvSlotId = 17, Priority = 9, ItemId = 19891, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 1, ItemId = 943, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 2, ItemId = 18531, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 3, ItemId = 18867, PVPRank = 14 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 4, ItemId = 18868, PVPRank = 14 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 5, ItemId = 18873, PVPRank = 14 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 6, ItemId = 18874, PVPRank = 14 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 7, ItemId = 21273, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 8, ItemId = 20069, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 15, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 9, ItemId = 22800, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 10, ItemId = 13937, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 15, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 11, ItemId = 22801, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 15, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 12, ItemId = 22632, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 13, ItemId = 23455, PVPRank = 14 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 14, ItemId = 23465, PVPRank = 14 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 15, ItemId = 21703, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 16, ItemId = 18803, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 17, ItemId = 19102, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 11, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 18, ItemId = 19101, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 19, ItemId = 21452, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 12, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 20, ItemId = 19356, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 21, ItemId = 21275, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 14, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 22, ItemId = 22348, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 12, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 23, ItemId = 19357, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 12, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 24, ItemId = 19355, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 25, ItemId = 13047, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 10, MaxPhaseId = 9, SpecId = 5, InvSlotId = 16, Priority = 26, ItemId = 9449, PVPRank = 0 });
