@@ -188,34 +188,50 @@ local function Update()
         return;
     end
 
+    local minIndex, maxIndex;
+    local temp_slot;
     for i = 1, table.getn(INVSLOT_IDX), 1 do        
-        for idx, value in pairs(temp[i]) do            
-            local item = Item:CreateFromItemID(value.ItemId);        
-            
+        temp_slot = i;
+        minIndex = 0;
+        maxIndex = 4;
+
+        -- Ring as Trinket shares the same inventory slot list.
+        if i == 12 then
+            temp_slot = 11;
+            minIndex = 3;
+            maxIndex = 7;
+        elseif i == 14 then
+            temp_slot = 13;
+            minIndex = 3;
+            maxIndex = 7;
+        end
+        for idx, value in pairs(temp[temp_slot]) do            
+            local item = Item:CreateFromItemID(value.ItemId);                                
+
             item:ContinueOnItemLoad(function()
                 -- Item has been answered from the server.
                 local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
                     itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
-                    isCraftingReagent = GetItemInfo(value.ItemId);                                
+                    isCraftingReagent = GetItemInfo(value.ItemId);                                                
 
-                if idx > 0 and idx < 4 then
+                if idx > minIndex and idx < maxIndex then                    
                     if characterHasItem(value.ItemId) then
-                        _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
+                        _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
                     else
-                        _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
+                        _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
                     end
-                    _G["frame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_ICON"]:SetTexture(itemIcon);
-                    _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_TEXT"]:SetText(itemLink);
-                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]:SetScript("OnMouseDown", function(self)
+                    _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
+                    _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);
+                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
                         if itemName ~= nil then
                             SetItemRef(itemLink, itemLink, "LeftButton");
                         end
                     end)                
-                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]:SetScript("OnEnter", function(self)                    
-                        local tooltip = _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_TOOLTIP"];
+                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                    
+                        local tooltip = _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TOOLTIP"];
                         
-                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]);
-                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx], "TOPRIGHT", 220, -13);
+                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]);
+                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)], "TOPRIGHT", 220, -13);
 
                         tooltip:SetHyperlink(itemLink);                    
                         
@@ -254,8 +270,8 @@ local function Update()
                                                                 
                         tooltip:Show();
                     end);                
-                    _G["ItemFrame_"..INVSLOT_IDX[value.InvSlotId].."s_"..idx]:SetScript("OnLeave", function(self)
-                        _G["frame"..INVSLOT_IDX[value.InvSlotId].."s_"..idx.."_TOOLTIP"]:Hide();                    
+                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
+                        _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TOOLTIP"]:Hide();                    
                     end);                
                 end
             end);
