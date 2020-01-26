@@ -203,7 +203,7 @@ local function Update()
         elseif i == 14 then
             temp_slot = 13;
             minIndex = 3;
-            maxIndex = 7;
+            maxIndex = 7;            
         end
         for idx, value in pairs(temp[temp_slot]) do            
             local item = Item:CreateFromItemID(value.ItemId);                                
@@ -222,16 +222,17 @@ local function Update()
                     end
                     _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
                     _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);
+                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].slot = i;
+                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
                     _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
                         if itemName ~= nil then
                             SetItemRef(itemLink, itemLink, "LeftButton");
                         end
-                    end)                
-                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                    
-                        local tooltip = _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TOOLTIP"];
-                        
-                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]);
-                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)], "TOPRIGHT", 220, -13);
+                    end)                    
+                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                        
+                        local tooltip = _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"];                        
+                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index]);
+                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index], "TOPRIGHT", 220, -13);
 
                         tooltip:SetHyperlink(itemLink);                    
                         
@@ -271,7 +272,7 @@ local function Update()
                         tooltip:Show();
                     end);                
                     _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
-                        _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TOOLTIP"]:Hide();                    
+                        _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"]:Hide();                    
                     end);                
                 end
             end);
