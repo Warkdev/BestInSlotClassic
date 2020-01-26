@@ -156,7 +156,7 @@ table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, Phase
 
 -- Main hand items.
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 5, MaxPhaseId = 9, SpecId = 6, InvSlotId = 16, Priority = 1, ItemId = 22406, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 6, InvSlotId = 16, Priority = 2, ItemId = 20069, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 6, InvSlotId = 16, Priority = 2, ItemId = 20069, PVPRank = 0 });
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 5, MaxPhaseId = 9, SpecId = 6, InvSlotId = 16, Priority = 3, ItemId = 21188, PVPRank = 0 });
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 1, MaxPhaseId = 9, SpecId = 6, InvSlotId = 16, Priority = 4, ItemId = 11932, PVPRank = 0 });
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 6, InvSlotId = 16, Priority = 5, ItemId = 22458, PVPRank = 0 });

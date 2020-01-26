@@ -36,10 +36,10 @@ table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 3, MaxPhaseId = 9, SpecId = 1, InvSlotId = 2, Priority = 3, ItemId = 19491, PVPRank = 0 });
 
 -- Shoulders items.
-table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 1, ItemId = 20194, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 2, ItemId = 20059, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 3, ItemId = 20175, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 4, ItemId = 20060, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 1, ItemId = 20194, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 2, ItemId = 20059, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 3, ItemId = 20175, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 4, ItemId = 20060, PVPRank = 0 });
 table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 5, ItemId = 16449, PVPRank = 13 });
 table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 6, ItemId = 16551, PVPRank = 13 });
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 3, MaxPhaseId = 9, SpecId = 1, InvSlotId = 3, Priority = 7, ItemId = 19058, PVPRank = 0 });
@@ -124,10 +124,10 @@ table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, Phase
 
 
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 5, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 1, ItemId = 21532, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 2, ItemId = 20186, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 3, ItemId = 20052, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 4, ItemId = 20167, PVPRank = 0 });
-table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 5, ItemId = 20053, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 2, ItemId = 20186, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 3, ItemId = 20052, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 4, ItemId = 20167, PVPRank = 0 });
+table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 4, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 5, ItemId = 20053, PVPRank = 0 });
 table.insert(BIS_LINKS, { Faction = "Horde", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 6, ItemId = 16554, PVPRank = 12 });
 table.insert(BIS_LINKS, { Faction = "Alliance", RaceId = nil, ClassId = CLASS_ID, PhaseId = 2, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 7, ItemId = 16459, PVPRank = 12 });
 table.insert(BIS_LINKS, { Faction = nil, RaceId = nil, ClassId = CLASS_ID, PhaseId = 1, MaxPhaseId = 9, SpecId = 1, InvSlotId = 8, Priority = 8, ItemId = 18716, PVPRank = 0 });
