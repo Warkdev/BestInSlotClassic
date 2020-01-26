@@ -150,13 +150,6 @@ table.insert(BIS_LINKS,
     { Faction = nil,  RaceId = nil , ClassId = CLASS_ID, PhaseId = PHASE_ID, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 2, ItemId = 11978, PVPRank = 0 }    
 );
 
--- Off ring items.
-INV_SLOT_ID = 12;
-
-table.insert(BIS_LINKS, 
-    { Faction = nil,  RaceId = nil , ClassId = CLASS_ID, PhaseId = PHASE_ID, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 1, ItemId = 11978, PVPRank = 0 }    
-);
-
 -- Main trinket items.
 INV_SLOT_ID = 13;
 
@@ -170,15 +163,4 @@ table.insert(BIS_LINKS,
 
 table.insert(BIS_LINKS, 
     { Faction = nil,  RaceId = nil , ClassId = CLASS_ID, PhaseId = PHASE_ID, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 3, ItemId = 2802, PVPRank = 0 }    
-);
-
--- Off trinket items.
-INV_SLOT_ID = 14;
-
-table.insert(BIS_LINKS, 
-    { Faction = nil,  RaceId = nil , ClassId = CLASS_ID, PhaseId = PHASE_ID, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 1, ItemId = 18638, PVPRank = 0 }    
-);
-
-table.insert(BIS_LINKS, 
-    { Faction = nil,  RaceId = nil , ClassId = CLASS_ID, PhaseId = PHASE_ID, MaxPhaseId = 99, SpecId = SPEC_ID, InvSlotId = INV_SLOT_ID, Priority = 2, ItemId = 2802, PVPRank = 0 }    
 );
