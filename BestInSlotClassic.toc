@@ -33,6 +33,7 @@ data\links\druid\pre-raid\restoration_2h.lua
 data\links\druid\pre-raid\restoration.lua
 data\links\druid\pre-raid\feral_dps.lua
 data\links\druid\pre-raid\feral_tank.lua
+data\links\druid\raid\restoration_2h.lua
 data\links\druid\raid\restoration.lua
 data\links\druid\raid\feral_dps.lua
 data\links\druid\raid\feral_tank.lua
