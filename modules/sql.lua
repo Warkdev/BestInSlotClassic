@@ -70,7 +70,7 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
   -- Now, trimming table to remove gaps.  
   for slot, value in pairs(temp) do    
     for priority = 1, 20, 1 do 
-      if temp[slot][priority] ~= nil then        
+      if temp[slot][priority] ~= nil then
         table.insert(result[slot], temp[slot][priority]);
       end
     end
