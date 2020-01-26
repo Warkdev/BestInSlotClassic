@@ -42,8 +42,11 @@ data\links\druid\raid\feral_tank_2h.lua
 data\links\druid\raid\feral_tank.lua
 data\links\priest\pre-raid\holy.lua
 data\links\priest\pre-raid\holy_2h.lua
+data\links\priest\pre-raid\shadow.lua
 data\links\priest\raid\holy.lua
 data\links\priest\raid\holy_2h.lua
+data\links\priest\raid\shadow.lua
+data\links\priest\raid\shadow_2h.lua
 data\items\items.lua
 data\items\loot_items.lua
 data\items\craft_items.lua
