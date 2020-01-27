@@ -47,6 +47,8 @@ data\links\priest\raid\holy.lua
 data\links\priest\raid\holy_2h.lua
 data\links\priest\raid\shadow.lua
 data\links\priest\raid\shadow_2h.lua
+data\links\hunter\pre-raid\any.lua
+data\links\hunter\raid\any.lua
 data\items\items.lua
 data\items\loot_items.lua
 data\items\craft_items.lua
