@@ -75,7 +75,7 @@ function LoadPlayerInfo()
         end        
         log(name..": "..pointsSpent..", "..fileName, DEBUG);        
     end
-    if class == "DRUID" and spec == "DruidFeral" then
+    if class == "DRUID" and spec == "DruidFeralCombat" then
         -- Need to find out whether it's a Feral Tank or DPS.
         -- This is done by checking the talent thick skin.
         local talentName, iconTexture, tier, column, rank, maxRank, isExceptional, available = GetTalentInfo(2, 5);
