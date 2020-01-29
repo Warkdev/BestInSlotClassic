@@ -205,77 +205,82 @@ local function Update()
             minIndex = 3;
             maxIndex = 7;            
         end
-        for idx, value in pairs(temp[temp_slot]) do            
-            local item = Item:CreateFromItemID(value.ItemId);            
+        for idx, value in pairs(temp[temp_slot]) do                                   
 
-            item:ContinueOnItemLoad(function()
-                -- Item has been answered from the server.
-                local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-                    itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
-                    isCraftingReagent = GetItemInfo(value.ItemId);                                                
-
-                if idx > minIndex and idx < maxIndex then                    
-                    if characterHasItem(value.ItemId) then
-                        _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
-                    else
-                        _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
-                    end
-                    _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
-                    _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);
-                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].slot = i;
-                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
-                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
-                        if itemName ~= nil then
-                            SetItemRef(itemLink, itemLink, "LeftButton");
-                        end
-                    end)                    
-                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                        
-                        local tooltip = _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"];                        
-                        tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index]);
-                        tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index], "TOPRIGHT", 220, -13);
-
-                        tooltip:SetHyperlink(itemLink);                    
-                        
-                        local item = BIS_ITEMS[tostring(value.ItemId)];                    
-                        
-                        if item == nil or item.Source == nil then
-                            log("Error while generating the tooltip for the ItemId "..value.ItemId, DEBUG);
+            if idx > minIndex and idx < maxIndex then
+                local item = Item:CreateFromItemID(value.ItemId); 
+                
+                _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].slot = i;
+                _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
+                item:ContinueOnItemLoad(function()
+                    -- Item has been answered from the server.
+                    local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+                        itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
+                        isCraftingReagent = GetItemInfo(value.ItemId);                                                
+    
+                    if idx > minIndex and idx < maxIndex then                    
+                        if characterHasItem(value.ItemId) then
+                            _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
                         else
-                            local source = item.Source;
-                            tooltip:AddLine("\nThis item can be obtained: ");
-                            if source == "Craft" then
-                                tooltip:AddLine("Source: Craft");
-                                tooltip:AddLine("Profession: "..PROFESSIONS[item.Info.Profession]);
-                                tooltip:AddLine("Level: "..item.Info.Level);
-                                tooltip:AddLine("Recipe Zone: "..item.Zone);
-                                tooltip:AddLine("NPC: "..item.Info.NPC);
-                            elseif source == "Loot" then
-                                tooltip:AddLine("Source: Loot");
-                                tooltip:AddLine("Zone: "..item.Zone);
-                                tooltip:AddLine("NPC: "..item.Info.NPC);
-                                tooltip:AddLine("Drop Chance: "..item.Info.Drop);
-                            elseif source == "Vendor" then
-                                tooltip:AddLine("Source: Vendor");
-                                tooltip:AddLine("Faction: "..item.Info.Faction);
-                                tooltip:AddLine("Requirement: "..item.Info.Requirement);
-                                tooltip:AddLine("Price: "..item.Info.Price);
-                                if item.Info.Team ~= nil then
-                                    tooltip:AddLine("Team: "..item.Info.Team);
-                                end
-                            elseif source == "Quest" then
-                                tooltip:AddLine("Source: Quest");
-                                tooltip:AddLine("Zone: "..item.Zone);
-                                tooltip:AddLine("Quest Name: "..item.Info.Name);                        
-                            end                                  
-                        end      
-                                                                
-                        tooltip:Show();
-                    end);                
-                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
-                        _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"]:Hide();                    
-                    end);                
-                end
-            end);
+                            _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
+                        end
+                        _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
+                        _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);                    
+                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
+                            if itemName ~= nil then
+                                SetItemRef(itemLink, itemLink, "LeftButton");
+                            end
+                        end)                    
+                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                        
+                            local tooltip = _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"];                        
+                            tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index]);
+                            tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index], "TOPRIGHT", 220, -13);
+    
+                            tooltip:SetHyperlink(itemLink);                    
+                            
+                            local item = BIS_ITEMS[tostring(value.ItemId)];                    
+                            
+                            if item == nil or item.Source == nil then
+                                log("Error while generating the tooltip for the ItemId "..value.ItemId, DEBUG);
+                            else
+                                local source = item.Source;
+                                tooltip:AddLine("\nThis item can be obtained: ");
+                                if source == "Craft" then
+                                    tooltip:AddLine("Source: Craft");
+                                    tooltip:AddLine("Profession: "..PROFESSIONS[item.Info.Profession]);
+                                    tooltip:AddLine("Level: "..item.Info.Level);
+                                    tooltip:AddLine("Recipe Zone: "..item.Zone);
+                                    tooltip:AddLine("NPC: "..item.Info.NPC);
+                                elseif source == "Loot" then
+                                    tooltip:AddLine("Source: Loot");
+                                    tooltip:AddLine("Zone: "..item.Zone);
+                                    tooltip:AddLine("NPC: "..item.Info.NPC);
+                                    tooltip:AddLine("Drop Chance: "..item.Info.Drop);
+                                elseif source == "Vendor" then
+                                    tooltip:AddLine("Source: Vendor");
+                                    tooltip:AddLine("Faction: "..item.Info.Faction);
+                                    tooltip:AddLine("Requirement: "..item.Info.Requirement);
+                                    tooltip:AddLine("Price: "..item.Info.Price);
+                                    if item.Info.Team ~= nil then
+                                        tooltip:AddLine("Team: "..item.Info.Team);
+                                    end
+                                elseif source == "Quest" then
+                                    tooltip:AddLine("Source: Quest");
+                                    tooltip:AddLine("Zone: "..item.Zone);
+                                    tooltip:AddLine("Quest Name: "..item.Info.Name);                        
+                                end                                  
+                            end      
+                                                                    
+                            tooltip:Show();
+                        end);                
+                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
+                            _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"]:Hide();                    
+                        end);                
+                    end
+                end);
+            end
+
+            
         end
     end
 end
