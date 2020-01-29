@@ -97,8 +97,8 @@ local specsFileToSpecs = {
     ["MageArcane"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
     ["MageFire"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
     ["MageFrost"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
-    ["WarlockAffliction"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
-    ["WarlockDemonology"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
+    ["WarlockCurses"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
+    ["WarlockSummoning"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
     ["WarlockDestruction"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
     ["PriestHybrid"] = { dataSpecs[5].SPEC[1], dataSpecs[5].VALUE[1] },
     ["PriestShadow"] = { dataSpecs[5].SPEC[2], dataSpecs[5].VALUE[3] },
@@ -206,7 +206,7 @@ local function Update()
             maxIndex = 7;            
         end
         for idx, value in pairs(temp[temp_slot]) do            
-            local item = Item:CreateFromItemID(value.ItemId);                                
+            local item = Item:CreateFromItemID(value.ItemId);            
 
             item:ContinueOnItemLoad(function()
                 -- Item has been answered from the server.
