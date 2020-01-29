@@ -13,7 +13,6 @@ lib\LibDBIcon-1.0\LibDBIcon-1.0.lua
 core.lua
 data\links\links.lua
 data\links\hunter.lua
-data\links\mage.lua
 data\links\rogue.lua
 data\links\shaman.lua
 data\links\warlock.lua
@@ -49,6 +48,11 @@ data\links\priest\raid\shadow.lua
 data\links\priest\raid\shadow_2h.lua
 data\links\hunter\pre-raid\any.lua
 data\links\hunter\raid\any.lua
+data\links\mage\common\aoe_grinding.lua
+data\links\mage\pre-raid\any.lua
+data\links\mage\pre-raid\any_2h.lua
+data\links\mage\raid\any.lua
+data\links\mage\pre-raid\any_2h.lua
 data\items\items.lua
 data\items\loot_items.lua
 data\items\craft_items.lua
