@@ -27,7 +27,7 @@ local characterFrames = {
 
 local races = {
     ["Horde"] = { "Orc", "Undead", "Tauren", "Troll" },
-    ["Alliance"] = { "Human", "Gnome", "Dwarf", "Night Elf" }
+    ["Alliance"] = { "Human", "Gnome", "Dwarf", "NightElf" }
 };
 
 local classes = {
@@ -58,9 +58,9 @@ local dataSpecs = {
                     ["SPEC_ICONS"] = { 136015, 136018, 136052 },
                     ["VALUE"] = { 1, 2, 3 },
                     ["ICON"] = { 133437 } },
-    [8] = {    ["SPEC"] = { "Any" },                     
-                    ["SPEC_ICONS"] = { 132805 },
-                    ["VALUE"] = { 1 },
+    [8] = {    ["SPEC"] = { "AoE Grinding", "Any 1-Hand", "Any 2-Hands" },                     
+                    ["SPEC_ICONS"] = { 136116, 132805, 132805 },
+                    ["VALUE"] = { 1, 2, 3 },
                     ["ICON"] = { 135150 } },
     [9] = { ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 136163 },
@@ -121,7 +121,7 @@ local phases = {
     ["NAME"] = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
     ["ICON"] = { 133066   , 132485             , 132486   , 134481             , 134154   , 134085   , 136152   , 134514    },
     ["VALUE"] = { 10       , 2                  , 11        , 3                  , 12        , 13        , 14        , 15         },
-    ["ENABLED"] = { false , true              , true    , true               , true     , false     , false     , false   }
+    ["ENABLED"] = { false , true              , true    , true               , true     , true     , true     , true   }
     };
 
 local function ResetUI()   
