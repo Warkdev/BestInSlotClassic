@@ -66,9 +66,9 @@ end
 
 function CreateCheckBox(name, label, parent, x, y, tooltip, callback)
     local checkbox = CreateFrame("CheckButton", name, parent, "ChatConfigCheckButtonTemplate");
-    checkbox.tooltip = tooltip;
+    checkbox.tooltip = tooltip;    
     checkbox:SetPoint("TOPLEFT", x, y);
-    _G[name.."Text"]:SetText(label);
+    _G[name.."Text"]:SetText(label);    
     checkbox:SetScript("OnClick", callback);
 
     return checkbox;

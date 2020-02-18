@@ -10,18 +10,18 @@ local selectedRace, selectedClass, selectedSpec, selectedPhase;
 local rootPaperDoll = "Interface\\PaperDoll\\";                
 
 local characterFrames = { 
-    ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds" },    
-    ["INDEX"] = { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3 },
+    ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds", "Bags" },    
+    ["INDEX"] = { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 9 },
     ["ICON"] = { 
         "UI-PaperDoll-Slot-Head.PNG", "UI-PaperDoll-Slot-Neck.PNG", "UI-PaperDoll-Slot-Shoulder.PNG", "UI-PaperDoll-Slot-REar.PNG", "UI-PaperDoll-Slot-Chest.PNG", "UI-PaperDoll-Slot-Shirt.PNG", "UI-PaperDoll-Slot-Tabard.PNG",
         "UI-PaperDoll-Slot-Wrists.PNG", "UI-PaperDoll-Slot-Hands.PNG", "UI-PaperDoll-Slot-Waist.PNG", "UI-PaperDoll-Slot-Legs.PNG", "UI-PaperDoll-Slot-Feet.PNG", "UI-PaperDoll-Slot-Finger.PNG",
-        "UI-PaperDoll-Slot-Finger.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-MainHand.PNG", "UI-PaperDoll-Slot-SecondaryHand.PNG", "UI-PaperDoll-Slot-Ranged.PNG"
+        "UI-PaperDoll-Slot-Finger.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-MainHand.PNG", "UI-PaperDoll-Slot-SecondaryHand.PNG", "UI-PaperDoll-Slot-Ranged.PNG", "UI-PaperDoll-Slot-Bag.PNG"
     },    
     ["FRAME_ALIGNMENT"] = {
-        "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "BOTTOM", "BOTTOM", "BOTTOM"
+        "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "BOTTOM", "BOTTOM", "BOTTOM", "RIGHT"
     },
     ["ICON_ALIGNMENT"] = {
-        "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "TOP", "RIGHT"
+        "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "TOP", "RIGHT", "LEFT"
     }
 };
 
@@ -42,41 +42,41 @@ local classes = {
 };
 
 local dataSpecs = {
-    [1] = { ["SPEC"] = { "Fury Dual-Wield", "Fury 2-Hands", "Protection (Threat)", "Protection (Mitigation)", "Fire Resistance"},
-                    ["SPEC_ICONS"] = { 132347, 132347, 136101, 134952, 135805}, 
-                    ["VALUE"] = { 1, 5, 2, 3, 4 },
+    [1] = { ["SPEC"] = { "Fury", "Protection (Threat)", "Protection (Mitigation)", "Fire Resistance"},
+                    ["SPEC_ICONS"] = { 132347, 136101, 134952, 135805}, 
+                    ["VALUE"] = { 1, 2, 3, 4 },
                     ["ICON"] = { 135328 } },
-    [11] = {   ["SPEC"] = { "Feral Tank 1-Hand", "Feral Tank 2-Hands", "Feral DPS 1-Hand", "Feral DPS 2-Hands", "Restoration 1-Hand", "Restoration 2-Hands", "Balance 1-Hand", "Balance 2-Hands" },                     
-                    ["SPEC_ICONS"] = { 132276, 132276, 132115, 132115, 136041, 136041, 136036, 136036 },
-                    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7, 8 },
+    [11] = {   ["SPEC"] = { "Feral Tank (Value)", "Feral Tank (Mitigation)", "Feral Tank (Threat)", "Feral DPS", "Restoration", "Balance", "Fire Resistance", "Frost Resistance", "Nature Resistance", "Shadow Resistance", "Arcane Resistance" },
+                    ["SPEC_ICONS"] = { 132276, 132276, 132276, 132115, 136041, 136036, 135805, 135849, 136006, 136121, 135733 },
+                    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 },
                     ["ICON"] = { 134297 } },
     [3] = {  ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 135489 },
                     ["VALUE"] = { 1 },
                     ["ICON"] = { 135495 } },
-    [7] = {  ["SPEC"] = { "Elemental", "Enhancement", "Restoration" },                     
-                    ["SPEC_ICONS"] = { 136015, 136018, 136052 },
-                    ["VALUE"] = { 1, 2, 3 },
+    [7] = {  ["SPEC"] = { "Restoration", "Enhancement" },
+                    ["SPEC_ICONS"] = { 136052, 136018, 136052 },
+                    ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 133437 } },
-    [8] = {    ["SPEC"] = { "AoE Grinding", "Any 1-Hand", "Any 2-Hands" },                     
-                    ["SPEC_ICONS"] = { 136116, 132805, 132805 },
-                    ["VALUE"] = { 1, 2, 3 },
+    [8] = {    ["SPEC"] = { "Frost/Fire", "Zero SP", "Alternative", "Fire Resistance", "Nature Resistance", "Frost Resistance", "Shadow Resistance" },                     
+                    ["SPEC_ICONS"] = { 135866, 132643, 134614, 135805, 136006, 135849, 136121 },
+                    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7 },
                     ["ICON"] = { 135150 } },
     [9] = { ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 136163 },
                     ["VALUE"] = { 1 },
                     ["ICON"] = { 136020 } },
-    [5] = {  ["SPEC"] = { "Holy / Discipline 1-Hand", "Holy / Discipline 2-Hands", "Shadow 1-Hand", "Shadow 2-Hands" },                     
-                    ["SPEC_ICONS"] = { 135941, 135941, 136224, 136224 },
-                    ["VALUE"] = { 1, 2, 3, 4 },
+    [5] = {  ["SPEC"] = { "Holy / Discipline", "Shadow" },                     
+                    ["SPEC_ICONS"] = { 135941, 136224 },
+                    ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 135167 } },
     [4] = {   ["SPEC"] = { "Swords", "Daggers" },                     
                     ["SPEC_ICONS"] = { 135328, 135641 },
                     ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 135428 } },
-    [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution" },                     
-                    ["SPEC_ICONS"] = { 135920, 135893, 135873 },
-                    ["VALUE"] = { 1, 2, 3 },
+    [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution (AP)", "Retribution (Spelladin)" },
+                    ["SPEC_ICONS"] = { 135920, 135893, 135873, 135959 },
+                    ["VALUE"] = { 1, 2, 3, 4 },
                     ["ICON"] = { 132325 } }
 };
 
@@ -85,15 +85,15 @@ local specsFileToSpecs = {
     ["WarriorFury"] = { dataSpecs[1].SPEC[1], dataSpecs[1].VALUE[1] },
     ["WarriorProtection"] = { dataSpecs[1].SPEC[2], dataSpecs[1].VALUE[2] },
     ["DruidFeralTank"] = { dataSpecs[11].SPEC[1], dataSpecs[11].VALUE[1] },
-    ["DruidFeralDPS"] = { dataSpecs[11].SPEC[2], dataSpecs[11].VALUE[3] },
-    ["DruidRestoration"] = { dataSpecs[11].SPEC[3], dataSpecs[11].VALUE[5] },
-    ["DruidBalance"] = { dataSpecs[11].SPEC[4], dataSpecs[11].VALUE[7] },
+    ["DruidFeralDPS"] = { dataSpecs[11].SPEC[4], dataSpecs[11].VALUE[4] },
+    ["DruidRestoration"] = { dataSpecs[11].SPEC[5], dataSpecs[11].VALUE[5] },
+    ["DruidBalance"] = { dataSpecs[11].SPEC[6], dataSpecs[11].VALUE[6] },
     ["HunterBeastMastery"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
     ["HunterMarksmanship"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
     ["HunterSurvival"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
     ["ShamanElemental"] = { dataSpecs[7].SPEC[1], dataSpecs[7].VALUE[1] },
     ["ShamanEnhancement"] = { dataSpecs[7].SPEC[2], dataSpecs[7].VALUE[2] },
-    ["ShamanRestoration"] = { dataSpecs[7].SPEC[3], dataSpecs[7].VALUE[3] },
+    ["ShamanRestoration"] = { dataSpecs[7].SPEC[1], dataSpecs[7].VALUE[1] },
     ["MageArcane"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
     ["MageFire"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
     ["MageFrost"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
@@ -101,7 +101,7 @@ local specsFileToSpecs = {
     ["WarlockSummoning"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
     ["WarlockDestruction"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
     ["PriestHybrid"] = { dataSpecs[5].SPEC[1], dataSpecs[5].VALUE[1] },
-    ["PriestShadow"] = { dataSpecs[5].SPEC[2], dataSpecs[5].VALUE[3] },
+    ["PriestShadow"] = { dataSpecs[5].SPEC[2], dataSpecs[5].VALUE[2] },
     ["RogueSwords"] = { dataSpecs[4].SPEC[1], dataSpecs[4].VALUE[1] },
     ["RogueDaggers"] = { dataSpecs[4].SPEC[2], dataSpecs[4].VALUE[2] },
     ["PaladinHoly"] = { dataSpecs[2].SPEC[1], dataSpecs[2].VALUE[1] },
@@ -118,10 +118,10 @@ local dropdownText = {
 }
 
 local phases = { 
-    ["NAME"] = { "Phase 1", "Phase 2 - Preraid", "Phase 2", "Phase 3 - Preraid", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
-    ["ICON"] = { 133066   , 132485             , 132486   , 134481             , 134154   , 134085   , 136152   , 134514    },
-    ["VALUE"] = { 10       , 2                  , 11        , 3                  , 12        , 13        , 14        , 15         },
-    ["ENABLED"] = { false , true              , true    , true               , true     , true     , true     , true   }
+    ["NAME"] = { "Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
+    ["ICON"] = { 133066   , 132486   ,  134154   , 134085   , 136152   , 134514   },
+    ["VALUE"] = { 1       , 2        , 3        , 4         , 5        , 6        },
+    ["ENABLED"] = { true , true      , true     , true      , true     , true     }
     };
 
 local function ResetUI()   
@@ -181,7 +181,7 @@ local function Update()
     log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
     local count = 0;
     
-    temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, pvpRank);
+    temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked(), checkboxRaid:GetChecked(), checkboxWorldBoss:GetChecked(), checkboxPvp:GetChecked());
 
     if table.getn(temp) == 0 then
         -- Empty table.
@@ -189,8 +189,9 @@ local function Update()
     end
 
     local minIndex, maxIndex;
-    local temp_slot;
+    local temp_slot, slot;
     for i = 1, table.getn(INVSLOT_IDX), 1 do        
+        slot = i;
         temp_slot = i;
         minIndex = 0;
         maxIndex = 4;
@@ -203,35 +204,35 @@ local function Update()
         elseif i == 14 then
             temp_slot = 13;
             minIndex = 3;
-            maxIndex = 7;            
+            maxIndex = 7;
         end
         for idx, value in pairs(temp[temp_slot]) do                                   
 
             if idx > minIndex and idx < maxIndex then
                 local item = Item:CreateFromItemID(value.ItemId); 
-                
-                _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].slot = i;
-                _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
+                                                
+                _G["ItemFrame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex)].slot = slot;
+                _G["ItemFrame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex)].index = idx - minIndex;
                 item:ContinueOnItemLoad(function()
                     -- Item has been answered from the server.
                     local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
                         itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
-                        isCraftingReagent = GetItemInfo(value.ItemId);                                                
+                        isCraftingReagent = GetItemInfo("item:"..value.ItemId..":0:0:0:0:0:"..value.SuffixId);
     
                     if idx > minIndex and idx < maxIndex then                    
                         if characterHasItem(value.ItemId) then
-                            _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
+                            _G["frame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
                         else
-                            _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
+                            _G["frame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
                         end
-                        _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
-                        _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);                    
-                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
+                        _G["frame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
+                        _G["frame"..INVSLOT_IDX[slot].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);                    
+                        _G["ItemFrame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
                             if itemName ~= nil then
                                 SetItemRef(itemLink, itemLink, "LeftButton");
                             end
                         end)                    
-                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                        
+                        _G["ItemFrame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                        
                             local tooltip = _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"];                        
                             tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index]);
                             tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[self.slot].."s_"..self.index], "TOPRIGHT", 220, -13);
@@ -273,7 +274,7 @@ local function Update()
                                                                     
                             tooltip:Show();
                         end);                
-                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
+                        _G["ItemFrame_"..INVSLOT_IDX[slot].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
                             _G["frame"..INVSLOT_IDX[self.slot].."s_"..self.index.."_TOOLTIP"]:Hide();                    
                         end);                
                     end
@@ -473,12 +474,44 @@ function ShowManager()
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
         dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", currentPhase);
                 
+        checkboxRaid = CreateCheckBox("cbRaid", "Raid", window, 450, -50, "Include raid items", function(self)
+            if(not checkboxRaid:GetChecked()) then
+                -- Disabling world boss. This goes together.
+                checkboxWorldBoss:SetChecked(false);
+                BestInSlotClassicDB.filter.worldboss = false;
+            end
+            BestInSlotClassicDB.filter.raid = checkboxRaid:GetChecked();
+            Update();
+        end);
+        checkboxWorldBoss = CreateCheckBox("cbWorldBoss", "World Boss", window, 450, -70, "Include World Boss items", function(self)            
+            if(checkboxWorldBoss:GetChecked()) then
+                -- Checking raid. This goes together.
+                checkboxRaid:SetChecked(true);
+                BestInSlotClassicDB.filter.raid = true;
+            end
+            BestInSlotClassicDB.filter.worldboss = checkboxWorldBoss:GetChecked();
+            Update();            
+        end);
+        checkboxTwoHands = CreateCheckBox("cbTwoHands", "Two-Hands", window, 450, -90, "Show 2-hands weapons instead of 1-hand", function(self)
+            BestInSlotClassicDB.filter.twohands = checkboxTwoHands:GetChecked();
+            Update();
+        end);
+        checkboxPvp = CreateCheckBox("cbPvp", "PVP", window, 450, -110, "Include PVP items", function(self)
+            BestInSlotClassicDB.filter.pvp = checkboxPvp:GetChecked();
+            Update();
+        end);
+
+        checkboxRaid:SetChecked(BestInSlotClassicDB.filter.raid);
+        checkboxWorldBoss:SetChecked(BestInSlotClassicDB.filter.worldboss);
+        checkboxTwoHands:SetChecked(BestInSlotClassicDB.filter.twohands);
+        checkboxPvp:SetChecked(BestInSlotClassicDB.filter.pvp);
+
         local startX, startY;
         local offsetX, offsetY;
         local checkOffsetX, checkOffsetY;
         local iconOffsetX, iconOffsetY;
         local textOffsetX, textOffsetY, textJustify;
-        for i = 1, table.getn(characterFrames.NAME), 1 do        
+        for i = 1, table.getn(characterFrames.NAME), 1 do            
             window.childFrame[i] = {};
             if characterFrames.FRAME_ALIGNMENT[i] == "LEFT" then
                 startX = 20;

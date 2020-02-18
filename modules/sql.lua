@@ -14,11 +14,12 @@ function containsValue(t, value)
   return false;
 end
 
-function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
+function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp)
   -- Temporary table with matching records.
   local temp = {};
   local result = {};
   local empty = true;
+  local slot;
 
   for i = 1, table.getn(INVSLOT_IDX), 1 do
     temp[i] = {};
@@ -31,17 +32,17 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
     match = true;
     
     -- Checking if faction must be checked either from the search or from the table.    
-    if faction ~= nil and value.Faction ~= nil and value.Faction ~= faction then      
+    if faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= faction then      
       match = false;
     end
 
     -- Checking if race must be checked either from the search of from the table.
-    if match and race ~= nil and value.RaceId ~= nil and not(containsValue(value.RaceId, race)) then      
+    if match and race ~= nil and value.Races ~= nil and not(containsValue(value.Races, race)) then      
       --log("Race does not match", DEBUG);
       match = false;
     end
 
-    if match and invSlot ~= nil and value.InvSlotId ~= invSlot then
+    if match and invSlot ~= nil and BIS_ITEMS[value.ItemId].Slot ~= invSlot then
       -- log("InvSlot does not match", DEBUG);      
       match = false;
     end
@@ -51,19 +52,51 @@ function SearchBis(faction, race, class, phase, spec, invSlot, pvpRank)
       match = false;
     end
     
-    if match and (value.PhaseId > phase or value.MaxPhaseId < phase) then
+    if match and BIS_ITEMS[value.ItemId] ~= nil and (BIS_ITEMS[value.ItemId].Phase > phase) then
       -- log("One of the mandatory argument does not match", DEBUG);      
       match = false;
     end
 
-    if match and pvpRank ~= nil and value.PVPRank > pvpRank then
-      -- log("PvP Rank is lower than the record required PvP Rank", DEBUG);      
-      match = false;
+    -- Filter on Two-Hands weapons.
+    if match and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].Slot == 16 and BIS_ITEMS[value.ItemId].TwoHands ~= twoHands then
+      match = false
     end
 
+    -- Filter on raid items.
+    if match and not raid and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].Raid then
+      match = false
+    end
+
+    -- Filter on world boss items.
+    if match and not worldboss and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].WorldBoss then
+      match = false
+    end
+
+    -- Filter on pvp items.
+    if match and not pvp and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].PvP then
+      match = false
+    end
+
+    -- Filter off-hand weapons when two-hands is true.
+    if match and twoHands and BIS_ITEMS[value.ItemId].Slot == 17 then
+      match = false
+    end
+
+    --if match and pvpRank ~= nil and value.PVPRank > pvpRank then
+      -- log("PvP Rank is lower than the record required PvP Rank", DEBUG);      
+--      match = false;
+  --  end
+
     if match then             
-      empty = false;      
-      table.insert(temp[value.InvSlotId], value.Priority, value);      
+      empty = false;
+      if(BIS_ITEMS[value.ItemId] ~= nil) then
+        if(value.OffHand and BIS_ITEMS[value.ItemId].Slot == 16) then
+          -- One-Hand weapons are flagged as "off-hand".
+          table.insert(temp[BIS_ITEMS[value.ItemId].Slot+1], value.Priority, value);
+        else
+          table.insert(temp[BIS_ITEMS[value.ItemId].Slot], value.Priority, value);
+        end        
+      end      
     end
   end
   

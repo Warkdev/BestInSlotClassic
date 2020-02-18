@@ -16,15 +16,39 @@ local function SetLogLevelDefaults()
     end
 end
 
+local function SetFilterDefaults()
+    if BestInSlotClassicDB.filter == nil then
+        BestInSlotClassicDB.filter = {};
+    end
+
+    if BestInSlotClassicDB.filter.raid == nil then
+        BestInSlotClassicDB.filter.raid = true;
+    end
+
+    if BestInSlotClassicDB.filter.worldboss == nil then
+        BestInSlotClassicDB.filter.worldboss = true;
+    end
+
+    if BestInSlotClassicDB.filter.twohands == nil then
+        BestInSlotClassicDB.filter.twohands = false;
+    end
+
+    if BestInSlotClassicDB.filter.pvp == nil then
+        BestInSlotClassicDB.filter.pvp = true;
+    end
+end
+
 local function SetDefaults()
     if BestInSlotClassicDB == nil then
         -- First time loading add-on.
         BestInSlotClassicDB = {};
         BestInSlotClassicDB.minimap = {};
         BestInSlotClassicDB.loglevel = nil;
+        BestInSlotClassicDB.filter = {};
     end
     SetMinimapDefaults();
     SetLogLevelDefaults();
+    SetFilterDefaults();
 end
 
 function ResetDefaults() 
@@ -120,8 +144,7 @@ frame:RegisterEvent("ADDON_LOADED");
 
 local function eventHandler(self, event, args1, ...)
     if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then        
-        SetDefaults();
-        CheckDataIntegrity();        
+        SetDefaults();              
         CreateMinimapIcon();
         CreateSettingsInterface();
         log("BestInSlotClassic v"..VERSION.." loaded", INFO);

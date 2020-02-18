@@ -22,5 +22,5 @@ INVSLOT_IDX = {
     [20] = "first bag",
     [21] = "second bag",
     [22] = "third bag",
-    [23] = "fourth bag",
+    [23] = "Bag",
 };
