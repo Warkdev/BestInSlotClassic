@@ -68,7 +68,7 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
     end
 
     -- Filter on world boss items.
-    if match and not worldboss and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].WorldBoss then
+    if match and not worldBoss and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].WorldBoss then
       match = false
     end
 
