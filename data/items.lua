@@ -1072,6 +1072,7 @@ BIS_ITEMS[16473] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, Wo
 BIS_ITEMS[16474] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 1 };
 BIS_ITEMS[16475] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 7 };
 BIS_ITEMS[16476] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 3 };
+BIS_ITEMS[16479] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 7 };
 BIS_ITEMS[16494] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 8 };
 BIS_ITEMS[16496] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 10 };
 BIS_ITEMS[16501] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 3 };
@@ -1080,6 +1081,7 @@ BIS_ITEMS[16503] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, Wo
 BIS_ITEMS[16504] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 5 };
 BIS_ITEMS[16508] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 7 };
 BIS_ITEMS[16521] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 1 };
+BIS_ITEMS[16543] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 7 };
 BIS_ITEMS[16549] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 5 };
 BIS_ITEMS[16550] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 1 };
 BIS_ITEMS[16551] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 3 };
@@ -2648,6 +2650,7 @@ BIS_ITEMS[22864] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, Wo
 BIS_ITEMS[22865] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 10 };
 BIS_ITEMS[22867] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 10 };
 BIS_ITEMS[22869] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 10 };
+BIS_ITEMS[22873] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 7 };
 BIS_ITEMS[22874] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 5 };
 BIS_ITEMS[22875] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 7 };
 BIS_ITEMS[22876] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 5 };
@@ -2750,6 +2753,8 @@ BIS_ITEMS[23219] = {Source = "LOOT", Phase = 6.0, PvP = false, Raid = true, Worl
 BIS_ITEMS[23220] = {Source = "LOOT", Phase = 6.0, PvP = false, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 5 };
 BIS_ITEMS[23226] = {Source = "LOOT", Phase = 6.0, PvP = false, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 5 };
 BIS_ITEMS[23237] = {Source = "LOOT", Phase = 6.0, PvP = false, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 11 };
+BIS_ITEMS[23243] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 3 };
+BIS_ITEMS[23244] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 1 };
 BIS_ITEMS[23251] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 1 };
 BIS_ITEMS[23252] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 3 };
 BIS_ITEMS[23253] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 1 };
@@ -2787,6 +2792,7 @@ BIS_ITEMS[23296] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, Wo
 BIS_ITEMS[23297] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 5 };
 BIS_ITEMS[23298] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 5 };
 BIS_ITEMS[23299] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 7 };
+BIS_ITEMS[23301] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 7 };
 BIS_ITEMS[23302] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 7 };
 BIS_ITEMS[23303] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 5 };
 BIS_ITEMS[23304] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 7 };
@@ -2798,6 +2804,8 @@ BIS_ITEMS[23310] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, Wo
 BIS_ITEMS[23311] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 3 };
 BIS_ITEMS[23312] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 1 };
 BIS_ITEMS[23313] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 3 };
+BIS_ITEMS[23314] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 1 };
+BIS_ITEMS[23315] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 3 };
 BIS_ITEMS[23316] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 1 };
 BIS_ITEMS[23317] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 3 };
 BIS_ITEMS[23318] = {Source = "VENDOR", Phase = 2.0, PvP = true, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 1 };
