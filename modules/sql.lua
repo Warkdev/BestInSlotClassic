@@ -31,12 +31,12 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
   for k, value in pairs(BIS_LINKS) do    
     match = true;
     
-    -- Checking if faction must be checked either from the search or from the table.    
-    if faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= faction then      
+    -- Checking if faction must be checked either from the search or from the table.
+    if faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
       match = false;
     end
 
-    -- Checking if race must be checked either from the search of from the table.
+    -- Checking if race must be checked either from the search of from the table.    
     if match and race ~= nil and value.Races ~= nil and not(containsValue(value.Races, race)) then      
       --log("Race does not match", DEBUG);
       match = false;
