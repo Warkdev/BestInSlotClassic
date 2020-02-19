@@ -209,12 +209,10 @@ local function Update()
 
             if idx > minIndex and idx < maxIndex then
                 local item;
-                item = Item:CreateFromItemID(value.ItemId);
-                print("Creating ITEM.. "..value.ItemId.." i "..i);
+                item = Item:CreateFromItemID(value.ItemId);                
                                 
                 _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
-                item:ContinueOnItemLoad(function()
-                    print("ITEM created.. "..value.ItemId.." i "..i);                    
+                item:ContinueOnItemLoad(function()                                  
                     -- Item has been answered from the server.
                     local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
                         itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
