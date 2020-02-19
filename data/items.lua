@@ -123,6 +123,7 @@ BIS_ITEMS[4130] = {Source = "NONE", Phase = 1.0, PvP = false, Raid = false, Worl
 BIS_ITEMS[4197] = {Source = "NONE", Phase = 1.0, PvP = false, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 3 };
 BIS_ITEMS[4327] = {Source = "NONE", Phase = 1.0, PvP = false, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 15 };
 BIS_ITEMS[4329] = {Source = "NONE", Phase = 1.0, PvP = false, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 6 };
+BIS_ITEMS[4332] = {Source = "NONE", Phase = 1.0, PvP = false, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 4 };
 BIS_ITEMS[4446] = {Source = "LOOT", Phase = 1.0, PvP = false, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[4454] = {Source = "LOOT", Phase = 1.0, PvP = false, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[4560] = {Source = "LOOT", Phase = 1.0, PvP = false, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };

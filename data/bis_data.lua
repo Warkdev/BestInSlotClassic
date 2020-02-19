@@ -2559,6 +2559,7 @@ table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 1607, Priority = 32, 
 table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 1714, Priority = 30, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 2243, Priority = 22, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 2816, Priority = 34, OffHand = false, Races = nil, SuffixId = 0 });
+table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 4332, Priority = 1, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 4696, Priority = 32, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 5215, Priority = 27, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 5, SpecId = 1, ItemId = 5216, Priority = 22, OffHand = false, Races = nil, SuffixId = 0 });
