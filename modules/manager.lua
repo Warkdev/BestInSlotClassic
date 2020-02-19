@@ -474,21 +474,11 @@ function ShowManager()
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
         dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", currentPhase);
                 
-        checkboxRaid = CreateCheckBox("cbRaid", "Raid", window, 450, -50, "Include raid items", function(self)
-            if(not checkboxRaid:GetChecked()) then
-                -- Disabling world boss. This goes together.
-                checkboxWorldBoss:SetChecked(false);
-                BestInSlotClassicDB.filter.worldboss = false;
-            end
+        checkboxRaid = CreateCheckBox("cbRaid", "Raid", window, 450, -50, "Include raid items", function(self)            
             BestInSlotClassicDB.filter.raid = checkboxRaid:GetChecked();
             Update();
         end);
-        checkboxWorldBoss = CreateCheckBox("cbWorldBoss", "World Boss", window, 450, -70, "Include World Boss items", function(self)            
-            if(checkboxWorldBoss:GetChecked()) then
-                -- Checking raid. This goes together.
-                checkboxRaid:SetChecked(true);
-                BestInSlotClassicDB.filter.raid = true;
-            end
+        checkboxWorldBoss = CreateCheckBox("cbWorldBoss", "World Boss", window, 450, -70, "Include World Boss items", function(self)                        
             BestInSlotClassicDB.filter.worldboss = checkboxWorldBoss:GetChecked();
             Update();            
         end);
