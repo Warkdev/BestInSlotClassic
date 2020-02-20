@@ -1,4 +1,4 @@
-VERSION = "0.1beta";
+VERSION = "1.0";
 
 local function SetMinimapDefaults()
     if BestInSlotClassicDB.minimap.hide == nil then
