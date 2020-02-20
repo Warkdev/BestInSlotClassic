@@ -13,15 +13,15 @@ Supported lists are:
 - Druid: P1 -) P6
 
 Credit goes to all theorycrafters who provided their sources for the BIS lists, I've only gathered them together into this add-on:
-- Warrior: (Fight Club)(https://discord.gg/fightclub)
-- Paladin: (Paladin Classic)(https://discord.gg/6YS3tH)
-- Hunter: (Hunter Classic)(https://discord.gg/W8Rh7V)
-- Rogue: (Rogue Classic)(https://discord.gg/KwbChG)
-- Priest: (Priest Classic)(https://discord.gg/uHddYR)
-- Shaman: (Shaman Classic)(https://discord.gg/UZNRWc)
-- Mage: (Mage Classic)(https://discord.gg/NeqaE6)
-- Warlock: (Warlock Classic)(https://discord.gg/2mWbw2)
-- Druid: (Druid Classic)(https://discord.gg/NkzzXu)
+- Warrior: [Fight Club](https://discord.gg/fightclub)
+- Paladin: [Paladin Classic](https://discord.gg/6YS3tH)
+- Hunter: [Hunter Classic](https://discord.gg/W8Rh7V)
+- Rogue: [Rogue Classic](https://discord.gg/KwbChG)
+- Priest: [Priest Classic](https://discord.gg/uHddYR)
+- Shaman: [Shaman Classic](https://discord.gg/UZNRWc)
+- Mage: [Mage Classic](https://discord.gg/NeqaE6)
+- Warlock: [Warlock Classic](https://discord.gg/2mWbw2)
+- Druid: [Druid Classic](https://discord.gg/NkzzXu)
 
 Special thanks to all theorycrafter who have shown interest to this project and supported it by providing their agreement to use their spreadsheet as datasource,
 
