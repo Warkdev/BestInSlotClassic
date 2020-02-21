@@ -3,7 +3,7 @@
 local window;
 local visible;
 local currentPhase = "Phase 3";
-local currentPhaseId = 12;
+local currentPhaseId = 3;
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
 local selectedRace, selectedClass, selectedSpec, selectedPhase;
 
