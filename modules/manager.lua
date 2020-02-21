@@ -4,8 +4,8 @@ local window;
 local visible;
 local currentPhase = "Phase 3";
 local currentPhaseId = 3;
-local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
-local selectedRace, selectedClass, selectedSpec, selectedPhase;
+local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase, dropdownPVPRank;
+local selectedRace, selectedClass, selectedSpec, selectedPhase, selectedRank;
 
 local rootPaperDoll = "Interface\\PaperDoll\\";                
 
@@ -124,6 +124,12 @@ local phases = {
     ["ENABLED"] = { true , true      , true     , true      , true     , true     }
     };
 
+local pvpranks = {
+    ["Horde"] = { "Scout", "Grunt", "Sergeant", "Senior Sergeant", "First Sergeant", "Stone Guard", "Blood Guard", "Legionnare", "Centurion", "Champion", "Lieutenant General", "General", "Warlord", "High Warlord" },        
+    ["Alliance"] = { "Private", "Corporal", "Sergeant", "Master Sergeant", "Sergeant Major", "Knight", "Knight-Lieutenant", "Knight-Captain", "Knight-Champion", "Lieutenant Commander", "Commander", "Marshal", "Field Marshal", "Grand Marshal" },    
+    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 }
+}
+
 local function ResetUI()   
     for key, value in pairs(characterFrames.NAME) do        
         for i=1, 3, 1 do
@@ -181,7 +187,7 @@ local function Update()
     log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
     local count = 0;
     
-    temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked(), checkboxRaid:GetChecked(), checkboxWorldBoss:GetChecked(), checkboxPvp:GetChecked());
+    temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked(), checkboxRaid:GetChecked(), checkboxWorldBoss:GetChecked(), checkboxPvp:GetChecked(), selectedRank);
 
     if table.getn(temp) == 0 then
         -- Empty table.
@@ -327,6 +333,16 @@ local function HandlePhaseDropDown(self, arg1, arg2, checked)
     end
 end
 
+local function HandlePvpRankDropDown(self, arg1, arg2, checked)
+    if selectedRank ~= arg2 then        
+        selectedRank = arg2;
+        BestInSlotClassicDB.filter.pvprank = arg2;
+        log("Selected Rank: "..selectedRank.." (value: "..arg1..")", DEBUG);
+        UIDropDownMenu_SetText(dropdownPVPRank, arg1.."");        
+        Update();
+    end
+end
+
 function Initialize_RacesDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();    
 
@@ -387,11 +403,23 @@ function Initialize_PhaseDropDown(frame, level, menuList)
     end
 end
 
+function Initialize_PVPRanksDropDown(frame, level, menuList)
+    local info = UIDropDownMenu_CreateInfo();    
+
+    for idx, value in ipairs(pvpranks[faction]) do
+        info.text, info.arg1, info.arg2 = value, value, pvpranks.VALUE[idx];
+        info.func = HandlePvpRankDropDown;            
+        info.icon = format("%s%02d","Interface\\PvPRankBadges\\PvPRank",idx);
+        UIDropDownMenu_AddButton(info);
+    end
+end
+
 local dropdownInitializer = {
     ["races"] = Initialize_RacesDropDown,
     ["class"] = Initialize_ClassDropDown,
     ["specs"] = Initialize_SpecsDropDown,
     ["phases"] = Initialize_PhaseDropDown,
+    ["pvpranks"] = Initialize_PVPRanksDropDown
 }
 
 function CreateIconFrame(name, parent, width, height, x, y, icon)    
@@ -457,8 +485,8 @@ function ShowManager()
     if window == nil then
         local iconSize = 60;
         local smallIcon = iconSize / 3;
-        visible = false;        
-        selectedRace = RACES_IDX[race];                
+        visible = false;
+        selectedRace = RACES_IDX[race];
         selectedClass = CLASS_IDX[class:lower():gsub("^%l", string.upper)];        
         if spec == "Unknown" then
             selectedSpec = nil;
@@ -466,12 +494,22 @@ function ShowManager()
             selectedSpec = specsFileToSpecs[spec][2];
         end        
         selectedPhase = currentPhaseId;
+        if BestInSlotClassicDB.filter.pvprank == nil then
+            if pvpRank == 0 then
+                selectedRank = 1;
+            else
+                selectedRank = pvpRank - 4;
+            end
+        else
+            selectedRank = BestInSlotClassicDB.filter.pvprank;
+        end        
         window = CreateWindow("BISManager", 1100, 750);        
         window.childFrame = {};        
         dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", race);        
         dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", class);
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
         dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", currentPhase);
+        dropdownPVPRank = CreateDropDownList("ddRanks", window, 200, 450, -140, "pvpranks", pvpranks[faction][selectedRank]);
                 
         checkboxRaid = CreateCheckBox("cbRaid", "Raid", window, 450, -50, "Include raid items", function(self)            
             BestInSlotClassicDB.filter.raid = checkboxRaid:GetChecked();
@@ -487,6 +525,11 @@ function ShowManager()
         end);
         checkboxPvp = CreateCheckBox("cbPvp", "PVP", window, 450, -110, "Include PVP items", function(self)
             BestInSlotClassicDB.filter.pvp = checkboxPvp:GetChecked();
+            if(checkboxPvp:GetChecked()) then
+                UIDropDownMenu_EnableDropDown(dropdownPVPRank);
+            else
+                UIDropDownMenu_DisableDropDown(dropdownPVPRank);
+            end
             Update();
         end);
 
@@ -494,6 +537,11 @@ function ShowManager()
         checkboxWorldBoss:SetChecked(BestInSlotClassicDB.filter.worldboss);
         checkboxTwoHands:SetChecked(BestInSlotClassicDB.filter.twohands);
         checkboxPvp:SetChecked(BestInSlotClassicDB.filter.pvp);
+        if(checkboxPvp:GetChecked()) then
+            UIDropDownMenu_EnableDropDown(dropdownPVPRank);
+        else
+            UIDropDownMenu_DisableDropDown(dropdownPVPRank);
+        end
 
         local startX, startY;
         local offsetX, offsetY;

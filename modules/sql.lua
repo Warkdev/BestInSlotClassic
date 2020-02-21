@@ -14,7 +14,7 @@ function containsValue(t, value)
   return false;
 end
 
-function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp)
+function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp, pvpRank)
   -- Temporary table with matching records.
   local temp = {};
   local result = {};
@@ -72,8 +72,13 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
       match = false
     end
 
-    -- Filter on pvp items.
+    -- Filter on pvp items.    
     if match and not pvp and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].PvP then
+      match = false
+    end
+
+    -- Filter on pvp ranks.
+    if match and pvp and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].PvP and BIS_ITEMS[value.ItemId].PvPRank > pvpRank then
       match = false
     end
 
@@ -81,11 +86,6 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
     if match and twoHands and BIS_ITEMS[value.ItemId].Slot == 17 then
       match = false
     end
-
-    --if match and pvpRank ~= nil and value.PVPRank > pvpRank then
-      -- log("PvP Rank is lower than the record required PvP Rank", DEBUG);      
---      match = false;
-  --  end
 
     if match then             
       empty = false;

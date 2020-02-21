@@ -36,6 +36,10 @@ local function SetFilterDefaults()
     if BestInSlotClassicDB.filter.pvp == nil then
         BestInSlotClassicDB.filter.pvp = true;
     end
+
+    if BestInSlotClassicDB.filter.pvprank == nil then
+        BestInSlotClassicDB.filter.pvprank = 1;
+    end
 end
 
 local function SetDefaults()
