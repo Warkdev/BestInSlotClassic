@@ -26,7 +26,7 @@ local characterFrames = {
 };
 
 local races = {
-    ["Horde"] = { "Orc", "Undead", "Tauren", "Troll" },
+    ["Horde"] = { "Orc", "Scourge", "Tauren", "Troll" },
     ["Alliance"] = { "Human", "Gnome", "Dwarf", "NightElf" }
 };
 
