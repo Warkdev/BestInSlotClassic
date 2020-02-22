@@ -1,3 +1,6 @@
+# v1.0.4 (22/02/2020)
+- Fixing PVP items assignment for AV, WSG and AB reputations. Nice spot Amphétamine :)
+
 # v1.0.3 (22/02/2020)
 - Fixing a bug that made players playing scourge race unable to use the add-on.
 
