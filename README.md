@@ -1,10 +1,15 @@
 # BestInSlotClassic
-BestInSlotClassic is an add-on providing BestInSlot information in-game about best in slot in PvE for each class.
+BestInSlotClassic is an add-on providing BestInSlot information in-game about best in slot in PvE for each class. It provides as well filtering capabilities so that the lists displayed are matching your playing habits:
+- Are you doing raid ? No, disable the checkbox !
+- Are you killing worldboss ? No, disable the checkbox !
+- You want to use 2-handed weapons because big numbers is what matters ? Enable the checkbox !
+- You like pvp ? Disable the checkbox !
+- You're aiming to gear up in pvp but you don't till which rank ? You can define your target rank level !
 
 Supported lists are:
 
 | Class  | Phase 1 | Phase 2 | Phase 3 | Phase 4 | Phase 5 | Phase 6 | 
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | Warrior  | Yes  |  Yes  |  Yes  |  No  | No  | No  |
 | Paladin  | Yes  |  Yes  |  Yes (not for prot)  |  Yes (not for prot)  | Yes (not for prot)  | Yes (not for prot)  |
 | Hunter  | Yes  |  Yes  |  Yes  |  Yes  | Yes  | Yes  |
