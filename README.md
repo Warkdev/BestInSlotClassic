@@ -1,5 +1,5 @@
-# BestInSlotClassic
-BestInSlotClassic is an add-on providing BestInSlot information in-game about best in slot in PvE for each class. It provides as well filtering capabilities so that the lists displayed are matching your playing habits:
+# BestInSlot - Classic
+BestInSlot - Classic is an add-on providing BestInSlot information in-game about best in slot in PvE for each class. It provides as well filtering capabilities so that the lists displayed are matching your playing habits:
 - Are you doing raid ? No, disable the checkbox !
 - Are you killing worldboss ? No, disable the checkbox !
 - You want to use 2-handed weapons because big numbers is what matters ? Enable the checkbox !
