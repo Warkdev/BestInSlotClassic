@@ -1,2 +1,5 @@
-# 21-02-2020
+# 22-02-2020: v1.0.3
+- Fixing a bug that made scourge unable to use the add-on
+
+# 21-02-2020: v1.0.2
 - You can now filter BIS list based on PVP Ranks !

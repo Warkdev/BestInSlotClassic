@@ -1,8 +1,8 @@
 ## Author: Wark @ Auberdine-EU
 ## Interface: 11303
-## Title: Best In Slot Classic - v0.1beta
+## Title: Best In Slot Classic - v1.0.2
 ## Notes: Keep track of your, your raid members and your guilds Best in Slot list!
-## Version: 0.1beta
+## Version: 1.0.2
 ## SavedVariables: BestInSlotClassicDB
 ## SavedVariablesPerCharacter: BestInSlotClassicCharDB
 
