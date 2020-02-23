@@ -11,7 +11,7 @@
  - Helm of the Lifegiver
  - Ahn'Qiraj items
  - Zul'Gurub items
-
+- Removing current BIS list for Rogues and replacing it with data coming from shadowpanther (http://shadowpanther.net/armor-pve.htm)
 
 # v1.0.4 (22-02-2020)
 - Fixing PVP items assignment for AV, WSG and AB reputations. Nice spot Amphétamine :)

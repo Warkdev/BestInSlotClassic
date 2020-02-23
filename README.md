@@ -36,8 +36,8 @@ Credit goes to all theorycrafters who provided their sources for the BIS lists, 
 - Hunter: [Hunter Classic](https://discord.gg/W8Rh7V)
     - Any: [Spreadsheet](https://docs.google.com/spreadsheets/d/1BIlB2P1kyV_QdD4ULQzvZvS6hK6BDouUQkyHQzCvBGI/edit#gid=333718892) by Sixx's (Hunter Classic)
 - Rogue: [Rogue Classic](https://discord.gg/KwbChG)
-    - Swords: [Spreadsheet](https://docs.google.com/spreadsheets/d/1Cx-PFLoVH5xJAuyDIdN0thxiAe19hDFKApcZ10A1FoQ/edit#gid=0) by Ishanu (Rogue Classic)
-    - Daggers: [Spreadsheet](https://docs.google.com/spreadsheets/d/1Cx-PFLoVH5xJAuyDIdN0thxiAe19hDFKApcZ10A1FoQ/edit#gid=0) by Ishanu (Rogue Classic)
+    - Swords: [Spreadsheet](http://shadowpanther.net/armor-pve.htm) by Shadowpanther.net
+    - Daggers: [Spreadsheet](http://shadowpanther.net/armor-pve.htm) by Shadowpanther.net
     - Weapons: [Swords](https://shadowpanther.net/swords-pve.htm) & [Daggers](https://shadowpanther.net/daggers-pve.htm) by Shadowpanther.net
 - Priest: [Priest Classic](https://discord.gg/uHddYR)
     - Holy / Discipline: [Spreadsheet](https://docs.google.com/spreadsheets/d/15heFli2p4yjWeOVR8VtLPM9jIKRlBwlYcjC4BH6gOzw/edit#gid=1052763076) by Mend (Priest Classic)
