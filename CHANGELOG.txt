@@ -1,7 +1,11 @@
-# v1.0.4 (22/02/2020)
+# v1.0.5 (xx-02-2020)
+- Fixing Suffix ID for all items available in the add-on.
+- Fixing Priest Holy trinket (was assigned to the trinket ID of warrior).
+
+# v1.0.4 (22-02-2020)
 - Fixing PVP items assignment for AV, WSG and AB reputations. Nice spot Amphétamine :)
 
-# v1.0.3 (22/02/2020)
+# v1.0.3 (22-02-2020)
 - Fixing a bug that made players playing scourge race unable to use the add-on.
 
 # v1.0.2 (21-02-2020)
