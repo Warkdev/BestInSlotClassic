@@ -1,4 +1,4 @@
-# v1.0.5 (xx-02-2020)
+# v1.0.5 (23-02-2020)
 - Fixing Suffix ID for all items available in the add-on.
 - Fixing Priest Holy trinket (was assigned to the trinket ID of warrior).
 - Fixing categorization of the following items:
