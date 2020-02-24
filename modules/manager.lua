@@ -106,7 +106,7 @@ local specsFileToSpecs = {
     ["RogueDaggers"] = { dataSpecs[4].SPEC[2], dataSpecs[4].VALUE[2] },
     ["PaladinHoly"] = { dataSpecs[2].SPEC[1], dataSpecs[2].VALUE[1] },
     ["PaladinProtection"] = { dataSpecs[2].SPEC[2], dataSpecs[2].VALUE[2] },
-    ["PaladinRetribution"] = { dataSpecs[2].SPEC[3], dataSpecs[2].VALUE[3] },
+    ["PaladinCombat"] = { dataSpecs[2].SPEC[3], dataSpecs[2].VALUE[3] },
     ["Unknown"] = { "Unknown" }
 }
 
