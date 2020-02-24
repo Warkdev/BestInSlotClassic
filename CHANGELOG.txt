@@ -1,4 +1,4 @@
-# 1.0.7 (xx-02-2020)
+# 1.0.7 (24-02-2020)
 - Fixing a bug that made Shaman Elemental unable to use this add-on.
 - Adding raid categoritization for Atiesh.
 - Adding raid categoritization for Thunderfury.
