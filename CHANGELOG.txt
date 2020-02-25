@@ -8,6 +8,7 @@
 - Adding Shaman Restoration Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/shaman-healer-fire-resistance-gear)
 - Adding Shaman Enhancement Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/enhancement-shaman-dps-fire-resistance-gear)
 - Adding Warlock Restoration Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/warlock-dps-fire-resistance-gear)
+- Bugfix: Forcing load of all items at startup to prevent buggy display.
 
 # 1.0.7 (24-02-2020)
 - Fixing a bug that made Shaman Elemental unable to use this add-on.
