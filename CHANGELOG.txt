@@ -1,3 +1,14 @@
+# 1.0.8 (25-02-2020)
+- Adding Paladin Protection Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/protection-paladin-tank-fire-resistance-gear)
+- Adding Paladin Holy Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/retribution-paladin-dps-fire-resistance-gear)
+- Adding Paladin Retribution Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/holy-paladin-healer-fire-resistance-gear)
+- Adding Hunter Fire Resistance Set
+- Adding Rogue Fire Resistance Set (Source: Shadowpanther.net)
+- Adding Priest Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/priest-healer-pve-gear-best-in-slot)
+- Adding Shaman Restoration Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/shaman-healer-fire-resistance-gear)
+- Adding Shaman Enhancement Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/enhancement-shaman-dps-fire-resistance-gear)
+- Adding Warlock Restoration Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/warlock-dps-fire-resistance-gear)
+
 # 1.0.7 (24-02-2020)
 - Fixing a bug that made Shaman Elemental unable to use this add-on.
 - Adding raid categoritization for Atiesh.
