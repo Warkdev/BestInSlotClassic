@@ -1,4 +1,4 @@
-VERSION = "1.0";
+VERSION = "1.0.8";
 
 local function SetMinimapDefaults()
     if BestInSlotClassicDB.minimap.hide == nil then
@@ -151,6 +151,8 @@ local function eventHandler(self, event, args1, ...)
         SetDefaults();              
         CreateMinimapIcon();
         CreateSettingsInterface();
+        -- Attempt to prevent buggy display.
+        LoadAllItems();
         log("BestInSlotClassic v"..VERSION.." loaded", INFO);
     end
 end
