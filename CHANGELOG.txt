@@ -1,3 +1,6 @@
+# 1.0.9 (xx-02-2020)
+- 
+
 # 1.0.8 (25-02-2020)
 - Adding Paladin Protection Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/protection-paladin-tank-fire-resistance-gear)
 - Adding Paladin Holy Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/retribution-paladin-dps-fire-resistance-gear)

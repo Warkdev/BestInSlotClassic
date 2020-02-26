@@ -4,10 +4,17 @@ local window;
 local visible;
 local currentPhase = "Phase 3";
 local currentPhaseId = 3;
+local configDefaultIconSize = 16;
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase, dropdownPVPRank;
 local selectedRace, selectedClass, selectedSpec, selectedPhase, selectedRank;
 
 local rootPaperDoll = "Interface\\PaperDoll\\";                
+
+local coinTexture = {
+	GOLD 		= "Interface\\MoneyFrame\\UI-GoldIcon",
+	SILVER 		= "Interface\\MoneyFrame\\UI-SilverIcon",
+	COPPER		= "Interface\\MoneyFrame\\UI-CopperIcon"	
+}
 
 local characterFrames = { 
     ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds", "Bags" },    
@@ -244,36 +251,97 @@ local function Update()
     
                             tooltip:SetHyperlink(itemLink);                    
                             
-                            local item = BIS_ITEMS[tostring(value.ItemId)];                    
+                            local itemInfo = BIS_ITEMS[value.ItemId];                    
                             
-                            if item == nil or item.Source == nil then
+                            if itemInfo == nil or itemInfo.Source == nil then
                                 log("Error while generating the tooltip for the ItemId "..value.ItemId, DEBUG);
                             else
-                                local source = item.Source;
-                                tooltip:AddLine("\nThis item can be obtained: ");
-                                if source == "Craft" then
-                                    tooltip:AddLine("Source: Craft");
-                                    tooltip:AddLine("Profession: "..PROFESSIONS[item.Info.Profession]);
-                                    tooltip:AddLine("Level: "..item.Info.Level);
-                                    tooltip:AddLine("Recipe Zone: "..item.Zone);
-                                    tooltip:AddLine("NPC: "..item.Info.NPC);
-                                elseif source == "Loot" then
-                                    tooltip:AddLine("Source: Loot");
-                                    tooltip:AddLine("Zone: "..item.Zone);
-                                    tooltip:AddLine("NPC: "..item.Info.NPC);
-                                    tooltip:AddLine("Drop Chance: "..item.Info.Drop);
-                                elseif source == "Vendor" then
-                                    tooltip:AddLine("Source: Vendor");
-                                    tooltip:AddLine("Faction: "..item.Info.Faction);
-                                    tooltip:AddLine("Requirement: "..item.Info.Requirement);
-                                    tooltip:AddLine("Price: "..item.Info.Price);
-                                    if item.Info.Team ~= nil then
-                                        tooltip:AddLine("Team: "..item.Info.Team);
+                                local source = itemInfo.Source;
+                                local details;                                                                
+                                if source == "CRAFT" then
+                                    details = ITEMS_CRAFT[value.ItemId];
+                                    tooltip:AddLine("|T"..PROFESSIONS[details.CraftLabel]..":"..configDefaultIconSize.."|t "..details.CraftLabel.." ("..details.CraftLevel..")");                                    
+                                    --tooltip:AddLine("Recipe Zone: "..itemInfo.Zone);
+                                    --tooltip:AddLine("NPC: "..itemInfo.Info.NPC.."%");
+                                elseif source == "LOOT" then
+                                    details = ITEMS_LOOT[value.ItemId];
+                                    local count = table.getn(details.NPC);
+                                    if(count > 5) then
+                                        count = 5
                                     end
-                                elseif source == "Quest" then
-                                    tooltip:AddLine("Source: Quest");
-                                    tooltip:AddLine("Zone: "..item.Zone);
-                                    tooltip:AddLine("Quest Name: "..item.Info.Name);                        
+                                    local left, right, top, bottom;
+                                    left = 612;
+                                    top = 224;
+                                    right = 644;
+                                    bottom = 256;                                    
+                                    for idl=1, count, 1 do
+                                        local npc = details.NPC[idl];
+                                        if npc.Chance == -1 then                                            
+                                            tooltip:AddLine(npc.Zone.." - "..npc.Name.." (Unknown)");
+                                        else
+                                            tooltip:AddLine(npc.Zone.." - "..npc.Name.." ("..npc.Chance.."%)");
+                                        end                                        
+                                        tooltip:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
+                                    end                                    
+                                elseif source == "VENDOR" then
+                                    details = ITEMS_VENDOR[value.ItemId];
+                                    local count = table.getn(details.NPC);
+                                    if(count > 5) then
+                                        count = 5;
+                                    end
+                                    local left, right, top, bottom;
+                                    left = 580;
+                                    top = 224;
+                                    right = 612;
+                                    bottom = 256;                                    
+                                    for idv=1, count, 1 do
+                                        local npc = details.NPC[idv];
+                                        if npc.Side == nil or npc.Side == faction then
+                                            if npc.Price == nil then
+                                                if npc.Requirement == nil then
+                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." (Unknown) - Unknown price ");
+                                                else
+                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - Unknown price ");
+                                                end
+                                            else
+                                                if npc.Requirement == nil then
+                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." (Unknown) - "..GetMoneyString(npc.Price, true));
+                                                else
+                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - "..GetMoneyString(npc.Price, true));
+                                                end                                            
+                                            end                                        
+                                            tooltip:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
+                                        end
+                                    end                                    
+                                elseif source == "QUEST" then
+                                    details = ITEMS_QUEST[value.ItemId];                                    
+                                    local selectedQuest = nil;
+                                    for idq, quest in pairs(details.Quests) do
+                                        if quest.Side == nil or quest.Side == faction then
+                                            selectedQuest = quest;
+                                        end
+                                    end
+                                    
+                                    if IsQuestFlaggedCompleted(selectedQuest.Id) then
+                                        tooltip:AddLine(selectedQuest.Zone.." - "..selectedQuest.Name.." (done)");
+                                    else
+                                        tooltip:AddLine(selectedQuest.Zone.." - "..selectedQuest.Name);
+                                    end
+                                    
+                                    if selectedQuest.Dungeon then
+                                        tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[81]));
+                                    elseif selectedQuest.Raid then
+                                        tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+                                    else
+                                        tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
+                                    end
+                                    
+                                    --if selectedQuest.Side ~= nil then                                        
+                                    --    tooltip:AddDoubleLine("Quest Name: "..selectedQuest.Name);                                        
+                                    --    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[selectedQuest.Side:upper()]));                                        
+                                    --else
+                                    --    tooltip:AddLine("Quest Name: "..selectedQuest.Name);
+                                    --end
                                 end                                  
                             end      
                                                                     
