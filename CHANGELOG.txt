@@ -1,4 +1,5 @@
-# 1.0.9 (xx-02-2020)
+# 1.5.0 (27-02-2020)
+- Introducing a new major improvement: Source info is now displayed on the item tooltip. Please report back any error that could araise as my database can be corrupted :)
 - Removing Sergeant Major's Cloak as this item is no more available to players.
 - Removing Blood Guard's Dragonhide Boots as this item is no more available to players.
 - Removing Blood Guard's Dragonhide Gauntlets as this item is no more available to players.
@@ -26,6 +27,10 @@
 - Removing Legionnaire's Leather Hauberk as this item is no more available to players.
 - Removing Legionnaire's Leather Leggings as this item is no more available to players.
 - Fixing PVP items assignment for ranking system.
+- Fixing Ward of the Elements assignment to Alliance faction.
+- Fixing Alterac Valley Officer's faction assignment.
+- Assigning Temple of Atal'Hakar NPC to Sunken Temple location instead.
+- Fixing Songstone of Ironforge assignment to Alliance faction.
 
 # 1.0.8 (25-02-2020)
 - Adding Paladin Protection Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/protection-paladin-tank-fire-resistance-gear)

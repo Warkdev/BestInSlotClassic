@@ -342,14 +342,37 @@ local function Update()
                                     --else
                                     --    tooltip:AddLine("Quest Name: "..selectedQuest.Name);
                                     --end
+                                elseif source == "CONTAINER" then
+                                    details = ITEMS_CONTAINER[value.ItemId];
+                                    for idc, container in pairs(details.Containers) do
+                                        tooltip:AddLine("|T"..GetItemIcon(16883)..":"..configDefaultIconSize.."|t "..container.Zone.." - "..container.Name.." ("..container.Chance.."%)");
+                                    end                                    
                                 elseif source == "SULFURAS" then
-                                    tooltip:AddLine("You need to combine The Eye of Sulfuras (13% on Ragnaros) and Sulfuron Hammer (Blacksmithing craft) to create this legendary weapon.");
+                                    local left, right, top, bottom;
+                                    left = 612;
+                                    top = 224;
+                                    right = 644;
+                                    bottom = 256;    
+                                    tooltip:AddLine("Molten Core - Ragnaros - Eye of Sulfuras (13%)")
+                                    tooltip:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
+                                    tooltip:AddLine("|T"..PROFESSIONS["Blacksmithing"]..":"..configDefaultIconSize.."|t |T"..GetItemIcon(17193)..":"..configDefaultIconSize.."|t Blacksmithing - Sulfuron Hammer (300)");                                    
                                 elseif source == "ATIESH" then
-                                    tooltip:AddLine("This is Atiesh");
+                                    tooltip:AddLine("|T"..GetItemIcon(22726)..":"..configDefaultIconSize.."|t 40 Splinter of Atiesh - Naxxramas boss (25%)");
+                                    tooltip:AddLine("Atiesh, the Befouled Greatstaff, collect: ");
+                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+                                    tooltip:AddLine("  |T"..GetItemIcon(22734)..":"..configDefaultIconSize.."|t Base of Atiesh - Temple of Ahn'Qiraj - C'Thun (100%)");
+                                    tooltip:AddLine("  |T"..GetItemIcon(22733)..":"..configDefaultIconSize.."|t Staff Head of Atiesh - Naxxramas - Kel'Thuzad (100%)");
+                                    tooltip:AddLine("Stratholme - Kill Atiesh");
+                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[81]));
                                 elseif source == "THUNDERFURY" then
-                                    tooltip:AddLine("This is Thunderfury");                                    
-                                else
-                                    print(source);
+                                    tooltip:AddLine("|T"..GetItemIcon(18563)..":"..configDefaultIconSize.."|t Bindings of the Windseeker - Molten Core - Baron Geddon (6%)");
+                                    tooltip:AddLine("|T"..GetItemIcon(18563)..":"..configDefaultIconSize.."|t Bindings of the Windseeker - Molten Core - Garr (6%)");
+                                    tooltip:AddLine("Thunderaan the Windseeker, collect: ")
+                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+                                    tooltip:AddLine("  |T"..GetItemIcon(19017)..":"..configDefaultIconSize.."|t Essence of the Firelord - Molten Core - Ragnaros (100%)");
+                                    tooltip:AddLine("  |T"..GetItemIcon(17771)..":"..configDefaultIconSize.."|t 10 Elementium Bars (Requires MC and BWL reagents)");
+                                    tooltip:AddLine("Silithus - Rise, Thunderfury !");
+                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
                                 end                                  
                             end      
                                                                     
