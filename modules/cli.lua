@@ -18,6 +18,7 @@ local function ShowHelp(args)
     log("/bis help : Show this help", INFO);
     log("/bis reset : Reset all add-on settings", INFO);
     log("/bis settings: Define add-on general settings", INFO);        
+    log("/bis version: Displays the add-on version", INFO);        
 end
 
 function HandleLogLevel(args)
@@ -40,6 +41,10 @@ function HandleLogLevel(args)
     
 end
 
+function ShowVersion(args)
+    print("BestInSlot - Classic v"..VERSION);
+end
+
 function PrintVars(args)
     log("Log level: ", BestInSlotClassicDB.loglevel, INFO);
     log("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide, INFO);
@@ -59,7 +64,8 @@ handlers = {
     ["loglevel"] = HandleLogLevel,
     ["help"] = ShowHelp,    
     ["reset"] = Reset,
-    ["vars"] = PrintVars    
+    ["vars"] = PrintVars,
+    ["version"] = ShowVersion
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.
