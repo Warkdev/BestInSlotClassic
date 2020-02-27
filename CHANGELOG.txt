@@ -1,6 +1,7 @@
 # 1.5.1 (xx-02-2020)
 - Adding (finally) a CLI to show the version of the add-on. (/bis version).
 - Removing link with Lieutenant Jackspring for R14 items on Alliance side.
+- Adding (finally) a tooltip on the minimap Icon.
 
 # 1.5.0 (27-02-2020)
 - Introducing a new major improvement: Source info is now displayed on the item tooltip. Please report back any error that could araise as my database can be corrupted :)
