@@ -342,6 +342,14 @@ local function Update()
                                     --else
                                     --    tooltip:AddLine("Quest Name: "..selectedQuest.Name);
                                     --end
+                                elseif source == "SULFURAS" then
+                                    tooltip:AddLine("You need to combine The Eye of Sulfuras (13% on Ragnaros) and Sulfuron Hammer (Blacksmithing craft) to create this legendary weapon.");
+                                elseif source == "ATIESH" then
+                                    tooltip:AddLine("This is Atiesh");
+                                elseif source == "THUNDERFURY" then
+                                    tooltip:AddLine("This is Thunderfury");                                    
+                                else
+                                    print(source);
                                 end                                  
                             end      
                                                                     

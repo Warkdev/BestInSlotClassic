@@ -1399,7 +1399,7 @@ BIS_ITEMS[17110] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = true, WorldBos
 BIS_ITEMS[17111] = {Phase = 2.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = true, TwoHands = false, Faction = nil, Slot = 2, Source = "LOOT" };
 BIS_ITEMS[17112] = {Phase = 2.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = true, TwoHands = false, Faction = nil, Slot = 16, Source = "LOOT" };
 BIS_ITEMS[17113] = {Phase = 2.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = true, TwoHands = true, Faction = nil, Slot = 16, Source = "LOOT" };
-BIS_ITEMS[17182] = {Phase = 2.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "TRASH" };
+BIS_ITEMS[17182] = {Phase = 2.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "SULFURAS" };
 BIS_ITEMS[17193] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "CRAFT" };
 BIS_ITEMS[17523] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 15, Source = "QUEST" };
 BIS_ITEMS[17578] = {Phase = 2.0, PvP = true, PvPRank = 13, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 1, Source = "VENDOR" };
@@ -1727,7 +1727,7 @@ BIS_ITEMS[18877] = {Phase = 2.0, PvP = true, PvPRank = 14, Raid = false, WorldBo
 BIS_ITEMS[18878] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "LOOT" };
 BIS_ITEMS[18879] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 11, Source = "LOOT" };
 BIS_ITEMS[18957] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "QUEST" };
-BIS_ITEMS[19019] = {Phase = 3.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "TRASH" };
+BIS_ITEMS[19019] = {Phase = 3.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "THUNDERFURY" };
 BIS_ITEMS[19024] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 13, Source = "QUEST" };
 BIS_ITEMS[19043] = {Phase = 3.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 6, Source = "CRAFT" };
 BIS_ITEMS[19044] = {Phase = 3.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 6, Source = "CRAFT" };
@@ -2636,9 +2636,9 @@ BIS_ITEMS[22516] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBos
 BIS_ITEMS[22517] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 10, Source = "QUEST" };
 BIS_ITEMS[22518] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 6, Source = "QUEST" };
 BIS_ITEMS[22519] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 9, Source = "QUEST" };
-BIS_ITEMS[22630] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "TRASH" };
-BIS_ITEMS[22631] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "TRASH" };
-BIS_ITEMS[22632] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "TRASH" };
+BIS_ITEMS[22630] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "ATIESH" };
+BIS_ITEMS[22631] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "ATIESH" };
+BIS_ITEMS[22632] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "ATIESH" };
 BIS_ITEMS[22652] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 5, Source = "QUEST" };
 BIS_ITEMS[22654] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 10, Source = "QUEST" };
 BIS_ITEMS[22655] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 9, Source = "QUEST" };
