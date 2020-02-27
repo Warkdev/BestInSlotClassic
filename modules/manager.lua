@@ -305,7 +305,7 @@ local function Update()
                                                 end
                                             else
                                                 if npc.Requirement == nil then
-                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." (Unknown) - "..GetMoneyString(npc.Price, true));
+                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." - "..GetMoneyString(npc.Price, true));
                                                 else
                                                     tooltip:AddLine(npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - "..GetMoneyString(npc.Price, true));
                                                 end                                            

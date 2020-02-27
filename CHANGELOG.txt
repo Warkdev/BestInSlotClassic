@@ -1,5 +1,31 @@
 # 1.0.9 (xx-02-2020)
-- 
+- Removing Sergeant Major's Cloak as this item is no more available to players.
+- Removing Blood Guard's Dragonhide Boots as this item is no more available to players.
+- Removing Blood Guard's Dragonhide Gauntlets as this item is no more available to players.
+- Removing Blood Guard's Leather Treads as this item is no more available to players.
+- Removing Blood Guard's Leather Vices as this item is no more available to players.
+- Removing Champion's Dragonhide Helm as this item is no more available to players.
+- Removing Champion's Dragonhide Spaulders as this item is no more available to players.
+- Removing Champion's Leather Headguard as this item is no more available to players.
+- Removing Champion's Leather Mantle as this item is no more available to players.
+- Removing Champion's Mail Helm as this item is no more available to players.
+- Removing Knight-Lieutenant's Dragonhide Footwraps as this item is no more available to players.
+- Removing Knight-Lieutenant's Dragonhide Gloves as this item is no more available to players.
+- Removing Knight-Lieutenant's Leather Boots as this item is no more available to players.
+- Removing Knight-Lieutenant's Leather Gauntlets as this item is no more available to players.
+- Removing Knight-Captain's Dragonhide Tunic as this item is no more available to players.
+- Removing Knight-Captain's Leather Armor as this item is no more available to players.
+- Removing Knight-Captain's Leather Legguards as this item is no more available to players.
+- Removing Lieutenant Commander's Lamellar Headguard as this item is no more available to players.
+- Removing Lieutenant Commander's Leather Spaulders as this item is no more available to players.
+- Removing Lieutenant Commander's Leather Veil as this item is no more available to players.
+- Removing Lieutenant Commander's Dragonhide Epaulets as this item is no more available to players.
+- Removing Lieutenant Commander's Dragonhide Shroud as this item is no more available to players.
+- Removing Legionnaire's Dragonhide Trousers as this item is no more available to players.
+- Removing Legionnaire's Dragonhide Breastplate as this item is no more available to players.
+- Removing Legionnaire's Leather Hauberk as this item is no more available to players.
+- Removing Legionnaire's Leather Leggings as this item is no more available to players.
+- Fixing PVP items assignment for ranking system.
 
 # 1.0.8 (25-02-2020)
 - Adding Paladin Protection Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/protection-paladin-tank-fire-resistance-gear)
