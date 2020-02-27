@@ -23,7 +23,7 @@ BIS_ITEMS[942] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss
 BIS_ITEMS[943] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "LOOT" };
 BIS_ITEMS[944] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16, Source = "LOOT" };
 BIS_ITEMS[1008] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "QUEST" };
-BIS_ITEMS[1131] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 17, Source = "QUEST" };
+BIS_ITEMS[1131] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 17, Source = "QUEST" };
 BIS_ITEMS[1161] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "QUEST" };
 BIS_ITEMS[1168] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 17, Source = "LOOT" };
 BIS_ITEMS[1219] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "LOOT" };

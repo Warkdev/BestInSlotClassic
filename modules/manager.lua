@@ -323,7 +323,7 @@ local function Update()
                                     end
                                     
                                     if IsQuestFlaggedCompleted(selectedQuest.Id) then
-                                        tooltip:AddLine(selectedQuest.Zone.." - "..selectedQuest.Name.." (done)");
+                                        tooltip:AddLine(selectedQuest.Zone.." - "..selectedQuest.Name.." (completed)");
                                     else
                                         tooltip:AddLine(selectedQuest.Zone.." - "..selectedQuest.Name);
                                     end
