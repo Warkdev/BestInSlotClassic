@@ -31,6 +31,9 @@
 - Fixing Alterac Valley Officer's faction assignment.
 - Assigning Temple of Atal'Hakar NPC to Sunken Temple location instead.
 - Fixing Songstone of Ironforge assignment to Alliance faction.
+- Fixing Magni's Will assignment to Alliance faction.
+- Fixing Thrall's Resolve assignment to Horde faction.
+- Hunter's Quiver should now also be checked properly and be displayed as "obtained" if they are equipped.
 
 # 1.0.8 (25-02-2020)
 - Adding Paladin Protection Fire Resistance Set (Source: https://www.icy-veins.com/wow-classic/protection-paladin-tank-fire-resistance-gear)

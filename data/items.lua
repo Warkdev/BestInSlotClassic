@@ -534,11 +534,11 @@ BIS_ITEMS[12531] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBo
 BIS_ITEMS[12535] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16, Source = "LOOT" };
 BIS_ITEMS[12542] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 5, Source = "LOOT" };
 BIS_ITEMS[12543] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 11, Source = "QUEST" };
-BIS_ITEMS[12544] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 11, Source = "QUEST" };
+BIS_ITEMS[12544] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Horde" }, Slot = 11, Source = "QUEST" };
 BIS_ITEMS[12545] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 11, Source = "QUEST" };
 BIS_ITEMS[12546] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 9, Source = "LOOT" };
 BIS_ITEMS[12547] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 10, Source = "LOOT" };
-BIS_ITEMS[12548] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 11, Source = "QUEST" };
+BIS_ITEMS[12548] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = { "Alliance" }, Slot = 11, Source = "QUEST" };
 BIS_ITEMS[12551] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 15, Source = "LOOT" };
 BIS_ITEMS[12552] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 15, Source = "LOOT" };
 BIS_ITEMS[12553] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 8, Source = "LOOT" };

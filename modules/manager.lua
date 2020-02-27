@@ -164,8 +164,17 @@ function dump(o)
     end
 end
 
+local function characterHasBag(bagName)
+    for i = 1, 4 do
+        if GetBagName(i) == bagName then
+            return true;
+        end
+    end
+    return false;
+end
+
 local function characterHasItem(itemId)
-	local hasItem = false;
+    local hasItem = false;    
 	if IsEquippedItem(itemId) then
 		hasItem = true;
 	else
@@ -232,7 +241,7 @@ local function Update()
                         isCraftingReagent = GetItemInfo("item:"..value.ItemId..":0:0:0:0:0:"..value.SuffixId);
                     
                     if idx > minIndex and idx < maxIndex then
-                        if characterHasItem(value.ItemId) then
+                        if characterHasItem(value.ItemId) or characterHasBag(itemName) then
                             _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
                         else
                             _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
