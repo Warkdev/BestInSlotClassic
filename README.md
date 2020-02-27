@@ -3,7 +3,7 @@ BestInSlot - Classic is an add-on providing BestInSlot information in-game about
 - Are you doing raid ? No, disable the checkbox !
 - Are you killing worldboss ? No, disable the checkbox !
 - You want to use 2-handed weapons because big numbers is what matters ? Enable the checkbox !
-- You like pvp ? Disable the checkbox !
+- You like pvp ? Enable the checkbox !
 - You're aiming to gear up in pvp but you don't till which rank ? You can define your target rank level !
 
 Supported lists are:
