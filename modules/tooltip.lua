@@ -168,23 +168,23 @@ function BIS_OnTooltipSetItem(frame)
         -- Arcanum of Rapidity
         BIS_TOOLTIP:AddLine("Libram of Rapidity - Lorekeeper Lydros - Dire Maul");
         BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11754)..":"..bis_defaultIconSize.."|t 1 Black Diamond - Blackrock Depths drop (5%)");
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(8411)..":"..bis_defaultIconSize.."|t 1 Lung Juice Cocktail - Quest - A Boar's Vitality - Blasted Lands");
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11733)..":"..bis_defaultIconSize.."|t 1 Libram of Constitution - World Drop - Zone 48-60");
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11952)..":"..bis_defaultIconSize.."|t 4 Night Dragon's Breath - Contained in Plants - Felwood");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18335)..":"..bis_defaultIconSize.."|t 1 Pristine Black Diamond - Blackrock Depths drop (5%)");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(14344)..":"..bis_defaultIconSize.."|t 2 Large Brilliant Shard - Disenchanting Blue items");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18332)..":"..bis_defaultIconSize.."|t 1 Libram of Rapidity - Dire Maul (2%)");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(12938)..":"..bis_defaultIconSize.."|t 2 Blond of Heroes - Contained in Blood of Heroes - Eastern and Western Plaguelands");
     elseif ItemId == 18330 then
         -- Arcanum of Focus
         BIS_TOOLTIP:AddLine("Libram of Focus - Lorekeeper Lydros - Dire Maul");
         BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11754)..":"..bis_defaultIconSize.."|t 1 Black Diamond - Blackrock Depths drop (5%)");
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(8411)..":"..bis_defaultIconSize.."|t 1 Lung Juice Cocktail - Quest - A Boar's Vitality - Blasted Lands");
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11733)..":"..bis_defaultIconSize.."|t 1 Libram of Constitution - World Drop - Zone 48-60");
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11952)..":"..bis_defaultIconSize.."|t 4 Night Dragon's Breath - Contained in Plants - Felwood");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18335)..":"..bis_defaultIconSize.."|t 1 Pristine Black Diamond - Blackrock Depths drop (5%)");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(14344)..":"..bis_defaultIconSize.."|t 4 Large Brilliant Shard - Disenchanting Blue items");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18333)..":"..bis_defaultIconSize.."|t 1 Libram of Focus - Dire Maul (2%)");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(12753)..":"..bis_defaultIconSize.."|t 2 Skin of Shadow - Scholomance (5%)");
     elseif ItemId == 18331 then
         -- Arcanum of Protection
         BIS_TOOLTIP:AddLine("Libram of Protection - Lorekeeper Lydros - Dire Maul");
         BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
-        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18335)..":"..bis_defaultIconSize.."|t 1 Pristine Black Diamond - Dungeon drop (<1%)");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18335)..":"..bis_defaultIconSize.."|t 1 Pristine Black Diamond - Blackrock Depths drop (5%)");
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(14344)..":"..bis_defaultIconSize.."|t 2 Large Brilliant Shard - Disenchanting Blue items");
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18334)..":"..bis_defaultIconSize.."|t 1 Libram of Protection - Dire Maul (2%)");
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11952)..":"..bis_defaultIconSize.."|t 1 Frayed Abomination Stitching - Abominations - Stratholme (25%)");
