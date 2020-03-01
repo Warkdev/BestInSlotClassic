@@ -216,7 +216,7 @@ local function Update()
                     item = Item:CreateFromItemID(ItemId);                    
                     item:ContinueOnItemLoad(function()                        
                         local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
-                            itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(BIS_ENCHANT[value.EnchantId].ItemId);                                         
+                            itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(BIS_ENCHANT[value.EnchantId].ItemId);                            
                         _G["frame_"..INVSLOT_IDX[i].."s_"..idx.."_ENCHANT_ICON"]:SetTexture(GetItemIcon(BIS_ENCHANT[value.EnchantId].ItemId));
 
                         _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnMouseDown", function(self,button)                                                
