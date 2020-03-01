@@ -2,19 +2,14 @@
 
 local window;
 local visible;
-local currentPhase = "Phase 3";
-local currentPhaseId = 3;
-local configDefaultIconSize = 16;
 local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase, dropdownPVPRank;
 local selectedRace, selectedClass, selectedSpec, selectedPhase, selectedRank;
 
 local rootPaperDoll = "Interface\\PaperDoll\\";                
 
-local coinTexture = {
-	GOLD 		= "Interface\\MoneyFrame\\UI-GoldIcon",
-	SILVER 		= "Interface\\MoneyFrame\\UI-SilverIcon",
-	COPPER		= "Interface\\MoneyFrame\\UI-CopperIcon"	
-}
+local enchantIcon = GetSpellTexture(20036);
+local iconpath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-Classes";
+local iconCutoff = 6;
 
 local characterFrames = { 
     ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds", "Bags" },    
@@ -29,7 +24,8 @@ local characterFrames = {
     },
     ["ICON_ALIGNMENT"] = {
         "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "TOP", "RIGHT", "LEFT"
-    }
+    },
+    ["ENCHANT"] = { true, false, true, true, true, false, false, true, true, false, true, true, false, false, false, false, true, true, true, false }
 };
 
 local races = {
@@ -138,7 +134,12 @@ local pvpranks = {
 }
 
 local function ResetUI()   
-    for key, value in pairs(characterFrames.NAME) do        
+    for key, value in pairs(characterFrames.NAME) do
+        if characterFrames.ENCHANT[key] then
+            for i=1, 2, 1 do                
+                _G["frame_"..value.."_"..i.."_ENCHANT_ICON"]:SetTexture(nil);                
+            end
+        end
         for i=1, 3, 1 do
             _G["frame_"..value.."_"..i.."_CHECK_ICON"]:SetTexture(nil);
             _G["frame_"..value.."_"..i.."_ICON"]:SetTexture(rootPaperDoll..characterFrames.ICON[key]);            
@@ -146,21 +147,6 @@ local function ResetUI()
             _G["ItemFrame_"..value.."_"..i]:SetScript("OnEnter", nil);
             _G["ItemFrame_"..value.."_"..i]:SetScript("OnLeave", nil);            
         end        
-    end
-end
-
-function dump(o)
-    if type(o) == 'table' then
-        local s = '{ ';
-        for k,v in pairs(o) do
-            if type(k) ~= 'number' then 
-                k = '"'..k..'"';
-            end
-            s = s .. '['..k..'] = ' .. dump(v) .. ',';
-        end
-        return s .. '} ';
-    else
-       return tostring(o);
     end
 end
 
@@ -190,7 +176,7 @@ local function characterHasItem(itemId)
 	return hasItem;
 end
 
-local function Update()
+local function Update()    
     if selectedRace == nil or selectedClass == nil or selectedSpec == nil or selectedPhase == nil then
         -- Nothing to be updated.
         return;
@@ -200,19 +186,68 @@ local function Update()
     -- Reset Icons.
     ResetUI();
 
-    log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
+    bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
     local count = 0;
     
     temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked(), checkboxRaid:GetChecked(), checkboxWorldBoss:GetChecked(), checkboxPvp:GetChecked(), selectedRank);
+    
+    bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
+    temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked());
 
-    if table.getn(temp) == 0 then
+    if table.getn(temp) == 0 and table.getn(temp_enchant) == 0 then
         -- Empty table.
         return;
     end
 
     local minIndex, maxIndex;
-    local temp_slot;
+    local temp_slot;        
+    local item;
+
     for i = 1, table.getn(INVSLOT_IDX), 1 do
+        -- First, we set the enchantments for the given slot.        
+        if(temp_enchant[i] ~= nil) then        
+            for idx, value in pairs(temp_enchant[i]) do
+                if idx > 2 then
+                    break;
+                end
+                
+                if BIS_ENCHANT[value.EnchantId].Source == "ITEM" then
+                    local ItemId = BIS_ENCHANT[value.EnchantId].ItemId;                    
+                    item = Item:CreateFromItemID(ItemId);                    
+                    item:ContinueOnItemLoad(function()                        
+                        local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
+                            itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(BIS_ENCHANT[value.EnchantId].ItemId);                                         
+                        _G["frame_"..INVSLOT_IDX[i].."s_"..idx.."_ENCHANT_ICON"]:SetTexture(GetItemIcon(BIS_ENCHANT[value.EnchantId].ItemId));
+
+                        _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnMouseDown", function(self,button)                                                
+                            SetItemRef(itemLink, itemLink, "LeftButton");                        
+                        end);
+                        _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnEnter", function(self)                            
+                            BIS_TOOLTIP:SetOwner(_G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]);
+                            BIS_TOOLTIP:SetPoint("TOPLEFT", _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx], "TOPRIGHT", 220, -13);
+        
+                            BIS_TOOLTIP:SetHyperlink(itemLink);
+                        end);
+                    end);
+                elseif BIS_ENCHANT[value.EnchantId].Source == "SPELL" then
+                    local name = GetSpellInfo(value.EnchantId);
+                    local link = "|cffffffff|Henchant:" .. value.EnchantId .."|h[" .. name .."]|h|r";
+                    _G["frame_"..INVSLOT_IDX[i].."s_"..idx.."_ENCHANT_ICON"]:SetTexture(GetSpellTexture(value.EnchantId));
+                    _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnMouseDown", function(self,button)                                                                                                                    
+                        ChatFrame1EditBox:SetText(ChatFrame1EditBox:GetText()..link);                        
+                    end)  
+                    _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnEnter", function(self)                        
+                        BIS_TOOLTIP:SetOwner(_G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]);
+                        BIS_TOOLTIP:SetPoint("TOPLEFT", _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx], "TOPRIGHT", 220, -13);    
+                        BIS_TOOLTIP:SetHyperlink(link);
+                    end);                    
+                end
+                _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnLeave", function(self)                    
+                    BIS_TOOLTIP:Hide();
+                end);
+            end
+        end                
+
         temp_slot = i;
         minIndex = 0;
         maxIndex = 4;
@@ -229,18 +264,25 @@ local function Update()
         end
         for idx, value in pairs(temp[temp_slot]) do                                   
 
-            if idx > minIndex and idx < maxIndex then
-                local item;
-                item = Item:CreateFromItemID(value.ItemId);                
+            if idx > minIndex and idx < maxIndex then                
+                item = Item:CreateFromItemID(value.ItemId);
                                 
                 _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
-                item:ContinueOnItemLoad(function()                                  
-                    -- Item has been answered from the server.
-                    local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+                item:ContinueOnItemLoad(function()                    
+                    if INVSLOT_IDX[i] == "OffTrinket" or INVSLOT_IDX[i] == "OffRing" then
+                        minIndex = 3;
+                        maxIndex = 7;
+                    else
+                        minIndex = 0;
+                        maxIndex = 4;
+                    end
+                    bis_log(INVSLOT_IDX[i].." - MinIndex: "..minIndex.." - MaxIndex: "..maxIndex, DEBUG);
+                    -- Item has been answered from the server.                                                            
+                    if idx > minIndex and idx < maxIndex then
+                        local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
                         itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
                         isCraftingReagent = GetItemInfo("item:"..value.ItemId..":0:0:0:0:0:"..value.SuffixId);
-                    
-                    if idx > minIndex and idx < maxIndex then
+
                         if characterHasItem(value.ItemId) or characterHasBag(itemName) then
                             _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
                         else
@@ -253,142 +295,14 @@ local function Update()
                                 SetItemRef(itemLink, itemLink, "LeftButton");
                             end
                         end)                    
-                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                        
-                            local tooltip = _G["frame"..INVSLOT_IDX[i].."s_"..self.index.."_TOOLTIP"];                        
-                            tooltip:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index]);
-                            tooltip:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index], "TOPRIGHT", 220, -13);
+                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                                                    
+                            BIS_TOOLTIP:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index]);
+                            BIS_TOOLTIP:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index], "TOPRIGHT", 220, -13);
     
-                            tooltip:SetHyperlink(itemLink);                    
-                            
-                            local itemInfo = BIS_ITEMS[value.ItemId];                    
-                            
-                            if itemInfo == nil or itemInfo.Source == nil then
-                                log("Error while generating the tooltip for the ItemId "..value.ItemId, DEBUG);
-                            else
-                                local source = itemInfo.Source;
-                                local details;                                                                
-                                if source == "CRAFT" then
-                                    details = ITEMS_CRAFT[value.ItemId];
-                                    tooltip:AddLine("|T"..PROFESSIONS[details.CraftLabel]..":"..configDefaultIconSize.."|t "..details.CraftLabel.." ("..details.CraftLevel..")");                                    
-                                    --tooltip:AddLine("Recipe Zone: "..itemInfo.Zone);
-                                    --tooltip:AddLine("NPC: "..itemInfo.Info.NPC.."%");
-                                elseif source == "LOOT" then
-                                    details = ITEMS_LOOT[value.ItemId];
-                                    local count = table.getn(details.NPC);
-                                    if(count > 5) then
-                                        count = 5
-                                    end
-                                    local left, right, top, bottom;
-                                    left = 612;
-                                    top = 224;
-                                    right = 644;
-                                    bottom = 256;                                    
-                                    for idl=1, count, 1 do
-                                        local npc = details.NPC[idl];
-                                        if npc.Chance == -1 then                                            
-                                            tooltip:AddLine(npc.Zone.." - "..npc.Name.." (Unknown)");
-                                        else
-                                            tooltip:AddLine(npc.Zone.." - "..npc.Name.." ("..npc.Chance.."%)");
-                                        end                                        
-                                        tooltip:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
-                                    end                                    
-                                elseif source == "VENDOR" then
-                                    details = ITEMS_VENDOR[value.ItemId];
-                                    local count = table.getn(details.NPC);
-                                    if(count > 5) then
-                                        count = 5;
-                                    end
-                                    local left, right, top, bottom;
-                                    left = 580;
-                                    top = 224;
-                                    right = 612;
-                                    bottom = 256;                                    
-                                    for idv=1, count, 1 do
-                                        local npc = details.NPC[idv];
-                                        if npc.Side == nil or npc.Side == faction then
-                                            if npc.Price == nil then
-                                                if npc.Requirement == nil then
-                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." (Unknown) - Unknown price ");
-                                                else
-                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - Unknown price ");
-                                                end
-                                            else
-                                                if npc.Requirement == nil then
-                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." - "..GetMoneyString(npc.Price, true));
-                                                else
-                                                    tooltip:AddLine(npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - "..GetMoneyString(npc.Price, true));
-                                                end                                            
-                                            end                                        
-                                            tooltip:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
-                                        end
-                                    end                                    
-                                elseif source == "QUEST" then
-                                    details = ITEMS_QUEST[value.ItemId];                                    
-                                    local selectedQuest = nil;
-                                    for idq, quest in pairs(details.Quests) do
-                                        if quest.Side == nil or quest.Side == faction then
-                                            selectedQuest = quest;
-                                        end
-                                    end
-                                    
-                                    if IsQuestFlaggedCompleted(selectedQuest.Id) then
-                                        tooltip:AddLine(selectedQuest.Zone.." - "..selectedQuest.Name.." (completed)");
-                                    else
-                                        tooltip:AddLine(selectedQuest.Zone.." - "..selectedQuest.Name);
-                                    end
-                                    
-                                    if selectedQuest.Dungeon then
-                                        tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[81]));
-                                    elseif selectedQuest.Raid then
-                                        tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
-                                    else
-                                        tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
-                                    end
-                                    
-                                    --if selectedQuest.Side ~= nil then                                        
-                                    --    tooltip:AddDoubleLine("Quest Name: "..selectedQuest.Name);                                        
-                                    --    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[selectedQuest.Side:upper()]));                                        
-                                    --else
-                                    --    tooltip:AddLine("Quest Name: "..selectedQuest.Name);
-                                    --end
-                                elseif source == "CONTAINER" then
-                                    details = ITEMS_CONTAINER[value.ItemId];
-                                    for idc, container in pairs(details.Containers) do
-                                        tooltip:AddLine("|T"..GetItemIcon(16883)..":"..configDefaultIconSize.."|t "..container.Zone.." - "..container.Name.." ("..container.Chance.."%)");
-                                    end                                    
-                                elseif source == "SULFURAS" then
-                                    local left, right, top, bottom;
-                                    left = 612;
-                                    top = 224;
-                                    right = 644;
-                                    bottom = 256;    
-                                    tooltip:AddLine("Molten Core - Ragnaros - Eye of Sulfuras (13%)")
-                                    tooltip:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
-                                    tooltip:AddLine("|T"..PROFESSIONS["Blacksmithing"]..":"..configDefaultIconSize.."|t |T"..GetItemIcon(17193)..":"..configDefaultIconSize.."|t Blacksmithing - Sulfuron Hammer (300)");                                    
-                                elseif source == "ATIESH" then
-                                    tooltip:AddLine("|T"..GetItemIcon(22726)..":"..configDefaultIconSize.."|t 40 Splinter of Atiesh - Naxxramas boss (25%)");
-                                    tooltip:AddLine("Atiesh, the Befouled Greatstaff, collect: ");
-                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
-                                    tooltip:AddLine("  |T"..GetItemIcon(22734)..":"..configDefaultIconSize.."|t Base of Atiesh - Temple of Ahn'Qiraj - C'Thun (100%)");
-                                    tooltip:AddLine("  |T"..GetItemIcon(22733)..":"..configDefaultIconSize.."|t Staff Head of Atiesh - Naxxramas - Kel'Thuzad (100%)");
-                                    tooltip:AddLine("Stratholme - Kill Atiesh");
-                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[81]));
-                                elseif source == "THUNDERFURY" then
-                                    tooltip:AddLine("|T"..GetItemIcon(18563)..":"..configDefaultIconSize.."|t Bindings of the Windseeker - Molten Core - Baron Geddon (6%)");
-                                    tooltip:AddLine("|T"..GetItemIcon(18563)..":"..configDefaultIconSize.."|t Bindings of the Windseeker - Molten Core - Garr (6%)");
-                                    tooltip:AddLine("Thunderaan the Windseeker, collect: ")
-                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
-                                    tooltip:AddLine("  |T"..GetItemIcon(19017)..":"..configDefaultIconSize.."|t Essence of the Firelord - Molten Core - Ragnaros (100%)");
-                                    tooltip:AddLine("  |T"..GetItemIcon(17771)..":"..configDefaultIconSize.."|t 10 Elementium Bars (Requires MC and BWL reagents)");
-                                    tooltip:AddLine("Silithus - Rise, Thunderfury !");
-                                    tooltip:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
-                                end                                  
-                            end      
-                                                                    
-                            tooltip:Show();
-                        end);                
+                            BIS_TOOLTIP:SetHyperlink(itemLink);
+                        end);
                         _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
-                            _G["frame"..INVSLOT_IDX[i].."s_"..self.index.."_TOOLTIP"]:Hide();                    
+                            BIS_TOOLTIP:Hide();                                            
                         end);                
                     end
                 end);
@@ -402,7 +316,7 @@ end
 local function HandleRacesDropDown(self, arg1, arg2, checked)
     if selectedRace ~= arg2 then
         selectedRace = arg2;
-        log("Selected Race: "..selectedRace.." (value: "..arg1..")", DEBUG);
+        bis_log("Selected Race: "..selectedRace.." (value: "..arg1..")", DEBUG);
         UIDropDownMenu_SetText(dropdownRace, arg1);
         UIDropDownMenu_SetText(dropdownClass, dropdownText["class"]);
         selectedClass = nil;        
@@ -415,7 +329,7 @@ end
 local function HandleClassDropDown(self, arg1, arg2, checked)
     if selectedClass ~= arg2 then
         selectedClass = arg2;
-        log("Selected Class: "..selectedClass.." (value: "..arg1..")", DEBUG);
+        bis_log("Selected Class: "..selectedClass.." (value: "..arg1..")", DEBUG);
         UIDropDownMenu_SetText(dropdownClass, arg1);
         UIDropDownMenu_SetText(dropdownSpec, dropdownText["specs"]);
         selectedSpec = nil;
@@ -426,7 +340,7 @@ end
 local function HandleSpecDropDown(self, arg1, arg2, checked)
     if selectedSpec ~= arg2 then
         selectedSpec = arg2;
-        log("Selected Spec: "..selectedSpec.." (value: "..arg1..")", DEBUG);
+        bis_log("Selected Spec: "..selectedSpec.." (value: "..arg1..")", DEBUG);
         UIDropDownMenu_SetText(dropdownSpec, arg1);
         Update();
     end
@@ -435,7 +349,7 @@ end
 local function HandlePhaseDropDown(self, arg1, arg2, checked)
     if selectedPhase ~= arg2 then
         selectedPhase = arg2;
-        log("Selected Phase: "..selectedPhase.." (value: "..arg1..")", DEBUG);
+        bis_log("Selected Phase: "..selectedPhase.." (value: "..arg1..")", DEBUG);
         UIDropDownMenu_SetText(dropdownPhase, arg1);
         Update();
     end
@@ -445,7 +359,7 @@ local function HandlePvpRankDropDown(self, arg1, arg2, checked)
     if selectedRank ~= arg2 then        
         selectedRank = arg2;
         BestInSlotClassicDB.filter.pvprank = arg2;
-        log("Selected Rank: "..selectedRank.." (value: "..arg1..")", DEBUG);
+        bis_log("Selected Rank: "..selectedRank.." (value: "..arg1..")", DEBUG);
         UIDropDownMenu_SetText(dropdownPVPRank, arg1.."");        
         Update();
     end
@@ -455,7 +369,7 @@ function Initialize_RacesDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();    
 
     if races[faction] == nil then
-        log("Error while creating the races drop down", ERROR);
+        bis_log("Error while creating the races drop down", ERROR);
         return;
     end    
 
@@ -471,7 +385,7 @@ function Initialize_ClassDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();        
 
     if classes[selectedRace].CLASS == nil then
-        log("Error while creating the class drop down", ERROR);
+        bis_log("Error while creating the class drop down", ERROR);
         return;
     end    
 
@@ -487,7 +401,7 @@ function Initialize_SpecsDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();    
         
     if selectedClass == nil or dataSpecs[selectedClass].SPEC == nil then
-        log("Error while creating the specs drop down", ERROR);
+        bis_log("Error while creating the specs drop down", ERROR);
         return;
     end    
 
@@ -558,15 +472,6 @@ function CreateTextFrame(name, parent, width, height, x, y, justify)
     return frame;
 end
 
-function CreateGameTooltip(name, parent)
-    local tooltip = CreateFrame( "GameTooltip", "frame"..name, parent, "GameTooltipTemplate" );    
-    
-    tooltip:SetOwner(parent);
-    tooltip:SetPoint("TOPLEFT", parent, "TOPRIGHT", 220, -13);
-    
-    return tooltip;
-end
-
 function CreateDropDownList(name, parent, width, x, y, items, defaultText)
     local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");    
     local text = defaultText:lower();
@@ -584,7 +489,7 @@ function CreateDropDownList(name, parent, width, x, y, items, defaultText)
     return dropdown;
 end
 
-function ShowManager()
+function ShowManager()    
     -- We load player info now because it can evolve regarding talents.
     -- There's also a bug that makes the num talent tab being at 0 after addon_loaded on start.
     LoadPlayerInfo();
@@ -601,7 +506,7 @@ function ShowManager()
         else
             selectedSpec = specsFileToSpecs[spec][2];
         end        
-        selectedPhase = currentPhaseId;
+        selectedPhase = bis_currentPhaseId;
         if BestInSlotClassicDB.filter.pvprank == nil then
             if pvpRank == 0 then
                 selectedRank = 1;
@@ -612,11 +517,15 @@ function ShowManager()
             selectedRank = BestInSlotClassicDB.filter.pvprank;
         end        
         window = CreateWindow("BISManager", 1100, 750);        
-        window.childFrame = {};        
+        window.childFrame = {};
+        window.enchantFrame = {};
+
+        BIS_TOOLTIP = BIS_CreateGameTooltip("BIS_TOOLTIP", window);
+
         dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", race);        
         dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", class);
         dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
-        dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", currentPhase);
+        dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", bis_currentPhase);
         dropdownPVPRank = CreateDropDownList("ddRanks", window, 200, 450, -140, "pvpranks", pvpranks[faction][selectedRank]);
                 
         checkboxRaid = CreateCheckBox("cbRaid", "Raid", window, 450, -50, "Include raid items", function(self)            
@@ -658,6 +567,7 @@ function ShowManager()
         local textOffsetX, textOffsetY, textJustify;
         for i = 1, table.getn(characterFrames.NAME), 1 do            
             window.childFrame[i] = {};
+            window.enchantFrame[i] = {};
             if characterFrames.FRAME_ALIGNMENT[i] == "LEFT" then
                 startX = 20;
                 startY = -45 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));                
@@ -670,6 +580,25 @@ function ShowManager()
             end
             
             CreateIconFrame("IconFrame_"..characterFrames.NAME[i], window, iconSize, iconSize, startX, startY, rootPaperDoll..characterFrames.ICON[i]);                                
+            
+            if characterFrames.ENCHANT[i] then
+                for j = 1, 2 do                    
+                    window.enchantFrame[i][j] = CreateFrame("Frame", "EnchantFrame_"..characterFrames.NAME[i].."_"..j, window);                    
+                    window.enchantFrame[i][j]:SetSize(17,17);                    
+                    if characterFrames.ICON_ALIGNMENT[i] == "RIGHT" then
+                        offsetX = iconSize - smallIcon;
+                        offsetY = (iconSize - smallIcon) * (j - 1);
+                    elseif characterFrames.ICON_ALIGNMENT[i] == "LEFT" then
+                        offsetX = 0;
+                        offsetY = (iconSize - smallIcon) * (j - 1);
+                    else                          
+                        offsetX = (iconSize - smallIcon) * (j - 1);
+                        offsetY = 0;
+                    end
+                    window.enchantFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY - offsetY);
+                    CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_ENCHANT", window.enchantFrame[i][j], smallIcon, smallIcon, 0, 0, nil);                    
+                end
+            end
 
             for j = 1, 3, 1 do                
                 window.childFrame[i][j] = CreateFrame("Frame", "ItemFrame_"..characterFrames.NAME[i].."_"..j, window);                
@@ -709,8 +638,7 @@ function ShowManager()
                 window.childFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY + offsetY);
                 CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_CHECK", window.childFrame[i][j], smallIcon, smallIcon, checkOffsetX, checkOffsetY, nil);
                 CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j, window.childFrame[i][j], smallIcon, smallIcon, iconOffsetX, iconOffsetY, rootPaperDoll..characterFrames.ICON[i]);
-                CreateTextFrame(characterFrames.NAME[i].."_"..j, window.childFrame[i][j], 180, smallIcon, textOffsetX, textOffsetY, textJustify);                
-                CreateGameTooltip(characterFrames.NAME[i].."_"..j.."_TOOLTIP", window.childFrame[i][j]);                
+                CreateTextFrame(characterFrames.NAME[i].."_"..j, window.childFrame[i][j], 180, smallIcon, textOffsetX, textOffsetY, textJustify);                                
             end            
 
         end        

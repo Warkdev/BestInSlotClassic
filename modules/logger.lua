@@ -12,7 +12,7 @@ local function report(message)
     print(message);
 end
 
-function log(msg, level)
+function bis_log(msg, level)
     local loglevel = tonumber(level);
     local color;
     if loglevel < ERROR then

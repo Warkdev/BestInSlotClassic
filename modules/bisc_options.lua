@@ -16,7 +16,7 @@ local function HandleLogLevelDropDown(self, arg1, arg2, checked)
     
     level[args]();
     UIDropDownMenu_SetText(loglevelDropdown, BestInSlotClassicDB.loglevel);
-    log("Log level set to: "..BestInSlotClassicDB.loglevel, INFO);
+    bis_log("Log level set to: "..BestInSlotClassicDB.loglevel, INFO);
 end
 
 function Initialize_LogLevelDropDown(frame, level, menuList)

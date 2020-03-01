@@ -1,5 +1,3 @@
-VERSION = "1.5.0";
-
 local function SetMinimapDefaults()
     if BestInSlotClassicDB.minimap.hide == nil then
         BestInSlotClassicDB.minimap.hide = false;
@@ -93,7 +91,7 @@ function LoadPlayerInfo()
     -- There are some specificities like druids (4 specs), rogue (2 specs-type although they are not spec).
     local numTalentTabs = GetNumTalentTabs();    
 
-    log("Num Talent Tabs: "..numTalentTabs, DEBUG);    
+    bis_log("Num Talent Tabs: "..numTalentTabs, DEBUG);    
 
     for idx=1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
@@ -101,7 +99,7 @@ function LoadPlayerInfo()
             spec = fileName;
             maxPoints = tonumber(pointsSpent);
         end        
-        log(name..": "..pointsSpent..", "..fileName, DEBUG);        
+        bis_log(name..": "..pointsSpent..", "..fileName, DEBUG);        
     end
     if class == "DRUID" and spec == "DruidFeralCombat" then
         -- Need to find out whether it's a Feral Tank or DPS.
@@ -130,16 +128,16 @@ function LoadPlayerInfo()
         end
     end
 
-    log("Your spec is: "..spec, DEBUG);
+    bis_log("Your spec is: "..spec, DEBUG);
 end
 
 function PrintPlayerInfo()    
-    log("Player name: "..name, DEBUG);
-    log("Player faction: "..faction, DEBUG);
-    log("Player race: "..race, DEBUG);
-    log("Player class: "..class, DEBUG);
-    log("Player PvP Rank: "..pvpRank, DEBUG);
-    log("Player Spec: "..spec, DEBUG);
+    bis_log("Player name: "..name, DEBUG);
+    bis_log("Player faction: "..faction, DEBUG);
+    bis_log("Player race: "..race, DEBUG);
+    bis_log("Player class: "..class, DEBUG);
+    bis_log("Player PvP Rank: "..pvpRank, DEBUG);
+    bis_log("Player Spec: "..spec, DEBUG);
 end
 
 -- Creating Event Frame.
@@ -158,7 +156,7 @@ local function eventHandler(self, event, args1, ...)
         -- Attempt to prevent buggy display.
         LoadAllItems();
         GameTooltip:HookScript( "OnTooltipSetItem", ModifyItemTooltip )
-        log("BestInSlotClassic v"..VERSION.." loaded", INFO);
+        bis_log("BestInSlotClassic v"..VERSION.." loaded", INFO);
     end
 end
 

@@ -12,13 +12,13 @@ function OpenConfigPane(args)
 end
 
 local function ShowHelp(args)
-    log("BestInSlotClassic usage: ", INFO);
-    log("/bis : Configure the add-on", INFO);
-    log("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", INFO);    
-    log("/bis help : Show this help", INFO);
-    log("/bis reset : Reset all add-on settings", INFO);
-    log("/bis settings: Define add-on general settings", INFO);        
-    log("/bis version: Displays the add-on version", INFO);        
+    bis_log("BestInSlotClassic usage: ", INFO);
+    bis_log("/bis : Configure the add-on", INFO);
+    bis_log("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", INFO);    
+    bis_log("/bis help : Show this help", INFO);
+    bis_log("/bis reset : Reset all add-on settings", INFO);
+    bis_log("/bis settings: Define add-on general settings", INFO);        
+    bis_log("/bis version: Displays the add-on version", INFO);        
 end
 
 function HandleLogLevel(args)
@@ -33,9 +33,9 @@ function HandleLogLevel(args)
 
     if type(level[args]) == "function" then
         level[args]();
-        log("Log level set to: "..BestInSlotClassicDB.loglevel, INFO);    
+        bis_log("Log level set to: "..BestInSlotClassicDB.loglevel, INFO);    
     else
-        log("Unknown log level "..args, INFO);
+        bis_log("Unknown log level "..args, INFO);
     end
 
     
@@ -46,15 +46,18 @@ function ShowVersion(args)
 end
 
 function PrintVars(args)
-    log("Log level: ", BestInSlotClassicDB.loglevel, INFO);
-    log("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide, INFO);
-    log("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos, INFO);
+    --bis_log("Log level: ", BestInSlotClassicDB.loglevel, INFO);
+    --bis_log("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide, INFO);
+    --bis_log("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos, INFO);
+    print("|cffffffff|Henchant:20024|h[Enchant]|h|r");
+    print("|cff9d9d9d|Hitem:12645::::::::::::|h[Thorium Spike]|h|r");
+    print("|T"..GetItemIcon(12645)..":16|t");
 end
 
 local function Reset(args)
     ResetDefaults();
     UpdateMinimapIcon();
-    log("BestInSlotClassic has been reset to default values.", DEBUG);
+    bis_log("BestInSlotClassic has been reset to default values.", DEBUG);
 end
 
 -- "Elegant" way to handle switch case in LUA.
@@ -86,7 +89,7 @@ local function HandleCommands(msg, editBox)
     if type(handlers[msg]) == "function" then
         handlers[msg](split[2]);
     else
-        log("Unknown command: "..msg, INFO);
+        bis_log("Unknown command: "..msg, INFO);
         handlers["help"](msg);
     end    
 end
