@@ -1975,6 +1975,15 @@ BIS_ITEMS[19689] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBo
 BIS_ITEMS[19690] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 5 };
 BIS_ITEMS[19691] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 3 };
 BIS_ITEMS[19692] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 10 };
+BIS_ITEMS[19782] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19783] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19784] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19785] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19786] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19787] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19788] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19789] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[19790] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
 BIS_ITEMS[19812] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 13 };
 BIS_ITEMS[19825] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 5 };
 BIS_ITEMS[19826] = {Phase = 4.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 6 };
@@ -2669,6 +2678,9 @@ BIS_ITEMS[22519] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBos
 BIS_ITEMS[22630] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16 };
 BIS_ITEMS[22631] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16 };
 BIS_ITEMS[22632] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = true, WorldBoss = false, TwoHands = true, Faction = nil, Slot = 16 };
+BIS_ITEMS[22635] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[22636] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
+BIS_ITEMS[22638] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
 BIS_ITEMS[22652] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 5 };
 BIS_ITEMS[22654] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 10 };
 BIS_ITEMS[22655] = {Phase = 6.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 9 };
