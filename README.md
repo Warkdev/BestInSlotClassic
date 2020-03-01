@@ -51,6 +51,7 @@ Credit goes to all theorycrafters who provided their sources for the BIS lists, 
     - Fire Resistance: [Spreadsheet](https://www.icy-veins.com/wow-classic/priest-healer-pve-gear-best-in-slot) by Icy-veins
 - Shaman: [Shaman Classic](https://discord.gg/UZNRWc)
     - Restoration: [Spreadsheet](https://docs.google.com/spreadsheets/d/1NK0C0bU92mgoiDsP0wgir3_HINzTkWrIL1PCZlYB5X8/edit#gid=494157742) by Arduran (Shaman Classic)
+        - Enchantments: [Icy-Veins](https://www.icy-veins.com/wow-classic/restoration-shaman-healer-pve-enchants-consumables)
     - Enhancement: [Spreadsheet](https://docs.google.com/spreadsheets/d/1AJrGjWVLrm1CnjAZOblUDzjAqKN9BX0RgqoCWSuFPEM/edit#gid=1171656458) by Hitbutton (Shaman Classic)
     - Fire Resistance (Restoration): [Spreadsheet](https://www.icy-veins.com/wow-classic/shaman-healer-fire-resistance-gear) by Icy-Veins
     - Fire Resistance (Enhancement): [Spreadsheet](https://www.icy-veins.com/wow-classic/enhancement-shaman-dps-fire-resistance-gear) by Icy-Veins

@@ -61,6 +61,7 @@ BIS_ENCHANT[24149] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = fal
 BIS_ENCHANT[24160] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Level = 0, ItemId = 19783 };
 BIS_ENCHANT[24161] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Level = 0, ItemId = 19784 };
 BIS_ENCHANT[24162] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Level = 0, ItemId = 19785 };
+BIS_ENCHANT[24163] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Level = 0, ItemId = 19786 };
 BIS_ENCHANT[24167] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Level = 0, ItemId = 19789 };
 BIS_ENCHANT[24420] = {Phase = 4, Source = "ITEM", Slot = { 3 } , Weapon = false, TwoHands = false, Level = 0, ItemId = 20078 };
 BIS_ENCHANT[24421] = {Phase = 4, Source = "ITEM", Slot = { 3 } , Weapon = false, TwoHands = false, Level = 0, ItemId = 20076 };
