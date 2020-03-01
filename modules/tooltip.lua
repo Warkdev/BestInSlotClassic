@@ -188,6 +188,23 @@ function BIS_OnTooltipSetItem(frame)
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(14344)..":"..bis_defaultIconSize.."|t 2 Large Brilliant Shard - Disenchanting Blue items");
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(18334)..":"..bis_defaultIconSize.."|t 1 Libram of Protection - Dire Maul (2%)");
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(11952)..":"..bis_defaultIconSize.."|t 1 Frayed Abomination Stitching - Abominations - Stratholme (25%)");
+    elseif ItemId == 22635 then
+        -- Savage Guard
+        BIS_TOOLTIP:AddLine("The Savage Guard - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
+        BIS_TOOLTIP:AddLine("  |T"..GetItemIcon(18330)..":"..bis_defaultIconSize.."|t 1 Arcanum of Focus - Quest - Dire Maul");
+        BIS_TOOLTIP:AddLine("  or |T"..GetItemIcon(18329)..":"..bis_defaultIconSize.."|t 1 Arcanum of Rapidity - Quest - Dire Maul");
+        BIS_TOOLTIP:AddLine("  or |T"..GetItemIcon(18331)..":"..bis_defaultIconSize.."|t 1 Arcanum of Protection - Quest - Dire Maul");
+    elseif ItemId == 22636 or ItemId == 22638 then
+        -- Ice Guard and Shadow Guard
+        if ItemId == 22636 then
+            BIS_TOOLTIP:AddLine("The Ice Guard - Mataus the Wrathcaster - Eastern Plaguelands");
+        else
+            BIS_TOOLTIP:AddLine("The Shadow Guard - Mataus the Wrathcaster - Eastern Plaguelands");
+        end
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22524)..":"..bis_defaultIconSize.."|t 10 Insignia of the Crusade - Quest - Eastern Plaguelands");
+        BIS_TOOLTIP:AddLine(GetMoneyString(300000));
     elseif ItemId == 17182 then
         -- Sulfuras
         local left, right, top, bottom;
