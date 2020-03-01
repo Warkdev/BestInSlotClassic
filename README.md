@@ -46,6 +46,7 @@ Credit goes to all theorycrafters who provided their sources for the BIS lists, 
     - Fire Resistance: [Spreadsheet](http://shadowpanther.net/fire.htm) by Shadowpanther.net
 - Priest: [Priest Classic](https://discord.gg/uHddYR)
     - Holy / Discipline: [Spreadsheet](https://docs.google.com/spreadsheets/d/15heFli2p4yjWeOVR8VtLPM9jIKRlBwlYcjC4BH6gOzw/edit#gid=1052763076) by Mend (Priest Classic)
+        - Enchantments: [Icy-Veins](https://www.icy-veins.com/wow-classic/priest-healer-pve-enchants-consumables)
     - Shadow: [Spreadsheet](https://docs.google.com/spreadsheets/d/1F1IVqSt1MEJ9yjZ9rn1aKGIWNkJiA_CNmn6fLUpakb4/edit#gid=600475609) by Purpletuce (Priest Classic)
     - Fire Resistance: [Spreadsheet](https://www.icy-veins.com/wow-classic/priest-healer-pve-gear-best-in-slot) by Icy-veins
 - Shaman: [Shaman Classic](https://discord.gg/UZNRWc)
