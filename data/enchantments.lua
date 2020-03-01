@@ -8,6 +8,7 @@ BIS_ENCHANT[13522] = {Phase = 1, Source = "SPELL", Slot = { 15 } , Weapon = fals
 BIS_ENCHANT[13657] = {Phase = 1, Source = "SPELL", Slot = { 15 } , Weapon = false, TwoHands = false, Raid = false, Level = 175, ItemId = nil };
 BIS_ENCHANT[13700] = {Phase = 1, Source = "SPELL", Slot = { 5 } , Weapon = false, TwoHands = false, Raid = false, Level = 200, ItemId = nil };
 BIS_ENCHANT[13817] = {Phase = 1, Source = "SPELL", Slot = { 17 } , Weapon = false, TwoHands = false, Raid = false, Level = 210, ItemId = nil };
+BIS_ENCHANT[13822] = {Phase = 1, Source = "SPELL", Slot = { 9 } , Weapon = false, TwoHands = false, Raid = false, Level = 210, ItemId = nil };
 BIS_ENCHANT[13841] = {Phase = 1, Source = "SPELL", Slot = { 10 } , Weapon = false, TwoHands = false, Raid = false, Level = 215, ItemId = nil };
 BIS_ENCHANT[13868] = {Phase = 1, Source = "SPELL", Slot = { 10 } , Weapon = false, TwoHands = false, Raid = false, Level = 225, ItemId = nil };
 BIS_ENCHANT[13882] = {Phase = 1, Source = "SPELL", Slot = { 15 } , Weapon = false, TwoHands = false, Raid = false, Level = 225, ItemId = nil };
@@ -36,6 +37,7 @@ BIS_ENCHANT[20011] = {Phase = 1, Source = "SPELL", Slot = { 9 } , Weapon = false
 BIS_ENCHANT[20012] = {Phase = 1, Source = "SPELL", Slot = { 10 } , Weapon = false, TwoHands = false, Raid = false, Level = 270, ItemId = nil };
 BIS_ENCHANT[20013] = {Phase = 1, Source = "SPELL", Slot = { 10 } , Weapon = false, TwoHands = false, Raid = false, Level = 295, ItemId = nil };
 BIS_ENCHANT[20014] = {Phase = 1, Source = "SPELL", Slot = { 15 } , Weapon = false, TwoHands = false, Raid = false, Level = 265, ItemId = nil };
+BIS_ENCHANT[20015] = {Phase = 1, Source = "SPELL", Slot = { 15 } , Weapon = false, TwoHands = false, Raid = false, Level = 285, ItemId = nil };
 BIS_ENCHANT[20017] = {Phase = 1, Source = "SPELL", Slot = { 17 } , Weapon = false, TwoHands = false, Raid = false, Level = 265, ItemId = nil };
 BIS_ENCHANT[20020] = {Phase = 1, Source = "SPELL", Slot = { 8 } , Weapon = false, TwoHands = false, Raid = false, Level = 260, ItemId = nil };
 BIS_ENCHANT[20023] = {Phase = 1, Source = "SPELL", Slot = { 8 } , Weapon = false, TwoHands = false, Raid = false, Level = 295, ItemId = nil };
@@ -66,6 +68,7 @@ BIS_ENCHANT[24163] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = fal
 BIS_ENCHANT[24164] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Raid = true, Level = 0, ItemId = 19787 };
 BIS_ENCHANT[24165] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Raid = true, Level = 0, ItemId = 19788 };
 BIS_ENCHANT[24167] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Raid = true, Level = 0, ItemId = 19789 };
+BIS_ENCHANT[24168] = {Phase = 4, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Raid = true, Level = 0, ItemId = 19790 };
 BIS_ENCHANT[24420] = {Phase = 4, Source = "ITEM", Slot = { 3 } , Weapon = false, TwoHands = false, Raid = true, Level = 0, ItemId = 20078 };
 BIS_ENCHANT[24421] = {Phase = 4, Source = "ITEM", Slot = { 3 } , Weapon = false, TwoHands = false, Raid = true, Level = 0, ItemId = 20076 };
 BIS_ENCHANT[24422] = {Phase = 4, Source = "ITEM", Slot = { 3 } , Weapon = false, TwoHands = false, Raid = true, Level = 0, ItemId = 20077 };
