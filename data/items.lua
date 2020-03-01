@@ -164,6 +164,7 @@ BIS_ITEMS[5616] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBos
 BIS_ITEMS[5627] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[5744] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[5756] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
+BIS_ITEMS[6043] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
 BIS_ITEMS[6220] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[6331] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[6333] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
@@ -205,6 +206,7 @@ BIS_ITEMS[7915] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBos
 BIS_ITEMS[7943] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[7947] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[7961] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
+BIS_ITEMS[7969] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 0 };
 BIS_ITEMS[8006] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[8190] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };
 BIS_ITEMS[8196] = {Phase = 1.0, PvP = false, PvPRank = 0, Raid = false, WorldBoss = false, TwoHands = false, Faction = nil, Slot = 16 };

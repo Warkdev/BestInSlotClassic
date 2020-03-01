@@ -204,7 +204,7 @@ function BIS_OnTooltipSetItem(frame)
         end
         BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22524)..":"..bis_defaultIconSize.."|t 10 Insignia of the Crusade - Quest - Eastern Plaguelands");
-        BIS_TOOLTIP:AddLine(GetMoneyString(300000));
+        BIS_TOOLTIP:AddLine(GetMoneyString(300000));    
     elseif ItemId == 17182 then
         -- Sulfuras
         local left, right, top, bottom;
@@ -251,6 +251,60 @@ function BIS_OnTooltipSetItem(frame)
         BIS_TOOLTIP:AddLine("  |T"..GetItemIcon(19698)..":"..bis_defaultIconSize.."|t |T"..GetItemIcon(19699)..":"..bis_defaultIconSize.."|t |T"..GetItemIcon(19700)..":"..bis_defaultIconSize.."|t - Quest - Zulian, Razzashi, and Hakkari Coins");
         BIS_TOOLTIP:AddLine("  or |T"..GetItemIcon(19704)..":"..bis_defaultIconSize.."|t |T"..GetItemIcon(19705)..":"..bis_defaultIconSize.."|t |T"..GetItemIcon(19706)..":"..bis_defaultIconSize.."|t - Quest - Sandfury, Skullsplitter, and Bloodscalp Coins");
         BIS_TOOLTIP:AddLine("  or |T"..GetItemIcon(19701)..":"..bis_defaultIconSize.."|t |T"..GetItemIcon(19702)..":"..bis_defaultIconSize.."|t |T"..GetItemIcon(19703)..":"..bis_defaultIconSize.."|t - Quest - Gurubashi, Vilebranch, and Witherbark Coins");
+    elseif ItemId == 19783 then
+        -- Syncretist's Sigil
+        BIS_TOOLTIP:AddLine("Syncretist's Sigil - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19788 then
+        -- Hoodoo Hex
+        BIS_TOOLTIP:AddLine("Hoodoo Hex - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19787 then
+        -- Presence of Sight
+        BIS_TOOLTIP:AddLine("Presence of Sight - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19789 then
+        -- Prophetic Aura
+        BIS_TOOLTIP:AddLine("Prophetic Aura - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19786 then
+        -- Vodouisant's Vigilant Embrace
+        BIS_TOOLTIP:AddLine("Vodouisant's Vigilant Embrace - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19790 then
+        -- Animist's Caress
+        BIS_TOOLTIP:AddLine("Animist's Caress - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19782 then
+        -- Presence of Might
+        BIS_TOOLTIP:AddLine("Presence of Might - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19784 then
+        -- Death's Embrace
+        BIS_TOOLTIP:AddLine("Death's Embrace - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
+    elseif ItemId == 19785 then
+        -- Falcon's Call
+        BIS_TOOLTIP:AddLine("Falcon's Call - Zanza the Restless - Zul'Gurub");
+        BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t Primal Hakkari Idol - Zul'Gurub - Jin'do the Hexxer and Bloodlord Mandokir");
+        BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t Punctured Voodoo Doll - Zul'Gurub - Contained in Jinxed Hoodoo Pile");    
     end
 
     BIS_TOOLTIP:Show();

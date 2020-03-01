@@ -30,8 +30,9 @@ Credit goes to all theorycrafters who provided their sources for the BIS lists, 
 - Warrior: [Fight Club](https://discord.gg/fightclub)
     - Any spec: [Spreadsheet](https://docs.google.com/spreadsheets/d/1YXJpasqqodeq9B4jeUZDP9khFQf5QocyMby6moydJWk/htmlview?sle=true#) by Fight Club   
 - Paladin: [Paladin Classic](https://discord.gg/6YS3tH)
-    - Holy: [Spreadsheet](https://docs.google.com/spreadsheets/d/1lSZzNVHKsvG13WRnDuqbAZyQ47ktVytB3Z2CbW7XHdA/edit#gid=1331745877) by Paladin Classic
+    - Holy: [Spreadsheet](https://docs.google.com/spreadsheets/d/1lSZzNVHKsvG13WRnDuqbAZyQ47ktVytB3Z2CbW7XHdA/edit#gid=1331745877) by Paladin Classic    
     - Protection: [Spreadsheet](https://docs.google.com/spreadsheets/d/1B2Mfv6F5qVetmnFsUDQITFtjXnG-6Mk3BOYxblJMIb0/edit#gid=0) by Paladin Classic
+        - Enchantments: [Icy-Veins](https://www.icy-veins.com/wow-classic/protection-paladin-tank-pve-enchants-consumables)
     - Retribution specs: [Spreadsheet](https://docs.google.com/document/d/1WRlEBESz643MSNsnnHsC6MOk4u0vH4zocUzqv9HQ6rU/edit) by Dulkan (Paladin Classic)
     - Fire Resistance (Holy): [Spreadsheet](https://www.icy-veins.com/wow-classic/holy-paladin-healer-fire-resistance-gear) by Icy-veins
     - Fire Resistance (Protection): [Spreadsheet](https://www.icy-veins.com/wow-classic/protection-paladin-tank-fire-resistance-gear) by Icy-veins    
