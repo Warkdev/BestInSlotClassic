@@ -192,7 +192,7 @@ local function Update()
     temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked(), checkboxRaid:GetChecked(), checkboxWorldBoss:GetChecked(), checkboxPvp:GetChecked(), selectedRank);
     
     bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
-    temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked());
+    temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, checkboxRaid:GetChecked(), checkboxTwoHands:GetChecked());
 
     if table.getn(temp) == 0 and table.getn(temp_enchant) == 0 then
         -- Empty table.

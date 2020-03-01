@@ -20,7 +20,7 @@ function LoadAllItems()
   end
 end
 
-function SearchBisEnchant(class, phase, spec, invSlot, twoHands)
+function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
   -- Temporary table with matching records.
   local temp = {};
   local result = {};
@@ -50,6 +50,12 @@ function SearchBisEnchant(class, phase, spec, invSlot, twoHands)
     if match and BIS_ENCHANT[value.EnchantId] ~= nil and (BIS_ENCHANT[value.EnchantId].Phase > phase) then
       --bis_log("One of the mandatory argument does not match (Phase)", DEBUG);      
       match = false;
+    end
+
+    -- Filter on raid enchants.    
+    if match and not raid and BIS_ENCHANT[value.EnchantId] ~= nil and BIS_ENCHANT[value.EnchantId].Raid then
+      -- bis_log("Two-Hands weapons", DEBUG);      
+      match = false
     end
 
     -- Filter on Two-Hands weapons.
