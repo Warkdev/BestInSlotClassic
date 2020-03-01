@@ -1,4 +1,4 @@
-# 1.6.0 (01-03-2020)
+# 1.6.0 (02-03-2020)
 - Introducing Best In Slot Enchant for each class/spec already available.
 - Adding (finally) a CLI to show the version of the add-on. (/bis version).
 - Removing link with Lieutenant Jackspring for R14 items on Alliance side.
