@@ -153,8 +153,7 @@ local function eventHandler(self, event, args1, ...)
         SetDefaults();              
         CreateMinimapIcon();
         CreateSettingsInterface();
-        -- Attempt to prevent buggy display.
-        LoadAllItems();
+        -- Attempt to prevent buggy display.        
         GameTooltip:HookScript( "OnTooltipSetItem", ModifyItemTooltip )
         bis_log("BestInSlotClassic v"..VERSION.." loaded", INFO);
     end
