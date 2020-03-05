@@ -420,7 +420,7 @@ table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10771, Priority = 42,
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10777, Priority = 27, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10787, Priority = 11, OffHand = false, Races = nil, SuffixId = 2064 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10788, Priority = 24, OffHand = false, Races = nil, SuffixId = 0 });
-table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10796, Priority = 15, OffHand = false, Races = nil, SuffixId = 2064 });
+table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10796, Priority = 15, OffHand = false, Races = nil, SuffixId = 2041 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10806, Priority = 49, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10807, Priority = 52, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 1, ItemId = 10833, Priority = 39, OffHand = false, Races = nil, SuffixId = 0 });

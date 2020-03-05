@@ -8,6 +8,7 @@
 - Updating file version to 1.7.0
 - Adding spellpower glove enchant for priest for P5.
 - Fixing a bug that made tooltip still appear althhough no enchantment icon is present.
+- Fixing suffix ID for Drakestone for Paladin Holy pre-raid.
 
 # 1.6.0 (02-03-2020)
 - Introducing Best In Slot Enchant for each class/spec already available.
