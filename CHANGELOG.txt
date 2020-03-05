@@ -1,3 +1,14 @@
+# 1.7.0 (xx-03-2020)
+- Preferences are now set per character instead of account-wide. As a consequence, actual preferences will be defaulted.
+- Updated BIS list for mage fire/frost spec. Please note that this spec will change in the future and will be split as I'm not entirely happy with the actual definition.
+- Magic resistance now appears under the form of selectable icons (and no more under the spec dropdown-list). This should bring more clarity.
+- PVP Ranks now appear under the form of selectable icons (and no more as a dropdown-list). This should bring more clarity. As well, ranks that have no items assigned to have been removed.
+- Filters now appear under the form of selectable icons (and no more as checkboxes). This should bring more clarity.
+- Races, Class, Spec and phase dropdown now appear under the form of selectable icons. This should bring more clarity.
+- Updating file version to 1.7.0
+- Adding spellpower glove enchant for priest for P5.
+- Fixing a bug that made tooltip still appear althhough no enchantment icon is present.
+
 # 1.6.0 (02-03-2020)
 - Introducing Best In Slot Enchant for each class/spec already available.
 - Adding (finally) a CLI to show the version of the add-on. (/bis version).

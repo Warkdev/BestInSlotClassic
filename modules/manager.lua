@@ -2,14 +2,20 @@
 
 local window;
 local visible;
-local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase, dropdownPVPRank;
-local selectedRace, selectedClass, selectedSpec, selectedPhase, selectedRank;
+local dropdownRace, dropdownClass, dropdownSpec, dropdownPhase;
+local selectedRace, selectedClass, selectedSpec, selectedPhase, selectedRank, selectedMagicResist;
+local pvp, twoHands, worldBoss, raid;
 
 local rootPaperDoll = "Interface\\PaperDoll\\";                
 
-local enchantIcon = GetSpellTexture(20036);
-local iconpath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-Classes";
+local iconRacePath = "Interface\\Glues\\CHARACTERCREATE\\UI-CharacterCreate-Races";
+local iconClassPath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-Classes";
 local iconCutoff = 6;
+local iconAlliance = 132486;
+local iconHorde = 132485;
+local iconTwoHands_Swords = 135360;
+local iconTwoHands_Staff = 135226;
+local icon
 
 local characterFrames = { 
     ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds", "Bags" },    
@@ -28,59 +34,92 @@ local characterFrames = {
     ["ENCHANT"] = { true, false, true, true, true, false, false, true, true, false, true, true, false, false, false, false, true, true, true, false }
 };
 
+local magicResistances = {
+    ["NAME"] = { "Normal", "Fire", "Nature", "Shadow", "Frost", "Arcanes" },
+    ["LABEL"] = { "Normal", "Fire resistance", "Nature resistance", "Shadow Resistance", "Frost Resistance", "Arcanes Resistance" },
+    ["ID"] = { 2, 3, 4, 6, 5, 7 }
+}
+
 local races = {
     ["Horde"] = { "Orc", "Scourge", "Tauren", "Troll" },
     ["Alliance"] = { "Human", "Gnome", "Dwarf", "NightElf" }
 };
 
 local classes = {
-    [1] = { ["CLASS"] = { "Warrior", "Paladin", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130914 } },
-    [3] = { ["CLASS"] = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest" }, ["ICON"] = { 130902 } },
-    [4] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Druid" }, ["ICON"] = { 130915 } },
-    [7] = { ["CLASS"] = { "Warrior", "Rogue", "Mage", "Warlock" }, ["ICON"] = { 130903 } },
-    [2] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Shaman", "Warlock" }, ["ICON"] = { 130916 } },
-    [5] = { ["CLASS"] = { "Warrior", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130907 } },
-    [6] = { ["CLASS"] = { "Warrior", "Hunter", "Shaman", "Druid" }, ["ICON"] = { 130918 } },
-    [8] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Shaman", "Mage" }, ["ICON"] = { 130909 } }
+    [1] = { ["CLASS"] = { "Warrior", "Paladin", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130914 }, ["TEXT_COORD"] = { { 0/256, 64/256, 0/256, 64/256 }, { 0/256, 64/256, 128/256, 192/256 } } },
+    [2] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Shaman", "Warlock" }, ["ICON"] = { 130916 }, ["TEXT_COORD"] = { { 192/256, 256/256, 64/256, 128/256 }, { 192/256, 256/256, 192/256, 256/256 } } },
+    [3] = { ["CLASS"] = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest" }, ["ICON"] = { 130902 }, ["TEXT_COORD"] = { { 64/256, 128/256, 0/256, 64/256 }, { 64/256, 128/256, 128/256, 192/256 } } },
+    [4] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Druid" }, ["ICON"] = { 130915 }, ["TEXT_COORD"] = { { 192/256, 256/256, 0/256, 64/256 }, { 192/256, 256/256, 128/256, 192/256 } } },    
+    [5] = { ["CLASS"] = { "Warrior", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130907 }, ["TEXT_COORD"] = { { 64/256, 128/256, 64/256, 128/256 }, { 64/256, 128/256, 192/256, 256/256 } } },
+    [6] = { ["CLASS"] = { "Warrior", "Hunter", "Shaman", "Druid" }, ["ICON"] = { 130918 }, ["TEXT_COORD"] = { { 0/256, 64/256, 64/256, 128/256 }, { 0/256, 64/256, 192/256, 256/256 } } },
+    [7] = { ["CLASS"] = { "Warrior", "Rogue", "Mage", "Warlock" }, ["ICON"] = { 130903 }, ["TEXT_COORD"] = { { 128/256, 192/256, 0/256, 64/256 }, { 128/256, 192/256, 128/256, 192/256 } } },    
+    [8] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Shaman", "Mage" }, ["ICON"] = { 130909 }, ["TEXT_COORD"] = { { 128/256, 192/256, 64/256, 128/256 }, { 128/256, 192/256, 192/256, 256/256 } } }
 };
 
 local dataSpecs = {
-    [1] = { ["SPEC"] = { "Fury", "Protection (Threat)", "Protection (Mitigation)", "Fire Resistance"},
-                    ["SPEC_ICONS"] = { 132347, 136101, 134952, 135805}, 
-                    ["VALUE"] = { 1, 2, 3, 4 },
-                    ["ICON"] = { 135328 } },    
-    [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution (AP)", "Retribution (Spelladin)", "Fire Resistance (Holy)", "Fire Resistance (Protection)", "Fire Resistance (Retribution)" },
-                    ["SPEC_ICONS"] = { 135920, 135893, 135873, 135959, 135805, 135805, 135805 },
-                    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7 },
-                    ["ICON"] = { 132325 } },
-    [3] = {  ["SPEC"] = { "Any", "Fire Resistance" },                     
-                    ["SPEC_ICONS"] = { 135489, 135805 },
-                    ["VALUE"] = { 1, 2 },
-                    ["ICON"] = { 135495 } },
-    [4] = {   ["SPEC"] = { "Swords", "Daggers", "Fire Resistance" },                     
-                    ["SPEC_ICONS"] = { 135328, 135641, 135805 },
+    [1] = { ["SPEC"] = { "Fury", "Protection (Threat)", "Protection (Mitigation)" },
+                    ["SPEC_ICONS"] = { 132347, 136101, 134952 }, 
                     ["VALUE"] = { 1, 2, 3 },
-                    ["ICON"] = { 135428 } },
-    [5] = {  ["SPEC"] = { "Holy / Discipline", "Shadow", "Fire Resistance" },
-                    ["SPEC_ICONS"] = { 135941, 136224, 135805 },
-                    ["VALUE"] = { 1, 2, 3 },
-                    ["ICON"] = { 135167 } },        
-    [7] = {  ["SPEC"] = { "Restoration", "Enhancement", "Fire Resistance (Restoration)", "Fire Resistance (Enhancement)" },
-                    ["SPEC_ICONS"] = { 136052, 136018, 135805, 135805 },
+                    ["ICON"] = { 135328 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 4, nil, nil, nil, nil }, { 2, 4, nil, nil, nil, nil }, { 3, 4, nil, nil, nil, nil } },
+                    ["WEAPON_ICONS"] = { { 12940, 19364 }, { 19019, nil }, { 19019, nil } }
+                },                    
+    [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution (AP)", "Retribution (Spelladin)" },
+                    ["SPEC_ICONS"] = { 135920, 135893, 135873, 135959 },
                     ["VALUE"] = { 1, 2, 3, 4 },
-                    ["ICON"] = { 133437 } },
-    [8] = {    ["SPEC"] = { "Frost/Fire", "Zero SP", "Alternative", "Fire Resistance", "Nature Resistance", "Frost Resistance", "Shadow Resistance" },
-                    ["SPEC_ICONS"] = { 135866, 132643, 134614, 135805, 136006, 135849, 136121 },
-                    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7 },
-                    ["ICON"] = { 135150 } },
-    [9] = { ["SPEC"] = { "Any", "Fire Resistance" },
-                    ["SPEC_ICONS"] = { 136163, 135805 },
+                    ["ICON"] = { 132325 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 5, nil, nil, nil, nil }, { 2, 6, nil, nil, nil, nil }, { 3, 7, nil, nil, nil, nil }, { 4, 7, nil, nil, nil, nil } },
+                    ["WEAPON_ICONS"] = { { 19360, nil }, { 19360, nil }, { nil, 19364 }, { 19019, 19169 } }
+                 },
+    [3] = {  ["SPEC"] = { "Any" },                     
+                    ["SPEC_ICONS"] = { 135489 },
                     ["VALUE"] = { 1, 2 },
-                    ["ICON"] = { 136020 } },    
-    [11] = {   ["SPEC"] = { "Feral Tank (Value)", "Feral Tank (Mitigation)", "Feral Tank (Threat)", "Feral DPS", "Restoration", "Balance", "Fire Resistance", "Frost Resistance", "Nature Resistance", "Shadow Resistance", "Arcane Resistance" },
-                    ["SPEC_ICONS"] = { 132276, 132276, 132276, 132115, 136041, 136036, 135805, 135849, 136006, 136121, 135733 },
-                    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 },
-                    ["ICON"] = { 134297 } }                    
+                    ["ICON"] = { 135495 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 2, nil, nil, nil, nil } },
+                    ["WEAPON_ICONS"] = { { 18805, 18520 } }
+                },
+    [4] = {   ["SPEC"] = { "Swords", "Daggers" },                     
+                    ["SPEC_ICONS"] = { 135328, 135641 },
+                    ["VALUE"] = { 1, 2 },
+                    ["ICON"] = { 135428 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 3, nil, nil, nil, nil }, { 2, 3, nil, nil, nil, nil } },
+                    ["WEAPON_ICONS"] = { { 19352, nil }, { 19346, nil } }
+                 },
+    [5] = {  ["SPEC"] = { "Holy / Discipline", "Shadow" },
+                    ["SPEC_ICONS"] = { 135941, 136224 },
+                    ["VALUE"] = { 1, 2 },
+                    ["ICON"] = { 135167 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 3, nil, nil, nil, nil }, { 2, 3, nil, nil, nil, nil } },
+                    ["WEAPON_ICONS"] = { { 19360, 18608 }, { 19360, 18609 } }
+                 },        
+    [7] = {  ["SPEC"] = { "Restoration", "Enhancement" },
+                    ["SPEC_ICONS"] = { 136052, 136018 },
+                    ["VALUE"] = { 1, 2 },
+                    ["ICON"] = { 133437 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 3, nil, nil, nil, nil }, { 2, 4, nil, nil, nil, nil } },
+                    ["WEAPON_ICONS"] = { { 19360, 19356 }, { 12940, 19364 } }
+                },
+    [8] = {    ["SPEC"] = { "Frost/Fire", "Zero SP", "Alternative" },
+                    ["SPEC_ICONS"] = { 135866, 132643, 134614 },
+                    ["VALUE"] = { 1, 2, 3 },
+                    ["ICON"] = { 135150 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 4, 5, 7, 6, nil }, { 2, 4, 5, 7, 6, nil }, { 3, 4, 5, 7, 6, nil } },
+                    ["WEAPON_ICONS"] = { { 17103, 19356 }, { 17103, 19356 }, { 17103, 19356 } }
+                 },
+    [9] = { ["SPEC"] = { "Any" },
+                    ["SPEC_ICONS"] = { 136163 },
+                    ["VALUE"] = { 1 },
+                    ["ICON"] = { 136020 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 2, nil, nil, nil, nil } },
+                    ["WEAPON_ICONS"] = { { 17103, 19356 } }
+                 },    
+    [11] = {   ["SPEC"] = { "Feral Tank (Value)", "Feral Tank (Mitigation)", "Feral Tank (Threat)", "Feral DPS", "Restoration", "Balance" },
+                    ["SPEC_ICONS"] = { 132276, 132276, 132276, 132115, 136041, 136036 },
+                    ["VALUE"] = { 1, 2, 3, 4, 5, 6 },
+                    ["ICON"] = { 134297 },
+                    ["MAGIC_RESISTANCE"] = { { 1, 7, 9, 10, 8, 11 }, { 2, 7, 9, 10, 8, 11 }, { 3, 7, 9, 10, 8, 11 }, { 4, 7, 9, 10, 8, 11 }, { 6, 7, 9, 10, 8, 11 }, { 6, 7, 9, 10, 8, 11 } },
+                    ["WEAPON_ICONS"] = { { 19335, 9449 }, { 19335, 9449 }, { 19335, 9449 }, { 18805, 9449 }, { 19360, 19356 }, { 19360, 19356 } }
+                 }                    
 };
 
 local specsFileToSpecs = {
@@ -113,31 +152,35 @@ local specsFileToSpecs = {
     ["Unknown"] = { "Unknown" }
 }
 
-local dropdownText = {
-    ["races"] = "Select your race",
-    ["class"] = "Select your class",
-    ["specs"] = "Select your spec",
-    ["phases"] = "Select your phase",
-}
-
 local phases = { 
-    ["NAME"] = { "Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5", "Phase 6" }, 
+    ["NAME"] = { "Phase 1", "Phase 2 (PVP)", "Phase 3 (BWL)", "Phase 4 (ZG)", "Phase 5 (AQ)", "Phase 6 (Naxx)" }, 
     ["ICON"] = { 133066   , 132486   ,  134154   , 134085   , 136152   , 134514   },
     ["VALUE"] = { 1       , 2        , 3        , 4         , 5        , 6        },
     ["ENABLED"] = { true , true      , true     , true      , true     , true     }
     };
 
-local pvpranks = {
-    ["Horde"] = { "Scout", "Grunt", "Sergeant", "Senior Sergeant", "First Sergeant", "Stone Guard", "Blood Guard", "Legionnare", "Centurion", "Champion", "Lieutenant General", "General", "Warlord", "High Warlord" },        
-    ["Alliance"] = { "Private", "Corporal", "Sergeant", "Master Sergeant", "Sergeant Major", "Knight", "Knight-Lieutenant", "Knight-Captain", "Knight-Champion", "Lieutenant Commander", "Commander", "Marshal", "Field Marshal", "Grand Marshal" },    
-    ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 }
+local pvpranks = {    
+    -- ["Horde"] = { "Scout", "Grunt", "Sergeant", "Senior Sergeant", "First Sergeant", "Stone Guard", "Blood Guard", "Legionnare", "Centurion", "Champion", "Lieutenant General", "General", "Warlord", "High Warlord" },        
+    ["Horde"] = { "Sergeant", "Senior Sergeant", "Blood Guard", "Legionnare", "Champion", "General", "Warlord", "High Warlord" },        
+    -- ["Alliance"] = { "Private", "Corporal", "Sergeant", "Master Sergeant", "Sergeant Major", "Knight", "Knight-Lieutenant", "Knight-Captain", "Knight-Champion", "Lieutenant Commander", "Commander", "Marshal", "Field Marshal", "Grand Marshal" },    
+    ["Alliance"] = { "Sergeant", "Master Sergeant", "Knight-Lieutenant", "Knight-Captain", "Lieutenant Commander", "Marshal", "Field Marshal", "Grand Marshal" },    
+    -- ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 }
+    ["VALUE"] = { 3, 4, 7, 8, 10, 12, 13, 14 }
 }
 
-local function ResetUI()   
+local function ResetUI()
+    local oneHandIcon, twoHandsIcon;
+
+    for idx, phase in ipairs(phases.NAME) do        
+        _G["frame_PHASE_"..phases.VALUE[idx].."_ICON"]:SetDesaturated(selectedPhase ~= phases.VALUE[idx]);
+    end
+
     for key, value in pairs(characterFrames.NAME) do
         if characterFrames.ENCHANT[key] then
             for i=1, 2, 1 do                
                 _G["frame_"..value.."_"..i.."_ENCHANT_ICON"]:SetTexture(nil);                
+                _G["EnchantFrame_"..value.."_"..i]:SetScript("OnEnter", nil);
+                _G["EnchantFrame_"..value.."_"..i]:SetScript("OnLeave", nil);
             end
         end
         for i=1, 3, 1 do
@@ -146,8 +189,113 @@ local function ResetUI()
             _G["frame"..value.."_"..i.."_TEXT"]:SetText("");
             _G["ItemFrame_"..value.."_"..i]:SetScript("OnEnter", nil);
             _G["ItemFrame_"..value.."_"..i]:SetScript("OnLeave", nil);            
-        end        
+        end
     end
+
+    for i, race in ipairs(races[faction]) do
+        if selectedRace == RACES_IDX[race] then
+            _G["frame_"..race.."_ICON"]:SetDesaturated(false);
+        else
+            _G["frame_"..race.."_ICON"]:SetDesaturated(true);
+        end
+        for j, class in ipairs(classes[RACES_IDX[race]].CLASS) do
+            if selectedRace == RACES_IDX[race] then
+                _G["frame_"..RACES_IDX[race].."_"..class]:Show();
+                if selectedClass == CLASS_IDX[class] then
+                    _G["frame_"..RACES_IDX[race].."_"..class.."_ICON"]:SetDesaturated(false);                    
+                else
+                    _G["frame_"..RACES_IDX[race].."_"..class.."_ICON"]:SetDesaturated(true);                    
+                end                
+            else
+                _G["frame_"..RACES_IDX[race].."_"..class]:Hide();
+            end
+            for k, spec in ipairs(dataSpecs[CLASS_IDX[class]].SPEC) do
+                if selectedClass == CLASS_IDX[class] then                                        
+                    _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k]]:Show();
+                    if selectedSpec == dataSpecs[CLASS_IDX[class]].VALUE[k] then
+                        _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k].."_ICON"]:SetDesaturated(false);
+                    else
+                        _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k].."_ICON"]:SetDesaturated(true);
+                    end
+                else
+                    _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k]]:Hide();
+                end
+            end            
+        end
+    end
+
+    if selectedSpec ~= nil then
+        for key, value in pairs(magicResistances.NAME) do            
+            if dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][key] == nil then                
+                _G["frame_"..value.."_RESIST"]:Hide();
+            else                
+                _G["frame_"..value.."_RESIST"]:Show();
+            end
+        end
+        _G["frame_PVP"]:Show();
+        _G["frame_WORLD_BOSS"]:Show();
+        if raid then
+            _G["frame_RAID"]:Show();
+            _G["frame_DUNGEON"]:Hide();
+        else
+            _G["frame_RAID"]:Hide();
+            _G["frame_DUNGEON"]:Show();
+        end        
+
+        _G["frame_PVP_ICON"]:SetDesaturated(not pvp);
+        if pvp then            
+            for idx, value in pairs(pvpranks[faction]) do                    
+                _G["frame_"..value.."_PVP_RANK"]:Show();
+                if pvpranks.VALUE[idx] == selectedRank then
+                    _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(false);
+                else
+                    _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(true);
+                end
+            end
+        else
+            for idx, value in pairs(pvpranks[faction]) do                    
+                _G["frame_"..value.."_PVP_RANK"]:Hide();
+            end
+        end                
+        if twoHands then
+            _G["frame_TWO_HANDS"]:Show();
+            _G["frame_ONE_HAND"]:Hide();
+        else
+            _G["frame_ONE_HAND"]:Show();
+            _G["frame_TWO_HANDS"]:Hide();
+        end
+
+        oneHandIcon = dataSpecs[selectedClass].WEAPON_ICONS[selectedSpec][1];
+        twoHandsIcon = dataSpecs[selectedClass].WEAPON_ICONS[selectedSpec][2];
+
+        if oneHandIcon == nil then
+            _G["frame_TWO_HANDS"]:Show();
+            _G["frame_ONE_HAND"]:Hide();
+            BestInSlotClassicDB.filter.twohands = true;
+            twoHands = true;
+        elseif twoHandsIcon == nil then
+            _G["frame_TWO_HANDS"]:Hide();
+            _G["frame_ONE_HAND"]:Show();
+            BestInSlotClassicDB.filter.twohands = false;
+            twoHands = false;
+        end
+
+        UpdateIcon("frame_ONE_HAND", GetItemIcon(oneHandIcon), nil);
+        UpdateIcon("frame_TWO_HANDS", GetItemIcon(twoHandsIcon), nil);
+    else
+        for key, value in pairs(magicResistances.NAME) do                        
+            _G["frame_"..value.."_RESIST"]:Hide();            
+        end
+        _G["frame_PVP"]:Hide();
+        _G["frame_WORLD_BOSS"]:Hide();
+        _G["frame_RAID"]:Hide();
+        _G["frame_DUNGEON"]:Hide();
+        _G["frame_ONE_HAND"]:Hide();
+        _G["frame_TWO_HANDS"]:Hide();
+        for idx, value in pairs(pvpranks[faction]) do                    
+            _G["frame_"..value.."_PVP_RANK"]:Hide();
+        end        
+    end    
 end
 
 local function characterHasBag(bagName)
@@ -177,22 +325,30 @@ local function characterHasItem(itemId)
 end
 
 local function Update()    
-    if selectedRace == nil or selectedClass == nil or selectedSpec == nil or selectedPhase == nil then
-        -- Nothing to be updated.
-        return;
-    end
-    local temp;
-
     -- Reset Icons.
     ResetUI();
 
-    bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
+    if selectedRace == nil or selectedClass == nil or selectedSpec == nil or selectedPhase == nil or selectedMagicResist == nil then
+        -- Nothing to be updated.
+        return;
+    end
+    local temp;    
+    
     local count = 0;
     
-    temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, checkboxTwoHands:GetChecked(), checkboxRaid:GetChecked(), checkboxWorldBoss:GetChecked(), checkboxPvp:GetChecked(), selectedRank);
+    if selectedMagicResist == 1 then        
+        bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
+        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank);
+        bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
+        temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, raid, twoHands);
+    else
+        bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
+        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank);
+        bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
+        temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, raid, twoHands);
+    end
     
-    bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
-    temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, checkboxRaid:GetChecked(), checkboxTwoHands:GetChecked());
+    
 
     if table.getn(temp) == 0 and table.getn(temp_enchant) == 0 then
         -- Empty table.
@@ -217,7 +373,7 @@ local function Update()
                     item:ContinueOnItemLoad(function()                        
                         local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
                             itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(BIS_ENCHANT[value.EnchantId].ItemId);                            
-                        _G["frame_"..INVSLOT_IDX[i].."s_"..idx.."_ENCHANT_ICON"]:SetTexture(GetItemIcon(BIS_ENCHANT[value.EnchantId].ItemId));
+                        _G["frame_"..INVSLOT_IDX[i].."s_"..idx.."_ENCHANT_ICON"]:SetTexture(GetItemIcon(BIS_ENCHANT[value.EnchantId].ItemId));                        
 
                         _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnMouseDown", function(self,button)                                                
                             SetItemRef(itemLink, itemLink, "LeftButton");                        
@@ -233,6 +389,7 @@ local function Update()
                     local name = GetSpellInfo(value.EnchantId);
                     local link = "|cffffffff|Henchant:" .. value.EnchantId .."|h[" .. name .."]|h|r";
                     _G["frame_"..INVSLOT_IDX[i].."s_"..idx.."_ENCHANT_ICON"]:SetTexture(GetSpellTexture(value.EnchantId));
+                    
                     _G["EnchantFrame_"..INVSLOT_IDX[i].."s_"..idx]:SetScript("OnMouseDown", function(self,button)                                                                                                                    
                         ChatFrame1EditBox:SetText(ChatFrame1EditBox:GetText()..link);                        
                     end)  
@@ -313,149 +470,113 @@ local function Update()
     end
 end
 
-local function HandleRacesDropDown(self, arg1, arg2, checked)
-    if selectedRace ~= arg2 then
-        selectedRace = arg2;
-        bis_log("Selected Race: "..selectedRace.." (value: "..arg1..")", DEBUG);
-        UIDropDownMenu_SetText(dropdownRace, arg1);
-        UIDropDownMenu_SetText(dropdownClass, dropdownText["class"]);
-        selectedClass = nil;        
-        UIDropDownMenu_SetText(dropdownSpec, dropdownText["specs"]);
-        selectedSpec = nil; 
-        ResetUI();       
-    end
-end
-
-local function HandleClassDropDown(self, arg1, arg2, checked)
-    if selectedClass ~= arg2 then
-        selectedClass = arg2;
-        bis_log("Selected Class: "..selectedClass.." (value: "..arg1..")", DEBUG);
-        UIDropDownMenu_SetText(dropdownClass, arg1);
-        UIDropDownMenu_SetText(dropdownSpec, dropdownText["specs"]);
-        selectedSpec = nil;
-        ResetUI();
-    end
-end
-
-local function HandleSpecDropDown(self, arg1, arg2, checked)
-    if selectedSpec ~= arg2 then
-        selectedSpec = arg2;
-        bis_log("Selected Spec: "..selectedSpec.." (value: "..arg1..")", DEBUG);
-        UIDropDownMenu_SetText(dropdownSpec, arg1);
-        Update();
-    end
-end
-
-local function HandlePhaseDropDown(self, arg1, arg2, checked)
-    if selectedPhase ~= arg2 then
-        selectedPhase = arg2;
-        bis_log("Selected Phase: "..selectedPhase.." (value: "..arg1..")", DEBUG);
-        UIDropDownMenu_SetText(dropdownPhase, arg1);
-        Update();
-    end
-end
-
-local function HandlePvpRankDropDown(self, arg1, arg2, checked)
-    if selectedRank ~= arg2 then        
-        selectedRank = arg2;
-        BestInSlotClassicDB.filter.pvprank = arg2;
-        bis_log("Selected Rank: "..selectedRank.." (value: "..arg1..")", DEBUG);
-        UIDropDownMenu_SetText(dropdownPVPRank, arg1.."");        
-        Update();
-    end
-end
-
-function Initialize_RacesDropDown(frame, level, menuList)
-    local info = UIDropDownMenu_CreateInfo();    
-
-    if races[faction] == nil then
-        bis_log("Error while creating the races drop down", ERROR);
+local function HandlePhasesIcon(self)
+    local phase = tonumber(self:GetName():match("[^_]+_[^_]+_([^_]+)"));
+    if selectedPhase == phase then
         return;
-    end    
-
-    for idx, value in ipairs(races[faction]) do
-        info.text, info.arg1, info.arg2 = value, value, RACES_IDX[value];        
-        info.func = HandleRacesDropDown;        
-        info.icon = classes[RACES_IDX[value]].ICON[1];
-        UIDropDownMenu_AddButton(info);
     end
+
+    selectedPhase = phase;
+    Update();
 end
 
-function Initialize_ClassDropDown(frame, level, menuList)
-    local info = UIDropDownMenu_CreateInfo();        
-
-    if classes[selectedRace].CLASS == nil then
-        bis_log("Error while creating the class drop down", ERROR);
+local function HandleRacesIcon(self)    
+    local raceName = self:GetName():match("[^_]+_([^_]+)");
+    if selectedRace == RACES_IDX[raceName] then
         return;
-    end    
-
-    for idx, value in ipairs(classes[selectedRace].CLASS) do
-        info.text, info.arg1, info.arg2 = value, value, CLASS_IDX[value];        
-        info.func = HandleClassDropDown;        
-        info.icon = dataSpecs[CLASS_IDX[value]].ICON[1];        
-        UIDropDownMenu_AddButton(info);
     end
+    selectedRace = RACES_IDX[raceName];
+    selectedClass = nil;
+    selectedSpec = nil;
+    selectedMagicResist = 1;
+    Update();
 end
 
-function Initialize_SpecsDropDown(frame, level, menuList)
-    local info = UIDropDownMenu_CreateInfo();    
-        
-    if selectedClass == nil or dataSpecs[selectedClass].SPEC == nil then
-        bis_log("Error while creating the specs drop down", ERROR);
+local function HandleClassIcon(self)
+    local className = self:GetName():match("[^_]+_[^_]+_([^_]+)");
+    if selectedClass == CLASS_IDX[className] then
         return;
-    end    
-
-    for idx, value in ipairs(dataSpecs[selectedClass].SPEC) do
-        info.text, info.arg1, info.arg2 = value, value, dataSpecs[selectedClass].VALUE[idx];        
-        info.func = HandleSpecDropDown;        
-        info.icon = dataSpecs[selectedClass].SPEC_ICONS[idx];
-        UIDropDownMenu_AddButton(info);
     end
+    selectedClass = CLASS_IDX[className];
+    selectedSpec = nil;
+    selectedMagicResist = 1;
+    Update();
 end
 
-function Initialize_PhaseDropDown(frame, level, menuList)
-    local info = UIDropDownMenu_CreateInfo();    
-
-    for idx, value in ipairs(phases.NAME) do
-        info.text, info.arg1, info.arg2 = value, value, phases.VALUE[idx];
-        info.disabled = not(phases.ENABLED[idx]);
-        info.func = HandlePhaseDropDown;
-        info.icon = phases.ICON[idx];
-        UIDropDownMenu_AddButton(info);
+local function HandleSpecIcon(self)
+    local specName = tonumber(self:GetName():match("[^_]+_[^_]+_[^_]+_([^_]+)"));
+    if selectedSpec == specName then
+        return;
     end
+    selectedSpec = specName;
+    selectedMagicResist = 1;
+    Update();
 end
 
-function Initialize_PVPRanksDropDown(frame, level, menuList)
-    local info = UIDropDownMenu_CreateInfo();    
-
-    for idx, value in ipairs(pvpranks[faction]) do
-        info.text, info.arg1, info.arg2 = value, value, pvpranks.VALUE[idx];
-        info.func = HandlePvpRankDropDown;            
-        info.icon = format("%s%02d","Interface\\PvPRankBadges\\PvPRank",idx);
-        UIDropDownMenu_AddButton(info);
-    end
+local function HandlePvPIcon(self)    
+    pvp = not pvp;
+    BestInSlotClassicDB.filter.pvp = pvp;    
+    Update();    
 end
 
-local dropdownInitializer = {
-    ["races"] = Initialize_RacesDropDown,
-    ["class"] = Initialize_ClassDropDown,
-    ["specs"] = Initialize_SpecsDropDown,
-    ["phases"] = Initialize_PhaseDropDown,
-    ["pvpranks"] = Initialize_PVPRanksDropDown
-}
+local function HandleRaidIcon(self)
+    raid = not raid;
+    BestInSlotClassicDB.filter.raid = raid;
+    Update();
+end
 
-function CreateIconFrame(name, parent, width, height, x, y, icon)    
+local function HandleTwoHandsIcon(self)    
+    twoHands = not twoHands;
+    BestInSlotClassicDB.filter.twohands = twoHands;
+    Update();
+end
+
+local function HandleWorldBossIcon(self)
+    worldBoss = not worldBoss;
+    BestInSlotClassicDB.filter.worldboss = worldBoss;
+    _G["frame_WORLD_BOSS_ICON"]:SetDesaturated(not worldBoss);
+    Update();
+end
+
+function UpdateIcon(name, icon, textCoord)
+    _G[name.."_ICON"]:SetTexture(icon);    
+    if textCoord ~= nil then
+        _G[name.."_ICON"]:SetTexCoord(unpack(textCoord));
+    end
+    _G[name.."_ICON"]:SetAllPoints(_G[name]);
+end
+
+function CreateIconFrame(name, parent, width, height, x, y, icon, textCoord)    
     local frame = CreateFrame("Frame", name, parent);
         
     frame:SetWidth(width); -- Set these to whatever height/width is needed 
     frame:SetHeight(height); -- for your Texture
 
-    local texture = frame:CreateTexture(name.."_ICON","BACKGROUND");    
-    texture:SetTexture(icon);
-    texture:SetAllPoints(frame);
+    local texture = frame:CreateTexture(name.."_ICON","BACKGROUND");
+    UpdateIcon(name, icon, textCoord);
     frame.texture = texture;
 
     frame:SetPoint("TOPLEFT", parent, "TOPLEFT", x,y);    
+
+    return frame;
+end
+
+function CreateClickableIconFrame(name, parent, label, width, height, x, y, icon, textCoord, callback, desaturated)
+    local frame = CreateIconFrame(name, parent, width, height, x, y, icon, textCoord);
+
+    _G[name]:SetScript("OnEnter", function(self)
+        BIS_TOOLTIP:SetOwner(_G[name]);
+        BIS_TOOLTIP:SetPoint("TOPLEFT", _G[name], "TOPRIGHT", 220, -13);                
+        BIS_TOOLTIP:SetText(label);                
+        BIS_TOOLTIP:Show();
+    end);
+    _G[name]:SetScript("OnLeave", function(self)                        
+        BIS_TOOLTIP:Hide();
+    end);
+
+    _G[name]:SetScript("OnMouseDown", callback); 
+        
+    _G[name.."_ICON"]:SetDesaturated(desaturated);               
 
     return frame;
 end
@@ -472,23 +593,6 @@ function CreateTextFrame(name, parent, width, height, x, y, justify)
     return frame;
 end
 
-function CreateDropDownList(name, parent, width, x, y, items, defaultText)
-    local dropdown = CreateFrame("Frame", name, parent, "UIDropDownMenuTemplate");    
-    local text = defaultText:lower();
-    dropdown:SetPoint("TOPLEFT", x, y);
-    UIDropDownMenu_SetWidth(dropdown, width);
-
-    if(items == "class") then        
-        UIDropDownMenu_SetText(dropdown, text:gsub("^%l", string.upper));    
-    else
-        UIDropDownMenu_SetText(dropdown, defaultText);
-    end
-    
-    UIDropDownMenu_Initialize(dropdown, dropdownInitializer[items]);
-
-    return dropdown;
-end
-
 function ShowManager()    
     -- We load player info now because it can evolve regarding talents.
     -- There's also a bug that makes the num talent tab being at 0 after addon_loaded on start.
@@ -497,7 +601,9 @@ function ShowManager()
 
     if window == nil then
         local iconSize = 60;
-        local smallIcon = iconSize / 3;
+        local smallIcon = iconSize / 3;        
+        local pvpIcon, gender;
+
         visible = false;
         selectedRace = RACES_IDX[race];
         selectedClass = CLASS_IDX[class:lower():gsub("^%l", string.upper)];        
@@ -507,11 +613,21 @@ function ShowManager()
             selectedSpec = specsFileToSpecs[spec][2];
         end        
         selectedPhase = bis_currentPhaseId;
+        selectedMagicResist = 1;
         if BestInSlotClassicDB.filter.pvprank == nil then
             if pvpRank == 0 then
-                selectedRank = 1;
-            else
-                selectedRank = pvpRank - 4;
+                selectedRank = 3;
+            else                
+                pvpRank = pvpRank - 4;
+                if pvpRank == 3 or pvpRank == 4 or pvpRank == 7 or pvpRank == 8 or pvpRank == 10 or pvpRank == 12 or pvpRank == 13 or pvpRank == 14 then
+                    selectedRank = pvpRank;
+                elseif pvpRank == 5 or pvpRank == 6 then
+                    selectedRank = 4;
+                elseif pvpRank == 9 then
+                    selectedRank = 8;
+                elseif pvpRank == 11 then
+                    selectedRank = 10;
+                end                
             end
         else
             selectedRank = BestInSlotClassicDB.filter.pvprank;
@@ -522,43 +638,95 @@ function ShowManager()
 
         BIS_TOOLTIP = BIS_CreateGameTooltip("BIS_TOOLTIP", window);
 
-        dropdownRace = CreateDropDownList("ddRaces", window, 200, 20, -15, "races", race);        
-        dropdownClass = CreateDropDownList("ddClass", window, 200, 280, -15, "class", class);
-        dropdownSpec = CreateDropDownList("ddSpecs", window, 200, 540, -15, "specs", specsFileToSpecs[spec][1]);
-        dropdownPhase = CreateDropDownList("ddPhases", window, 200, 800, -15, "phases", bis_currentPhase);
-        dropdownPVPRank = CreateDropDownList("ddRanks", window, 200, 450, -140, "pvpranks", pvpranks[faction][selectedRank]);
-                
-        checkboxRaid = CreateCheckBox("cbRaid", "Raid", window, 450, -50, "Include raid items", function(self)            
-            BestInSlotClassicDB.filter.raid = checkboxRaid:GetChecked();
-            Update();
-        end);
-        checkboxWorldBoss = CreateCheckBox("cbWorldBoss", "World Boss", window, 450, -70, "Include World Boss items", function(self)                        
-            BestInSlotClassicDB.filter.worldboss = checkboxWorldBoss:GetChecked();
-            Update();            
-        end);
-        checkboxTwoHands = CreateCheckBox("cbTwoHands", "Two-Hands", window, 450, -90, "Show 2-hands weapons instead of 1-hand", function(self)
-            BestInSlotClassicDB.filter.twohands = checkboxTwoHands:GetChecked();
-            Update();
-        end);
-        checkboxPvp = CreateCheckBox("cbPvp", "PVP", window, 450, -110, "Include PVP items", function(self)
-            BestInSlotClassicDB.filter.pvp = checkboxPvp:GetChecked();
-            if(checkboxPvp:GetChecked()) then
-                UIDropDownMenu_EnableDropDown(dropdownPVPRank);
-            else
-                UIDropDownMenu_DisableDropDown(dropdownPVPRank);
-            end
-            Update();
-        end);
+        gender = math.random(1, 2);                
 
-        checkboxRaid:SetChecked(BestInSlotClassicDB.filter.raid);
-        checkboxWorldBoss:SetChecked(BestInSlotClassicDB.filter.worldboss);
-        checkboxTwoHands:SetChecked(BestInSlotClassicDB.filter.twohands);
-        checkboxPvp:SetChecked(BestInSlotClassicDB.filter.pvp);
-        if(checkboxPvp:GetChecked()) then
-            UIDropDownMenu_EnableDropDown(dropdownPVPRank);
-        else
-            UIDropDownMenu_DisableDropDown(dropdownPVPRank);
+        for i, race in ipairs(races[faction]) do                        
+            CreateClickableIconFrame("frame_"..race, window, race, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, classes[RACES_IDX[race]].TEXT_COORD[gender], HandleRacesIcon, false);
+            for j, class in ipairs(classes[RACES_IDX[race]].CLASS) do                
+                CreateClickableIconFrame("frame_"..RACES_IDX[race].."_"..class, window, class, 25, 25, 450 + ((j - 1) * 25), -15, dataSpecs[CLASS_IDX[class]].ICON[1], nil, HandleClassIcon, false);
+                for k, spec in ipairs(dataSpecs[CLASS_IDX[class]].SPEC) do                    
+                    CreateClickableIconFrame("frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, dataSpecs[CLASS_IDX[class]].SPEC_ICONS[k], nil, HandleSpecIcon, false);
+                end
+            end
+        end                    
+        
+        for idx, phase in ipairs(phases.NAME) do            
+            CreateClickableIconFrame("frame_PHASE_"..phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, phases.ICON[idx], nil, HandlePhasesIcon, false);            
+        end        
+                             
+        raid = BestInSlotClassicDB.filter.raid;
+        pvp = BestInSlotClassicDB.filter.pvp;
+        twoHands = BestInSlotClassicDB.filter.twohands;
+        worldBoss = BestInSlotClassicDB.filter.worldboss;            
+
+        CreateClickableIconFrame("frame_RAID", window, "Raid BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
+        CreateClickableIconFrame("frame_DUNGEON", window, "Pre-raid BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
+        
+        CreateClickableIconFrame("frame_WORLD_BOSS", window, "Include world boss items", 16, 16, 525, -50, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
+
+        CreateClickableIconFrame("frame_ONE_HAND", window, "1-Hand mode", 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+        CreateClickableIconFrame("frame_TWO_HANDS", window, "2-Hands mode", 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+
+        if faction == "Horde" then
+            pvpIcon = iconHorde;            
+        else            
+            pvpIcon = iconAlliance;            
+        end                            
+
+        CreateClickableIconFrame("frame_PVP", window, "Include pvp items", 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
+
+        for idx, value in pairs(pvpranks[faction]) do
+            CreateIconFrame("frame_"..value.."_PVP_RANK", window, 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",pvpranks.VALUE[idx]));
+            _G["frame_"..value.."_PVP_RANK"]:SetScript("OnEnter", function(self)
+                BIS_TOOLTIP:SetOwner(_G["frame_"..value.."_PVP_RANK"]);
+                BIS_TOOLTIP:SetPoint("TOPLEFT", _G["frame_"..value.."_PVP_RANK"], "TOPRIGHT", 220, -13);                
+                BIS_TOOLTIP:SetText(value.." (R"..pvpranks.VALUE[idx]..")");                
+                BIS_TOOLTIP:Show();
+            end);
+            _G["frame_"..value.."_PVP_RANK"]:SetScript("OnLeave", function(self)            
+                BIS_TOOLTIP:Hide();
+            end);
+            _G["frame_"..value.."_PVP_RANK"]:SetScript("OnMouseDown", function(self)            
+                for idx, value in pairs(pvpranks[faction]) do
+                    if "frame_"..value.."_PVP_RANK" == self:GetName() then
+                        selectedRank = pvpranks.VALUE[idx];
+                        BestInSlotClassicDB.filter.pvprank = selectedRank;
+                        _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(false);
+                    else
+                        _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(true);
+                    end
+                end
+                Update();
+            end);
+            _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(true);
         end
+
+        for idx, value in pairs(magicResistances.NAME) do
+            CreateIconFrame("frame_"..value.."_RESIST", window, 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon"..magicResistances.ID[idx]..".png");
+            _G["frame_"..value.."_RESIST"]:SetScript("OnEnter", function(self)
+                BIS_TOOLTIP:SetOwner(_G["frame_"..value.."_RESIST"]);
+                BIS_TOOLTIP:SetPoint("TOPLEFT", _G["frame_"..value.."_RESIST"], "TOPRIGHT", 220, -13);                
+                BIS_TOOLTIP:SetText(magicResistances.LABEL[idx]);                
+                BIS_TOOLTIP:Show();
+            end);
+            _G["frame_"..value.."_RESIST"]:SetScript("OnLeave", function(self)            
+                BIS_TOOLTIP:Hide();
+            end);
+            _G["frame_"..value.."_RESIST"]:SetScript("OnMouseDown", function(self)                
+                for idx, value in pairs(magicResistances.NAME) do
+                    if "frame_"..value.."_RESIST" == self:GetName() then
+                        selectedMagicResist = idx;
+                        _G["frame_"..value.."_RESIST_ICON"]:SetDesaturated(false);        
+                    else
+                        _G["frame_"..value.."_RESIST_ICON"]:SetDesaturated(true);        
+                    end                    
+                end
+                Update();      
+            end);
+            _G["frame_"..value.."_RESIST_ICON"]:SetDesaturated(true);            
+        end
+
+        _G["frame_Normal_RESIST_ICON"]:SetDesaturated(false);
 
         local startX, startY;
         local offsetX, offsetY;
@@ -596,7 +764,7 @@ function ShowManager()
                         offsetY = 0;
                     end
                     window.enchantFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY - offsetY);
-                    CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_ENCHANT", window.enchantFrame[i][j], smallIcon, smallIcon, 0, 0, nil);                    
+                    CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_ENCHANT", window.enchantFrame[i][j], smallIcon, smallIcon, 0, 0, nil);
                 end
             end
 

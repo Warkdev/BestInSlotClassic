@@ -64,10 +64,11 @@ function CreateWindow(name, height, width)
     return window;
 end
 
-function CreateCheckBox(name, label, parent, x, y, tooltip, callback)
+function CreateCheckBox(name, label, parent, x, y, width, height, tooltip, callback)
     local checkbox = CreateFrame("CheckButton", name, parent, "ChatConfigCheckButtonTemplate");
     checkbox.tooltip = tooltip;    
     checkbox:SetPoint("TOPLEFT", x, y);
+    _G[name.."Text"]:SetSize(width, height);
     _G[name.."Text"]:SetText(label);    
     checkbox:SetScript("OnClick", callback);
 

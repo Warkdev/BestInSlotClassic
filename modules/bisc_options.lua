@@ -66,7 +66,7 @@ function CreateSettingsInterface()
 
     loglevelDropdown = CreateDropDownList("BISCLogLevelDD", settings, 80, 60, -40);
 
-    minimapCheckbox = CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 70, -85, "Show/Hide Minimap Icon", function(self)        
+    minimapCheckbox = CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 70, -85, 150, 20, "Show/Hide Minimap Icon", function(self)        
         local isChecked = minimapCheckbox:GetChecked();        
         BestInSlotClassicDB.minimap.hide = (not isChecked);        
         UpdateMinimapIcon();        

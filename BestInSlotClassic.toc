@@ -2,9 +2,9 @@
 ## Interface: 11303
 ## Title: Best In Slot Classic - v1.6.0
 ## Notes: Keep track of your, your raid members and your guilds Best in Slot list!
-## Version: 1.6.0
-## SavedVariables: BestInSlotClassicDB
-## SavedVariablesPerCharacter: BestInSlotClassicCharDB
+## Version: 1.7.0
+## SavedVariables: BestInSlotClassicGlobalDB
+## SavedVariablesPerCharacter: BestInSlotClassicDB
 
 lib\LibStub\LibStub.lua
 lib\CallbackHandler-1.0\CallbackHandler-1.0.lua
