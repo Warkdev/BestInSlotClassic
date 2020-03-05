@@ -227,9 +227,9 @@ local function ResetUI()
     if selectedSpec ~= nil then
         for key, value in pairs(magicResistances.NAME) do            
             if dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][key] == nil then                
-                _G["frame_"..value.."_RESIST"]:Hide();
+                _G["frame_MAGIC_"..key]:Hide();
             else                
-                _G["frame_"..value.."_RESIST"]:Show();
+                _G["frame_MAGIC_"..key]:Show();
             end
         end
         _G["frame_PVP"]:Show();
@@ -243,18 +243,19 @@ local function ResetUI()
         end        
 
         _G["frame_PVP_ICON"]:SetDesaturated(not pvp);
+        _G["frame_WORLD_BOSS_ICON"]:SetDesaturated(not worldBoss);
         if pvp then            
             for idx, value in pairs(pvpranks[faction]) do                    
-                _G["frame_"..value.."_PVP_RANK"]:Show();
+                _G["frame_PVP_RANK_"..pvpranks.VALUE[idx]]:Show();
                 if pvpranks.VALUE[idx] == selectedRank then
-                    _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(false);
+                    _G["frame_PVP_RANK_"..pvpranks.VALUE[idx].."_ICON"]:SetDesaturated(false);
                 else
-                    _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(true);
+                    _G["frame_PVP_RANK_"..pvpranks.VALUE[idx].."_ICON"]:SetDesaturated(true);
                 end
             end
         else
             for idx, value in pairs(pvpranks[faction]) do                    
-                _G["frame_"..value.."_PVP_RANK"]:Hide();
+                _G["frame_PVP_RANK_"..pvpranks.VALUE[idx]]:Hide();
             end
         end                
         if twoHands then
@@ -282,9 +283,17 @@ local function ResetUI()
 
         UpdateIcon("frame_ONE_HAND", GetItemIcon(oneHandIcon), nil);
         UpdateIcon("frame_TWO_HANDS", GetItemIcon(twoHandsIcon), nil);
+
+        for idx, value in pairs(magicResistances.NAME) do
+            if selectedMagicResist == idx then                
+                _G["frame_MAGIC_"..idx.."_ICON"]:SetDesaturated(false);        
+            else
+                _G["frame_MAGIC_"..idx.."_ICON"]:SetDesaturated(true);        
+            end                    
+        end
     else
         for key, value in pairs(magicResistances.NAME) do                        
-            _G["frame_"..value.."_RESIST"]:Hide();            
+            _G["frame_MAGIC_"..key]:Hide();            
         end
         _G["frame_PVP"]:Hide();
         _G["frame_WORLD_BOSS"]:Hide();
@@ -293,7 +302,7 @@ local function ResetUI()
         _G["frame_ONE_HAND"]:Hide();
         _G["frame_TWO_HANDS"]:Hide();
         for idx, value in pairs(pvpranks[faction]) do                    
-            _G["frame_"..value.."_PVP_RANK"]:Hide();
+            _G["frame_PVP_RANK_"..pvpranks.VALUE[idx]]:Hide();
         end        
     end    
 end
@@ -341,7 +350,7 @@ local function Update()
         temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank);
         bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
         temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, raid, twoHands);
-    else
+    else        
         bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
         temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank);
         bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
@@ -488,7 +497,7 @@ local function HandleRacesIcon(self)
     selectedRace = RACES_IDX[raceName];
     selectedClass = nil;
     selectedSpec = nil;
-    selectedMagicResist = 1;
+    selectedMagicResist = 1;    
     Update();
 end
 
@@ -533,8 +542,25 @@ end
 
 local function HandleWorldBossIcon(self)
     worldBoss = not worldBoss;
-    BestInSlotClassicDB.filter.worldboss = worldBoss;
-    _G["frame_WORLD_BOSS_ICON"]:SetDesaturated(not worldBoss);
+    BestInSlotClassicDB.filter.worldboss = worldBoss;    
+    Update();
+end
+
+local function HandleMagicIcon(self)
+    local magicResist = tonumber(self:GetName():match("[^_]+_[^_]+_([^_]+)"));    
+    if magicResist == selectedMagicResist then
+        return;
+    end
+    selectedMagicResist = magicResist;
+    Update();
+end
+
+local function HandlePvpRankIcon(self)
+    local rankIcon = tonumber(self:GetName():match("[^_]+_[^_]+_[^_]+_([^_]+)"));
+    if rankIcon == selectedRank then
+        return;
+    end
+    selectedRank = rankIcon;
     Update();
 end
 
@@ -676,57 +702,12 @@ function ShowManager()
         CreateClickableIconFrame("frame_PVP", window, "Include pvp items", 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
 
         for idx, value in pairs(pvpranks[faction]) do
-            CreateIconFrame("frame_"..value.."_PVP_RANK", window, 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",pvpranks.VALUE[idx]));
-            _G["frame_"..value.."_PVP_RANK"]:SetScript("OnEnter", function(self)
-                BIS_TOOLTIP:SetOwner(_G["frame_"..value.."_PVP_RANK"]);
-                BIS_TOOLTIP:SetPoint("TOPLEFT", _G["frame_"..value.."_PVP_RANK"], "TOPRIGHT", 220, -13);                
-                BIS_TOOLTIP:SetText(value.." (R"..pvpranks.VALUE[idx]..")");                
-                BIS_TOOLTIP:Show();
-            end);
-            _G["frame_"..value.."_PVP_RANK"]:SetScript("OnLeave", function(self)            
-                BIS_TOOLTIP:Hide();
-            end);
-            _G["frame_"..value.."_PVP_RANK"]:SetScript("OnMouseDown", function(self)            
-                for idx, value in pairs(pvpranks[faction]) do
-                    if "frame_"..value.."_PVP_RANK" == self:GetName() then
-                        selectedRank = pvpranks.VALUE[idx];
-                        BestInSlotClassicDB.filter.pvprank = selectedRank;
-                        _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(false);
-                    else
-                        _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(true);
-                    end
-                end
-                Update();
-            end);
-            _G["frame_"..value.."_PVP_RANK_ICON"]:SetDesaturated(true);
-        end
+            CreateClickableIconFrame("frame_PVP_RANK_"..pvpranks.VALUE[idx], window, value.." (R"..pvpranks.VALUE[idx]..")", 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",pvpranks.VALUE[idx]), nil, HandlePvpRankIcon, false);
+        end                                    
 
         for idx, value in pairs(magicResistances.NAME) do
-            CreateIconFrame("frame_"..value.."_RESIST", window, 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon"..magicResistances.ID[idx]..".png");
-            _G["frame_"..value.."_RESIST"]:SetScript("OnEnter", function(self)
-                BIS_TOOLTIP:SetOwner(_G["frame_"..value.."_RESIST"]);
-                BIS_TOOLTIP:SetPoint("TOPLEFT", _G["frame_"..value.."_RESIST"], "TOPRIGHT", 220, -13);                
-                BIS_TOOLTIP:SetText(magicResistances.LABEL[idx]);                
-                BIS_TOOLTIP:Show();
-            end);
-            _G["frame_"..value.."_RESIST"]:SetScript("OnLeave", function(self)            
-                BIS_TOOLTIP:Hide();
-            end);
-            _G["frame_"..value.."_RESIST"]:SetScript("OnMouseDown", function(self)                
-                for idx, value in pairs(magicResistances.NAME) do
-                    if "frame_"..value.."_RESIST" == self:GetName() then
-                        selectedMagicResist = idx;
-                        _G["frame_"..value.."_RESIST_ICON"]:SetDesaturated(false);        
-                    else
-                        _G["frame_"..value.."_RESIST_ICON"]:SetDesaturated(true);        
-                    end                    
-                end
-                Update();      
-            end);
-            _G["frame_"..value.."_RESIST_ICON"]:SetDesaturated(true);            
+            CreateClickableIconFrame("frame_MAGIC_"..idx, window, magicResistances.NAME[idx], 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon"..magicResistances.ID[idx]..".png", nil, HandleMagicIcon, false);
         end
-
-        _G["frame_Normal_RESIST_ICON"]:SetDesaturated(false);
 
         local startX, startY;
         local offsetX, offsetY;
