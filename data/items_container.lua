@@ -1,6 +1,6 @@
 ITEMS_CONTAINER = { };
 ITEMS_CONTAINER[13371] = { Containers = {  {Zone = "Alterac Valley", Name = "Father Flame", Chance = 100.0 }} };
-ITEMS_CONTAINER[18538] = { Containers = {  {Zone = "Dire Maul", Name = "Gordok Tribute", Chance = 0.4 }} };
+ITEMS_CONTAINER[18538] = { Containers = {  {Zone = "Dire Maul North", Name = "Gordok Tribute", Chance = 0.4 }} };
 ITEMS_CONTAINER[18706] = { Containers = {  {Zone = "Stranglethorn Vale", Name = "Arena Treasure Chest", Chance = 96.0 }} };
 ITEMS_CONTAINER[18709] = { Containers = {  {Zone = "Stranglethorn Vale", Name = "Arena Treasure Chest", Chance = 7.0 }} };
 ITEMS_CONTAINER[18710] = { Containers = {  {Zone = "Stranglethorn Vale", Name = "Arena Treasure Chest", Chance = 6.0 }} };
