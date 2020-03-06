@@ -1,3 +1,7 @@
+# 1.x.x (xx-03-2020)
+- Updating priority of Warlord's Dragonhide Helmet (druid threat spec).
+- Updating priority of Ragefury Eyepatch (druid threat spec).
+
 # 1.7.0 (05-03-2020)
 - Preferences are now set per character instead of account-wide. As a consequence, actual preferences will be defaulted.
 - Updated BIS list for mage fire/frost spec. Please note that this spec will change in the future and will be split as I'm not entirely happy with the actual definition.
