@@ -20,6 +20,8 @@ Supported lists are:
 | Warlock  | Yes  |  Yes  |  Yes  |  Yes  | Yes  | Yes  |
 | Druid  | Yes  |  Yes  |  Yes  |  Yes  | Yes  | Yes  |
 
+You can find this add-on on curse: https://www.curseforge.com/wow/addons/best-in-slot-classic/
+
 # Reporting an issue #
 
 Please use the issue tracker to report any bug/missing items/unordered list.
