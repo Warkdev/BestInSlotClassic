@@ -23,8 +23,7 @@ local function enrichRecipeSource(recipeId, icon)
                 BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." (Unknown)");
             else
                 BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." ("..npc.Chance.."%)");
-            end                                        
-            BIS_TOOLTIP:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
+            end
         end
     end
     if RECIPE_VENDOR[recipeId] ~= nil then
@@ -53,13 +52,12 @@ local function enrichRecipeSource(recipeId, icon)
                     else
                         BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - "..GetMoneyString(npc.Price, true));
                     end                                            
-                end                                        
-                BIS_TOOLTIP:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
+                end
             end
         end                            
     end
-    if RECIPE_QUESTS[recipeId] ~= nil then
-        details = RECIPE_QUESTS[recipeId];                                    
+    if RECIPE_QUEST[recipeId] ~= nil then
+        details = RECIPE_QUEST[recipeId];                                    
         local selectedQuest = nil;
         for idq, quest in pairs(details.Quests) do
             if quest.Side == nil or quest.Side == faction then
@@ -89,10 +87,10 @@ local function enrichRecipeSource(recipeId, icon)
         --end        
     end
     if RECIPE_CONTAINER[recipeId] ~= nil then
-        details = ITEMS_CONTAINER[ItemId];
-            for idc, container in pairs(details.Containers) do
-                BIS_TOOLTIP:AddLine("|T"..GetItemIcon(16883)..":"..bis_defaultIconSize.."|t|T"..icon..":"..bis_defaultIconSize.."|t"....container.Zone.." - "..container.Name.." ("..container.Chance.."%)");
-            end             
+        details = RECIPE_CONTAINER[recipeId];
+        for idc, container in pairs(details.Containers) do
+            BIS_TOOLTIP:AddLine("|T"..GetItemIcon(16883)..":"..bis_defaultIconSize.."|t|T"..icon..":"..bis_defaultIconSize.."|t"..container.Zone.." - "..container.Name.." ("..container.Chance.."%)");
+        end             
     end
 end
 
@@ -100,8 +98,10 @@ function BIS_OnTooltipSetSpell(frame)
     local name, EnchantId = frame:GetSpell();
     
     BIS_TOOLTIP:AddLine("|T"..PROFESSIONS["Enchanting"]..":"..bis_defaultIconSize.."|t Enchanting ("..BIS_ENCHANT[EnchantId].Level..")");
-    if BIS_ENCHANT.recipe == nil then        
+    if BIS_ENCHANT[EnchantId].Recipe == nil or BIS_ENCHANT[EnchantId].Recipe == 0 then
         BIS_TOOLTIP:AddLine("|T134327:"..bis_defaultIconSize.."|t Taught by trainer");
+    else
+        enrichRecipeSource(BIS_ENCHANT[EnchantId].Recipe, "134327");
     end
 
     BIS_TOOLTIP:Show();
@@ -120,10 +120,10 @@ function BIS_OnTooltipSetItem(frame)
         if ITEMS_CRAFT[ItemId] ~= nil then
             details = ITEMS_CRAFT[ItemId];
             BIS_TOOLTIP:AddLine("|T"..PROFESSIONS[details.CraftLabel]..":"..bis_defaultIconSize.."|t "..details.CraftLabel.." ("..details.CraftLevel..")");
-            if itemInfo.recipe == nil then
+            if itemInfo.Recipe == nil or itemInfo.Recipe == 0 then
                 BIS_TOOLTIP:AddLine("|T134939:"..bis_defaultIconSize.."|t Taught by trainer");
             else
-                enrichRecipeSource(itemInfo.recipe, "134939");
+                enrichRecipeSource(itemInfo.Recipe, "134939");
             end            
         end
         if ITEMS_LOOT[ItemId] ~= nil then
