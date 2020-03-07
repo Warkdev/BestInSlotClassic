@@ -14,6 +14,11 @@ lib\LibTouristClassic-1.0\lib.xml
 core.lua
 data\bis_data.lua
 data\bis_enchant.lua
+data\recipe.lua
+data\recipe_loot.lua
+data\recipe_quests.lua
+data\recipe_container.lua
+data\recipe_vendor.lua
 data\items.lua
 data\items_loot.lua
 data\items_craft.lua

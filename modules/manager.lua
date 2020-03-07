@@ -15,7 +15,6 @@ local iconAlliance = 132486;
 local iconHorde = 132485;
 local iconTwoHands_Swords = 135360;
 local iconTwoHands_Staff = 135226;
-local icon
 
 local characterFrames = { 
     ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds", "Bags" },    

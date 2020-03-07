@@ -1,4 +1,5 @@
-# 1.x.x (xx-03-2020)
+# 1.8.0 (xx-03-2020)
+- Recipe will now have their source displayed on the tooltip.
 - Updating priority of Warlord's Dragonhide Helmet (druid threat spec).
 - Updating priority of Ragefury Eyepatch (druid threat spec).
 - Dire Maul npc and items will now indicate in which aisle you can find them.

@@ -1801,3 +1801,7 @@ ITEMS_LOOT[23666] = { NPC = {  { Name = "Dread Creeper", Zone = "Naxxramas", Cha
 ITEMS_LOOT[23667] = { NPC = {  { Name = "Dread Creeper", Zone = "Naxxramas", Chance = 0.1 },  { Name = "Carrion Spinner", Zone = "Naxxramas", Chance = 0.0574 },  { Name = "Venom Stalker", Zone = "Naxxramas", Chance = 0.13 },  { Name = "Crypt Reaver", Zone = "Naxxramas", Chance = 0.18 },  { Name = "Naxxramas Cultist", Zone = "Naxxramas", Chance = 0.08 }} };
 ITEMS_LOOT[23668] = { NPC = {  { Name = "Dread Creeper", Zone = "Naxxramas", Chance = 0.32 },  { Name = "Carrion Spinner", Zone = "Naxxramas", Chance = 0.0574 },  { Name = "Venom Stalker", Zone = "Naxxramas", Chance = 0.4751 },  { Name = "Crypt Reaver", Zone = "Naxxramas", Chance = 1.0 },  { Name = "Tomb Horror", Zone = "Naxxramas", Chance = 1.0 }} };
 ITEMS_LOOT[24222] = { NPC = {  { Name = "Vile Slime", Zone = "Western Plaguelands", Chance = 0.02 },  { Name = "Scarlet Knight", Zone = "Western Plaguelands", Chance = 0.01 },  { Name = "Shadowsworn Dreadweaver", Zone = "Blasted Lands", Chance = 0.05 },  { Name = "Blackrock Warlock", Zone = "Burning Steppes", Chance = 0.01 },  { Name = "Greater Obsidian Elemental", Zone = "Burning Steppes", Chance = 0.01 }} };
+RECIPE_LOOT = { };
+RECIPE_QUEST = { };
+RECIPE_VENDOR = { };
+RECIPE_CONTAINER = { };

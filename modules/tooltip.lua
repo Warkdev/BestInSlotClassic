@@ -5,10 +5,104 @@ local function iconOffset(col, row)
 	return offsetString .. ":" .. (row * 64 + iconCutoff) .. ":" .. ((row + 1) * 64 - iconCutoff)
 end
 
+local function enrichRecipeSource(recipeId, icon)    
+    if RECIPE_LOOT[recipeId] ~= nil then
+        details = RECIPE_LOOT[recipeId];
+        local count = table.getn(details.NPC);
+        if(count > 5) then
+            count = 5
+        end
+        local left, right, top, bottom;
+        left = 612;
+        top = 224;
+        right = 644;
+        bottom = 256;                                    
+        for idl=1, count, 1 do
+            local npc = details.NPC[idl];
+            if npc.Chance == -1 then                                            
+                BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." (Unknown)");
+            else
+                BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." ("..npc.Chance.."%)");
+            end                                        
+            BIS_TOOLTIP:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
+        end
+    end
+    if RECIPE_VENDOR[recipeId] ~= nil then
+        details = RECIPE_VENDOR[recipeId];
+        local count = table.getn(details.NPC);
+        if(count > 5) then
+            count = 5;
+        end
+        local left, right, top, bottom;
+        left = 580;
+        top = 224;
+        right = 612;
+        bottom = 256;                                    
+        for idv=1, count, 1 do
+            local npc = details.NPC[idv];
+            if npc.Side == nil or npc.Side == faction then
+                if npc.Price == nil then
+                    if npc.Requirement == nil then
+                        BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." (Unknown) - Unknown price ");
+                    else
+                        BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - Unknown price ");
+                    end
+                else
+                    if npc.Requirement == nil then
+                        BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." - "..GetMoneyString(npc.Price, true));
+                    else
+                        BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..npc.Zone.." - "..npc.Name.." ("..npc.Requirement..") - "..GetMoneyString(npc.Price, true));
+                    end                                            
+                end                                        
+                BIS_TOOLTIP:AddTexture("Interface\\LootFrame\\LootToast", unpack({ left/1024, right/1024, top/256, bottom/256 }));
+            end
+        end                            
+    end
+    if RECIPE_QUESTS[recipeId] ~= nil then
+        details = RECIPE_QUESTS[recipeId];                                    
+        local selectedQuest = nil;
+        for idq, quest in pairs(details.Quests) do
+            if quest.Side == nil or quest.Side == faction then
+                selectedQuest = quest;
+            end
+        end
+        
+        if IsQuestFlaggedCompleted(selectedQuest.Id) then
+            BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..selectedQuest.Zone.." - "..selectedQuest.Name.." (completed)");
+        else
+            BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..selectedQuest.Zone.." - "..selectedQuest.Name);
+        end
+        
+        if selectedQuest.Dungeon then
+            BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[81]));
+        elseif selectedQuest.Raid then
+            BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
+        else
+            BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS["COMPLETED"]));
+        end
+        
+        --if selectedQuest.Side ~= nil then                                        
+        --    BIS_TOOLTIP:AddDoubleLine("Quest Name: "..selectedQuest.Name);                                        
+        --    BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[selectedQuest.Side:upper()]));                                        
+        --else
+        --    BIS_TOOLTIP:AddLine("Quest Name: "..selectedQuest.Name);
+        --end        
+    end
+    if RECIPE_CONTAINER[recipeId] ~= nil then
+        details = ITEMS_CONTAINER[ItemId];
+            for idc, container in pairs(details.Containers) do
+                BIS_TOOLTIP:AddLine("|T"..GetItemIcon(16883)..":"..bis_defaultIconSize.."|t|T"..icon..":"..bis_defaultIconSize.."|t"....container.Zone.." - "..container.Name.." ("..container.Chance.."%)");
+            end             
+    end
+end
+
 function BIS_OnTooltipSetSpell(frame)
     local name, EnchantId = frame:GetSpell();
     
     BIS_TOOLTIP:AddLine("|T"..PROFESSIONS["Enchanting"]..":"..bis_defaultIconSize.."|t Enchanting ("..BIS_ENCHANT[EnchantId].Level..")");
+    if BIS_ENCHANT.recipe == nil then        
+        BIS_TOOLTIP:AddLine("|T134327:"..bis_defaultIconSize.."|t Taught by trainer");
+    end
 
     BIS_TOOLTIP:Show();
 end
@@ -26,8 +120,11 @@ function BIS_OnTooltipSetItem(frame)
         if ITEMS_CRAFT[ItemId] ~= nil then
             details = ITEMS_CRAFT[ItemId];
             BIS_TOOLTIP:AddLine("|T"..PROFESSIONS[details.CraftLabel]..":"..bis_defaultIconSize.."|t "..details.CraftLabel.." ("..details.CraftLevel..")");
-            --BIS_TOOLTIP:AddLine("Recipe Zone: "..itemInfo.Zone);
-            --BIS_TOOLTIP:AddLine("NPC: "..itemInfo.Info.NPC.."%");
+            if itemInfo.recipe == nil then
+                BIS_TOOLTIP:AddLine("|T134939:"..bis_defaultIconSize.."|t Taught by trainer");
+            else
+                enrichRecipeSource(itemInfo.recipe, "134939");
+            end            
         end
         if ITEMS_LOOT[ItemId] ~= nil then
             details = ITEMS_LOOT[ItemId];
