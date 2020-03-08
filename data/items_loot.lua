@@ -1259,7 +1259,6 @@ ITEMS_LOOT[19312] = { NPC = {  { Name = "Grunnda Wolfheart ", Zone = "Alterac Va
 ITEMS_LOOT[19315] = { NPC = {  { Name = "Grunnda Wolfheart ", Zone = "Alterac Valley", Chance = 0.02 }} };
 ITEMS_LOOT[19321] = { NPC = {  { Name = "Grunnda Wolfheart ", Zone = "Alterac Valley", Chance = 0.02 }} };
 ITEMS_LOOT[19323] = { NPC = {  { Name = "Grunnda Wolfheart ", Zone = "Alterac Valley", Chance = 0.02 }} };
-ITEMS_LOOT[19325] = { NPC = {  { Name = "Grunnda Wolfheart ", Zone = "Alterac Valley", Chance = 0.02 }} };
 ITEMS_LOOT[19334] = { NPC = {  { Name = "Razorgore the Untamed", Zone = "Blackwing Lair", Chance = 7.0 }} };
 ITEMS_LOOT[19335] = { NPC = {  { Name = "Razorgore the Untamed", Zone = "Blackwing Lair", Chance = 20.0 }} };
 ITEMS_LOOT[19339] = { NPC = {  { Name = "Vaelastrasz the Corrupt", Zone = "Blackwing Lair", Chance = 38.0 }} };
