@@ -1,3 +1,10 @@
+# 1.9.0 (11-03-2020)
+- Add-on is partially localized. Options and spec informations are NOT localized. Other info should be localized, many thanks for Questie and Atlasloot to allow me to use their work !
+- Gender will now be used to render the race icons.
+- Fixing Tork Wrench faction assignment.
+- Removing drops on Grunnda Wolfheart.
+- Updating recipe id's for Thorium spike, Biznicks scope and Mithril spurs.
+
 # 1.8.0 (08-03-2020)
 - Recipe will now have their source displayed on the tooltip.
 - Updating priority of Warlord's Dragonhide Helmet (druid threat spec).

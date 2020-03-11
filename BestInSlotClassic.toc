@@ -6,12 +6,18 @@
 ## SavedVariables: BestInSlotClassicGlobalDB
 ## SavedVariablesPerCharacter: BestInSlotClassicDB
 
+
+# Libs.
 lib\LibStub\LibStub.lua
 lib\CallbackHandler-1.0\CallbackHandler-1.0.lua
 lib\LibDataBroker-1.1\LibDataBroker-1.1.lua
 lib\LibDBIcon-1.0\LibDBIcon-1.0.lua
 lib\LibTouristClassic-1.0\lib.xml
+
+# Core.
 core.lua
+
+# Data.
 data\bis_data.lua
 data\bis_enchant.lua
 data\recipe.lua
@@ -30,12 +36,31 @@ data\professions.lua
 data\class.lua
 data\races.lua
 data\inventoryslot.lua
+
+# Facilities.
 modules\logger.lua
 modules\cli.lua
 modules\minimap.lua
 modules\bisc_options.lua
+modules\sql.lua
+
+# Config.
+config\bis_config.lua
+
+#Localization
+modules\locales.lua
+locales\enUS\locale.xml
+locales\esES\locale.xml
+locales\esMX\locale.xml
+locales\deDE\locale.xml
+locales\zhCN\locale.xml
+locales\zhTW\locale.xml
+locales\frFR\locale.xml
+locales\koKR\locale.xml
+locales\ptBR\locale.xml
+locales\ruRU\locale.xml
+
+# UI.
 modules\widgets.lua
 modules\tooltip.lua
 modules\manager.lua
-modules\sql.lua
-config\bis_config.lua

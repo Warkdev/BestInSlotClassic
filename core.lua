@@ -59,6 +59,12 @@ function ResetDefaults()
     SetDefaults();
 end
 
+function LoadItemInfo()
+    for idx, itemId in pairs(BIS_ITEM_LOAD) do
+        GetItemInfo(itemId);
+    end
+end    
+
 function LoadPlayerInfo()
     -- Player name.
     name = UnitName("player");
@@ -152,8 +158,10 @@ local function eventHandler(self, event, args1, ...)
     if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then        
         SetDefaults();              
         CreateMinimapIcon();
-        CreateSettingsInterface();
+        CreateSettingsInterface();        
+        BIS_SetUILocale();
         -- Attempt to prevent buggy display.        
+        LoadItemInfo();
         GameTooltip:HookScript( "OnTooltipSetItem", ModifyItemTooltip )
         bis_log("BestInSlotClassic v"..VERSION.." loaded", INFO);
     end

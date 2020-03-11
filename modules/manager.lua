@@ -34,25 +34,25 @@ local characterFrames = {
 };
 
 local magicResistances = {
-    ["NAME"] = { "Normal", "Fire", "Nature", "Shadow", "Frost", "Arcanes" },
-    ["LABEL"] = { "Normal", "Fire resistance", "Nature resistance", "Shadow Resistance", "Frost Resistance", "Arcanes Resistance" },
+    ["NAME"] = { RESISTANCE_TYPE0, RESISTANCE_TYPE2 , RESISTANCE_TYPE3 , RESISTANCE_TYPE5 , RESISTANCE_TYPE4 , RESISTANCE_TYPE6 },
+    ["LABEL"] = { RESISTANCE0_NAME , RESISTANCE2_NAME , RESISTANCE3_NAME , RESISTANCE5_NAME , RESISTANCE4_NAME, RESISTANCE6_NAME },
     ["ID"] = { 2, 3, 4, 6, 5, 7 }
 }
 
 local races = {
-    ["Horde"] = { "Orc", "Scourge", "Tauren", "Troll" },
-    ["Alliance"] = { "Human", "Gnome", "Dwarf", "NightElf" }
+    ["Horde"] = { 2, 5, 6, 8 },
+    ["Alliance"] = { 1, 7, 3, 4 }
 };
 
 local classes = {
-    [1] = { ["CLASS"] = { "Warrior", "Paladin", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130914 }, ["TEXT_COORD"] = { { 0/256, 64/256, 0/256, 64/256 }, { 0/256, 64/256, 128/256, 192/256 } } },
-    [2] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Shaman", "Warlock" }, ["ICON"] = { 130916 }, ["TEXT_COORD"] = { { 192/256, 256/256, 64/256, 128/256 }, { 192/256, 256/256, 192/256, 256/256 } } },
-    [3] = { ["CLASS"] = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest" }, ["ICON"] = { 130902 }, ["TEXT_COORD"] = { { 64/256, 128/256, 0/256, 64/256 }, { 64/256, 128/256, 128/256, 192/256 } } },
-    [4] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Druid" }, ["ICON"] = { 130915 }, ["TEXT_COORD"] = { { 192/256, 256/256, 0/256, 64/256 }, { 192/256, 256/256, 128/256, 192/256 } } },    
-    [5] = { ["CLASS"] = { "Warrior", "Rogue", "Priest", "Mage", "Warlock" }, ["ICON"] = { 130907 }, ["TEXT_COORD"] = { { 64/256, 128/256, 64/256, 128/256 }, { 64/256, 128/256, 192/256, 256/256 } } },
-    [6] = { ["CLASS"] = { "Warrior", "Hunter", "Shaman", "Druid" }, ["ICON"] = { 130918 }, ["TEXT_COORD"] = { { 0/256, 64/256, 64/256, 128/256 }, { 0/256, 64/256, 192/256, 256/256 } } },
-    [7] = { ["CLASS"] = { "Warrior", "Rogue", "Mage", "Warlock" }, ["ICON"] = { 130903 }, ["TEXT_COORD"] = { { 128/256, 192/256, 0/256, 64/256 }, { 128/256, 192/256, 128/256, 192/256 } } },    
-    [8] = { ["CLASS"] = { "Warrior", "Hunter", "Rogue", "Priest", "Shaman", "Mage" }, ["ICON"] = { 130909 }, ["TEXT_COORD"] = { { 128/256, 192/256, 64/256, 128/256 }, { 128/256, 192/256, 192/256, 256/256 } } }
+    [1] = { ["CLASS"] = { 1, 2, 4, 5, 8, 9 }, ["ICON"] = { 130914 }, ["TEXT_COORD"] = { { 0/256, 64/256, 0/256, 64/256 }, { 0/256, 64/256, 128/256, 192/256 } } },
+    [2] = { ["CLASS"] = { 1, 3, 4, 7, 9 }, ["ICON"] = { 130916 }, ["TEXT_COORD"] = { { 192/256, 256/256, 64/256, 128/256 }, { 192/256, 256/256, 192/256, 256/256 } } },
+    [3] = { ["CLASS"] = { 1, 2, 3, 4, 5 }, ["ICON"] = { 130902 }, ["TEXT_COORD"] = { { 64/256, 128/256, 0/256, 64/256 }, { 64/256, 128/256, 128/256, 192/256 } } },
+    [4] = { ["CLASS"] = { 1, 3, 4, 5, 11 }, ["ICON"] = { 130915 }, ["TEXT_COORD"] = { { 192/256, 256/256, 0/256, 64/256 }, { 192/256, 256/256, 128/256, 192/256 } } },    
+    [5] = { ["CLASS"] = { 1, 4, 5, 8, 9 }, ["ICON"] = { 130907 }, ["TEXT_COORD"] = { { 64/256, 128/256, 64/256, 128/256 }, { 64/256, 128/256, 192/256, 256/256 } } },
+    [6] = { ["CLASS"] = { 1, 3, 7, 11 }, ["ICON"] = { 130918 }, ["TEXT_COORD"] = { { 0/256, 64/256, 64/256, 128/256 }, { 0/256, 64/256, 192/256, 256/256 } } },
+    [7] = { ["CLASS"] = { 1, 4, 8, 9 }, ["ICON"] = { 130903 }, ["TEXT_COORD"] = { { 128/256, 192/256, 0/256, 64/256 }, { 128/256, 192/256, 128/256, 192/256 } } },    
+    [8] = { ["CLASS"] = { 1, 3, 4, 5, 7, 8 }, ["ICON"] = { 130909 }, ["TEXT_COORD"] = { { 128/256, 192/256, 64/256, 128/256 }, { 128/256, 192/256, 192/256, 256/256 } } }
 };
 
 local dataSpecs = {
@@ -152,22 +152,15 @@ local specsFileToSpecs = {
 }
 
 local phases = { 
-    ["NAME"] = { "Phase 1", "Phase 2 (PVP)", "Phase 3 (BWL)", "Phase 4 (ZG)", "Phase 5 (AQ)", "Phase 6 (Naxx)" }, 
+    ["NAME"] = { "Phase 1", "Phase 2 ("..PLAYER_V_PLAYER..")", "Phase 3 (BWL)", "Phase 4 ("..DUNGEON_FLOOR_ZULGURUB1 ..")", "Phase 5 (AQ)", "Phase 6 (Naxx)" }, 
     ["ICON"] = { 133066   , 132486   ,  134154   , 134085   , 136152   , 134514   },
     ["VALUE"] = { 1       , 2        , 3        , 4         , 5        , 6        },
     ["ENABLED"] = { true , true      , true     , true      , true     , true     }
     };
 
-local pvpranks = {    
-    -- ["Horde"] = { "Scout", "Grunt", "Sergeant", "Senior Sergeant", "First Sergeant", "Stone Guard", "Blood Guard", "Legionnare", "Centurion", "Champion", "Lieutenant General", "General", "Warlord", "High Warlord" },        
-    ["Horde"] = { "Sergeant", "Senior Sergeant", "Blood Guard", "Legionnare", "Champion", "General", "Warlord", "High Warlord" },        
-    -- ["Alliance"] = { "Private", "Corporal", "Sergeant", "Master Sergeant", "Sergeant Major", "Knight", "Knight-Lieutenant", "Knight-Captain", "Knight-Champion", "Lieutenant Commander", "Commander", "Marshal", "Field Marshal", "Grand Marshal" },    
-    ["Alliance"] = { "Sergeant", "Master Sergeant", "Knight-Lieutenant", "Knight-Captain", "Lieutenant Commander", "Marshal", "Field Marshal", "Grand Marshal" },    
-    -- ["VALUE"] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 }
-    ["VALUE"] = { 3, 4, 7, 8, 10, 12, 13, 14 }
-}
+local pvpranks = { 7, 8, 11, 12, 14, 16, 17, 18 };
 
-local function ResetUI()
+local function ResetUI()    
     local oneHandIcon, twoHandsIcon;
 
     for idx, phase in ipairs(phases.NAME) do        
@@ -190,34 +183,34 @@ local function ResetUI()
             _G["ItemFrame_"..value.."_"..i]:SetScript("OnLeave", nil);            
         end
     end
-
-    for i, race in ipairs(races[faction]) do
-        if selectedRace == RACES_IDX[race] then
+    
+    for i, race in ipairs(races[faction]) do                
+        if selectedRace == tonumber(race) then
             _G["frame_"..race.."_ICON"]:SetDesaturated(false);
         else
             _G["frame_"..race.."_ICON"]:SetDesaturated(true);
         end
-        for j, class in ipairs(classes[RACES_IDX[race]].CLASS) do
-            if selectedRace == RACES_IDX[race] then
-                _G["frame_"..RACES_IDX[race].."_"..class]:Show();
-                if selectedClass == CLASS_IDX[class] then
-                    _G["frame_"..RACES_IDX[race].."_"..class.."_ICON"]:SetDesaturated(false);                    
+        for j, class in ipairs(classes[race].CLASS) do
+            if selectedRace == race then
+                _G["frame_"..race.."_"..class]:Show();
+                if selectedClass == class then
+                    _G["frame_"..race.."_"..class.."_ICON"]:SetDesaturated(false);                    
                 else
-                    _G["frame_"..RACES_IDX[race].."_"..class.."_ICON"]:SetDesaturated(true);                    
+                    _G["frame_"..race.."_"..class.."_ICON"]:SetDesaturated(true);                    
                 end                
             else
-                _G["frame_"..RACES_IDX[race].."_"..class]:Hide();
+                _G["frame_"..race.."_"..class]:Hide();
             end
-            for k, spec in ipairs(dataSpecs[CLASS_IDX[class]].SPEC) do
-                if selectedClass == CLASS_IDX[class] then                                        
-                    _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k]]:Show();
-                    if selectedSpec == dataSpecs[CLASS_IDX[class]].VALUE[k] then
-                        _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k].."_ICON"]:SetDesaturated(false);
+            for k, spec in ipairs(dataSpecs[class].SPEC) do
+                if selectedClass == class then                                        
+                    _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k]]:Show();
+                    if selectedSpec == dataSpecs[class].VALUE[k] then
+                        _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k].."_ICON"]:SetDesaturated(false);
                     else
-                        _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k].."_ICON"]:SetDesaturated(true);
+                        _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k].."_ICON"]:SetDesaturated(true);
                     end
                 else
-                    _G["frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k]]:Hide();
+                    _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k]]:Hide();
                 end
             end            
         end
@@ -244,17 +237,17 @@ local function ResetUI()
         _G["frame_PVP_ICON"]:SetDesaturated(not pvp);
         _G["frame_WORLD_BOSS_ICON"]:SetDesaturated(not worldBoss);
         if pvp then            
-            for idx, value in pairs(pvpranks[faction]) do                    
-                _G["frame_PVP_RANK_"..pvpranks.VALUE[idx]]:Show();
-                if pvpranks.VALUE[idx] == selectedRank then
-                    _G["frame_PVP_RANK_"..pvpranks.VALUE[idx].."_ICON"]:SetDesaturated(false);
+            for idx, value in pairs(pvpranks) do                    
+                _G["frame_PVP_RANK_"..value]:Show();
+                if pvpranks[idx] == selectedRank then
+                    _G["frame_PVP_RANK_"..value.."_ICON"]:SetDesaturated(false);
                 else
-                    _G["frame_PVP_RANK_"..pvpranks.VALUE[idx].."_ICON"]:SetDesaturated(true);
+                    _G["frame_PVP_RANK_"..value.."_ICON"]:SetDesaturated(true);
                 end
             end
         else
-            for idx, value in pairs(pvpranks[faction]) do                    
-                _G["frame_PVP_RANK_"..pvpranks.VALUE[idx]]:Hide();
+            for idx, value in pairs(pvpranks) do                    
+                _G["frame_PVP_RANK_"..value]:Hide();
             end
         end                
         if twoHands then
@@ -300,8 +293,8 @@ local function ResetUI()
         _G["frame_DUNGEON"]:Hide();
         _G["frame_ONE_HAND"]:Hide();
         _G["frame_TWO_HANDS"]:Hide();
-        for idx, value in pairs(pvpranks[faction]) do                    
-            _G["frame_PVP_RANK_"..pvpranks.VALUE[idx]]:Hide();
+        for idx, value in pairs(pvpranks) do                    
+            _G["frame_PVP_RANK_"..pvpranks[idx]]:Hide();
         end        
     end    
 end
@@ -346,12 +339,12 @@ local function Update()
     
     if selectedMagicResist == 1 then        
         bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
-        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank);
+        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank - 4);
         bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
         temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, raid, twoHands);
     else        
         bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
-        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank);
+        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank - 4);
         bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
         temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, raid, twoHands);
     end
@@ -489,11 +482,11 @@ local function HandlePhasesIcon(self)
 end
 
 local function HandleRacesIcon(self)    
-    local raceName = self:GetName():match("[^_]+_([^_]+)");
-    if selectedRace == RACES_IDX[raceName] then
+    local raceId = tonumber(self:GetName():match("[^_]+_([^_]+)"));    
+    if selectedRace == raceId then
         return;
-    end
-    selectedRace = RACES_IDX[raceName];
+    end    
+    selectedRace = raceId;
     selectedClass = nil;
     selectedSpec = nil;
     selectedMagicResist = 1;    
@@ -501,11 +494,11 @@ local function HandleRacesIcon(self)
 end
 
 local function HandleClassIcon(self)
-    local className = self:GetName():match("[^_]+_[^_]+_([^_]+)");
-    if selectedClass == CLASS_IDX[className] then
+    local classId = tonumber(self:GetName():match("[^_]+_[^_]+_([^_]+)"));
+    if selectedClass == classId then
         return;
     end
-    selectedClass = CLASS_IDX[className];
+    selectedClass = classId;
     selectedSpec = nil;
     selectedMagicResist = 1;
     Update();
@@ -555,7 +548,7 @@ local function HandleMagicIcon(self)
 end
 
 local function HandlePvpRankIcon(self)
-    local rankIcon = tonumber(self:GetName():match("[^_]+_[^_]+_[^_]+_([^_]+)"));
+    local rankIcon = tonumber(self:GetName():match("[^_]+_[^_]+_[^_]+_([^_]+)"));    
     if rankIcon == selectedRank then
         return;
     end
@@ -663,14 +656,14 @@ function ShowManager()
 
         BIS_TOOLTIP = BIS_CreateGameTooltip("BIS_TOOLTIP", window);
 
-        gender = math.random(1, 2);                
+        gender = UnitSex("player") - 1;
 
-        for i, race in ipairs(races[faction]) do                        
-            CreateClickableIconFrame("frame_"..race, window, race, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, classes[RACES_IDX[race]].TEXT_COORD[gender], HandleRacesIcon, false);
-            for j, class in ipairs(classes[RACES_IDX[race]].CLASS) do                
-                CreateClickableIconFrame("frame_"..RACES_IDX[race].."_"..class, window, class, 25, 25, 450 + ((j - 1) * 25), -15, dataSpecs[CLASS_IDX[class]].ICON[1], nil, HandleClassIcon, false);
-                for k, spec in ipairs(dataSpecs[CLASS_IDX[class]].SPEC) do                    
-                    CreateClickableIconFrame("frame_"..RACES_IDX[race].."_"..CLASS_IDX[class].."_"..dataSpecs[CLASS_IDX[class]].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, dataSpecs[CLASS_IDX[class]].SPEC_ICONS[k], nil, HandleSpecIcon, false);
+        for i, race in ipairs(races[faction]) do            
+            CreateClickableIconFrame("frame_"..race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
+            for j, class in ipairs(classes[race].CLASS) do                
+                CreateClickableIconFrame("frame_"..race.."_"..class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 450 + ((j - 1) * 25), -15, dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
+                for k, spec in ipairs(dataSpecs[class].SPEC) do                    
+                    CreateClickableIconFrame("frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
                 end
             end
         end                    
@@ -684,13 +677,13 @@ function ShowManager()
         twoHands = BestInSlotClassicDB.filter.twohands;
         worldBoss = BestInSlotClassicDB.filter.worldboss;            
 
-        CreateClickableIconFrame("frame_RAID", window, "Raid BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
-        CreateClickableIconFrame("frame_DUNGEON", window, "Pre-raid BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
+        CreateClickableIconFrame("frame_RAID", window, RAID.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
+        CreateClickableIconFrame("frame_DUNGEON", window, DUNGEONS.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
         
-        CreateClickableIconFrame("frame_WORLD_BOSS", window, "Include world boss items", 16, 16, 525, -50, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
+        CreateClickableIconFrame("frame_WORLD_BOSS", window, RAID_INFO_WORLD_BOSS, 16, 16, 525, -50, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
 
-        CreateClickableIconFrame("frame_ONE_HAND", window, "1-Hand mode", 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
-        CreateClickableIconFrame("frame_TWO_HANDS", window, "2-Hands mode", 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+        CreateClickableIconFrame("frame_ONE_HAND", window, INVTYPE_WEAPON , 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+        CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
 
         if faction == "Horde" then
             pvpIcon = iconHorde;            
@@ -698,14 +691,14 @@ function ShowManager()
             pvpIcon = iconAlliance;            
         end                            
 
-        CreateClickableIconFrame("frame_PVP", window, "Include pvp items", 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
+        CreateClickableIconFrame("frame_PVP", window, PLAYER_V_PLAYER, 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
 
-        for idx, value in pairs(pvpranks[faction]) do
-            CreateClickableIconFrame("frame_PVP_RANK_"..pvpranks.VALUE[idx], window, value.." (R"..pvpranks.VALUE[idx]..")", 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",pvpranks.VALUE[idx]), nil, HandlePvpRankIcon, false);
+        for idx, value in pairs(pvpranks) do            
+            CreateClickableIconFrame("frame_PVP_RANK_"..value, window, GetPVPRankInfo(value).." (R"..(value-4)..")", 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",value-4), nil, HandlePvpRankIcon, false);
         end                                    
 
         for idx, value in pairs(magicResistances.NAME) do
-            CreateClickableIconFrame("frame_MAGIC_"..idx, window, magicResistances.NAME[idx], 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon"..magicResistances.ID[idx]..".png", nil, HandleMagicIcon, false);
+            CreateClickableIconFrame("frame_MAGIC_"..idx, window, magicResistances.NAME[idx]:gsub("^%l", string.upper), 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon"..magicResistances.ID[idx]..".png", nil, HandleMagicIcon, false);
         end
 
         local startX, startY;

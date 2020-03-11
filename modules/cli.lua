@@ -49,9 +49,28 @@ function PrintVars(args)
     --bis_log("Log level: ", BestInSlotClassicDB.loglevel, INFO);
     --bis_log("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide, INFO);
     --bis_log("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos, INFO);
-    print("|cffffffff|Henchant:20024|h[Enchant]|h|r");
-    print("|cff9d9d9d|Hitem:12645::::::::::::|h[Thorium Spike]|h|r");
-    print("|T"..GetItemIcon(12645)..":16|t");
+    --print("|cffffffff|Henchant:20024|h[Enchant]|h|r");
+    --print("|cff9d9d9d|Hitem:12645::::::::::::|h[Thorium Spike]|h|r");
+    --print("|T"..GetItemIcon(12645)..":16|t");
+    -- Returns nil when in Dungeon.
+    print("MapUnit: "..(C_Map.GetBestMapForUnit("player") or "nil"));
+    -- Returns Instance Info.
+    print("GetInstanceInfo: "..GetInstanceInfo());
+    -- Returns Map Info.
+    local info = C_Map.GetMapInfo(1429)      
+    print("C_Map.GetMapInfo(uiMapID): "..info.name);
+    print("GetRealZoneText: "..GetRealZoneText(1429));
+    --info = C_Map.GetMapInfo(409)
+    --print("C_Map.GetMapInfo(uiMapID): "..info.name);
+    print("GetRealZoneText: "..GetRealZoneText(246));
+    print(GetClassInfo(1));
+    for factionIndex = 1, GetNumFactions() do
+        local name, description, standingId, bottomValue, topValue, earnedValue, atWarWith, canToggleAtWar,
+            isHeader, isCollapsed, hasRep, isWatched, isChild, factionID = GetFactionInfo(factionIndex)
+        if hasRep or not isHeader then
+            DEFAULT_CHAT_FRAME:AddMessage("Faction: " .. name .. " - " .. earnedValue)
+        end
+    end
 end
 
 local function Reset(args)
