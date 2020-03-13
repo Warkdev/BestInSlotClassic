@@ -20,7 +20,7 @@ function LoadAllItems()
   end
 end
 
-function SearchForItem(faction, itemId, phase)
+function GetItemPosition(faction, itemId, phase, invSlot)
   local result = {};
 
   local match;
