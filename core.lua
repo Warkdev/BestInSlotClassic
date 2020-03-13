@@ -150,10 +150,6 @@ end
 local frame = CreateFrame("FRAME", "BestInSlotClassicEventHandler");
 frame:RegisterEvent("ADDON_LOADED");
 
-local function ModifyItemTooltip(tooltip)
-    --print("Tooltip !!");
-end
-
 local function eventHandler(self, event, args1, ...)
     if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then        
         SetDefaults();              
@@ -161,8 +157,9 @@ local function eventHandler(self, event, args1, ...)
         CreateSettingsInterface();        
         BIS_SetUILocale();
         -- Attempt to prevent buggy display.        
+        LoadPlayerInfo();
         LoadItemInfo();
-        GameTooltip:HookScript( "OnTooltipSetItem", ModifyItemTooltip )
+        GameTooltip:HookScript( "OnTooltipSetItem", BIS_OnGameTooltipSetItem)
         bis_log("BestInSlotClassic v"..VERSION.." loaded", INFO);
     end
 end

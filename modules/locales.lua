@@ -53,20 +53,19 @@ function BIS_GetLocalizedReputationLevel(level)
     end
 end
 
-function BIS_FallbackLocale(lang)
-
+function BIS_FallbackLocale(lang)    
     if not lang then
         return 'enUS';
     end
 
-    if BISLocale.locale[lang] then
-        return lang;
+    if BISLocale.locale[lang] then        
+        return lang;        
     elseif lang == 'enGB' then
         return 'enUS';
     elseif lang == 'enCN' then
         return 'zhCN';
     elseif lang == 'enTW' then
-        return 'zhTW';
+        return 'zhCN';
     elseif lang == 'esMX' then
         return 'esES';
     elseif lang == 'ptPT' then

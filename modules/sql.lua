@@ -20,6 +20,35 @@ function LoadAllItems()
   end
 end
 
+function SearchForItem(faction, itemId, phase)
+  local result = {};
+
+  local match;
+  for idx, value in pairs(BIS_LINKS) do
+    match = true;
+
+    -- Checking if faction must be checked either from the search or from the table.
+    if faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then            
+      match = false;
+    end
+
+    if match and BIS_ITEMS[value.ItemId] ~= nil and (BIS_ITEMS[value.ItemId].Phase > phase) then
+      -- bis_log("One of the mandatory argument does not match", DEBUG);      
+      match = false;
+    end
+
+    if match and value.ItemId ~= itemId then      
+      match = false
+    end
+
+    if match then
+      table.insert(result, value);
+    end
+  end
+
+  return result;
+end
+
 function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
   -- Temporary table with matching records.
   local temp = {};
@@ -32,7 +61,7 @@ function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
     result[i] = {};
   end
 
-  local match = true;
+  local match;
 
   for k, value in pairs(BIS_ENCHANT_LINKS) do
     match = true;

@@ -1,3 +1,12 @@
+# 1.9.1 (13-03-2020)
+- Fixing a bug that made english translation to not be available. I'm really sorry about that !!
+- Enjoying that moment to reduce the amount of locale data in the add-on which must be much lighter.
+- Adding error handling whenever there's a missing translation for world object.
+- Fixing a bug that didn't made the recipe icon appears for recipe's that can be found in containers.
+- Fixing a bug that made the add-on not remembering the selected pvp rank for your character.
+- Fixing a bug that didn't made the recipe icon appears for recipe's that can be loot.
+- Fixing a bug that made shaman enhancement being able to switch from one-hand to two-hands mode whenever there's no one-hand weapon in the database.
+
 # 1.9.0 (11-03-2020)
 - Add-on is partially localized. Options and spec informations are NOT localized. Other info should be localized, many thanks for Questie and Atlasloot to allow me to use their work !
 - Gender will now be used to render the race icons.

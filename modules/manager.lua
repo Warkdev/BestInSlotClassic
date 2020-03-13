@@ -96,7 +96,7 @@ local dataSpecs = {
                     ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 133437 },
                     ["MAGIC_RESISTANCE"] = { { 1, 3, nil, nil, nil, nil }, { 2, 4, nil, nil, nil, nil } },
-                    ["WEAPON_ICONS"] = { { 19360, 19356 }, { 12940, 19364 } }
+                    ["WEAPON_ICONS"] = { { 19360, 19356 }, { nil, 19364 } }
                 },
     [8] = {    ["SPEC"] = { "Frost/Fire", "Zero SP", "Alternative" },
                     ["SPEC_ICONS"] = { 135866, 132643, 134614 },
@@ -553,6 +553,7 @@ local function HandlePvpRankIcon(self)
         return;
     end
     selectedRank = rankIcon;
+    BestInSlotClassicDB.filter.pvprank = selectedRank;
     Update();
 end
 
@@ -631,7 +632,7 @@ function ShowManager()
             selectedSpec = specsFileToSpecs[spec][2];
         end        
         selectedPhase = bis_currentPhaseId;
-        selectedMagicResist = 1;
+        selectedMagicResist = 1;        
         if BestInSlotClassicDB.filter.pvprank == nil then
             if pvpRank == 0 then
                 selectedRank = 3;
