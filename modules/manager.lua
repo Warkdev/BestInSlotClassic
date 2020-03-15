@@ -625,7 +625,7 @@ function ShowManager()
 
         visible = false;
         selectedRace = RACES_IDX[race];
-        selectedClass = CLASS_IDX[class:lower():gsub("^%l", string.upper)];        
+        selectedClass = CLASS_IDX[class];
         if spec == "Unknown" then
             selectedSpec = nil;
         else

@@ -446,7 +446,7 @@ function BIS_OnTooltipSetItem(frame)
         BIS_TOOLTIP:AddTexture("Interface\\QuestFrame\\QuestTypeIcons", unpack(QUEST_TAG_TCOORDS[89]));
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(22637)..":"..bis_defaultIconSize.."|t "..GetItemInfo(22637).." - "..BIS_GetLocalizedMapName(309).." - "..BIS_tableNPCS[11380]..", "..BIS_tableNPCS[11382]);
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t "..GetItemInfo(19815).." - "..BIS_GetLocalizedMapName(309).." - "..BIS_tableObjects[180228]);    
-    end
+    end    
 
     BIS_TOOLTIP:Show();
 end
@@ -532,7 +532,14 @@ function BIS_OnGameTooltipSetItem(frame)
     BIS_LibExtraTip:AddLine(frame,"# BIS-Classic:",r,g,b,true);
     BIS_LibExtraTip:AddDoubleLine(frame,"Class - Spec", "P1 > P2 > P3 > P4 > P5 > P6" ,r,g,b, r,g,b, true);
 
-    for index, idClass in ipairs(CLASS_ID) do        
+    local refTable = {};
+    if frame:GetName() == "GameTooltip" then                    
+        refTable[1] = CLASS_IDX[class];
+    else
+        refTable = CLASS_ID;
+    end
+
+    for index, idClass in ipairs(refTable) do        
         local color = RAID_CLASS_COLORS[C_CreatureInfo.GetClassInfo(idClass).classFile];
         for idSpec, value in ipairs(BIS_dataSpecs[idClass].VALUE) do
             hasWeapSkill = false;

@@ -80,7 +80,7 @@ function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
 
   -- Now, trimming table to remove gaps.  
   for slot, value in pairs(temp) do    
-    for priority = 1, 20, 1 do 
+    for priority = 1, 100, 1 do 
       if temp[slot][priority] ~= nil then
         table.insert(result[slot], temp[slot][priority]);
       end
