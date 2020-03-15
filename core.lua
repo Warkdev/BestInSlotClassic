@@ -170,7 +170,7 @@ local function eventHandler(self, event, args1, ...)
         LoadPlayerInfo();
         LoadItemInfo();
         BIS_LibExtraTip:AddCallback({type = "item", callback = BIS_OnGameTooltipSetItem, allevents = true})
-        BIS_LibExtraTip:RegisterTooltip(GameTooltip)
+        --BIS_LibExtraTip:RegisterTooltip(GameTooltip)
         BIS_LibExtraTip:RegisterTooltip(ItemRefTooltip)
         --GameTooltip:HookScript("OnTooltipSetItem", BIS_OnGameTooltipSetItem);
         --ItemRefTooltip:HookScript("OnTooltipSetItem", BIS_OnGameTooltipSetItem);
