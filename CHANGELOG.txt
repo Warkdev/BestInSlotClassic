@@ -1,5 +1,6 @@
 # 2.1.0 (xx-xx-2020)
 - Enabling tooltip enrichment for GameTooltip but only for your own class.
+- Fixing a bug that made weapons not be displayed for Orc/Humans.
 
 # 2.0 (15-03-2020)
 - Introducing tooltip enrichment with BIS information. This functionnality can be enabled / disabled by typing /bis tooltip. It's enabled by default.
