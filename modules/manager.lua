@@ -9,7 +9,7 @@ local pvp, twoHands, worldBoss, raid;
 local rootPaperDoll = "Interface\\PaperDoll\\";                
 
 local iconRacePath = "Interface\\Glues\\CHARACTERCREATE\\UI-CharacterCreate-Races";
-local iconClassPath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-Classes";
+local iconClassPath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-BIS_classes";
 local iconCutoff = 6;
 local iconAlliance = 132486;
 local iconHorde = 132485;
@@ -44,7 +44,7 @@ local races = {
     ["Alliance"] = { 1, 7, 3, 4 }
 };
 
-local classes = {
+BIS_classes = {
     [1] = { ["CLASS"] = { 1, 2, 4, 5, 8, 9 }, ["ICON"] = { 130914 }, ["TEXT_COORD"] = { { 0/256, 64/256, 0/256, 64/256 }, { 0/256, 64/256, 128/256, 192/256 } } },
     [2] = { ["CLASS"] = { 1, 3, 4, 7, 9 }, ["ICON"] = { 130916 }, ["TEXT_COORD"] = { { 192/256, 256/256, 64/256, 128/256 }, { 192/256, 256/256, 192/256, 256/256 } } },
     [3] = { ["CLASS"] = { 1, 2, 3, 4, 5 }, ["ICON"] = { 130902 }, ["TEXT_COORD"] = { { 64/256, 128/256, 0/256, 64/256 }, { 64/256, 128/256, 128/256, 192/256 } } },
@@ -55,7 +55,7 @@ local classes = {
     [8] = { ["CLASS"] = { 1, 3, 4, 5, 7, 8 }, ["ICON"] = { 130909 }, ["TEXT_COORD"] = { { 128/256, 192/256, 64/256, 128/256 }, { 128/256, 192/256, 192/256, 256/256 } } }
 };
 
-local dataSpecs = {
+BIS_dataSpecs = {
     [1] = { ["SPEC"] = { "Fury", "Protection (Threat)", "Protection (Mitigation)" },
                     ["SPEC_ICONS"] = { 132347, 136101, 134952 }, 
                     ["VALUE"] = { 1, 2, 3 },
@@ -122,32 +122,32 @@ local dataSpecs = {
 };
 
 local specsFileToSpecs = {
-    ["WarriorArms"] = { dataSpecs[1].SPEC[1], dataSpecs[1].VALUE[1] },
-    ["WarriorFury"] = { dataSpecs[1].SPEC[1], dataSpecs[1].VALUE[1] },
-    ["WarriorProtection"] = { dataSpecs[1].SPEC[2], dataSpecs[1].VALUE[2] },
-    ["DruidFeralTank"] = { dataSpecs[11].SPEC[1], dataSpecs[11].VALUE[1] },
-    ["DruidFeralDPS"] = { dataSpecs[11].SPEC[4], dataSpecs[11].VALUE[4] },
-    ["DruidRestoration"] = { dataSpecs[11].SPEC[5], dataSpecs[11].VALUE[5] },
-    ["DruidBalance"] = { dataSpecs[11].SPEC[6], dataSpecs[11].VALUE[6] },
-    ["HunterBeastMastery"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
-    ["HunterMarksmanship"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
-    ["HunterSurvival"] = { dataSpecs[3].SPEC[1], dataSpecs[3].VALUE[1] },
-    ["ShamanElementalCombat"] = { dataSpecs[7].SPEC[1], dataSpecs[7].VALUE[1] },
-    ["ShamanEnhancement"] = { dataSpecs[7].SPEC[2], dataSpecs[7].VALUE[2] },
-    ["ShamanRestoration"] = { dataSpecs[7].SPEC[1], dataSpecs[7].VALUE[1] },
-    ["MageArcane"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
-    ["MageFire"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
-    ["MageFrost"] = { dataSpecs[8].SPEC[1], dataSpecs[8].VALUE[1] },
-    ["WarlockCurses"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
-    ["WarlockSummoning"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
-    ["WarlockDestruction"] = { dataSpecs[9].SPEC[1], dataSpecs[9].VALUE[1] },
-    ["PriestHybrid"] = { dataSpecs[5].SPEC[1], dataSpecs[5].VALUE[1] },
-    ["PriestShadow"] = { dataSpecs[5].SPEC[2], dataSpecs[5].VALUE[2] },
-    ["RogueSwords"] = { dataSpecs[4].SPEC[1], dataSpecs[4].VALUE[1] },
-    ["RogueDaggers"] = { dataSpecs[4].SPEC[2], dataSpecs[4].VALUE[2] },
-    ["PaladinHoly"] = { dataSpecs[2].SPEC[1], dataSpecs[2].VALUE[1] },
-    ["PaladinProtection"] = { dataSpecs[2].SPEC[2], dataSpecs[2].VALUE[2] },
-    ["PaladinCombat"] = { dataSpecs[2].SPEC[3], dataSpecs[2].VALUE[3] },
+    ["WarriorArms"] = { BIS_dataSpecs[1].SPEC[1], BIS_dataSpecs[1].VALUE[1] },
+    ["WarriorFury"] = { BIS_dataSpecs[1].SPEC[1], BIS_dataSpecs[1].VALUE[1] },
+    ["WarriorProtection"] = { BIS_dataSpecs[1].SPEC[2], BIS_dataSpecs[1].VALUE[2] },
+    ["DruidFeralTank"] = { BIS_dataSpecs[11].SPEC[1], BIS_dataSpecs[11].VALUE[1] },
+    ["DruidFeralDPS"] = { BIS_dataSpecs[11].SPEC[4], BIS_dataSpecs[11].VALUE[4] },
+    ["DruidRestoration"] = { BIS_dataSpecs[11].SPEC[5], BIS_dataSpecs[11].VALUE[5] },
+    ["DruidBalance"] = { BIS_dataSpecs[11].SPEC[6], BIS_dataSpecs[11].VALUE[6] },
+    ["HunterBeastMastery"] = { BIS_dataSpecs[3].SPEC[1], BIS_dataSpecs[3].VALUE[1] },
+    ["HunterMarksmanship"] = { BIS_dataSpecs[3].SPEC[1], BIS_dataSpecs[3].VALUE[1] },
+    ["HunterSurvival"] = { BIS_dataSpecs[3].SPEC[1], BIS_dataSpecs[3].VALUE[1] },
+    ["ShamanElementalCombat"] = { BIS_dataSpecs[7].SPEC[1], BIS_dataSpecs[7].VALUE[1] },
+    ["ShamanEnhancement"] = { BIS_dataSpecs[7].SPEC[2], BIS_dataSpecs[7].VALUE[2] },
+    ["ShamanRestoration"] = { BIS_dataSpecs[7].SPEC[1], BIS_dataSpecs[7].VALUE[1] },
+    ["MageArcane"] = { BIS_dataSpecs[8].SPEC[1], BIS_dataSpecs[8].VALUE[1] },
+    ["MageFire"] = { BIS_dataSpecs[8].SPEC[1], BIS_dataSpecs[8].VALUE[1] },
+    ["MageFrost"] = { BIS_dataSpecs[8].SPEC[1], BIS_dataSpecs[8].VALUE[1] },
+    ["WarlockCurses"] = { BIS_dataSpecs[9].SPEC[1], BIS_dataSpecs[9].VALUE[1] },
+    ["WarlockSummoning"] = { BIS_dataSpecs[9].SPEC[1], BIS_dataSpecs[9].VALUE[1] },
+    ["WarlockDestruction"] = { BIS_dataSpecs[9].SPEC[1], BIS_dataSpecs[9].VALUE[1] },
+    ["PriestHybrid"] = { BIS_dataSpecs[5].SPEC[1], BIS_dataSpecs[5].VALUE[1] },
+    ["PriestShadow"] = { BIS_dataSpecs[5].SPEC[2], BIS_dataSpecs[5].VALUE[2] },
+    ["RogueSwords"] = { BIS_dataSpecs[4].SPEC[1], BIS_dataSpecs[4].VALUE[1] },
+    ["RogueDaggers"] = { BIS_dataSpecs[4].SPEC[2], BIS_dataSpecs[4].VALUE[2] },
+    ["PaladinHoly"] = { BIS_dataSpecs[2].SPEC[1], BIS_dataSpecs[2].VALUE[1] },
+    ["PaladinProtection"] = { BIS_dataSpecs[2].SPEC[2], BIS_dataSpecs[2].VALUE[2] },
+    ["PaladinCombat"] = { BIS_dataSpecs[2].SPEC[3], BIS_dataSpecs[2].VALUE[3] },
     ["Unknown"] = { "Unknown" }
 }
 
@@ -190,7 +190,7 @@ local function ResetUI()
         else
             _G["frame_"..race.."_ICON"]:SetDesaturated(true);
         end
-        for j, class in ipairs(classes[race].CLASS) do
+        for j, class in ipairs(BIS_classes[race].CLASS) do
             if selectedRace == race then
                 _G["frame_"..race.."_"..class]:Show();
                 if selectedClass == class then
@@ -201,16 +201,16 @@ local function ResetUI()
             else
                 _G["frame_"..race.."_"..class]:Hide();
             end
-            for k, spec in ipairs(dataSpecs[class].SPEC) do
+            for k, spec in ipairs(BIS_dataSpecs[class].SPEC) do
                 if selectedClass == class then                                        
-                    _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k]]:Show();
-                    if selectedSpec == dataSpecs[class].VALUE[k] then
-                        _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k].."_ICON"]:SetDesaturated(false);
+                    _G["frame_"..race.."_"..class.."_"..BIS_dataSpecs[class].VALUE[k]]:Show();
+                    if selectedSpec == BIS_dataSpecs[class].VALUE[k] then
+                        _G["frame_"..race.."_"..class.."_"..BIS_dataSpecs[class].VALUE[k].."_ICON"]:SetDesaturated(false);
                     else
-                        _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k].."_ICON"]:SetDesaturated(true);
+                        _G["frame_"..race.."_"..class.."_"..BIS_dataSpecs[class].VALUE[k].."_ICON"]:SetDesaturated(true);
                     end
                 else
-                    _G["frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k]]:Hide();
+                    _G["frame_"..race.."_"..class.."_"..BIS_dataSpecs[class].VALUE[k]]:Hide();
                 end
             end            
         end
@@ -218,7 +218,7 @@ local function ResetUI()
 
     if selectedSpec ~= nil then
         for key, value in pairs(magicResistances.NAME) do            
-            if dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][key] == nil then                
+            if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][key] == nil then                
                 _G["frame_MAGIC_"..key]:Hide();
             else                
                 _G["frame_MAGIC_"..key]:Show();
@@ -258,8 +258,8 @@ local function ResetUI()
             _G["frame_TWO_HANDS"]:Hide();
         end
 
-        oneHandIcon = dataSpecs[selectedClass].WEAPON_ICONS[selectedSpec][1];
-        twoHandsIcon = dataSpecs[selectedClass].WEAPON_ICONS[selectedSpec][2];
+        oneHandIcon = BIS_dataSpecs[selectedClass].WEAPON_ICONS[selectedSpec][1];
+        twoHandsIcon = BIS_dataSpecs[selectedClass].WEAPON_ICONS[selectedSpec][2];
 
         if oneHandIcon == nil then
             _G["frame_TWO_HANDS"]:Show();
@@ -339,14 +339,14 @@ local function Update()
     
     if selectedMagicResist == 1 then        
         bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
-        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank - 4);
+        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank - 4, nil);
         bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
         temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, raid, twoHands);
     else        
-        bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
-        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank - 4);
-        bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
-        temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, raid, twoHands);
+        bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
+        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank - 4, nil);
+        bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
+        temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, raid, twoHands);
     end
     
     
@@ -660,11 +660,11 @@ function ShowManager()
         gender = UnitSex("player") - 1;
 
         for i, race in ipairs(races[faction]) do            
-            CreateClickableIconFrame("frame_"..race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
-            for j, class in ipairs(classes[race].CLASS) do                
-                CreateClickableIconFrame("frame_"..race.."_"..class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 450 + ((j - 1) * 25), -15, dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
-                for k, spec in ipairs(dataSpecs[class].SPEC) do                    
-                    CreateClickableIconFrame("frame_"..race.."_"..class.."_"..dataSpecs[class].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
+            CreateClickableIconFrame("frame_"..race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, BIS_classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
+            for j, class in ipairs(BIS_classes[race].CLASS) do                
+                CreateClickableIconFrame("frame_"..race.."_"..class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 450 + ((j - 1) * 25), -15, BIS_dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
+                for k, spec in ipairs(BIS_dataSpecs[class].SPEC) do                    
+                    CreateClickableIconFrame("frame_"..race.."_"..class.."_"..BIS_dataSpecs[class].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, BIS_dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
                 end
             end
         end                    

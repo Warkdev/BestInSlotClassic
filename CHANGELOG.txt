@@ -1,3 +1,6 @@
+# 1.9.2 (15-06-2020)
+- Hotfix for the "tooltip is nil" error displayed on the character pane.
+
 # 1.9.1 (13-03-2020)
 - Fixing a bug that made english translation to not be available. I'm really sorry about that !!
 - Enjoying that moment to reduce the amount of locale data in the add-on which must be much lighter.

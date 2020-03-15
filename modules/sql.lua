@@ -20,33 +20,62 @@ function LoadAllItems()
   end
 end
 
-function GetItemPosition(faction, itemId, phase, invSlot)
-  local result = {};
-
-  local match;
-  for idx, value in pairs(BIS_LINKS) do
-    match = true;
-
-    -- Checking if faction must be checked either from the search or from the table.
-    if faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then            
-      match = false;
+function GetItemPosition(faction, itemId, raid, invSlot, twoHands)
+    -- Temporary table with matching records.
+    local temp = {};
+    local result = {};
+    local empty = true;
+    local slot;  
+    local match = true;
+  
+    for k, value in pairs(BIS_LINKS) do    
+      match = true;
+      
+      if itemId ~= nil and value.ItemId ~= itemId then      
+        match = false
+      end
+  
+      -- Checking if faction must be checked either from the search or from the table.
+      if match and faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
+        match = false;
+      end      
+  
+      if match and invSlot ~= nil and BIS_ITEMS[value.ItemId].Slot ~= invSlot then
+        -- bis_log("InvSlot does not match", DEBUG);      
+        match = false;
+      end              
+      
+      if match and BIS_ITEMS[value.ItemId] ~= nil and (BIS_ITEMS[value.ItemId].Phase < bis_currentPhaseId) then
+        -- bis_log("One of the mandatory argument does not match", DEBUG);      
+        match = false;
+      end
+  
+      -- Filter on Two-Hands weapons.
+      if match and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].Slot == 16 and BIS_ITEMS[value.ItemId].TwoHands ~= twoHands then
+        match = false
+      end
+  
+      -- Filter on raid items.
+      if match and not raid and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].Raid then
+        match = false
+      end            
+  
+      -- Filter off-hand weapons when two-hands is true.
+      if match and twoHands and BIS_ITEMS[value.ItemId].Slot == 17 then
+        match = false
+      end
+  
+      if match then             
+        empty = false;
+        table.insert(result, value);
+      end
     end
-
-    if match and BIS_ITEMS[value.ItemId] ~= nil and (BIS_ITEMS[value.ItemId].Phase > phase) then
-      -- bis_log("One of the mandatory argument does not match", DEBUG);      
-      match = false;
+  
+    if empty then
+      return {};
     end
-
-    if match and value.ItemId ~= itemId then      
-      match = false
-    end
-
-    if match then
-      table.insert(result, value);
-    end
-  end
-
-  return result;
+  
+    return result;
 end
 
 function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
@@ -123,7 +152,7 @@ function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
   return result;
 end
 
-function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp, pvpRank)
+function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp, pvpRank, itemId)
   -- Temporary table with matching records.
   local temp = {};
   local result = {};
@@ -140,8 +169,12 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
   for k, value in pairs(BIS_LINKS) do    
     match = true;
     
+    if itemId ~= nil and value.ItemId ~= itemId then      
+      match = false
+    end
+
     -- Checking if faction must be checked either from the search or from the table.
-    if faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
+    if match and faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
       match = false;
     end
 
