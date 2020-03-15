@@ -39,7 +39,7 @@ local magicResistances = {
     ["ID"] = { 2, 3, 4, 6, 5, 7 }
 }
 
-local races = {
+BIS_races = {
     ["Horde"] = { 2, 5, 6, 8 },
     ["Alliance"] = { 1, 7, 3, 4 }
 };
@@ -72,7 +72,7 @@ BIS_dataSpecs = {
                  },
     [3] = {  ["SPEC"] = { "Any" },                     
                     ["SPEC_ICONS"] = { 135489 },
-                    ["VALUE"] = { 1, 2 },
+                    ["VALUE"] = { 1 },
                     ["ICON"] = { 135495 },
                     ["MAGIC_RESISTANCE"] = { { 1, 2, nil, nil, nil, nil } },
                     ["WEAPON_ICONS"] = { { 18805, 18520 } }
@@ -184,7 +184,7 @@ local function ResetUI()
         end
     end
     
-    for i, race in ipairs(races[faction]) do                
+    for i, race in ipairs(BIS_races[faction]) do                
         if selectedRace == tonumber(race) then
             _G["frame_"..race.."_ICON"]:SetDesaturated(false);
         else
@@ -659,7 +659,7 @@ function ShowManager()
 
         gender = UnitSex("player") - 1;
 
-        for i, race in ipairs(races[faction]) do            
+        for i, race in ipairs(BIS_races[faction]) do            
             CreateClickableIconFrame("frame_"..race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, BIS_classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
             for j, class in ipairs(BIS_classes[race].CLASS) do                
                 CreateClickableIconFrame("frame_"..race.."_"..class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 450 + ((j - 1) * 25), -15, BIS_dataSpecs[class].ICON[1], nil, HandleClassIcon, false);

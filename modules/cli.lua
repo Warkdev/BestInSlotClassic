@@ -18,7 +18,8 @@ local function ShowHelp(args)
     bis_log("/bis help : Show this help", INFO);
     bis_log("/bis reset : Reset all add-on settings", INFO);
     bis_log("/bis settings: Define add-on general settings", INFO);        
-    bis_log("/bis version: Displays the add-on version", INFO);        
+    bis_log("/bis version: Displays the add-on version", INFO);
+    bis_log("/bis tooltip: Enable or disable the tooltip enrichment with BIS information", INFO);
 end
 
 function HandleLogLevel(args)
@@ -42,7 +43,16 @@ function HandleLogLevel(args)
 end
 
 function ShowVersion(args)
-    print("BestInSlot - Classic v"..VERSION);
+    bis_log("BestInSlot - Classic v"..VERSION, INFO);
+end
+
+function HandleTooltip(args)
+    BestInSlotClassicDB.options.bistooltip = not BestInSlotClassicDB.options.bistooltip;
+    if BestInSlotClassicDB.options.bistooltip then
+        bis_log("Tooltip BIS enrichment function has been enabled", INFO);
+    else
+        bis_log("Tooltip BIS enrichment function has been disabled", INFO);
+    end
 end
 
 function PrintVars(args)
@@ -87,7 +97,8 @@ handlers = {
     ["help"] = ShowHelp,    
     ["reset"] = Reset,
     ["vars"] = PrintVars,
-    ["version"] = ShowVersion
+    ["version"] = ShowVersion,
+    ["tooltip"] = HandleTooltip
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.

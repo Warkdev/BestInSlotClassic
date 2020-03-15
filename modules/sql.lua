@@ -20,64 +20,6 @@ function LoadAllItems()
   end
 end
 
-function GetItemPosition(faction, itemId, raid, invSlot, twoHands)
-    -- Temporary table with matching records.
-    local temp = {};
-    local result = {};
-    local empty = true;
-    local slot;  
-    local match = true;
-  
-    for k, value in pairs(BIS_LINKS) do    
-      match = true;
-      
-      if itemId ~= nil and value.ItemId ~= itemId then      
-        match = false
-      end
-  
-      -- Checking if faction must be checked either from the search or from the table.
-      if match and faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
-        match = false;
-      end      
-  
-      if match and invSlot ~= nil and BIS_ITEMS[value.ItemId].Slot ~= invSlot then
-        -- bis_log("InvSlot does not match", DEBUG);      
-        match = false;
-      end              
-      
-      if match and BIS_ITEMS[value.ItemId] ~= nil and (BIS_ITEMS[value.ItemId].Phase < bis_currentPhaseId) then
-        -- bis_log("One of the mandatory argument does not match", DEBUG);      
-        match = false;
-      end
-  
-      -- Filter on Two-Hands weapons.
-      if match and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].Slot == 16 and BIS_ITEMS[value.ItemId].TwoHands ~= twoHands then
-        match = false
-      end
-  
-      -- Filter on raid items.
-      if match and not raid and BIS_ITEMS[value.ItemId] ~= nil and BIS_ITEMS[value.ItemId].Raid then
-        match = false
-      end            
-  
-      -- Filter off-hand weapons when two-hands is true.
-      if match and twoHands and BIS_ITEMS[value.ItemId].Slot == 17 then
-        match = false
-      end
-  
-      if match then             
-        empty = false;
-        table.insert(result, value);
-      end
-    end
-  
-    if empty then
-      return {};
-    end
-  
-    return result;
-end
-
 function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
   -- Temporary table with matching records.
   local temp = {};
@@ -159,9 +101,23 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
   local empty = true;
   local slot;
 
-  for i = 1, table.getn(INVSLOT_IDX), 1 do
-    temp[i] = {};
-    result[i] = {};
+  if (faction == "Alliance" and class == 7) or (faction == "Horde" and class == 2) then
+    return result;    
+  end
+
+
+  if invSlot == nil then
+    for i = 1, table.getn(INVSLOT_IDX), 1 do
+      temp[i] = {};
+      result[i] = {};
+    end
+  else
+    temp[invSlot] = {};
+    result[invSlot] = {};
+    if invSlot == 16 and not twoHands then
+      temp[17] = {};
+      result[17] = {};
+    end
   end
 
   local match = true;
@@ -176,7 +132,7 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
     -- Checking if faction must be checked either from the search or from the table.
     if match and faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
       match = false;
-    end
+    end 
 
     -- Checking if race must be checked either from the search of from the table.    
     if match and race ~= nil and value.Races ~= nil and not(containsValue(value.Races, race)) then      
@@ -234,9 +190,27 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
       if(BIS_ITEMS[value.ItemId] ~= nil) then
         if(value.OffHand and BIS_ITEMS[value.ItemId].Slot == 16) then
           -- One-Hand weapons are flagged as "off-hand".
-          table.insert(temp[BIS_ITEMS[value.ItemId].Slot+1], value.Priority, value);
+          local inserted = false;
+          local idx = value.Priority;
+          while not inserted do          
+            if temp[BIS_ITEMS[value.ItemId].Slot+1][idx] == nil or temp[BIS_ITEMS[value.ItemId].Slot+1][idx].Priority > value.Priority then
+              table.insert(temp[BIS_ITEMS[value.ItemId].Slot+1], idx, value);
+              inserted = true;
+            else
+              idx = idx + 1;
+            end
+          end
         else
-          table.insert(temp[BIS_ITEMS[value.ItemId].Slot], value.Priority, value);
+          local inserted = false;
+          local idx = value.Priority;
+          while not inserted do          
+            if temp[BIS_ITEMS[value.ItemId].Slot][idx] == nil or temp[BIS_ITEMS[value.ItemId].Slot][idx].Priority > value.Priority then
+              table.insert(temp[BIS_ITEMS[value.ItemId].Slot], idx, value);
+              inserted = true;
+            else
+              idx = idx + 1;
+            end
+          end
         end        
       end      
     end
@@ -244,7 +218,7 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
   
   -- Now, trimming table to remove gaps.  
   for slot, value in pairs(temp) do    
-    for priority = 1, 20, 1 do 
+    for priority = 1, 100, 1 do 
       if temp[slot][priority] ~= nil then
         table.insert(result[slot], temp[slot][priority]);
       end

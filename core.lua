@@ -8,6 +8,13 @@ local function SetMinimapDefaults()
     end   
 end
 
+local function SetTooltipDefaults()
+    if BestInSlotClassicDB.options == nil then
+        BestInSlotClassicDB.options = {};
+        BestInSlotClassicDB.options.bistooltip = true;
+    end
+end
+
 local function SetLogLevelDefaults()
     if BestInSlotClassicDB.loglevel == nil then
         BestInSlotClassicDB.loglevel = "INFO";
@@ -47,10 +54,12 @@ local function SetDefaults()
         BestInSlotClassicDB.minimap = {};
         BestInSlotClassicDB.loglevel = nil;
         BestInSlotClassicDB.filter = {};
+        BestInSlotClassicDB.options = {};
     end
     SetMinimapDefaults();
     SetLogLevelDefaults();
     SetFilterDefaults();
+    SetTooltipDefaults();    
 end
 
 function ResetDefaults() 
@@ -146,6 +155,7 @@ function PrintPlayerInfo()
     bis_log("Player Spec: "..spec, DEBUG);
 end
 
+BIS_LibExtraTip = LibStub("LibExtraTip-1");
 -- Creating Event Frame.
 local frame = CreateFrame("FRAME", "BestInSlotClassicEventHandler");
 frame:RegisterEvent("ADDON_LOADED");
@@ -159,7 +169,11 @@ local function eventHandler(self, event, args1, ...)
         -- Attempt to prevent buggy display.        
         LoadPlayerInfo();
         LoadItemInfo();
-        GameTooltip:HookScript( "OnTooltipSetItem", BIS_OnGameTooltipSetItem)
+        BIS_LibExtraTip:AddCallback({type = "item", callback = BIS_OnGameTooltipSetItem, allevents = true})
+        BIS_LibExtraTip:RegisterTooltip(GameTooltip)
+        BIS_LibExtraTip:RegisterTooltip(ItemRefTooltip)
+        --GameTooltip:HookScript("OnTooltipSetItem", BIS_OnGameTooltipSetItem);
+        --ItemRefTooltip:HookScript("OnTooltipSetItem", BIS_OnGameTooltipSetItem);
         bis_log("BestInSlotClassic v"..VERSION.." loaded", INFO);
     end
 end
