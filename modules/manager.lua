@@ -121,7 +121,7 @@ BIS_dataSpecs = {
                  }                    
 };
 
-local specsFileToSpecs = {
+BIS_specsFileToSpecs = {
     ["WarriorArms"] = { BIS_dataSpecs[1].SPEC[1], BIS_dataSpecs[1].VALUE[1] },
     ["WarriorFury"] = { BIS_dataSpecs[1].SPEC[1], BIS_dataSpecs[1].VALUE[1] },
     ["WarriorProtection"] = { BIS_dataSpecs[1].SPEC[2], BIS_dataSpecs[1].VALUE[2] },
@@ -629,7 +629,7 @@ function ShowManager()
         if spec == "Unknown" then
             selectedSpec = nil;
         else
-            selectedSpec = specsFileToSpecs[spec][2];
+            selectedSpec = BIS_specsFileToSpecs[spec][2];
         end        
         selectedPhase = bis_currentPhaseId;
         selectedMagicResist = 1;        

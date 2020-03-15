@@ -532,16 +532,26 @@ function BIS_OnGameTooltipSetItem(frame)
     BIS_LibExtraTip:AddLine(frame,"# BIS-Classic:",r,g,b,true);
     BIS_LibExtraTip:AddDoubleLine(frame,"Class - Spec", "P1 > P2 > P3 > P4 > P5 > P6" ,r,g,b, r,g,b, true);
 
-    local refTable = {};
-    if frame:GetName() == "GameTooltip" then                    
-        refTable[1] = CLASS_IDX[class];
-    else
-        refTable = CLASS_ID;
+    local classTable = {};
+    local specTable = {};
+    if spec == "Unknown" then
+        return;
     end
 
-    for index, idClass in ipairs(refTable) do        
+    if frame:GetName() == "GameTooltip" then                    
+        classTable[1] = CLASS_IDX[class];        
+    else
+        classTable = CLASS_ID;        
+    end
+
+    for index, idClass in ipairs(classTable) do
+        if frame:GetName() == "GameTooltip" then
+            specTable[1] = BIS_specsFileToSpecs[spec][2];
+        else
+            specTable = BIS_dataSpecs[idClass].VALUE;
+        end
         local color = RAID_CLASS_COLORS[C_CreatureInfo.GetClassInfo(idClass).classFile];
-        for idSpec, value in ipairs(BIS_dataSpecs[idClass].VALUE) do
+        for idSpec, value in ipairs(specTable) do
             hasWeapSkill = false;
             for i=1, 6 do
                 if math.floor(BIS_ITEMS[itemId].Phase) > i then                    
