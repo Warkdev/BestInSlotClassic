@@ -464,25 +464,32 @@ function BIS_CreateGameTooltip(name, parent)
 end
 
 function BIS_OnGameTooltipSetItem(frame)
+    if frame ~= nil then
+        return;
+    end
     local name, link = frame:GetItem();
     local itemId = tonumber(string.match(string.match(link, "item[%-?%d:]+"),"[^:]+:([^:]+)"));        
     local stats = GetItemStats(link);
     local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
     itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
-    isCraftingReagent = GetItemInfo(itemId);
+    isCraftingReagent = GetItemInfo(itemId);    
     local invSlot = BIS_INVTYPE_INVSLOT[itemEquipLoc];
+    local twoHands = false;    
 
-    if itemClassID ~= LE_ITEM_CLASS_ARMOR and itemClassID ~= LE_ITEM_CLASS_WEAPON and invSlot == nil then
+    if itemEquipLoc == nil or (itemClassID ~= LE_ITEM_CLASS_ARMOR and itemClassID ~= LE_ITEM_CLASS_WEAPON) or invSlot == nil then
         return;
     end        
 
-    for phase = bis_currentPhaseId, 6 do
-        bis_log("Searching for item in BIS database with the following settings Item Id ("..itemId.."), Faction ("..faction.."), Phase ("..phase.."), InvSlot ("..invSlot..")", DEBUG);
-        local itemList = GetItemPosition(faction, itemId, phase, invSlot);
+    if itemEquipLoc == "INVTYPE_2HWEAPON" then
+        twoHands = true;
+    end 
+    
+    bis_log("Searching for item in BIS database with the following settings Item Id ("..itemId.."), Faction ("..faction.."), Phase ("..phase.."), InvSlot ("..invSlot..")", DEBUG);
+    local itemList = GetItemPosition(faction, itemId, BestInSlotClassicDB.filter.raid, invSlot, twoHands);
 
-        for idx, value in pairs(itemList) do
-            --print(stats["ITEM_MOD_STRENGTH_SHORT"]);
-            --print("Phase: "..phase..", Races: , Class:"..value.ClassId..", Spec: "..value.SpecId..", Priority: "..value.Priority);            
-        end
+    for idx, value in pairs(itemList) do
+        --print(stats["ITEM_MOD_STRENGTH_SHORT"]);            
+        print("Phase: "..phase..", Races: , Class:"..value.ClassId..", Spec: "..value.SpecId..", Priority: "..value.Priority);            
     end
+
 end
