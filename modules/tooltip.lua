@@ -572,7 +572,7 @@ function BIS_OnGameTooltipSetItem(frame)
             bisList = SearchBis(faction, nil, idClass, 6, idSpec, invSlot, twoHands, BestInSlotClassicDB.filter.raid, BestInSlotClassicDB.filter.worldboss, BestInSlotClassicDB.filter.pvp, BestInSlotClassicDB.filter.pvprank - 4, nil);
             if bisList[invSlot] ~= nil then
                 for idx, bisLink in pairs(bisList[invSlot]) do                
-                    if bisLink.ItemId == itemId and bisLink.SuffixId == suffixId then                                                
+                    if bisLink.ItemId == itemId and bisLink.SuffixId == suffixId then                        
                         if bisLink.Races ~= nil and containsValue(bisLink.Races, raceWeapSkill) then
                             hasWeapSkill = true;
                             foundWeapSkill = true;
@@ -645,7 +645,7 @@ function BIS_OnGameTooltipSetItem(frame)
                     end                                   
                 end                       
             end
-            if found or foundOH then
+            if found or foundOH or foundWeapSkill or foundOHWeapSkill then
                 -- Special handling for warriors.
                 if idClass == 1 and invSlot == 10 then                    
                     -- Gloves.  
@@ -656,25 +656,25 @@ function BIS_OnGameTooltipSetItem(frame)
                 elseif idClass == 1 and invSlot == 16 then
                     -- MainHand and OffHand.
                     if hasWeapSkill then
-                        if found then
+                        if found or foundWeapSkill then
                             if not twoHands then
                                 BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - MH - ("..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positionsWeapSkill[1].." > "..positionsWeapSkill[2].." > "..positionsWeapSkill[3].." > "..positionsWeapSkill[4].." > "..positionsWeapSkill[5].." > "..positionsWeapSkill[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
                             else
                                 BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - ("..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positionsWeapSkill[1].." > "..positionsWeapSkill[2].." > "..positionsWeapSkill[3].." > "..positionsWeapSkill[4].." > "..positionsWeapSkill[5].." > "..positionsWeapSkill[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
                             end
                         end
-                        if foundOH then                            
+                        if foundOH or foundOHWeapSkill then                            
                             BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - OH - ("..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positionsOHWeapSkill[1].." > "..positionsOHWeapSkill[2].." > "..positionsOHWeapSkill[3].." > "..positionsOHWeapSkill[4].." > "..positionsOHWeapSkill[5].." > "..positionsOHWeapSkill[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                                            
                         end
                     end
-                    if found then
+                    if found or foundWeapSkill then
                         if not twoHands then
                             BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - MH - (Not "..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positions[1].." > "..positions[2].." > "..positions[3].." > "..positions[4].." > "..positions[5].." > "..positions[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
                         else
                             BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - (Not "..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positions[1].." > "..positions[2].." > "..positions[3].." > "..positions[4].." > "..positions[5].." > "..positions[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
                         end
                     end
-                    if foundOH then                        
+                    if foundOH or foundOHWeapSkill then                        
                         BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - OH - (Not "..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positionsOffhand[1].." > "..positionsOffhand[2].." > "..positionsOffhand[3].." > "..positionsOffhand[4].." > "..positionsOffhand[5].." > "..positionsOffhand[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
                     end
                 elseif containsValue({3, 4}, idClass) and invSlot == 16 then
