@@ -124,7 +124,8 @@ BIS_dataSpecs = {
 BIS_specsFileToSpecs = {
     ["WarriorArms"] = { BIS_dataSpecs[1].SPEC[1], BIS_dataSpecs[1].VALUE[1] },
     ["WarriorFury"] = { BIS_dataSpecs[1].SPEC[1], BIS_dataSpecs[1].VALUE[1] },
-    ["WarriorProtection"] = { BIS_dataSpecs[1].SPEC[2], BIS_dataSpecs[1].VALUE[2] },
+    ["WarriorProtection"] = { BIS_dataSpecs[1].SPEC[2], BIS_dataSpecs[1].VALUE[3] },
+    ["WarriorFuryProtection"] = { BIS_dataSpecs[1].SPEC[2], BIS_dataSpecs[1].VALUE[2] },
     ["DruidFeralTank"] = { BIS_dataSpecs[11].SPEC[1], BIS_dataSpecs[11].VALUE[1] },
     ["DruidFeralDPS"] = { BIS_dataSpecs[11].SPEC[4], BIS_dataSpecs[11].VALUE[4] },
     ["DruidRestoration"] = { BIS_dataSpecs[11].SPEC[5], BIS_dataSpecs[11].VALUE[5] },
@@ -149,7 +150,38 @@ BIS_specsFileToSpecs = {
     ["PaladinProtection"] = { BIS_dataSpecs[2].SPEC[2], BIS_dataSpecs[2].VALUE[2] },
     ["PaladinCombat"] = { BIS_dataSpecs[2].SPEC[3], BIS_dataSpecs[2].VALUE[3] },
     ["Unknown"] = { "Unknown" }
-}
+};
+
+BIS_lookupSpec = {
+    ["WarriorArms"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["WarriorFury"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["WarriorProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["WarriorFuryProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["DruidFeralTank"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["DruidFeralDPS"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["DruidRestoration"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
+    ["DruidBalance"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["HunterBeastMastery"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["HunterMarksmanship"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["HunterSurvival"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["ShamanElementalCombat"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["ShamanEnhancement"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["ShamanRestoration"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
+    ["MageArcane"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["MageFire"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["MageFrost"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["WarlockCurses"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["WarlockSummoning"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["WarlockDestruction"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
+    ["PriestHybrid"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
+    ["PriestShadow"] = { { 5, 8, 9, 11 }, {{ 1, 2 }, { 1, 2, 3 }, { 1 }, { 6 }} },
+    ["RogueSwords"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["RogueDaggers"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["PaladinHoly"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
+    ["PaladinProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["PaladinCombat"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["Unknown"] = { { }, { } }
+};
 
 local phases = { 
     ["NAME"] = { "Phase 1", "Phase 2 ("..PLAYER_V_PLAYER..")", "Phase 3 (BWL)", "Phase 4 ("..DUNGEON_FLOOR_ZULGURUB1 ..")", "Phase 5 (AQ)", "Phase 6 (Naxx)" }, 

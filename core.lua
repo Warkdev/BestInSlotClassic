@@ -105,17 +105,27 @@ function LoadPlayerInfo()
     -- Trying to find out which spec has this player to load the correct one by default.
     -- There are some specificities like druids (4 specs), rogue (2 specs-type although they are not spec).
     local numTalentTabs = GetNumTalentTabs();    
+    local talentsPoints = {};
 
     bis_log("Num Talent Tabs: "..numTalentTabs, DEBUG);    
 
     for idx=1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
+        talentsPoints[idx] = tonumber(pointsSpent);
         if(tonumber(pointsSpent) > maxPoints) then
             spec = fileName;
             maxPoints = tonumber(pointsSpent);
         end        
         bis_log(name..": "..pointsSpent..", "..fileName, DEBUG);        
     end
+    
+    if class == "WARRIOR" and spec == "WarriorFury" then
+        -- Trying to find if we've a Fury Prot.
+        if talentsPoints[3] > 10 then
+            spec = "WarriorFuryProtection";
+        end
+    end
+
     if class == "DRUID" and spec == "DruidFeralCombat" then
         -- Need to find out whether it's a Feral Tank or DPS.
         -- This is done by checking the talent thick skin.

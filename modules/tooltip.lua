@@ -539,19 +539,20 @@ function BIS_OnGameTooltipSetItem(frame)
     end
 
     if frame:GetName() == "GameTooltip" then                    
-        classTable[1] = CLASS_IDX[class];        
+        classTable = BIS_lookupSpec[spec][1];
     else
         classTable = CLASS_ID;        
     end
 
     for index, idClass in ipairs(classTable) do
-        if frame:GetName() == "GameTooltip" then
-            specTable[1] = BIS_specsFileToSpecs[spec][2];
+        if frame:GetName() == "GameTooltip" then            
+            specTable = BIS_lookupSpec[spec][2][index];            
         else
             specTable = BIS_dataSpecs[idClass].VALUE;
         end
+        
         local color = RAID_CLASS_COLORS[C_CreatureInfo.GetClassInfo(idClass).classFile];
-        for idSpec, value in ipairs(specTable) do
+        for idx, idSpec in ipairs(specTable) do            
             hasWeapSkill = false;
             for i=1, 6 do
                 if math.floor(BIS_ITEMS[itemId].Phase) > i then                    
