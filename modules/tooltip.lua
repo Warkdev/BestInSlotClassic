@@ -651,9 +651,9 @@ function BIS_OnGameTooltipSetItem(frame)
                 if idClass == 1 and invSlot == 10 then                    
                     -- Gloves.  
                     if (positions[1] - 1) > 0 then                                    
-                        BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - MH - ("..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", (positions[1] - 1).." > "..(positions[2] - 1).." > "..(positions[3] - 1).." > "..(positions[4] - 1).." > "..(positions[5] - 1).." > "..(positions[6] - 1), color.r, color.g, color.b, color.r, color.g, color.b, true);                                                                            
+                        BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - ("..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", (positions[1] - 1).." > "..(positions[2] - 1).." > "..(positions[3] - 1).." > "..(positions[4] - 1).." > "..(positions[5] - 1).." > "..(positions[6] - 1), color.r, color.g, color.b, color.r, color.g, color.b, true);                                                                            
                     end
-                    BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - MH - (Not "..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positions[1].." > "..positions[2].." > "..positions[3].." > "..positions[4].." > "..positions[5].." > "..positions[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
+                    BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - (Not "..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positions[1].." > "..positions[2].." > "..positions[3].." > "..positions[4].." > "..positions[5].." > "..positions[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
                 elseif idClass == 1 and invSlot == 16 then
                     -- MainHand and OffHand.
                     if hasWeapSkill then
