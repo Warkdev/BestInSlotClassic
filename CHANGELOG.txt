@@ -1,3 +1,11 @@
+# 2.2.0 (16-03-2020)
+- Adding detection for the spec WarFuryProt which will default to Protection (Threat) spec.
+- Whenever a GameTooltip has a mouseover (tooltip in character pane, loot window, inventory), a limited search is performed (comparing only classes that are expected to share the same bis list).
+  Example, warriors will be compared with rogues, hunters, shamans enhancement, druids feral. 
+  This will however has some performance impact on the game due to the refresh rate of the gametooltip. Depending on the general feedback, I may adapt or further fine-tune this selection to enhance performances.
+- Whenever an ItemRefTooltip is open (click on an item link), a comparison accross the complete class/specs is performed, this has no performance impact or negligible.
+- As a reminder, the command /bis tooltip is disabling or enabling this new feature. :)
+
 # 2.1.0 (15-03-2020)
 - Enabling tooltip enrichment for GameTooltip but only for your own class.
 - Fixing a bug that made weapons not be displayed for Orc/Humans.
