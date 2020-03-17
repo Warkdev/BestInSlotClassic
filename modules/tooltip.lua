@@ -568,7 +568,9 @@ function BIS_OnGameTooltipSetItem(frame)
                 end
             end
             found = false;
-            foundOH = false;            
+            foundOH = false;
+            foundWeapSkill = false;
+            foundOHWeapSkill = false;            
 
             bisList = SearchBis(faction, nil, idClass, 6, idSpec, invSlot, twoHands, BestInSlotClassicDB.filter.raid, BestInSlotClassicDB.filter.worldboss, BestInSlotClassicDB.filter.pvp, BestInSlotClassicDB.filter.pvprank - 4, nil);
             if bisList[invSlot] ~= nil then
