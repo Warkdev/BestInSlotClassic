@@ -5,7 +5,7 @@ function table_invert(t)
     return s
 end
 
-function containsValue(t, value)  
+function BIS:containsValue(t, value)  
   for k, v in pairs(t) do
     if t[k] == value then
       return true;
@@ -14,13 +14,13 @@ function containsValue(t, value)
   return false;
 end
 
-function LoadAllItems()
+function BIS:LoadAllItems()
   for k, value in pairs(BIS_LINKS) do
     item = Item:CreateFromItemID(value.ItemId);
   end
 end
 
-function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
+function BIS:SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
   -- Temporary table with matching records.
   local temp = {};
   local result = {};
@@ -38,35 +38,35 @@ function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
     match = true;
     
     if match and invSlot ~= nil and BIS_ENCHANT_LINKS[value.EnchantId].Slot ~= invSlot then
-      --bis_log("InvSlot does not match", DEBUG);      
+      --BIS:logmsg("InvSlot does not match", LVL_DEBUG);      
       match = false;
     end
        
     if match and (value.ClassId ~= class or value.SpecId ~= spec) then      
-      --bis_log("One of the mandatory argument does not match (ClassId or SpecId)", DEBUG);      
+      --BIS:logmsg("One of the mandatory argument does not match (ClassId or SpecId)", LVL_DEBUG);      
       match = false;
     end
     
     if match and BIS_ENCHANT[value.EnchantId] ~= nil and (BIS_ENCHANT[value.EnchantId].Phase > phase) then
-      --bis_log("One of the mandatory argument does not match (Phase)", DEBUG);      
+      --BIS:logmsg("One of the mandatory argument does not match (Phase)", LVL_DEBUG);      
       match = false;
     end
 
     -- Filter on raid enchants.    
     if match and not raid and BIS_ENCHANT[value.EnchantId] ~= nil and BIS_ENCHANT[value.EnchantId].Raid then
-      -- bis_log("Two-Hands weapons", DEBUG);      
+      -- BIS:logmsg("Two-Hands weapons", LVL_DEBUG);      
       match = false
     end
 
     -- Filter on Two-Hands weapons.
     if match and BIS_ENCHANT[value.EnchantId] ~= nil and BIS_ENCHANT[value.EnchantId].Slot == 16 and BIS_ENCHANT[value.EnchantId].TwoHands ~= twoHands then
-      -- bis_log("Two-Hands weapons", DEBUG);      
+      -- BIS:logmsg("Two-Hands weapons", LVL_DEBUG);      
       match = false
     end
 
     -- Filter off-hand enchants when two-hands is true.
     if match and twoHands and value.Slot == 17 then
-      -- bis_log("Off-Hand weapons", DEBUG);
+      -- BIS:logmsg("Off-Hand weapons", LVL_DEBUG);
       match = false
     end
 
@@ -94,7 +94,7 @@ function SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
   return result;
 end
 
-function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp, pvpRank, itemId)
+function BIS:SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp, pvpRank, itemId)
   -- Temporary table with matching records.
   local temp = {};
   local result = {};
@@ -123,35 +123,31 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
   local match = true;
 
   for k, value in pairs(BIS_LINKS) do    
-    match = true;
-    
-    if itemId ~= nil and value.ItemId ~= itemId then      
-      match = false
-    end
+    match = true;      
 
     -- Checking if faction must be checked either from the search or from the table.
-    if match and faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
+    if match and faction ~= nil and BIS_ITEMS[value.ItemId].Faction ~= nil and not(BIS:containsValue(BIS_ITEMS[value.ItemId].Faction, faction)) then      
       match = false;
     end 
 
     -- Checking if race must be checked either from the search of from the table.    
-    if match and race ~= nil and value.Races ~= nil and not(containsValue(value.Races, race)) then      
-      --bis_log("Race does not match", DEBUG);
+    if match and race ~= nil and value.Races ~= nil and not(BIS:containsValue(value.Races, race)) then      
+      --BIS:logmsg("Race does not match", LVL_DEBUG);
       match = false;
     end
 
     if match and invSlot ~= nil and BIS_ITEMS[value.ItemId].Slot ~= invSlot then
-      -- bis_log("InvSlot does not match", DEBUG);      
+      -- BIS:logmsg("InvSlot does not match", LVL_DEBUG);      
       match = false;
     end
        
     if match and (value.ClassId ~= class or value.SpecId ~= spec) then      
-      -- bis_log("One of the mandatory argument does not match", DEBUG);      
+      -- BIS:logmsg("One of the mandatory argument does not match", LVL_DEBUG);      
       match = false;
     end
     
     if match and BIS_ITEMS[value.ItemId] ~= nil and (BIS_ITEMS[value.ItemId].Phase > phase) then
-      -- bis_log("One of the mandatory argument does not match", DEBUG);      
+      -- BIS:logmsg("One of the mandatory argument does not match", LVL_DEBUG);      
       match = false;
     end
 
@@ -195,6 +191,9 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
           while not inserted do          
             if temp[BIS_ITEMS[value.ItemId].Slot+1][idx] == nil or temp[BIS_ITEMS[value.ItemId].Slot+1][idx].Priority > value.Priority then
               table.insert(temp[BIS_ITEMS[value.ItemId].Slot+1], idx, value);
+              if itemId ~= nil and value.ItemId == itemId then                
+                break;
+              end
               inserted = true;
             else
               idx = idx + 1;
@@ -206,6 +205,9 @@ function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, w
           while not inserted do          
             if temp[BIS_ITEMS[value.ItemId].Slot][idx] == nil or temp[BIS_ITEMS[value.ItemId].Slot][idx].Priority > value.Priority then
               table.insert(temp[BIS_ITEMS[value.ItemId].Slot], idx, value);
+              if itemId ~= nil and value.ItemId == itemId then                
+                break;
+              end
               inserted = true;
             else
               idx = idx + 1;

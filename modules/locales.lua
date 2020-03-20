@@ -7,7 +7,7 @@ BIS_LangObjectLookup = {};
 local locale = 'enUS';
 local gender = UnitSex("player");
 
-function BIS_GetLocalizedMapName(id)
+function BIS:GetLocalizedMapName(id)
     if id == nil or id == 0 then
         return "Unknown";
     end
@@ -20,7 +20,7 @@ function BIS_GetLocalizedMapName(id)
     return GetRealZoneText(id);    
 end
 
-function BIS_GetLocalizedFactionName(id)
+function BIS:GetLocalizedFactionName(id)
     if id == nil or id == 0 then
         return "Unknown";
     end
@@ -29,7 +29,7 @@ function BIS_GetLocalizedFactionName(id)
     return name;
 end
 
-function BIS_GetLocalizedReputationLevel(level)
+function BIS:GetLocalizedReputationLevel(level)
     if gender == 2 then
         if level == 5 then
             return FACTION_STANDING_LABEL5;
@@ -53,7 +53,7 @@ function BIS_GetLocalizedReputationLevel(level)
     end
 end
 
-function BIS_FallbackLocale(lang)    
+function BIS:FallbackLocale(lang)    
     if not lang then
         return 'enUS';
     end
@@ -75,14 +75,14 @@ function BIS_FallbackLocale(lang)
     end
 end
 
-function BIS_SetUILocale(lang)    
+function BIS:SetUILocale(lang)    
     if lang then        
-        locale = BIS_FallbackLocale(lang);
+        locale = BIS:FallbackLocale(lang);
     else        
-        locale = BIS_FallbackLocale(GetLocale());        
+        locale = BIS:FallbackLocale(GetLocale());        
     end
 end
 
-function BIS_GetUILocale()
+function BIS:GetUILocale()
     return locale;
 end

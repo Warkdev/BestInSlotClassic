@@ -2,22 +2,22 @@
 local icon;
 local launcher;
 
-function MinimapButtonOnClick(self, button)    
+local function MinimapButtonOnClick(self, button)        
     if button == "RightButton" then
-        OpenConfigPane();
+        BIS:OpenConfigPane();
     elseif button == "LeftButton" then
-        ShowManager();
+        BIS:ShowManager();
     end    
 end
 
-function MinimapTooltipShow(tooltip)
+local function MinimapTooltipShow(tooltip)
     tooltip:AddLine("BestInSlot-Classic");
     tooltip:AddLine("Version: "..VERSION);
     tooltip:AddLine("Left-Click: Open the main window");
     tooltip:AddLine("Right-Click: Open the settings window");
 end
 
-function CreateMinimapIcon()
+function BIS:CreateMinimapIcon()    
     launcher = LibStub("LibDataBroker-1.1"):NewDataObject("BestInSlotClassic", {
         type = "launcher",
         icon = "Interface\\Addons\\BestInSlotClassic\\assets\\logo_32x32",    
@@ -29,6 +29,6 @@ function CreateMinimapIcon()
     icon:Register("BestInSlotClassic", launcher, BestInSlotClassicDB.minimap);
 end
 
-function UpdateMinimapIcon()    
+function BIS:UpdateMinimapIcon()        
     icon:Refresh("BestInSlotClassic", BestInSlotClassicDB.minimap);
 end

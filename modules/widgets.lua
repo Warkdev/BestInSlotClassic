@@ -6,19 +6,19 @@ local backdrop = {
     insets = { left = 4, right = 4, top = 4, bottom = 4 }
 };
     
-function IsSelfOrChild(self, focus)
+local function IsSelfOrChild(self, focus)    
     -- This function helps validate that the focus is within the local hierarchy.
     return focus and (self == focus or IsSelfOrChild(self, focus:GetParent()));
 end
     
-function StopMovingOrSizing(self)
+local function StopMovingOrSizing(self)    
     if self.isMoving then
         self:StopMovingOrSizing();
         self.isMoving = false;
     end
 end
 
-function StartMovingOrSizing(self, fromChild)
+local function StartMovingOrSizing(self, fromChild)    
     if not self:IsMovable() and not self:IsResizable() then
         return
     end
@@ -34,11 +34,11 @@ function StartMovingOrSizing(self, fromChild)
     end
 end
     
-local function HideParent(self)    
-    ShowManager();
+local function HideParent(self)        
+    BIS:ShowManager();
 end
     
-function CreateWindow(name, height, width)
+function BIS:CreateWindow(name, height, width)    
     local window = CreateFrame("FRAME", "BISManager", UIParent);        
     window:EnableMouse(true);
     window:SetMovable(true);
@@ -64,7 +64,7 @@ function CreateWindow(name, height, width)
     return window;
 end
 
-function CreateCheckBox(name, label, parent, x, y, width, height, tooltip, callback)
+function BIS:CreateCheckBox(name, label, parent, x, y, width, height, tooltip, callback)    
     local checkbox = CreateFrame("CheckButton", name, parent, "ChatConfigCheckButtonTemplate");
     checkbox.tooltip = tooltip;    
     checkbox:SetPoint("TOPLEFT", x, y);
@@ -75,7 +75,7 @@ function CreateCheckBox(name, label, parent, x, y, width, height, tooltip, callb
     return checkbox;
 end
 
-function CreateSlider(name, label, parent, min, max, x, y, callback)
+function BIS:CreateSlider(name, label, parent, min, max, x, y, callback)    
     local slider = CreateFrame("Slider", name, parent, "OptionsSliderTemplate");
     slider:SetPoint("TOPLEFT", x, y);
     slider:SetMinMaxValues(min, max);

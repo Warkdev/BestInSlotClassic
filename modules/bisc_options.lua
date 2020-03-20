@@ -16,10 +16,10 @@ local function HandleLogLevelDropDown(self, arg1, arg2, checked)
     
     level[args]();
     UIDropDownMenu_SetText(loglevelDropdown, BestInSlotClassicDB.loglevel);
-    bis_log("Log level set to: "..BestInSlotClassicDB.loglevel, INFO);
+    BIS:logmsg("Log level set to: "..BestInSlotClassicDB.loglevel, LVL_INFO);
 end
 
-function Initialize_LogLevelDropDown(frame, level, menuList)
+local function Initialize_LogLevelDropDown(frame, level, menuList)
     local info = UIDropDownMenu_CreateInfo();
 
     for idx, value in ipairs(logseverity) do
@@ -38,16 +38,16 @@ local function CreateDropDownList(name, parent, width, x, y)
     return dropdown;
 end
 
-function CreateSettingsInterface()
-    settings = CreateFrame("FRAME", "BestInSlotClassicsettings", UIParent);
+function BIS:CreateSettingsInterface()
+    local settings = CreateFrame("FRAME", "BestInSlotClassicsettings", UIParent);
     settings.name = "BestInSlotClassic";
 
     settings.okay = function()
-        logger("Settings saved!", DEBUG);        
+        logger("Settings saved!", LVL_DEBUG);        
     end
     
     settings.cancel = function()
-        logger("Settings denied!", DEBUG);
+        logger("Settings denied!", LVL_DEBUG);
     end
     
     settings.default = function()
@@ -55,7 +55,7 @@ function CreateSettingsInterface()
     end
     
     settings.refresh = function()
-        logger("Refresh called.", DEBUG);        
+        logger("Refresh called.", LVL_DEBUG);        
     end
 
     settings.test = settings:CreateFontString(nil, "OVERLAY");
@@ -66,25 +66,25 @@ function CreateSettingsInterface()
 
     loglevelDropdown = CreateDropDownList("BISCLogLevelDD", settings, 80, 60, -40);
 
-    minimapCheckbox = CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 70, -85, 150, 20, "Show/Hide Minimap Icon", function(self)        
+    minimapCheckbox = BIS:CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 70, -85, 150, 20, "Show/Hide Minimap Icon", function(self)        
         local isChecked = minimapCheckbox:GetChecked();        
         BestInSlotClassicDB.minimap.hide = (not isChecked);        
-        UpdateMinimapIcon();        
+        BIS:UpdateMinimapIcon();        
     end);
 
-    minimapPosSlider = CreateSlider("BISCMinimapPosSlider", "Minimap Icon Position", settings, 0, 360, 20, -130, function(self, newValue)
+    minimapPosSlider = BIS:CreateSlider("BISCMinimapPosSlider", "Minimap Icon Position", settings, 0, 360, 20, -130, function(self, newValue)
         if newValue ~= BestInSlotClassicDB.minimap.minimapPos then
             BestInSlotClassicDB.minimap.minimapPos = newValue;
-            UpdateMinimapIcon();
+            BIS:UpdateMinimapIcon();
         end
     end)
 
-    SetValues();
+    BIS:SetValues();
 
     InterfaceOptions_AddCategory(settings);
 end
 
-function SetValues()    
+function BIS:SetValues()    
     minimapCheckbox:SetChecked(not BestInSlotClassicDB.minimap.hide);
     minimapPosSlider:SetValue(BestInSlotClassicDB.minimap.minimapPos);
 end

@@ -1,3 +1,11 @@
+# 2.3.0 (xx-03-2020)
+- Fixing a bug that made the combat log to be displayed in DEBUG mode whenever the combat log window was split from the main chat window.
+- Fixing a bug that made the tooltip enrichment not working if the manager has not been open before.
+- Improving the tooltip enrichment lookup to avoid parsing the whole table if that's not necessary.
+- Updating BIS list:
+-- Paladin Retribution AP now have Sulfuras as BIS from P1 till P6.
+--
+
 # 2.2.1 (17-03-2020)
 - Fixing a bug that made weapons being displayed as bis for too many class/spec combinations.
 

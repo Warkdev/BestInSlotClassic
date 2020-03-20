@@ -296,17 +296,17 @@ local function ResetUI()
         if oneHandIcon == nil then
             _G["frame_TWO_HANDS"]:Show();
             _G["frame_ONE_HAND"]:Hide();
-            BestInSlotClassicDB.filter.twohands = true;
+            BestInSlotClassicDB.options.twohands = true;
             twoHands = true;
         elseif twoHandsIcon == nil then
             _G["frame_TWO_HANDS"]:Hide();
             _G["frame_ONE_HAND"]:Show();
-            BestInSlotClassicDB.filter.twohands = false;
+            BestInSlotClassicDB.options.twohands = false;
             twoHands = false;
         end
 
-        UpdateIcon("frame_ONE_HAND", GetItemIcon(oneHandIcon), nil);
-        UpdateIcon("frame_TWO_HANDS", GetItemIcon(twoHandsIcon), nil);
+        BIS:UpdateIcon("frame_ONE_HAND", GetItemIcon(oneHandIcon), nil);
+        BIS:UpdateIcon("frame_TWO_HANDS", GetItemIcon(twoHandsIcon), nil);
 
         for idx, value in pairs(magicResistances.NAME) do
             if selectedMagicResist == idx then                
@@ -370,15 +370,15 @@ local function Update()
     local count = 0;
     
     if selectedMagicResist == 1 then        
-        bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
-        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank - 4, nil);
-        bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", DEBUG);
-        temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, raid, twoHands);
+        BIS:logmsg("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", LVL_DEBUG);
+        temp = BIS:SearchBis(faction, selectedRace, selectedClass, selectedPhase, selectedSpec, nil, twoHands, raid, worldBoss, pvp, selectedRank - 4, nil);
+        BIS:logmsg("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..selectedSpec..").", LVL_DEBUG);
+        temp_enchant = BIS:SearchBisEnchant(selectedClass, selectedPhase, selectedSpec, nil, raid, twoHands);
     else        
-        bis_log("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
-        temp = SearchBis(faction, selectedRace, selectedClass, selectedPhase, BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank - 4, nil);
-        bis_log("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", DEBUG);
-        temp_enchant = SearchBisEnchant(selectedClass, selectedPhase, BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, raid, twoHands);
+        BIS:logmsg("Searching for BIS items with the following settings Race Idx ("..selectedRace.."), Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", LVL_DEBUG);
+        temp = BIS:SearchBis(faction, selectedRace, selectedClass, selectedPhase, BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, twoHands, raid, worldBoss, pvp, selectedRank - 4, nil);
+        BIS:logmsg("Searching for BIS enchants with the following settings Class Idx ("..selectedClass.."), Phase Idx ("..selectedPhase.."), Spec Idx ("..BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist]..").", LVL_DEBUG);
+        temp_enchant = BIS:SearchBisEnchant(selectedClass, selectedPhase, BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][selectedMagicResist], nil, raid, twoHands);
     end
     
     
@@ -466,7 +466,7 @@ local function Update()
                         minIndex = 0;
                         maxIndex = 4;
                     end
-                    bis_log(INVSLOT_IDX[i].." - MinIndex: "..minIndex.." - MaxIndex: "..maxIndex, DEBUG);
+                    BIS:logmsg(INVSLOT_IDX[i].." - MinIndex: "..minIndex.." - MaxIndex: "..maxIndex, LVL_DEBUG);
                     -- Item has been answered from the server.                                                            
                     if idx > minIndex and idx < maxIndex then
                         local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
@@ -548,25 +548,25 @@ end
 
 local function HandlePvPIcon(self)    
     pvp = not pvp;
-    BestInSlotClassicDB.filter.pvp = pvp;    
+    BestInSlotClassicDB.options.pvp = pvp;    
     Update();    
 end
 
 local function HandleRaidIcon(self)
     raid = not raid;
-    BestInSlotClassicDB.filter.raid = raid;
+    BestInSlotClassicDB.options.raid = raid;
     Update();
 end
 
 local function HandleTwoHandsIcon(self)    
     twoHands = not twoHands;
-    BestInSlotClassicDB.filter.twohands = twoHands;
+    BestInSlotClassicDB.options.twohands = twoHands;
     Update();
 end
 
 local function HandleWorldBossIcon(self)
     worldBoss = not worldBoss;
-    BestInSlotClassicDB.filter.worldboss = worldBoss;    
+    BestInSlotClassicDB.options.worldboss = worldBoss;    
     Update();
 end
 
@@ -585,11 +585,11 @@ local function HandlePvpRankIcon(self)
         return;
     end
     selectedRank = rankIcon;
-    BestInSlotClassicDB.filter.pvprank = selectedRank;
+    BestInSlotClassicDB.options.pvprank = selectedRank;
     Update();
 end
 
-function UpdateIcon(name, icon, textCoord)
+function BIS:UpdateIcon(name, icon, textCoord)    
     _G[name.."_ICON"]:SetTexture(icon);    
     if textCoord ~= nil then
         _G[name.."_ICON"]:SetTexCoord(unpack(textCoord));
@@ -597,14 +597,14 @@ function UpdateIcon(name, icon, textCoord)
     _G[name.."_ICON"]:SetAllPoints(_G[name]);
 end
 
-function CreateIconFrame(name, parent, width, height, x, y, icon, textCoord)    
+function BIS:CreateIconFrame(name, parent, width, height, x, y, icon, textCoord)    
     local frame = CreateFrame("Frame", name, parent);
-        
+            
     frame:SetWidth(width); -- Set these to whatever height/width is needed 
     frame:SetHeight(height); -- for your Texture
 
     local texture = frame:CreateTexture(name.."_ICON","BACKGROUND");
-    UpdateIcon(name, icon, textCoord);
+    BIS:UpdateIcon(name, icon, textCoord);
     frame.texture = texture;
 
     frame:SetPoint("TOPLEFT", parent, "TOPLEFT", x,y);    
@@ -612,8 +612,8 @@ function CreateIconFrame(name, parent, width, height, x, y, icon, textCoord)
     return frame;
 end
 
-function CreateClickableIconFrame(name, parent, label, width, height, x, y, icon, textCoord, callback, desaturated)
-    local frame = CreateIconFrame(name, parent, width, height, x, y, icon, textCoord);
+function BIS:CreateClickableIconFrame(name, parent, label, width, height, x, y, icon, textCoord, callback, desaturated)
+    local frame = BIS:CreateIconFrame(name, parent, width, height, x, y, icon, textCoord);    
 
     _G[name]:SetScript("OnEnter", function(self)
         BIS_TOOLTIP:SetOwner(_G[name]);
@@ -632,7 +632,7 @@ function CreateClickableIconFrame(name, parent, label, width, height, x, y, icon
     return frame;
 end
 
-function CreateTextFrame(name, parent, width, height, x, y, justify)
+function BIS:CreateTextFrame(name, parent, width, height, x, y, justify)    
     local frame = parent:CreateFontString("frame"..name.."_TEXT", "OVERLAY");
 
     frame:SetPoint("LEFT", x, y);
@@ -644,11 +644,11 @@ function CreateTextFrame(name, parent, width, height, x, y, justify)
     return frame;
 end
 
-function ShowManager()    
+function BIS:ShowManager()        
     -- We load player info now because it can evolve regarding talents.
     -- There's also a bug that makes the num talent tab being at 0 after addon_loaded on start.
-    LoadPlayerInfo();
-    PrintPlayerInfo();
+    BIS:LoadPlayerInfo();
+    BIS:PrintPlayerInfo();
 
     if window == nil then
         local iconSize = 60;
@@ -665,7 +665,7 @@ function ShowManager()
         end        
         selectedPhase = bis_currentPhaseId;
         selectedMagicResist = 1;        
-        if BestInSlotClassicDB.filter.pvprank == nil then
+        if BestInSlotClassicDB.options.pvprank == nil then
             if pvpRank == 0 then
                 selectedRank = 3;
             else                
@@ -681,42 +681,42 @@ function ShowManager()
                 end                
             end
         else
-            selectedRank = BestInSlotClassicDB.filter.pvprank;
+            selectedRank = BestInSlotClassicDB.options.pvprank;
         end        
-        window = CreateWindow("BISManager", 1100, 750);        
+        window = BIS:CreateWindow("BISManager", 1100, 750);        
         window.childFrame = {};
         window.enchantFrame = {};
 
-        BIS_TOOLTIP = BIS_CreateGameTooltip("BIS_TOOLTIP", window);
+        BIS_TOOLTIP = BIS:CreateGameTooltip("BIS_TOOLTIP", window);
 
         gender = UnitSex("player") - 1;
 
         for i, race in ipairs(BIS_races[faction]) do            
-            CreateClickableIconFrame("frame_"..race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, BIS_classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
+            BIS:CreateClickableIconFrame("frame_"..race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, BIS_classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
             for j, class in ipairs(BIS_classes[race].CLASS) do                
-                CreateClickableIconFrame("frame_"..race.."_"..class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 450 + ((j - 1) * 25), -15, BIS_dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
+                BIS:CreateClickableIconFrame("frame_"..race.."_"..class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 450 + ((j - 1) * 25), -15, BIS_dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
                 for k, spec in ipairs(BIS_dataSpecs[class].SPEC) do                    
-                    CreateClickableIconFrame("frame_"..race.."_"..class.."_"..BIS_dataSpecs[class].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, BIS_dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
+                    BIS:CreateClickableIconFrame("frame_"..race.."_"..class.."_"..BIS_dataSpecs[class].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, BIS_dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
                 end
             end
         end                    
         
         for idx, phase in ipairs(phases.NAME) do            
-            CreateClickableIconFrame("frame_PHASE_"..phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, phases.ICON[idx], nil, HandlePhasesIcon, false);            
+            BIS:CreateClickableIconFrame("frame_PHASE_"..phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, phases.ICON[idx], nil, HandlePhasesIcon, false);            
         end        
                              
-        raid = BestInSlotClassicDB.filter.raid;
-        pvp = BestInSlotClassicDB.filter.pvp;
-        twoHands = BestInSlotClassicDB.filter.twohands;
-        worldBoss = BestInSlotClassicDB.filter.worldboss;            
+        raid = BestInSlotClassicDB.options.raid;
+        pvp = BestInSlotClassicDB.options.pvp;
+        twoHands = BestInSlotClassicDB.options.twohands;
+        worldBoss = BestInSlotClassicDB.options.worldboss;            
 
-        CreateClickableIconFrame("frame_RAID", window, RAID.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
-        CreateClickableIconFrame("frame_DUNGEON", window, DUNGEONS.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
+        BIS:CreateClickableIconFrame("frame_RAID", window, RAID.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
+        BIS:CreateClickableIconFrame("frame_DUNGEON", window, DUNGEONS.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
         
-        CreateClickableIconFrame("frame_WORLD_BOSS", window, RAID_INFO_WORLD_BOSS, 16, 16, 525, -50, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
+        BIS:CreateClickableIconFrame("frame_WORLD_BOSS", window, RAID_INFO_WORLD_BOSS, 16, 16, 525, -50, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
 
-        CreateClickableIconFrame("frame_ONE_HAND", window, INVTYPE_WEAPON , 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
-        CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+        BIS:CreateClickableIconFrame("frame_ONE_HAND", window, INVTYPE_WEAPON , 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+        BIS:CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
 
         if faction == "Horde" then
             pvpIcon = iconHorde;            
@@ -724,14 +724,14 @@ function ShowManager()
             pvpIcon = iconAlliance;            
         end                            
 
-        CreateClickableIconFrame("frame_PVP", window, PLAYER_V_PLAYER, 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
+        BIS:CreateClickableIconFrame("frame_PVP", window, PLAYER_V_PLAYER, 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
 
         for idx, value in pairs(pvpranks) do            
-            CreateClickableIconFrame("frame_PVP_RANK_"..value, window, GetPVPRankInfo(value).." (R"..(value-4)..")", 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",value-4), nil, HandlePvpRankIcon, false);
+            BIS:CreateClickableIconFrame("frame_PVP_RANK_"..value, window, GetPVPRankInfo(value).." (R"..(value-4)..")", 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",value-4), nil, HandlePvpRankIcon, false);
         end                                    
 
         for idx, value in pairs(magicResistances.NAME) do
-            CreateClickableIconFrame("frame_MAGIC_"..idx, window, magicResistances.NAME[idx]:gsub("^%l", string.upper), 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon"..magicResistances.ID[idx]..".png", nil, HandleMagicIcon, false);
+            BIS:CreateClickableIconFrame("frame_MAGIC_"..idx, window, magicResistances.NAME[idx]:gsub("^%l", string.upper), 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon"..magicResistances.ID[idx]..".png", nil, HandleMagicIcon, false);
         end
 
         local startX, startY;
@@ -753,7 +753,7 @@ function ShowManager()
                 startY = -680;                
             end
             
-            CreateIconFrame("IconFrame_"..characterFrames.NAME[i], window, iconSize, iconSize, startX, startY, rootPaperDoll..characterFrames.ICON[i]);                                
+            BIS:CreateIconFrame("IconFrame_"..characterFrames.NAME[i], window, iconSize, iconSize, startX, startY, rootPaperDoll..characterFrames.ICON[i]);                                
             
             if characterFrames.ENCHANT[i] then
                 for j = 1, 2 do                    
@@ -770,7 +770,7 @@ function ShowManager()
                         offsetY = 0;
                     end
                     window.enchantFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY - offsetY);
-                    CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_ENCHANT", window.enchantFrame[i][j], smallIcon, smallIcon, 0, 0, nil);
+                    BIS:CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_ENCHANT", window.enchantFrame[i][j], smallIcon, smallIcon, 0, 0, nil);
                 end
             end
 
@@ -810,9 +810,9 @@ function ShowManager()
                     textJustify = "LEFT";
                 end                                
                 window.childFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY + offsetY);
-                CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_CHECK", window.childFrame[i][j], smallIcon, smallIcon, checkOffsetX, checkOffsetY, nil);
-                CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j, window.childFrame[i][j], smallIcon, smallIcon, iconOffsetX, iconOffsetY, rootPaperDoll..characterFrames.ICON[i]);
-                CreateTextFrame(characterFrames.NAME[i].."_"..j, window.childFrame[i][j], 180, smallIcon, textOffsetX, textOffsetY, textJustify);                                
+                BIS:CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j.."_CHECK", window.childFrame[i][j], smallIcon, smallIcon, checkOffsetX, checkOffsetY, nil);
+                BIS:CreateIconFrame("frame_"..characterFrames.NAME[i].."_"..j, window.childFrame[i][j], smallIcon, smallIcon, iconOffsetX, iconOffsetY, rootPaperDoll..characterFrames.ICON[i]);
+                BIS:CreateTextFrame(characterFrames.NAME[i].."_"..j, window.childFrame[i][j], 180, smallIcon, textOffsetX, textOffsetY, textJustify);                                
             end            
 
         end        

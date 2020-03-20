@@ -57,7 +57,7 @@ local function getAnchors(frame)
 	return vhalf..hhalf, frame, (vhalf == "TOP" and "BOTTOM" or "TOP")..hhalf
 end
 
-local function onEnter(self)
+local function onEnter(self)	
 	if isDraggingButton then return end
 
 	for _, button in next, lib.objects do

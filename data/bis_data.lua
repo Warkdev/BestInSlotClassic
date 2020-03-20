@@ -1245,7 +1245,7 @@ table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 17073, Priority = 22,
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 17076, Priority = 11, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 17078, Priority = 10, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 17104, Priority = 33, OffHand = false, Races = nil, SuffixId = 0 });
-table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 17182, Priority = 6, OffHand = false, Races = nil, SuffixId = 0 });
+table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 17182, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 17713, Priority = 23, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 18322, Priority = 7, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 18366, Priority = 14, OffHand = false, Races = nil, SuffixId = 0 });
@@ -1277,7 +1277,7 @@ table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19147, Priority = 15,
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19169, Priority = 7, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19323, Priority = 15, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19325, Priority = 8, OffHand = false, Races = nil, SuffixId = 0 });
-table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19364, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 });
+table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19364, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19372, Priority = 13, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19378, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19379, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 });
@@ -1297,7 +1297,7 @@ table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19522, Priority = 17,
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19578, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19686, Priority = 5, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19825, Priority = 6, OffHand = false, Races = nil, SuffixId = 0 });
-table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19854, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 });
+table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19854, Priority = 5, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19856, Priority = 7, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19874, Priority = 36, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 19898, Priority = 10, OffHand = false, Races = nil, SuffixId = 0 });
@@ -1327,7 +1327,7 @@ table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21457, Priority = 6, 
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21463, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21475, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21477, Priority = 22, OffHand = false, Races = nil, SuffixId = 0 });
-table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21492, Priority = 5, OffHand = false, Races = nil, SuffixId = 0 });
+table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21492, Priority = 6, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21504, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21581, Priority = 1, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 2, SpecId = 3, ItemId = 21602, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 });

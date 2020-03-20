@@ -1,8 +1,8 @@
 ## Author: Wark @ Auberdine-EU
-## Interface: 11303
-## Title: Best In Slot Classic - v2.2.1
-## Notes: Keep track of yours, your raid members and your guilds Best in Slot list!
-## Version: 2.2.1
+## Interface: 11304
+## Title: Best In Slot Classic
+## Notes: Keep track of your Best in Slot list!
+## Version: 2.3
 ## SavedVariables: BestInSlotClassicGlobalDB
 ## SavedVariablesPerCharacter: BestInSlotClassicDB
 
@@ -12,7 +12,7 @@ lib\LibStub\LibStub.lua
 lib\CallbackHandler-1.0\CallbackHandler-1.0.lua
 lib\LibDataBroker-1.1\LibDataBroker-1.1.lua
 lib\LibDBIcon-1.0\LibDBIcon-1.0.lua
-lib\LibTouristClassic-1.0\lib.xml
+#lib\LibTouristClassic-1.0\lib.xml
 lib\LibExtraTip\Load.xml
 
 # Core.
@@ -39,7 +39,7 @@ data\races.lua
 data\inventoryslot.lua
 
 # Facilities.
-modules\logger.lua
+modules\bis_logger.lua
 modules\cli.lua
 modules\minimap.lua
 modules\bisc_options.lua

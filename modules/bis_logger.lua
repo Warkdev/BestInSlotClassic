@@ -1,25 +1,25 @@
 -- Log levels.
-ERROR = 1
-WARN = 2;
-INFO = 3;
-DEBUG = 4;
+LVL_ERROR = 1
+LVL_WARN = 2;
+LVL_INFO = 3;
+LVL_DEBUG = 4;
 
 local prefix = "BISClassic";
 logseverity = { "ERROR", "WARN", "INFO", "DEBUG" };
 local logsettings;
 
-local function report(message)
+local function report(message)        
     print(message);
 end
 
-function bis_log(msg, level)
+function BIS:logmsg(msg, level)    
     local loglevel = tonumber(level);
     local color;
-    if loglevel < ERROR then
-        loglevel = ERROR;
+    if loglevel < LVL_ERROR then
+        loglevel = LVL_ERROR;
     end
-    if loglevel > DEBUG then
-        loglevel = DEBUG;
+    if loglevel > LVL_DEBUG then
+        loglevel = LVL_DEBUG;
     end    
 
     if BestInSlotClassicDB.loglevel == "ERROR" then        
@@ -32,11 +32,11 @@ function bis_log(msg, level)
         logsettings = 4;
     end
     
-    if level == INFO then
+    if level == LVL_INFO then
         color = "FF33FFFF";
-    elseif level == WARN then
+    elseif level == LVL_WARN then
         color = "FFFF8000";
-    elseif level == ERROR then
+    elseif level == LVL_ERROR then
         color = "FFFF0000";
     else
         color = "FFFF33FF";

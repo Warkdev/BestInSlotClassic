@@ -5,7 +5,7 @@ local function iconOffset(col, row)
 	return offsetString .. ":" .. (row * 64 + iconCutoff) .. ":" .. ((row + 1) * 64 - iconCutoff)
 end
 
-local function enrichRecipeSource(recipeId, icon)
+local function enrichRecipeSource(recipeId, icon)    
     local BIS_tableNPCS=BIS_LangNameLookup[BIS_GetUILocale()];
     local BIS_tableQuests=BIS_LangQuestLookup[BIS_GetUILocale()];
     local BIS_tableObjects=BIS_LangObjectLookup[BIS_GetUILocale()];
@@ -100,7 +100,7 @@ local function enrichRecipeSource(recipeId, icon)
     end
 end
 
-function BIS_OnTooltipSetSpell(frame)
+function BIS:OnTooltipSetSpell(frame)    
     local name, EnchantId = frame:GetSpell();
         
     BIS_TOOLTIP:AddLine("|T"..PROFESSIONS["Enchanting"]..":"..bis_defaultIconSize.."|t "..PROFESSIONS_NAME["Enchanting"].." ("..BIS_ENCHANT[EnchantId].Level..")");    
@@ -113,7 +113,7 @@ function BIS_OnTooltipSetSpell(frame)
     BIS_TOOLTIP:Show();
 end
 
-function BIS_OnTooltipSetItem(frame)
+function BIS:OnTooltipSetItem(frame)
     local name, link = frame:GetItem();
     local ItemId = tonumber(string.match(string.match(link, "item[%-?%d:]+"),"[^:]+:([^:]+)"));        
 
@@ -125,7 +125,7 @@ function BIS_OnTooltipSetItem(frame)
     local BIS_tableObjects=BIS_LangObjectLookup[BIS_GetUILocale()];
 
     if itemInfo == nil then
-        bis_log("Error while generating the tooltip for the ItemId "..ItemId, DEBUG);
+        BIS:logmsg("Error while generating the tooltip for the ItemId "..ItemId, LVL_DEBUG);
     else                                
         local details;                                                                
         if ITEMS_CRAFT[ItemId] ~= nil then
@@ -451,19 +451,19 @@ function BIS_OnTooltipSetItem(frame)
     BIS_TOOLTIP:Show();
 end
 
-function BIS_CreateGameTooltip(name, parent)
-    local tooltip = CreateFrame( "GameTooltip", "frame"..name, parent, "GameTooltipTemplate" );    
+function BIS:CreateGameTooltip(name, parent)    
+    local tooltip = CreateFrame( "GameTooltip", "frame"..name, parent, "GameTooltipTemplate");    
     
     tooltip:SetOwner(parent);
     tooltip:SetPoint("TOPLEFT", parent, "TOPRIGHT", 220, -13);
     
-    tooltip:SetScript("OnTooltipSetItem", BIS_OnTooltipSetItem);
-    tooltip:SetScript("OnTooltipSetSpell", BIS_OnTooltipSetSpell);
+    tooltip:SetScript("OnTooltipSetItem", OnTooltipSetItem);
+    tooltip:SetScript("OnTooltipSetSpell", OnTooltipSetSpell);
 
     return tooltip;
 end
 
-function BIS_OnGameTooltipSetItem(frame)
+function BIS:OnGameTooltipSetItem(frame)
     if not BestInSlotClassicDB.options.bistooltip then
         return;
     end
@@ -499,7 +499,7 @@ function BIS_OnGameTooltipSetItem(frame)
         twoHands = true;
     end 
     
-    --bis_log("Searching for item in BIS database with the following settings Item Id ("..itemId.."), Faction ("..faction.."), InvSlot ("..invSlot..")", DEBUG);
+    --BIS:logmsg("Searching for item in BIS database with the following settings Item Id ("..itemId.."), Faction ("..faction.."), InvSlot ("..invSlot..")", LVL_DEBUG);
     --function SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp, pvpRank, itemId)
     --local itemList = GetItemPosition(faction, itemId, BestInSlotClassicDB.filter.raid, invSlot, twoHands);
 
@@ -526,17 +526,19 @@ function BIS_OnGameTooltipSetItem(frame)
     else
         raceWeapSkill = 2;
         otherRaceWeapSkill = 1;
+    end    
+
+    local classTable = {};
+    local specTable = {};
+
+    BIS:LoadPlayerInfo();
+    if spec == "Unknown" then
+        return;
     end
 
     BIS_LibExtraTip:AddLine(frame," ",r,g,b,true);
     BIS_LibExtraTip:AddLine(frame,"# BIS-Classic:",r,g,b,true);
     BIS_LibExtraTip:AddDoubleLine(frame,"Class - Spec", "P1 > P2 > P3 > P4 > P5 > P6" ,r,g,b, r,g,b, true);
-
-    local classTable = {};
-    local specTable = {};
-    if spec == "Unknown" then
-        return;
-    end
 
     if frame:GetName() == "GameTooltip" then                    
         classTable = BIS_lookupSpec[spec][1];
@@ -572,14 +574,14 @@ function BIS_OnGameTooltipSetItem(frame)
             foundWeapSkill = false;
             foundOHWeapSkill = false;            
 
-            bisList = SearchBis(faction, nil, idClass, 6, idSpec, invSlot, twoHands, BestInSlotClassicDB.filter.raid, BestInSlotClassicDB.filter.worldboss, BestInSlotClassicDB.filter.pvp, BestInSlotClassicDB.filter.pvprank - 4, nil);
+            bisList = BIS:SearchBis(faction, nil, idClass, 6, idSpec, invSlot, twoHands, BestInSlotClassicDB.filter.raid, BestInSlotClassicDB.filter.worldboss, BestInSlotClassicDB.filter.pvp, BestInSlotClassicDB.filter.pvprank - 4, itemId);
             if bisList[invSlot] ~= nil then
                 for idx, bisLink in pairs(bisList[invSlot]) do                
                     if bisLink.ItemId == itemId and bisLink.SuffixId == suffixId then                        
-                        if bisLink.Races ~= nil and containsValue(bisLink.Races, raceWeapSkill) then
+                        if bisLink.Races ~= nil and BIS:containsValue(bisLink.Races, raceWeapSkill) then
                             hasWeapSkill = true;
                             foundWeapSkill = true;
-                        elseif bisLink.Races == nil or (bisLink.Races ~= nil and not containsValue(bisLink.Races, raceWeapSkill) and not containsValue(bisLink.Races, otherRaceWeapSkill)) then                            
+                        elseif bisLink.Races == nil or (bisLink.Races ~= nil and not BIS:containsValue(bisLink.Races, raceWeapSkill) and not BIS:containsValue(bisLink.Races, otherRaceWeapSkill)) then                            
                             found = true;
                         end
                     end                    
@@ -591,7 +593,7 @@ function BIS_OnGameTooltipSetItem(frame)
                         for p = phase, 6 do                            
                             if itemPhase <= p and bisLink.Races == nil then                                
                                 positions[p] = positions[p] + 1;                                
-                            elseif itemPhase <= p and bisLink.Races ~= nil and not containsValue(bisLink.Races, raceWeapSkill) and not containsValue(bisLink.Races, otherRaceWeapSkill) then                                
+                            elseif itemPhase <= p and bisLink.Races ~= nil and not BIS:containsValue(bisLink.Races, raceWeapSkill) and not BIS:containsValue(bisLink.Races, otherRaceWeapSkill) then                                
                                 positions[p] = positions[p] + 1;
                             end                            
                         end
@@ -602,7 +604,7 @@ function BIS_OnGameTooltipSetItem(frame)
                             phase = 1;
                         end
                         for p = phase, 6 do                                                        
-                            if itemPhase <= p and bisLink.Races ~= nil and containsValue(bisLink.Races, raceWeapSkill) then                                
+                            if itemPhase <= p and bisLink.Races ~= nil and BIS:containsValue(bisLink.Races, raceWeapSkill) then                                
                                 positionsWeapSkill[p] = positionsWeapSkill[p] + 1;
                             end
                         end
@@ -610,14 +612,14 @@ function BIS_OnGameTooltipSetItem(frame)
                 end                       
             end   
             -- Checking off-hand
-            if invSlot == 16 and not twoHands and containsValue({1, 3, 4}, idClass) and bisList[17] ~= nil then                
+            if invSlot == 16 and not twoHands and BIS:containsValue({1, 3, 4}, idClass) and bisList[17] ~= nil then                
                 for idx, bisLink in pairs(bisList[17]) do                    
                     if bisLink.ItemId == itemId and bisLink.SuffixId == suffixId then
                         if bisLink.ItemId == itemId and bisLink.SuffixId == suffixId then                        
-                            if bisLink.Races ~= nil and containsValue(bisLink.Races, raceWeapSkill) then
+                            if bisLink.Races ~= nil and BIS:containsValue(bisLink.Races, raceWeapSkill) then
                                 hasWeapSkill = true;
                                 foundOHWeapSkill = true;
-                            elseif bisLink.Races == nil or (bisLink.Races ~= nil and not containsValue(bisLink.Races, raceWeapSkill) and not containsValue(bisLink.Races, otherRaceWeapSkill)) then
+                            elseif bisLink.Races == nil or (bisLink.Races ~= nil and not BIS:containsValue(bisLink.Races, raceWeapSkill) and not BIS:containsValue(bisLink.Races, otherRaceWeapSkill)) then
                                 foundOH = true;
                             end
                         end              
@@ -630,7 +632,7 @@ function BIS_OnGameTooltipSetItem(frame)
                         for p = phase, 6 do                            
                             if itemPhase <= p and bisLink.Races == nil then                                
                                 positionsOffhand[p] = positionsOffhand[p] + 1;                                
-                            elseif itemPhase <= p and bisLink.Races ~= nil and not containsValue(bisLink.Races, raceWeapSkill) and not containsValue(bisLink.Races, otherRaceWeapSkill) then                                
+                            elseif itemPhase <= p and bisLink.Races ~= nil and not BIS:containsValue(bisLink.Races, raceWeapSkill) and not BIS:containsValue(bisLink.Races, otherRaceWeapSkill) then                                
                                 positionsOffhand[p] = positionsOffhand[p] + 1;
                             end                            
                         end
@@ -641,7 +643,7 @@ function BIS_OnGameTooltipSetItem(frame)
                             phase = 1;
                         end
                         for p = phase, 6 do                                                        
-                            if itemPhase <= p and bisLink.Races ~= nil and containsValue(bisLink.Races, raceWeapSkill) then                                
+                            if itemPhase <= p and bisLink.Races ~= nil and BIS:containsValue(bisLink.Races, raceWeapSkill) then                                
                                 positionsOHWeapSkill[p] = positionsOHWeapSkill[p] + 1;
                             end
                         end
@@ -680,7 +682,7 @@ function BIS_OnGameTooltipSetItem(frame)
                     if foundOH or foundOHWeapSkill then                        
                         BIS_LibExtraTip:AddDoubleLine(frame, "|T"..BIS_dataSpecs[idClass].ICON[1]..":14:14".."|t - "..BIS_dataSpecs[idClass].SPEC[idSpec].." - OH - (Not "..C_CreatureInfo.GetRaceInfo(raceWeapSkill).raceName..") ", positionsOffhand[1].." > "..positionsOffhand[2].." > "..positionsOffhand[3].." > "..positionsOffhand[4].." > "..positionsOffhand[5].." > "..positionsOffhand[6], color.r, color.g, color.b, color.r, color.g, color.b, true);                
                     end
-                elseif containsValue({3, 4}, idClass) and invSlot == 16 then
+                elseif BIS:containsValue({3, 4}, idClass) and invSlot == 16 then
                     -- Hunter MainHand and OffHand.
                     if found then
                         if not twoHands then

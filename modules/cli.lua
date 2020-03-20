@@ -1,28 +1,25 @@
 -- Basic Command Handlers File. New commands would be ideally added here.
-
-local testItems = { 12940, 17075, 19352, 19888, 21650, 23577 };
-
-function ShowManager(args)
+function BIS:ShowManager(args)
     ShowManager();
 end
 
-function OpenConfigPane(args)
+function BIS:OpenConfigPane(args)
     InterfaceOptionsFrame_OpenToCategory("BestInSlotClassic");
     InterfaceOptionsFrame_OpenToCategory("BestInSlotClassic");
 end
 
 local function ShowHelp(args)
-    bis_log("BestInSlotClassic usage: ", INFO);
-    bis_log("/bis : Configure the add-on", INFO);
-    bis_log("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", INFO);    
-    bis_log("/bis help : Show this help", INFO);
-    bis_log("/bis reset : Reset all add-on settings", INFO);
-    bis_log("/bis settings: Define add-on general settings", INFO);        
-    bis_log("/bis version: Displays the add-on version", INFO);
-    bis_log("/bis tooltip: Enable or disable the tooltip enrichment with BIS information", INFO);
+    BIS:logmsg("BestInSlotClassic usage: ", LVL_INFO);
+    BIS:logmsg("/bis : Configure the add-on", LVL_INFO);
+    BIS:logmsg("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", LVL_INFO);    
+    BIS:logmsg("/bis help : Show this help", LVL_INFO);
+    BIS:logmsg("/bis reset : Reset all add-on settings", LVL_INFO);
+    BIS:logmsg("/bis settings: Define add-on general settings", LVL_INFO);        
+    BIS:logmsg("/bis version: Displays the add-on version", LVL_INFO);
+    BIS:logmsg("/bis tooltip: Enable or disable the tooltip enrichment with BIS information", LVL_INFO);
 end
 
-function HandleLogLevel(args)
+function BIS:HandleLogLevel(args)
     args = args:lower();    
 
     local level = {
@@ -34,60 +31,73 @@ function HandleLogLevel(args)
 
     if type(level[args]) == "function" then
         level[args]();
-        bis_log("Log level set to: "..BestInSlotClassicDB.loglevel, INFO);    
+        BIS:logmsg("Log level set to: "..BestInSlotClassicDB.loglevel, LVL_INFO);    
     else
-        bis_log("Unknown log level "..args, INFO);
+        BIS:logmsg("Unknown log level "..args, LVL_INFO);
     end
 
     
 end
 
-function ShowVersion(args)
-    bis_log("BestInSlot - Classic v"..VERSION, INFO);
+local function ShowVersion(args)    
+    BIS:logmsg("BestInSlot - Classic v"..VERSION, LVL_INFO);
 end
 
-function HandleTooltip(args)
+local function HandleTooltip(args)    
     BestInSlotClassicDB.options.bistooltip = not BestInSlotClassicDB.options.bistooltip;
     if BestInSlotClassicDB.options.bistooltip then
-        bis_log("Tooltip BIS enrichment function has been enabled", INFO);
+        BIS:logmsg("Tooltip BIS enrichment function has been enabled", LVL_INFO);
     else
-        bis_log("Tooltip BIS enrichment function has been disabled", INFO);
+        BIS:logmsg("Tooltip BIS enrichment function has been disabled", LVL_INFO);
     end
 end
 
 function PrintVars(args)
-    --bis_log("Log level: ", BestInSlotClassicDB.loglevel, INFO);
-    --bis_log("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide, INFO);
-    --bis_log("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos, INFO);
+    --BIS:logmsg("Log level: ", BestInSlotClassicDB.loglevel, INFO);
+    --BIS:logmsg("Hide Minimap Icon: ", BestInSlotClassicDB.minimap.hide, INFO);
+    --BIS:logmsg("Minimap Icon Position: "..BestInSlotClassicDB.minimap.minimapPos, INFO);
     --print("|cffffffff|Henchant:20024|h[Enchant]|h|r");
     --print("|cff9d9d9d|Hitem:12645::::::::::::|h[Thorium Spike]|h|r");
     --print("|T"..GetItemIcon(12645)..":16|t");
     -- Returns nil when in Dungeon.
-    print("MapUnit: "..(C_Map.GetBestMapForUnit("player") or "nil"));
+    --print("MapUnit: "..(C_Map.GetBestMapForUnit("player") or "nil"));
     -- Returns Instance Info.
-    print("GetInstanceInfo: "..GetInstanceInfo());
+    --print("GetInstanceInfo: "..GetInstanceInfo());
     -- Returns Map Info.
-    local info = C_Map.GetMapInfo(1429)      
-    print("C_Map.GetMapInfo(uiMapID): "..info.name);
-    print("GetRealZoneText: "..GetRealZoneText(1429));
+    --local info = C_Map.GetMapInfo(1429)      
+    --print("C_Map.GetMapInfo(uiMapID): "..info.name);
+    --print("GetRealZoneText: "..GetRealZoneText(1429));
     --info = C_Map.GetMapInfo(409)
     --print("C_Map.GetMapInfo(uiMapID): "..info.name);
-    print("GetRealZoneText: "..GetRealZoneText(246));
-    print(GetClassInfo(1));
-    for factionIndex = 1, GetNumFactions() do
-        local name, description, standingId, bottomValue, topValue, earnedValue, atWarWith, canToggleAtWar,
-            isHeader, isCollapsed, hasRep, isWatched, isChild, factionID = GetFactionInfo(factionIndex)
-        if hasRep or not isHeader then
-            DEFAULT_CHAT_FRAME:AddMessage("Faction: " .. name .. " - " .. earnedValue)
-        end
-    end
+    --print("GetRealZoneText: "..GetRealZoneText(246));
+    --print(GetClassInfo(1));
+    --for factionIndex = 1, GetNumFactions() do
+    --    local name, description, standingId, bottomValue, topValue, earnedValue, atWarWith, canToggleAtWar,
+    --        isHeader, isCollapsed, hasRep, isWatched, isChild, factionID = GetFactionInfo(factionIndex)
+    --    if hasRep or not isHeader then
+    --        DEFAULT_CHAT_FRAME:AddMessage("Faction: " .. name .. " - " .. earnedValue)
+    --    end
+    --end
 end
 
 local function Reset(args)
     ResetDefaults();
     UpdateMinimapIcon();
-    bis_log("BestInSlotClassic has been reset to default values.", DEBUG);
+    BIS:logmsg("BestInSlotClassic has been reset to default values.", LVL_DEBUG);    
 end
+
+local function ShowManager(args)
+    BIS:ShowManager(args);
+end
+
+local function OpenConfigPane(args)
+    BIS:OpenConfigPane(args);
+end
+
+local function HandleLogLevel(args)
+    BIS:HandleLogLevel(args);
+end
+
 
 -- "Elegant" way to handle switch case in LUA.
 handlers = {
@@ -119,7 +129,7 @@ local function HandleCommands(msg, editBox)
     if type(handlers[msg]) == "function" then
         handlers[msg](split[2]);
     else
-        bis_log("Unknown command: "..msg, INFO);
+        BIS:logmsg("Unknown command: "..msg, LVL_INFO);
         handlers["help"](msg);
     end    
 end
