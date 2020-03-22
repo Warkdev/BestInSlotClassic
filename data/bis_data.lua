@@ -166,7 +166,6 @@ table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 12936, Priority = 3, 
 table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 12966, Priority = 5, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 13066, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 13098, Priority = 10, OffHand = false, Races = nil, SuffixId = 0 });
-table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 13137, Priority = 1, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 13142, Priority = 2, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 13162, Priority = 5, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, {ClassId = 1, SpecId = 2, ItemId = 13209, Priority = 7, OffHand = false, Races = nil, SuffixId = 0 });

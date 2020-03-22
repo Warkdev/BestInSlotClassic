@@ -1,3 +1,7 @@
+# 2.4.0 (xx-xx-2020)
+- Fixing a bug that made Ironweaver being reported as BIS for warrior PROT threat.
+- 
+
 # 2.3.0 (22-03-2020)
 - Fixing a bug that made the combat log to be displayed in DEBUG mode whenever the combat log window was split from the main chat window.
 - Fixing a bug that made the tooltip enrichment not working if the manager has not been open before.
