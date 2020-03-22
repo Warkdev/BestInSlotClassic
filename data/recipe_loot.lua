@@ -36,9 +36,15 @@ RECIPE_LOOT[11225] = { NPC = {  {Id = 193, Zone = 1447, Chance = 0.2 },  {Id = 6
 RECIPE_LOOT[11226] = { NPC = {  {Id = 1564, Zone = 1434, Chance = 0.0 },  {Id = 2791, Zone = 1418, Chance = 0.0 },  {Id = 2926, Zone = 1425, Chance = 0.0 },  {Id = 4468, Zone = 1425, Chance = 0.06 },  {Id = 5226, Zone = 109, Chance = 0.01 }} };
 RECIPE_LOOT[11612] = { NPC = {  {Id = 9543, Zone = 230, Chance = 12.0 }} };
 RECIPE_LOOT[11813] = { NPC = {  {Id = 9025, Zone = 230, Chance = 42.0 }} };
+RECIPE_LOOT[12685] = { NPC = {  {Id = 1783, Zone = 1422, Chance = 0.0 },  {Id = 2505, Zone = 1425, Chance = 0.0 },  {Id = 5993, Zone = 1419, Chance = 0.0 },  {Id = 6109, Zone = 1447, Chance = 2.0 },  {Id = 6518, Zone = 1449, Chance = 0.01 }} };
+RECIPE_LOOT[12689] = { NPC = {  {Id = 1492, Zone = 1434, Chance = 0.03 },  {Id = 1813, Zone = 1422, Chance = 0.06 },  {Id = 1833, Zone = 1422, Chance = 0.03 },  {Id = 1834, Zone = 1422, Chance = 0.07 },  {Id = 2648, Zone = 1425, Chance = 0.03 }} };
 RECIPE_LOOT[12692] = { NPC = {  {Id = 1785, Zone = 1422, Chance = 0.01 },  {Id = 1794, Zone = 1422, Chance = 0.0 },  {Id = 2505, Zone = 1425, Chance = 0.0 },  {Id = 5473, Zone = 1446, Chance = 0.02 },  {Id = 5977, Zone = 1419, Chance = 0.03 }} };
+RECIPE_LOOT[12695] = { NPC = {  {Id = 1884, Zone = 1422, Chance = 0.03 },  {Id = 5712, Zone = 109, Chance = 0.04 },  {Id = 5717, Zone = 109, Chance = 0.09 },  {Id = 5977, Zone = 1419, Chance = 0.03 },  {Id = 6109, Zone = 1447, Chance = 1.4 }} };
+RECIPE_LOOT[12697] = { NPC = {  {Id = 1048, Zone = 1437, Chance = 0.08 },  {Id = 1805, Zone = 1422, Chance = 0.17 },  {Id = 1836, Zone = 1422, Chance = 0.17 },  {Id = 1846, Zone = 1422, Chance = 0.19 },  {Id = 2931, Zone = 1418, Chance = 0.19 }} };
+RECIPE_LOOT[12702] = { NPC = {  {Id = 1783, Zone = 1422, Chance = 0.0 },  {Id = 1816, Zone = 1422, Chance = 0.0 },  {Id = 1827, Zone = 1422, Chance = 0.02 },  {Id = 4494, Zone = 1422, Chance = 0.0 },  {Id = 6109, Zone = 1447, Chance = 4.0 }} };
 RECIPE_LOOT[12703] = { NPC = {  {Id = 1795, Zone = 1422, Chance = 0.0 },  {Id = 6109, Zone = 1447, Chance = 3.0 },  {Id = 6521, Zone = 1449, Chance = 0.0 },  {Id = 7041, Zone = 1428, Chance = 0.04 },  {Id = 7132, Zone = 1448, Chance = 0.0 }} };
 RECIPE_LOOT[12711] = { NPC = {  {Id = 6005, Zone = 1419, Chance = 0.01 },  {Id = 6109, Zone = 1447, Chance = 2.0 },  {Id = 7027, Zone = 1428, Chance = 0.01 },  {Id = 7031, Zone = 1428, Chance = 0.02 },  {Id = 7372, Zone = 1430, Chance = 0.01 }} };
+RECIPE_LOOT[12713] = { NPC = {  {Id = 1045, Zone = 1437, Chance = 1.1 },  {Id = 1048, Zone = 1437, Chance = 0.08 },  {Id = 1050, Zone = 1437, Chance = 0.4 },  {Id = 1852, Zone = 1422, Chance = 0.07 },  {Id = 4374, Zone = 1445, Chance = 1.3 }} };
 RECIPE_LOOT[12717] = { NPC = {  {Id = 6109, Zone = 1447, Chance = 0.5 },  {Id = 10184, Zone = 249, Chance = 0.3 },  {Id = 10508, Zone = 289, Chance = 0.01 },  {Id = 11658, Zone = 409, Chance = 0.01 },  {Id = 11662, Zone = 409, Chance = 0.02 }} };
 RECIPE_LOOT[12833] = { NPC = {  {Id = 10438, Zone = 329, Chance = 8.0 }} };
 RECIPE_LOOT[12835] = { NPC = {  {Id = 9736, Zone = 229, Chance = 9.0 }} };

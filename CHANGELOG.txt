@@ -1,10 +1,16 @@
-# 2.3.0 (xx-03-2020)
+# 2.3.0 (22-03-2020)
 - Fixing a bug that made the combat log to be displayed in DEBUG mode whenever the combat log window was split from the main chat window.
 - Fixing a bug that made the tooltip enrichment not working if the manager has not been open before.
+- Fixing a bug that would display an LUA error if there's no BIS item for a given slot in the dataset.
 - Improving the tooltip enrichment lookup to avoid parsing the whole table if that's not necessary.
+- Onyxia Scale Cloak has now source available.
+- Elemental circle is now tied only to Horde faction.
+- Cenarion Circle craft items should now be properly linked to their vendor.
 - Updating BIS list:
 -- Paladin Retribution AP now have Sulfuras as BIS from P1 till P6.
---
+-- Hunter: Adding Melee Weave spec according to the spreadsheet.
+-- Hunter: Adding P4/P5/P6 BIS items for the normal spec.
+-- Hunter: Adding NR and FR sets.
 
 # 2.2.1 (17-03-2020)
 - Fixing a bug that made weapons being displayed as bis for too many class/spec combinations.

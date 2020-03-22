@@ -26,6 +26,11 @@ RECIPE_CONTAINER[11208] = { Containers = {  {Zone = 0, Id = 141979, Chance = 0.3
 RECIPE_CONTAINER[11225] = { Containers = {  {Zone = 0, Id = 141979, Chance = 0.5 },  {Zone = 0, Id = 142184, Chance = 0.11 },  {Zone = 230, Id = 160845, Chance = 0.16 }} };
 RECIPE_CONTAINER[11226] = { Containers = {  {Zone = 1434, Id = 179697, Chance = 0.3 }} };
 RECIPE_CONTAINER[11615] = { Containers = {  {Zone = 230, Id = 173234, Chance = 100.0 }} };
+RECIPE_CONTAINER[12689] = { Containers = {  {Zone = 0, Id = 153463, Chance = 0.6 },  {Zone = 0, Id = 153464, Chance = 0.13 },  {Zone = 0, Id = 153469, Chance = 0.19 },  {Zone = 1434, Id = 179697, Chance = 1.2 }} };
+RECIPE_CONTAINER[12695] = { Containers = {  {Zone = 0, Id = 153464, Chance = 0.4 }} };
+RECIPE_CONTAINER[12697] = { Containers = {  {Zone = 0, Id = 153464, Chance = 0.3 }} };
+RECIPE_CONTAINER[12702] = { Containers = {  {Zone = 0, Id = 153469, Chance = 0.3 }} };
+RECIPE_CONTAINER[12713] = { Containers = {  {Zone = 0, Id = 153464, Chance = 0.3 },  {Zone = 0, Id = 153469, Chance = 0.3 }} };
 RECIPE_CONTAINER[14478] = { Containers = {  {Zone = 0, Id = 153469, Chance = 0.2 },  {Zone = 230, Id = 160845, Chance = 0.16 }} };
 RECIPE_CONTAINER[14479] = { Containers = {  {Zone = 0, Id = 153464, Chance = 0.17 },  {Zone = 230, Id = 160845, Chance = 0.16 }} };
 RECIPE_CONTAINER[14492] = { Containers = {  {Zone = 0, Id = 153464, Chance = 0.3 },  {Zone = 0, Id = 153469, Chance = 0.3 }} };

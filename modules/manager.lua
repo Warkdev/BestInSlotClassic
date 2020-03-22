@@ -70,12 +70,12 @@ BIS_dataSpecs = {
                     ["MAGIC_RESISTANCE"] = { { 1, 5, nil, nil, nil, nil }, { 2, 6, nil, nil, nil, nil }, { 3, 7, nil, nil, nil, nil }, { 4, 7, nil, nil, nil, nil } },
                     ["WEAPON_ICONS"] = { { 19360, nil }, { 19360, nil }, { nil, 19364 }, { 19019, 19169 } }
                  },
-    [3] = {  ["SPEC"] = { "Any" },                     
-                    ["SPEC_ICONS"] = { 135489 },
-                    ["VALUE"] = { 1 },
+    [3] = {  ["SPEC"] = { "Normal", "Melee Weave" },                     
+                    ["SPEC_ICONS"] = { 135489, 132215 },
+                    ["VALUE"] = { 1, 2 },
                     ["ICON"] = { 135495 },
-                    ["MAGIC_RESISTANCE"] = { { 1, 2, nil, nil, nil, nil } },
-                    ["WEAPON_ICONS"] = { { 18805, 18520 } }
+                    ["MAGIC_RESISTANCE"] = { { 1, 5, 3, nil, 4, nil }, { 2, 5, 3, nil, 4, nil } },
+                    ["WEAPON_ICONS"] = { { 18805, 18520 }, { 18805, 18520 } }
                 },
     [4] = {   ["SPEC"] = { "Swords", "Daggers" },                     
                     ["SPEC_ICONS"] = { 135328, 135641 },
@@ -153,19 +153,19 @@ BIS_specsFileToSpecs = {
 };
 
 BIS_lookupSpec = {
-    ["WarriorArms"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["WarriorFury"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["WarriorProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["WarriorFuryProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["DruidFeralTank"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["DruidFeralDPS"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["WarriorArms"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["WarriorFury"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["WarriorProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["WarriorFuryProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["DruidFeralTank"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["DruidFeralDPS"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
     ["DruidRestoration"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
     ["DruidBalance"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["HunterBeastMastery"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["HunterMarksmanship"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["HunterSurvival"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["HunterBeastMastery"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["HunterMarksmanship"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["HunterSurvival"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
     ["ShamanElementalCombat"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["ShamanEnhancement"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["ShamanEnhancement"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
     ["ShamanRestoration"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
     ["MageArcane"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
     ["MageFire"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
@@ -175,11 +175,11 @@ BIS_lookupSpec = {
     ["WarlockDestruction"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
     ["PriestHybrid"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
     ["PriestShadow"] = { { 5, 8, 9, 11 }, {{ 1, 2 }, { 1, 2, 3 }, { 1 }, { 6 }} },
-    ["RogueSwords"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["RogueDaggers"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["RogueSwords"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["RogueDaggers"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
     ["PaladinHoly"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
-    ["PaladinProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["PaladinCombat"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["PaladinProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
+    ["PaladinCombat"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
     ["Unknown"] = { { }, { } }
 };
 
@@ -451,54 +451,54 @@ local function Update()
             temp_slot = 13;
             minIndex = 3;
             maxIndex = 7;
-        end
-        for idx, value in pairs(temp[temp_slot]) do                                   
+        end        
+        if temp[temp_slot] ~= nil then
+            for idx, value in pairs(temp[temp_slot]) do                                   
 
-            if idx > minIndex and idx < maxIndex then                
-                item = Item:CreateFromItemID(value.ItemId);
-                                
-                _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
-                item:ContinueOnItemLoad(function()                    
-                    if INVSLOT_IDX[i] == "OffTrinket" or INVSLOT_IDX[i] == "OffRing" then
-                        minIndex = 3;
-                        maxIndex = 7;
-                    else
-                        minIndex = 0;
-                        maxIndex = 4;
-                    end
-                    BIS:logmsg(INVSLOT_IDX[i].." - MinIndex: "..minIndex.." - MaxIndex: "..maxIndex, LVL_DEBUG);
-                    -- Item has been answered from the server.                                                            
-                    if idx > minIndex and idx < maxIndex then
-                        local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-                        itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
-                        isCraftingReagent = GetItemInfo("item:"..value.ItemId..":0:0:0:0:0:"..value.SuffixId);
-
-                        if characterHasItem(value.ItemId) or characterHasBag(itemName) then
-                            _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
+                if idx > minIndex and idx < maxIndex then                
+                    item = Item:CreateFromItemID(value.ItemId);
+                                    
+                    _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)].index = idx - minIndex;
+                    item:ContinueOnItemLoad(function()                    
+                        if INVSLOT_IDX[i] == "OffTrinket" or INVSLOT_IDX[i] == "OffRing" then
+                            minIndex = 3;
+                            maxIndex = 7;
                         else
-                            _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
+                            minIndex = 0;
+                            maxIndex = 4;
                         end
-                        _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
-                        _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);                    
-                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
-                            if itemName ~= nil then
-                                SetItemRef(itemLink, itemLink, "LeftButton");
-                            end
-                        end)                    
-                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                                                    
-                            BIS_TOOLTIP:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index]);
-                            BIS_TOOLTIP:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index], "TOPRIGHT", 220, -13);
-    
-                            BIS_TOOLTIP:SetHyperlink(itemLink);
-                        end);
-                        _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
-                            BIS_TOOLTIP:Hide();                                            
-                        end);                
-                    end
-                end);
-            end
+                        BIS:logmsg(INVSLOT_IDX[i].." - MinIndex: "..minIndex.." - MaxIndex: "..maxIndex, LVL_DEBUG);
+                        -- Item has been answered from the server.                                                            
+                        if idx > minIndex and idx < maxIndex then
+                            local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+                            itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, 
+                            isCraftingReagent = GetItemInfo("item:"..value.ItemId..":0:0:0:0:0:"..value.SuffixId);
 
-            
+                            if characterHasItem(value.ItemId) or characterHasBag(itemName) then
+                                _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready");
+                            else
+                                _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_CHECK_ICON"]:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
+                            end
+                            _G["frame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_ICON"]:SetTexture(itemIcon);
+                            _G["frame"..INVSLOT_IDX[i].."s_"..(idx - minIndex).."_TEXT"]:SetText(itemLink);                    
+                            _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnMouseDown", function(self)
+                                if itemName ~= nil then
+                                    SetItemRef(itemLink, itemLink, "LeftButton");
+                                end
+                            end)                    
+                            _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnEnter", function(self)                                                    
+                                BIS_TOOLTIP:SetOwner(_G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index]);
+                                BIS_TOOLTIP:SetPoint("TOPLEFT", _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..self.index], "TOPRIGHT", 220, -13);
+        
+                                BIS_TOOLTIP:SetHyperlink(itemLink);
+                            end);
+                            _G["ItemFrame_"..INVSLOT_IDX[i].."s_"..(idx - minIndex)]:SetScript("OnLeave", function(self)
+                                BIS_TOOLTIP:Hide();                                            
+                            end);                
+                        end
+                    end);
+                end
+            end
         end
     end
 end
