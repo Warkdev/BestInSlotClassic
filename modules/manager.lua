@@ -644,6 +644,12 @@ function BIS:CreateTextFrame(name, parent, width, height, x, y, justify)
     return frame;
 end
 
+local function handleKey(self, event, arg1, ...)
+    if event == "ESCAPE" then
+        BIS:ShowManager();        
+    end
+end
+
 function BIS:ShowManager()        
     -- We load player info now because it can evolve regarding talents.
     -- There's also a bug that makes the num talent tab being at 0 after addon_loaded on start.
@@ -821,9 +827,15 @@ function BIS:ShowManager()
     if visible then
         window:Hide();
         visible = false;
+        window:SetPropagateKeyboardInput(false);
+        window:EnableKeyboard(false);
+        window:SetScript("OnKeyDown", nil);
     else
         Update();
         window:Show();
+        window:EnableKeyboard(true);
+        window:SetScript("OnKeyDown", handleKey);
+        window:SetPropagateKeyboardInput(true)
         visible = true;
     end
 end
