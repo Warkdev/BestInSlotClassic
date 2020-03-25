@@ -296,12 +296,12 @@ local function ResetUI()
         if oneHandIcon == nil then
             _G["frame_TWO_HANDS"]:Show();
             _G["frame_ONE_HAND"]:Hide();
-            BestInSlotClassicDB.options.twohands = true;
+            BestInSlotClassicDB.filter.twohands = true;
             twoHands = true;
         elseif twoHandsIcon == nil then
             _G["frame_TWO_HANDS"]:Hide();
             _G["frame_ONE_HAND"]:Show();
-            BestInSlotClassicDB.options.twohands = false;
+            BestInSlotClassicDB.filter.twohands = false;
             twoHands = false;
         end
 
@@ -548,25 +548,25 @@ end
 
 local function HandlePvPIcon(self)    
     pvp = not pvp;
-    BestInSlotClassicDB.options.pvp = pvp;    
+    BestInSlotClassicDB.filter.pvp = pvp;    
     Update();    
 end
 
 local function HandleRaidIcon(self)
     raid = not raid;
-    BestInSlotClassicDB.options.raid = raid;
+    BestInSlotClassicDB.filter.raid = raid;
     Update();
 end
 
 local function HandleTwoHandsIcon(self)    
     twoHands = not twoHands;
-    BestInSlotClassicDB.options.twohands = twoHands;
+    BestInSlotClassicDB.filter.twohands = twoHands;
     Update();
 end
 
 local function HandleWorldBossIcon(self)
     worldBoss = not worldBoss;
-    BestInSlotClassicDB.options.worldboss = worldBoss;    
+    BestInSlotClassicDB.filter.worldboss = worldBoss;    
     Update();
 end
 
@@ -585,7 +585,7 @@ local function HandlePvpRankIcon(self)
         return;
     end
     selectedRank = rankIcon;
-    BestInSlotClassicDB.options.pvprank = selectedRank;
+    BestInSlotClassicDB.filter.pvprank = selectedRank;
     Update();
 end
 
@@ -671,7 +671,7 @@ function BIS:ShowManager()
         end        
         selectedPhase = bis_currentPhaseId;
         selectedMagicResist = 1;        
-        if BestInSlotClassicDB.options.pvprank == nil then
+        if BestInSlotClassicDB.filter.pvprank == nil then
             if pvpRank == 0 then
                 selectedRank = 3;
             else                
@@ -687,7 +687,7 @@ function BIS:ShowManager()
                 end                
             end
         else
-            selectedRank = BestInSlotClassicDB.options.pvprank;
+            selectedRank = BestInSlotClassicDB.filter.pvprank;
         end        
         window = BIS:CreateWindow("BISManager", 1100, 750);        
         window.childFrame = {};
@@ -711,10 +711,10 @@ function BIS:ShowManager()
             BIS:CreateClickableIconFrame("frame_PHASE_"..phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, phases.ICON[idx], nil, HandlePhasesIcon, false);            
         end        
                              
-        raid = BestInSlotClassicDB.options.raid;
-        pvp = BestInSlotClassicDB.options.pvp;
-        twoHands = BestInSlotClassicDB.options.twohands;
-        worldBoss = BestInSlotClassicDB.options.worldboss;            
+        raid = BestInSlotClassicDB.filter.raid;
+        pvp = BestInSlotClassicDB.filter.pvp;
+        twoHands = BestInSlotClassicDB.filter.twohands;
+        worldBoss = BestInSlotClassicDB.filter.worldboss;            
 
         BIS:CreateClickableIconFrame("frame_RAID", window, RAID.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
         BIS:CreateClickableIconFrame("frame_DUNGEON", window, DUNGEONS.." BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
