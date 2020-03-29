@@ -12,9 +12,12 @@ end
 
 local function SetTooltipDefaults()
     if BestInSlotClassicDB.options == nil then
-        BestInSlotClassicDB.options = {};
-        BestInSlotClassicDB.options.bistooltip = true;
+        BestInSlotClassicDB.options = {};        
     end
+
+    if BestInSlotClassicDB.options.bistooltip == nil then
+        BestInSlotClassicDB.options.bistooltip = true;
+    end        
 end
 
 local function SetLogLevelDefaults()
@@ -46,6 +49,10 @@ local function SetFilterDefaults()
 
     if BestInSlotClassicDB.filter.pvprank == nil then
         BestInSlotClassicDB.filter.pvprank = 1;
+    end
+
+    if BestInSlotClassicDB.filter.soulboundBis == nil then
+        BestInSlotClassicDB.filter.soulboundBis = true;
     end
 end
 

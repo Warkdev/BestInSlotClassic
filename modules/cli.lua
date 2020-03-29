@@ -10,13 +10,14 @@ end
 
 local function ShowHelp(args)
     BIS:logmsg("BestInSlotClassic usage: ", LVL_INFO);
-    BIS:logmsg("/bis : Configure the add-on", LVL_INFO);
-    BIS:logmsg("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", LVL_INFO);    
     BIS:logmsg("/bis help : Show this help", LVL_INFO);
+    BIS:logmsg("/bis : Configure the add-on", LVL_INFO);
+    BIS:logmsg("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", LVL_INFO);        
     BIS:logmsg("/bis reset : Reset all add-on settings", LVL_INFO);
     BIS:logmsg("/bis settings: Define add-on general settings", LVL_INFO);        
     BIS:logmsg("/bis version: Displays the add-on version", LVL_INFO);
     BIS:logmsg("/bis tooltip: Enable or disable the tooltip enrichment with BIS information", LVL_INFO);
+    BIS:logmsg("/bis obtained: Define whether items that you've equipped or in your bag should appear in the result search of your class/spec search", LVL_INFO);
 end
 
 function BIS:HandleLogLevel(args)
@@ -108,7 +109,7 @@ handlers = {
     ["reset"] = Reset,
     ["vars"] = PrintVars,
     ["version"] = ShowVersion,
-    ["tooltip"] = HandleTooltip
+    ["tooltip"] = HandleTooltip    
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.

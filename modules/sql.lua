@@ -1,3 +1,20 @@
+local function characterHasItem(itemId)
+  local hasItem = false;    
+  if IsEquippedItem(itemId) then
+    hasItem = true;
+  else
+    for i = 0, NUM_BAG_SLOTS do
+      for z = 1, GetContainerNumSlots(i) do
+          if GetContainerItemID(i, z) == itemId then
+            hasItem = true;
+              break
+          end
+      end
+    end
+  end
+  return hasItem;
+end
+
 -- Faking SQL search.
 function table_invert(t)
     local s = {}
@@ -5,7 +22,11 @@ function table_invert(t)
     return s
 end
 
-function BIS:containsValue(t, value)  
+function BIS:containsValue(t, value) 
+  if t == nil then
+    return true;
+  end
+
   for k, v in pairs(t) do
     if t[k] == value then
       return true;
@@ -94,17 +115,16 @@ function BIS:SearchBisEnchant(class, phase, spec, invSlot, raid, twoHands)
   return result;
 end
 
-function BIS:SearchBis(faction, race, class, phase, spec, invSlot, twoHands, raid, worldBoss, pvp, pvpRank, itemId)
+function BIS:SearchBis(faction, race, classSearch, phase, specSearch, invSlot, twoHands, raid, worldBoss, pvp, pvpRank, itemId)
   -- Temporary table with matching records.
   local temp = {};
   local result = {};
   local empty = true;
-  local slot;
+  local slot;  
 
   if (faction == "Alliance" and class == 7) or (faction == "Horde" and class == 2) then
     return result;    
-  end
-
+  end  
 
   if invSlot == nil then
     for i = 1, table.getn(INVSLOT_IDX), 1 do
@@ -141,7 +161,7 @@ function BIS:SearchBis(faction, race, class, phase, spec, invSlot, twoHands, rai
       match = false;
     end
        
-    if match and (value.ClassId ~= class or value.SpecId ~= spec) then      
+    if match and (value.ClassId ~= classSearch or value.SpecId ~= specSearch) then      
       -- BIS:logmsg("One of the mandatory argument does not match", LVL_DEBUG);      
       match = false;
     end
@@ -179,6 +199,11 @@ function BIS:SearchBis(faction, race, class, phase, spec, invSlot, twoHands, rai
     -- Filter off-hand weapons when two-hands is true.
     if match and twoHands and BIS_ITEMS[value.ItemId].Slot == 17 then
       match = false
+    end
+
+    -- Checking if you have an item equipped for your class/spec only.
+    if not match and BestInSlotClassicDB.filter.soulboundBis and IsEquippedItem(value.ItemId) and value.SpecId == specSearch and value.ClassId == classSearch and BIS_ITEMS[value.ItemId].Phase <= phase and BIS:containsValue(value.Races, race) and BIS:containsValue(BIS_ITEMS[value.ItemId].Faction, faction) and (BIS_ITEMS[value.ItemId].Slot ~= 16 or BIS_ITEMS[value.ItemId].TwoHands == twoHands) then             
+      match = true;      
     end
 
     if match then             

@@ -20,6 +20,7 @@ core.lua
 
 # Data.
 data\bis_data.lua
+data\bis_ranking.lua
 data\bis_enchant.lua
 data\recipe.lua
 data\recipe_loot.lua

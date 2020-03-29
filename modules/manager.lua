@@ -152,37 +152,6 @@ BIS_specsFileToSpecs = {
     ["Unknown"] = { "Unknown" }
 };
 
-BIS_lookupSpec = {
-    ["WarriorArms"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["WarriorFury"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["WarriorProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["WarriorFuryProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["DruidFeralTank"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["DruidFeralDPS"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["DruidRestoration"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
-    ["DruidBalance"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["HunterBeastMastery"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["HunterMarksmanship"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["HunterSurvival"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["ShamanElementalCombat"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["ShamanEnhancement"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["ShamanRestoration"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
-    ["MageArcane"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["MageFire"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["MageFrost"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["WarlockCurses"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["WarlockSummoning"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["WarlockDestruction"] = { { 8, 9, 11 }, {{ 1, 2, 3 }, { 1 }, { 6 }} },
-    ["PriestHybrid"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
-    ["PriestShadow"] = { { 5, 8, 9, 11 }, {{ 1, 2 }, { 1, 2, 3 }, { 1 }, { 6 }} },
-    ["RogueSwords"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["RogueDaggers"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["PaladinHoly"] = { { 2, 5, 7, 11 }, {{ 1 }, { 1, 2 }, { 1 }, { 5 }} },
-    ["PaladinProtection"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["PaladinCombat"] = { { 1, 2, 3, 4, 7, 11 }, {{ 1, 2, 3 }, { 2, 3 }, { 1, 2 }, { 1, 2 }, { 2 }, { 1, 2, 3, 4 } } },
-    ["Unknown"] = { { }, { } }
-};
-
 local phases = { 
     ["NAME"] = { "Phase 1", "Phase 2 ("..PLAYER_V_PLAYER..")", "Phase 3 (BWL)", "Phase 4 ("..DUNGEON_FLOOR_ZULGURUB1 ..")", "Phase 5 (AQ)", "Phase 6 (Naxx)" }, 
     ["ICON"] = { 133066   , 132486   ,  134154   , 134085   , 136152   , 134514   },
@@ -258,6 +227,7 @@ local function ResetUI()
         end
         _G["frame_PVP"]:Show();
         _G["frame_WORLD_BOSS"]:Show();
+        _G["frame_SOULBOUND"]:Show();
         if raid then
             _G["frame_RAID"]:Show();
             _G["frame_DUNGEON"]:Hide();
@@ -268,6 +238,7 @@ local function ResetUI()
 
         _G["frame_PVP_ICON"]:SetDesaturated(not pvp);
         _G["frame_WORLD_BOSS_ICON"]:SetDesaturated(not worldBoss);
+        _G["frame_SOULBOUND_ICON"]:SetDesaturated(not BestInSlotClassicDB.filter.soulboundBis);
         if pvp then            
             for idx, value in pairs(pvpranks) do                    
                 _G["frame_PVP_RANK_"..value]:Show();
@@ -325,6 +296,7 @@ local function ResetUI()
         _G["frame_DUNGEON"]:Hide();
         _G["frame_ONE_HAND"]:Hide();
         _G["frame_TWO_HANDS"]:Hide();
+        _G["frame_SOULBOUND"]:Hide();
         for idx, value in pairs(pvpranks) do                    
             _G["frame_PVP_RANK_"..pvpranks[idx]]:Hide();
         end        
@@ -570,6 +542,11 @@ local function HandleWorldBossIcon(self)
     Update();
 end
 
+local function HandleSoulboundIcon(self)
+    BestInSlotClassicDB.filter.soulboundBis = not BestInSlotClassicDB.filter.soulboundBis;
+    Update();
+end
+
 local function HandleMagicIcon(self)
     local magicResist = tonumber(self:GetName():match("[^_]+_[^_]+_([^_]+)"));    
     if magicResist == selectedMagicResist then
@@ -722,7 +699,7 @@ function BIS:ShowManager()
         BIS:CreateClickableIconFrame("frame_WORLD_BOSS", window, RAID_INFO_WORLD_BOSS, 16, 16, 525, -50, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
 
         BIS:CreateClickableIconFrame("frame_ONE_HAND", window, INVTYPE_WEAPON , 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
-        BIS:CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+        BIS:CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);        
 
         if faction == "Horde" then
             pvpIcon = iconHorde;            
@@ -731,6 +708,8 @@ function BIS:ShowManager()
         end                            
 
         BIS:CreateClickableIconFrame("frame_PVP", window, PLAYER_V_PLAYER, 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
+
+        BIS:CreateClickableIconFrame("frame_SOULBOUND", window, ITEM_SOULBOUND, 16, 16, 600, -50, "Interface\\LootFrame\\LootToast", { 612/1024, 644/1024, 224/256, 256/256 }, HandleSoulboundIcon, not BestInSlotClassicDB.filter.soulboundBis);
 
         for idx, value in pairs(pvpranks) do            
             BIS:CreateClickableIconFrame("frame_PVP_RANK_"..value, window, GetPVPRankInfo(value).." (R"..(value-4)..")", 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d","Interface\\PvPRankBadges\\PvPRank",value-4), nil, HandlePvpRankIcon, false);
