@@ -274,6 +274,7 @@ ITEMS_QUEST[20645] = { Quests = {  { Id = 8287, Zone = 1451, Dungeon = false, Ra
 ITEMS_QUEST[20647] = { Quests = {  { Id = 8283, Zone = 1451, Dungeon = false, Raid = false, Side = nil, ProfReq = nil, ClassReq = nil }} };
 ITEMS_QUEST[20648] = { Quests = {  { Id = 8271, Zone = 30, Dungeon = false, Raid = false, Side = "Alliance", ProfReq = nil, ClassReq = nil },  { Id = 8272, Zone = 30, Dungeon = false, Raid = false, Side = "Horde", ProfReq = nil, ClassReq = nil }} };
 ITEMS_QUEST[20649] = { Quests = {  { Id = 8321, Zone = 1451, Dungeon = false, Raid = false, Side = nil, ProfReq = nil, ClassReq = nil }} };
+ITEMS_QUEST[20699] = { Quests = {  { Id = 8316, Zone = 0, Dungeon = false, Raid = true, Side = nil, ProfReq = nil, ClassReq = nil }} };
 ITEMS_QUEST[20702] = { Quests = {  { Id = 8377, Zone = 0, Dungeon = false, Raid = true, Side = "Horde", ProfReq = nil, ClassReq = nil }} };
 ITEMS_QUEST[20704] = { Quests = {  { Id = 8382, Zone = 1451, Dungeon = false, Raid = true, Side = nil, ProfReq = nil, ClassReq = "Druid" }} };
 ITEMS_QUEST[20714] = { Quests = {  { Id = 8382, Zone = 1451, Dungeon = false, Raid = true, Side = nil, ProfReq = nil, ClassReq = "Druid" }} };

@@ -60,7 +60,7 @@ BIS_dataSpecs = {
                     ["SPEC_ICONS"] = { 132347, 136101, 134952 }, 
                     ["VALUE"] = { 1, 2, 3 },
                     ["ICON"] = { 135328 },
-                    ["MAGIC_RESISTANCE"] = { { 1, 4, nil, nil, nil, nil }, { 2, 4, nil, nil, nil, nil }, { 3, 4, nil, nil, nil, nil } },
+                    ["MAGIC_RESISTANCE"] = { { 1, 4, 5, nil, nil, nil }, { 2, 4, 5, nil, nil, nil }, { 3, 4, 5, nil, nil, nil } },
                     ["WEAPON_ICONS"] = { { 12940, 19364 }, { 19019, nil }, { 19019, nil } }
                 },                    
     [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution (AP)", "Retribution (Spelladin)" },
