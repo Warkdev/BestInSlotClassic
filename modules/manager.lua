@@ -67,7 +67,7 @@ BIS_dataSpecs = {
                     ["SPEC_ICONS"] = { 135920, 135893, 135873, 135959 },
                     ["VALUE"] = { 1, 2, 3, 4 },
                     ["ICON"] = { 132325 },
-                    ["MAGIC_RESISTANCE"] = { { 1, 5, nil, nil, nil, nil }, { 2, 6, nil, nil, nil, nil }, { 3, 7, nil, nil, nil, nil }, { 4, 7, nil, nil, nil, nil } },
+                    ["MAGIC_RESISTANCE"] = { { 1, 5, 8, nil, nil, nil }, { 2, 6, 8, nil, nil, nil }, { 3, 7, 8, nil, nil, nil }, { 4, 7, 8, nil, nil, nil } },
                     ["WEAPON_ICONS"] = { { 19360, nil }, { 19360, nil }, { nil, 19364 }, { 19019, 19169 } }
                  },
     [3] = {  ["SPEC"] = { "Normal", "Melee Weave" },                     
