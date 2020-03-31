@@ -1,6 +1,7 @@
 # 2.5.0 (xx-04-2020)
 - Adding Nature resistance set for warriors.
 - Adding Nature resistance set for paladins.
+- Adding "Missing Translation" sentence for quests where the translation is actually missing (Korean and Chinese locales).
 
 # 2.4.0 (31-03-2020)
 - Fixing a bug that made Ironweaver being reported as BIS for warrior PROT threat.
