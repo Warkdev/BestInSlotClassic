@@ -979,6 +979,7 @@ BIS_LangObjectLookup["ptBR"] = {
 [180025] = "Monte de Feno Misterioso de Vale do Leste",
 [180056] = "Toco de Árvore Misterioso",
 [180216] = "Chicotalga",
+[180228] = "Missing translation"
 [180370] = "Fruta da Colheita",
 [180371] = "Peixe da Colheita",
 [180372] = "Javali da colheita",
