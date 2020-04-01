@@ -1,4 +1,4 @@
-# 2.x.x (xx-04-2020)
+# 2.4.2 (01-04-2020)
 - Adding Chinese translation for quests 8185-8192. (Thank you Swetlover)
 - Adding a "Missing Translation" as well for the object Jinxed Hoodoo Pile for some locales (id 180228)
 
