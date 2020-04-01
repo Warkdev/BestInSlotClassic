@@ -566,7 +566,7 @@ function BIS:OnGameTooltipSetItem(frame)
         target = target.."- "..BIS_dataSpecs[value.classId].SPEC[value.specId];
 
         if phase > 1 then
-            for i = bis_currentPhaseId, phase, 1 do
+            for i = bis_currentPhaseId + 1, phase, 1 do
                 text = text.."N/A > ";
             end
         end
