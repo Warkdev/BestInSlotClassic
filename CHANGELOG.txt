@@ -1,8 +1,9 @@
-# 2.x.x (xx-04-2020)
+# 2.4.3 (02-04-2020)
 - Bugfix translation (missing comma).
 - Fixing a bug that made some locale files not being loaded at startup.
 - Adding map id for PVP vendors (Hall of Legends and Champion's Hall).
 - Adding some BIS cloak for paladin protection.
+- Adding Chinese translation for worldobject "Pile of skulls". (Thank you Swetlover)
 
 # 2.4.2 (01-04-2020) -- BUGGED
 - Adding Chinese translation for quests 8185-8192. (Thank you Swetlover)
