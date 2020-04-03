@@ -479,6 +479,11 @@ function BIS:OnGameTooltipSetItem(frame)
     end    
 
     local name, link = frame:GetItem();
+
+    if link == nil then
+        return;
+    end
+
     local _, itemId, enchantId, jewelId1, jewelId2, jewelId3, jewelId4, suffixId, uniqueId,
         linkLevel, specializationID, reforgeId, unknown1, unknown2 = strsplit(":", link)    
     
