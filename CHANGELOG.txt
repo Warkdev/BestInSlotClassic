@@ -1,3 +1,10 @@
+# 2.5.0 (xx-04-2020)
+- Replacing feral enchantment by Agility. (Thanks community for spotting this one)
+- Adding Enchantment for MH/2H weapon for Druid Resto.
+- Adding Zulian Tigerhide cloak as BIS for warrior fury in P4.
+- Reviewing FR set for Warriors.
+- Adding P5 and P6 equipment for Warriors.
+
 # 2.4.3 (02-04-2020)
 - Bugfix translation (missing comma).
 - Fixing a bug that made some locale files not being loaded at startup.
