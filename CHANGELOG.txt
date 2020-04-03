@@ -1,10 +1,9 @@
-# 2.5.0 (xx-04-2020)
+# 2.4.4 (03-04-2020)
 - Fixing a bug that made the tooltip enrichment method using a nil value. (Thanks Swetlover for noticing the conflict with ClassicCodex).
 - Replacing feral enchantment by Agility. (Thanks community for spotting this one)
 - Adding Enchantment for MH/2H weapon for Druid Resto.
 - Adding Zulian Tigerhide cloak as BIS for warrior fury in P4.
 - Reviewing FR set for Warriors.
-- Adding P5 and P6 equipment for Warriors.
 
 # 2.4.3 (02-04-2020)
 - Bugfix translation (missing comma).
