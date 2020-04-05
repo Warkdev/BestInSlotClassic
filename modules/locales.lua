@@ -7,6 +7,21 @@ BIS_LangObjectLookup = {};
 local locale = 'enUS';
 local gender = UnitSex("player");
 
+function BIS:GetLocalizedNPCName(id)
+    local BIS_tableNPCS=BIS_LangNameLookup[BIS:GetUILocale()];
+    return (BIS_tableNPCS[id] or "Missing Translation for NPC Id: "..id);
+end
+
+function BIS:GetLocalizedQuestName(id)
+    local BIS_tableQuests=BIS_LangQuestLookup[BIS:GetUILocale()];
+    return (BIS_tableQuests[id] or "Missing Translation for Quest Id: "..id);
+end
+
+function BIS:GetLocalizedObjectName(id)
+    local BIS_tableObjects=BIS_LangObjectLookup[BIS:GetUILocale()];
+    return (BIS_tableObjects[id] or "Missing Translation for Object Id: "..id);
+end
+
 function BIS:GetLocalizedMapName(id)
     if id == nil or id == 0 then
         return "Unknown";
