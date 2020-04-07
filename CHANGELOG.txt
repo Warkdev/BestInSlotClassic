@@ -1,3 +1,7 @@
+# 2.4.6 (xx-04-2020)
+- The DM trinket for Hunter will now be the correct one (and no more the rogue one).
+- 
+
 # 2.4.5 (05-04-2020)
 - Missing translations will now appear as missing and won't generate LUA errors anymore.
 
