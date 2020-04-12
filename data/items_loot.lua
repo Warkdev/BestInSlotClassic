@@ -1329,6 +1329,7 @@ ITEMS_LOOT[19436] = { NPC = {  {Id = 12463, Zone = 469, Chance = 29.0 },  {Id = 
 ITEMS_LOOT[19437] = { NPC = {  {Id = 12463, Zone = 469, Chance = 14.0 },  {Id = 12464, Zone = 469, Chance = 1.0 },  {Id = 12465, Zone = 469, Chance = 10.0 },  {Id = 12467, Zone = 469, Chance = 17.0 }} };
 ITEMS_LOOT[19438] = { NPC = {  {Id = 12460, Zone = 469, Chance = 4.0 }} };
 ITEMS_LOOT[19439] = { NPC = {  {Id = 12460, Zone = 469, Chance = 4.0 }} };
+ITEMS_LOOT[19852] = { NPC = {  {Id = 14834, Zone = 309, Chance = 4.0 }} };
 ITEMS_LOOT[19853] = { NPC = {  {Id = 14834, Zone = 309, Chance = 4.0 }} };
 ITEMS_LOOT[19854] = { NPC = {  {Id = 14834, Zone = 309, Chance = 6.0 }} };
 ITEMS_LOOT[19855] = { NPC = {  {Id = 14834, Zone = 309, Chance = 7.0 }} };
@@ -1350,6 +1351,7 @@ ITEMS_LOOT[19874] = { NPC = {  {Id = 11382, Zone = 309, Chance = 4.0 }} };
 ITEMS_LOOT[19875] = { NPC = {  {Id = 11380, Zone = 309, Chance = 10.0 }} };
 ITEMS_LOOT[19876] = { NPC = {  {Id = 14834, Zone = 309, Chance = 6.0 }} };
 ITEMS_LOOT[19877] = { NPC = {  {Id = 11382, Zone = 309, Chance = 8.0 }} };
+ITEMS_LOOT[19878] = { NPC = {  {Id = 11382, Zone = 309, Chance = 8.0 }} };
 ITEMS_LOOT[19884] = { NPC = {  {Id = 11380, Zone = 309, Chance = 6.0 }} };
 ITEMS_LOOT[19885] = { NPC = {  {Id = 11380, Zone = 309, Chance = 6.0 }} };
 ITEMS_LOOT[19886] = { NPC = {  {Id = 11380, Zone = 309, Chance = 6.0 }} };

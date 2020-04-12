@@ -10,7 +10,7 @@ Supported lists are:
 
 | Class  | Phase 1 | Phase 2 | Phase 3 | Phase 4 | Phase 5 | Phase 6 | 
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| Warrior  | Yes  |  Yes  |  Yes  |  No  | No  | No  |
+| Warrior  | Yes  |  Yes  |  Yes  |  Yes  | No  | No  |
 | Paladin  | Yes  |  Yes  |  Yes  |  Yes | Yes | Yes |
 | Hunter  | Yes  |  Yes  |  Yes  |  Yes  | Yes  | Yes  |
 | Rogue  | Yes  |  Yes  |  Yes  |  Yes  | Yes  | Yes  |

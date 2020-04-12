@@ -506,7 +506,7 @@ function BIS:OnGameTooltipSetItem(frame)
     BIS_LibExtraTip:AddLine(frame," ",r,g,b,true);
     BIS_LibExtraTip:AddLine(frame,"# BIS-Classic:",r,g,b,true);
     --BIS_LibExtraTip:AddDoubleLine(frame,"Class - Spec", "P1 > P2 > P3 > P4 > P5 > P6" ,r,g,b, r,g,b, true);    
-    BIS_LibExtraTip:AddDoubleLine(frame,"Class - Races - Spec", "P3 > P4 > P5 > P6" ,r,g,b, r,g,b, true);    
+    BIS_LibExtraTip:AddDoubleLine(frame,"Class - Races - Spec", "P4 > P5 > P6" ,r,g,b, r,g,b, true);    
     BIS_LibExtraTip:AddLine(frame," ",r,g,b,true);
 
     for key, value in pairs(BIS_TOOLTIP_RANKING[itemId][suffixId][faction][raid][worldboss][pvp][14]) do
@@ -565,9 +565,9 @@ function BIS:OnGameTooltipSetItem(frame)
         --    text = (value.P1).." > "..(value.P2).." > "..(value.P3).." > "..(value.P4).." > "..(value.P5).." > "..(value.P6);
         --elseif phase <= 2 then
         --    text = text..(value.P2).." > "..(value.P3).." > "..(value.P4).." > "..(value.P5).." > "..(value.P6);
-        if phase <= 3 then
-            text = text..(value.P3).." > "..(value.P4).." > "..(value.P5).." > "..(value.P6);
-        elseif phase <= 4 then
+        --elseif phase <= 3 then
+        --    text = text..(value.P3).." > "..(value.P4).." > "..(value.P5).." > "..(value.P6);
+        if phase <= 4 then
             text = text..(value.P4).." > "..(value.P5).." > "..(value.P6);
         elseif phase <= 5 then
             text = text..(value.P5).." > "..(value.P6);
