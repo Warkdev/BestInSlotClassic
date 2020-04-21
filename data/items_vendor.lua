@@ -203,6 +203,8 @@ ITEMS_VENDOR[19554] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },}
 ITEMS_VENDOR[19555] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },} };
 ITEMS_VENDOR[19556] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },} };
 ITEMS_VENDOR[19557] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },} };
+ITEMS_VENDOR[19558] = { NPC = {  {Id = 14754, Zone = 1413, Side = "Horde" },} };
+ITEMS_VENDOR[19562] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },} };
 ITEMS_VENDOR[19570] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },} };
 ITEMS_VENDOR[19578] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },  {Id = 14754, Zone = 1413, Side = "Horde" },} };
 ITEMS_VENDOR[19582] = { NPC = {  {Id = 14753, Zone = 1440, Side = "Alliance" },  {Id = 14754, Zone = 1413, Side = "Horde" },} };
