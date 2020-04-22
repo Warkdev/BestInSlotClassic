@@ -1,4 +1,4 @@
-# 2.5.1 (xx-04-2020)
+# 2.5.1 (22-04-2020)
 - Adding some missing translation quests for FR locale.
 - Updating rogue swords bis list (removing dagger hands).
 - Adding war mitigation ranged weapons.
