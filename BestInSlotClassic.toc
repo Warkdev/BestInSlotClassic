@@ -1,8 +1,9 @@
 ## Author: Wark @ Auberdine-EU
-## Interface: 11304
+## X-Min-Interface: 11305
+## Interface: 11305
 ## Title: Best In Slot Classic
 ## Notes: Keep track of your Best in Slot list!
-## Version: 2.5.2
+## Version: 2.5.3
 ## SavedVariables: BestInSlotClassicGlobalDB
 ## SavedVariablesPerCharacter: BestInSlotClassicDB
 

@@ -7,17 +7,17 @@ local function SetMinimapDefaults()
 
     if BestInSlotClassicDB.minimap.minimapPos == nil then
         BestInSlotClassicDB.minimap.minimapPos = 175;
-    end   
+    end
 end
 
 local function SetTooltipDefaults()
     if BestInSlotClassicDB.options == nil then
-        BestInSlotClassicDB.options = {};        
+        BestInSlotClassicDB.options = {};
     end
 
     if BestInSlotClassicDB.options.bistooltip == nil then
         BestInSlotClassicDB.options.bistooltip = true;
-    end        
+    end
 end
 
 local function SetLogLevelDefaults()
@@ -61,17 +61,17 @@ local function SetDefaults()
         -- First time loading add-on.
         BestInSlotClassicDB = {};
         BestInSlotClassicDB.minimap = {};
-        BestInSlotClassicDB.loglevel = nil;        
+        BestInSlotClassicDB.loglevel = nil;
         BestInSlotClassicDB.options = {};
     end
     SetMinimapDefaults();
     SetLogLevelDefaults();
     SetFilterDefaults();
-    SetTooltipDefaults();    
+    SetTooltipDefaults();
 end
 
-function BIS:ResetDefaults() 
-    BestInSlotClassicDB = nil;    
+function BIS:ResetDefaults()
+    BestInSlotClassicDB = nil;
 
     SetDefaults();
 end
@@ -80,7 +80,7 @@ function BIS:LoadItemInfo()
     for idx, itemId in pairs(BIS_ITEM_LOAD) do
         GetItemInfo(itemId);
     end
-end    
+end
 
 function BIS:LoadPlayerInfo()
     -- Player name.
@@ -94,7 +94,7 @@ function BIS:LoadPlayerInfo()
 
     -- Player class info.
     localizedClass, class, classIndex = UnitClass("player");
-    
+
     -- Player race info.
     localizedRace, race, raceID = UnitRace("player");
 
@@ -112,10 +112,10 @@ function BIS:LoadPlayerInfo()
 
     -- Trying to find out which spec has this player to load the correct one by default.
     -- There are some specificities like druids (4 specs), rogue (2 specs-type although they are not spec).
-    local numTalentTabs = GetNumTalentTabs();    
+    local numTalentTabs = GetNumTalentTabs();
     local talentsPoints = {};
 
-    BIS:logmsg("Num Talent Tabs: "..numTalentTabs, LVL_DEBUG);    
+    BIS:logmsg("Num Talent Tabs: "..numTalentTabs, LVL_DEBUG);
 
     for idx=1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
@@ -123,10 +123,10 @@ function BIS:LoadPlayerInfo()
         if(tonumber(pointsSpent) > maxPoints) then
             spec = fileName;
             maxPoints = tonumber(pointsSpent);
-        end        
-        BIS:logmsg(name..": "..pointsSpent..", "..fileName, LVL_DEBUG);        
+        end
+        BIS:logmsg(name..": "..pointsSpent..", "..fileName, LVL_DEBUG);
     end
-    
+
     if class == "WARRIOR" and spec == "WarriorFury" then
         -- Trying to find if we've a Fury Prot.
         if talentsPoints[3] > 10 then
@@ -164,7 +164,7 @@ function BIS:LoadPlayerInfo()
     BIS:logmsg("Your spec is: "..spec, LVL_DEBUG);
 end
 
-function BIS:PrintPlayerInfo()    
+function BIS:PrintPlayerInfo()
     BIS:logmsg("Player name: "..name, LVL_DEBUG);
     BIS:logmsg("Player faction: "..faction, LVL_DEBUG);
     BIS:logmsg("Player race: "..race, LVL_DEBUG);
@@ -182,21 +182,21 @@ BIS_LibExtraTip = LibStub("LibExtraTip-1");
 local loaderFrame = CreateFrame("FRAME");
 loaderFrame:RegisterEvent("ADDON_LOADED");
 
-local function eventHandler(self, event, args1, ...)    
-    if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then        
-        SetDefaults();              
+local function eventHandler(self, event, args1, ...)
+    if event == "ADDON_LOADED" and args1 == "BestInSlotClassic" then
+        SetDefaults();
         BIS:CreateMinimapIcon();
-        BIS:CreateSettingsInterface();        
+        BIS:CreateSettingsInterface();
         BIS:SetUILocale();
-        -- Attempt to prevent buggy display.        
+        -- Attempt to prevent buggy display.
         BIS:LoadPlayerInfo();
         BIS:LoadItemInfo();
         BIS_LibExtraTip:AddCallback({type = "item", callback = OnGameTooltipSetItem, allevents = true})
         BIS_LibExtraTip:RegisterTooltip(GameTooltip);
         BIS_LibExtraTip:RegisterTooltip(ItemRefTooltip);
         BIS:logmsg("BestInSlotClassic v"..VERSION.." loaded", LVL_INFO);
-        loaderFrame:UnregisterAllEvents();    
-    end    
+        loaderFrame:UnregisterAllEvents();
+    end
 end
 
 loaderFrame:SetScript("OnEvent", eventHandler);
