@@ -70,7 +70,7 @@ local function enrichRecipeSource(recipeId, icon)
             end
         end
                 
-        if IsQuestFlaggedCompleted(selectedQuest.Id) then            
+        if C_QuestLog.IsQuestFlaggedCompleted(selectedQuest.Id) then            
             BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..BIS:GetLocalizedMapName(selectedQuest.Zone).." - "..BIS:GetLocalizedQuestName(selectedQuest.Id).." ("..COMPLETE..")");
         else
             BIS_TOOLTIP:AddLine("|T"..icon..":"..bis_defaultIconSize.."|t"..BIS:GetLocalizedMapName(selectedQuest.Zone).." - "..BIS:GetLocalizedQuestName(selectedQuest.Id));
@@ -211,7 +211,7 @@ function BIS:OnTooltipSetItem(frame)
                 end
             end
                            
-            if selectedQuest ~= nil and IsQuestFlaggedCompleted(selectedQuest.Id) then                
+            if selectedQuest ~= nil and C_QuestLog.IsQuestFlaggedCompleted(selectedQuest.Id) then                
                 BIS_TOOLTIP:AddLine(BIS:GetLocalizedMapName(selectedQuest.Zone).." - "..BIS:GetLocalizedQuestName(selectedQuest.Id).." ("..COMPLETE..")");                                    
             elseif selectedQuest ~= nil then                
                 BIS_TOOLTIP:AddLine(BIS:GetLocalizedMapName(selectedQuest.Zone).." - "..BIS:GetLocalizedQuestName(selectedQuest.Id));                
@@ -574,7 +574,7 @@ function BIS:OnGameTooltipSetItem(frame)
         else 
             text = text..(value.P6);
         end
-        
+
         if add then
             BIS_LibExtraTip:AddDoubleLine(frame, target, text, color.r, color.g, color.b, color.r, color.g, color.b, true);
         end

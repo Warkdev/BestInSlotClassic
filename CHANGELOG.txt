@@ -1,5 +1,6 @@
 # 2.5.4 (06-12-2021) - Technical update
 - Fix LUA error on load (backdrop template)
+- Fix LUA error on quest completion retrieval
 - Set minimum version for wow client
 - Set default phase to phase 6
 
