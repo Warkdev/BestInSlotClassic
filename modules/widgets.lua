@@ -39,7 +39,7 @@ local function HideParent(self)
 end
     
 function BIS:CreateWindow(name, height, width)    
-    local window = CreateFrame("FRAME", "BISManager", UIParent);        
+    local window = CreateFrame("FRAME", "BISManager", UIParent, "BackdropTemplate");
     window:EnableMouse(true);
     window:SetMovable(true);
     window:SetResizable(false);
@@ -51,7 +51,7 @@ function BIS:CreateWindow(name, height, width)
     window:SetBackdropBorderColor(1, 1, 1, 1);
     window:SetBackdropColor(0, 0, 0, 1);
     window:SetClampedToScreen(true);
-	window:SetToplevel(true);        
+	window:SetToplevel(true);
 	window:SetScript("OnMouseDown", StartMovingOrSizing);
 	window:SetScript("OnMouseUp", StopMovingOrSizing);
 	window:SetScript("OnHide", StopMovingOrSizing);
