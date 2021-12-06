@@ -1,3 +1,8 @@
+# 2.5.4 (06-12-2021) - Technical update
+- Fix LUA error on load (backdrop template)
+- Set minimum version for wow client
+- Set default phase to phase 6
+
 # 2.5.3 (14-07-2020)
 - Updating add-on version for Phase 5.
 - Updating add-on reference for Phase 5.
