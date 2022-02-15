@@ -30,11 +30,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v1
 
-      - name: Install and run Luacheck
-        uses: nebularg/actions-luacheck@v1
-        with:
-          args: "--no-color -q"
-
       - name: Create Classic Package
         uses: BigWigsMods/packager@v1.0.3
         with:
