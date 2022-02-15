@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      #CF_API_KEY: ${{ secrets.CF_API_KEY }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
       GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}  # "GITHUB_TOKEN" is a secret always provided to the workflow
 
@@ -33,4 +32,4 @@ jobs:
       - name: Create Classic Package
         uses: BigWigsMods/packager@v1.0.3
         with:
-          args: -g classic -m .pkgmeta
+          args: -g classic -m .pkgmeta -n "{package-name}-{project-version}"
