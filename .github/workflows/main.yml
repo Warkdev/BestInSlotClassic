@@ -32,4 +32,4 @@ jobs:
       - name: Create Classic Package
         uses: BigWigsMods/packager@v1.0.3
         with:
-          args: -g classic -m .pkgmeta -n "{package-name}-{project-version}"
+          args: -g classic -m .pkgmeta -n "{package-name}-{project-version}{classic}"
