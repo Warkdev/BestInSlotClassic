@@ -1,5 +1,7 @@
 ## Author: Wark @ Auberdine-EU
 ## X-Min-Interface: 11401
+## X-Curse-Project-ID: 360318
+## X-Wago-ID: ME6gwX61
 ## Interface: 11401
 ## Title: Best In Slot Classic
 ## Notes: Keep track of your Best in Slot list!

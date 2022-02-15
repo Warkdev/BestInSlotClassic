@@ -4,7 +4,7 @@ enable-nolib-creation: no
 move-folders:
   BestInSlotClassic/BestInSlotClassic: BestInSlotClassic
 
-ignore: # Files and directories beginning with a dot (such as .git) are automatically ignored, as is the pgkmeta file itself.    
+ignore: # Files and directories beginning with a dot (such as .git) are automatically ignored, as is the pgkmeta file itself.
   - LICENSE.txt
   - CHANGELOG.txt
   - README.md
